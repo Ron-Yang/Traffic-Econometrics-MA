@@ -1,0 +1,97 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+%\usepackage{ngerman}
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%########################################
+\bfsf{Veranschaulichung des Input-Output-Modells: Energie, Transport- und
+  ``Sonstiges'' Sektor}
+%########################################
+\vspace{2em}
+\fig{1.3\textwidth}{figsIOM/AKWfig.eps}
+
+
+\newpage
+%########################################
+\bfsf{Flussdiagramm zum AKW-Beispiel}
+%########################################
+\vspace{1em}
+\fig{1.3\textwidth}{figsIOM/AKWflussdiag.eps}
+Einige der G\"uterstr\"ome, welche durch eine kWh Atomstrom induziert werden.
+\newpage
+%########################################
+\bfsf{Dynamisches Einsektormodell}
+%########################################
+\vspace{1em}
+\fig{0.9\textwidth}{figsIOM/IOMdyn1.eps}
+\parbox{1.2\textwidth}{Dynamisches Einsektormodell: Anpassung der
+Gesamtproduktion und des der Nachfrage zur Verf\"ugung
+Angebotes, wenn die Nachfrage sich zum Zeitpunkt $t=0$ pl\"otzlich um
+20\% \"andert. ($A_{11}=a=0.2$, $\tau=1$).}
+
+\newpage
+%########################################
+\bfsf{Supply-Chain-Modell: Bierkonsum (``Bierspiel'')}
+%########################################
+\vspace{1em}
+\fig{1.1\textwidth}{figsIOM/supplyChainSketch.eps}
+\fig{0.8\textwidth}{figsIOM/bullwhip.eps}
+\parbox{1.1\textwidth}{Der Bullwhip-Effekt bei der Distribution von Bier
+  an die Bierg\"arten (mittlere Bestellzeiten f\"ur Kneipen von Gro\3m\"arkten: 5 Tage;
+  Bestellzeiten f\"ur Gro\3m\"arkte von Brauereien: 9 Tage}
+
+\newpage
+%########################################
+\bfsf{}
+%########################################
+\vspace{1em}
+%\fig{1.3\textwidth}{}
+
+%########################################
+
+\end{center}
+\end{landscape}
+\end{document}

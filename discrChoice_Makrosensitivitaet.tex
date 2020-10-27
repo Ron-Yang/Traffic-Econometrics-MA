@@ -1,0 +1,326 @@
+%########################################################
+% skeletons fuer latex2e documente
+% AUSFUEHRLICHERE Version: skeletonAusfuehrlich.tex (dec04)
+%########################################################
+\documentclass[12pt,a4paper]{scrartcl}  
+%\documentclass[twocolumn,showpacs,preprintnumbers,amsmath,amssymb]{revtex4}
+%\documentclass[preprint,showpacs,preprintnumbers,amsmath,amssymb]{revtex4}
+%\documentclass[a4paper]{foils}
+     % Praesentation a la "Powerpoint", vgl. ~/prosperPraesentation/          
+%\documentclass[tu,colorBG,slideColor,pdf]{prosper} 
+
+\usepackage{graphicx} % definiert \includegraphics[width=???mmm]{eps Bild}
+\usepackage[dvips]{color}     %Definiert \definecolor und 
+                              % red,yellow,green,blue,black,gray,white
+\usepackage{lscape} % provides landscape environment fuer txt rotieren:
+% OK for figs+text(mai05)
+%\begin{landscape}.. \end{landscape}
+
+\usepackage{ngerman}  %''new german''; (nicht als Argument in \documentclass)
+%\usepackage[ngerman]{babel}  %nicht klar, ob dies besser ist als ngerman, "vergisst" \3 Definition
+\usepackage{umlaute}
+%\usepackage[latin1]{inputenc} % dann kann auch ü direkt übersetzt werden!
+
+\usepackage{units} %\unit[3]{m/s^2} => 3 m/s^2 etc!
+
+\usepackage{eurosym}  %Euro-Symbol: \euro{Zahl} oder euro{}
+
+\usepackage{hyperref} 
+%                  Internet-Link: \href{http://www.WasAuchImmer.html}
+%                  {\blue{\underline{TextDesLinks} }}
+%                  Lokaler Link: \hyperlink{targetName}{TextDesLinks}
+%                  Link-Target: \hypertarget{targetName}
+%                  Lokaler File-Link: \href{file:///home/ ...}
+%  Info: \myHyperlink{http..}{Linktext}
+
+\usepackage{cite} % z.B. Refs 1,2,3,5 werden zu [1-3,5]  zusammengefasst
+
+%\textheight220mm
+%\textwidth150mm
+%\oddsidemargin0mm
+%\topmargin0mm
+%\parindent0mm
+
+
+\input{defsSkript}     
+
+\renewcommand{\textfraction}{0.2}  % Figures: At least 20% text at each page
+\setlength{\parindent}{0.9em} %horizontal indentation first line
+\setlength{\parskip}{0.5em}  %addtl. vertical space between paragraphs
+
+\usepackage{psfrag}
+
+
+
+
+%########################################################
+
+\begin{document}
+\title{Makro-Elastizit\"aten bei Discrete Choice Modellen}
+\author{Treibi}
+\author{\large\sf\textbf{Martin Treiber}}
+%\date{\normalsize\sf\textbf{\today}}
+\date{\normalsize\sf\textbf{25.01.2011}} % if ``timestamp'' fixed
+
+\maketitle % sonst wird nix gemacht!
+
+
+%##################################
+\section{Problemstellung}
+%##################################
+
+Gegeben sind f\"ur $I$ Personen bzw. Haushalte
+Mikro-Daten der Nachfrage eines nichtteilbaren Gutes. Dabei ist f\"ur
+jede Person/jeden Haushalt $i$ die Zahl $y_{ki}$ der Einheiten dieses Gutes gegeben,
+welche  von
+Angebotsm\"oglichkeit $k$ nachgefragt wurde. Insgesamt werden also von
+der $i$-ten Person  $n_i=\sum_ky_{ki}$ Einheiten nachgefragt.
+F\"ur jede Person $i$ liegt ein gesch\"atztes, korrekt spezifiziertes MNL
+f\"ur den deterministischen Nutzen $V_{ki}(\vecbeta)$
+vor. Insbesondere ist also der Sch\"atzvektor
+$\hatvecbeta$ gegeben. Weitere Spezifikation:
+
+\bi
+\item Das MNL enth\"alt  den Preis $C_{ki}$ einer Einheit des Gutes als
+Einflussfaktor, o.E.d.A sei der entsprechende Summand von $V_{ki}$
+gegeben durch $\beta_1C_{ki}$. 
+\item Nicht jede Person $i$ hat alle
+Alternativen $k$ zur Verf\"ugung. Vielmehr gilt f\"ur eine Alternative
+$k$ (der Alternativenindex $k$ ist fest an die Alternative gebunden!)
+$k\in {\cal A}_i$ oder eben $k\notin {\cal A}_i$ mit der personenbezogenen
+Alternativenmenge ${\cal A}_i$.
+\ei
+%
+Gesucht ist die makroskopische Preiselastizit\"at der Alternative $k$
+bez\"uglich \emph{Verschiebungen} der Nachfrage. Die Nachfrage selbst,
+d.h. die Zahl $n_i$ der von \emph{irgendeiner} Alternative nachgefragten
+G\"uter, und damit auch die Gesamtzahl $n=\sum_i n_i$ der
+nachgefragten Einheiten, soll konstant
+bleiben.\footnote{Weitergehendes kann man durch die Suchbegriffe 
+\texttt{elasticity discrete-choice Taplin} in Google Scholar finden.}
+ Unter einigen Annahmen kann man nach \emph{Taplin} einen
+Zusammenhang zwischen diesen makroskopischen Elastizit\"aten (\emph{mode choice}
+vs. \emph{ordinary} elasticities) finden, diese sind jedoch meist
+nicht erf\"ullt.\footnote{David A. Hensher, Kenneth John Button,
+``Handbook of transport modelling'' (2000); Oum, T.H. and Waters, WG
+and Yong, J.S., ``Concepts of price elasticities of transport demand
+and recent empirical estimates: an interpretative survey'', Journal of
+transport economics and policy 26, 139--154 (1992).}.
+Immerhin geben die \emph{mode choice} Elastizit\"aten
+eine betragsm\"a\3ige Untergrenze (mit Vorzeichen: Obergrenze) der
+vollen Elastizit\"aten.\footnote{Man k\"onnte nat\"urlich als eine Alternative die
+``Nichtwahl'' definieren, um von der Preiselastizit\"at bez\"uglich
+Verschiebungen auf die totale Preiselastizit\"at zu kommen. Dann
+f\"uhren dieselben Formeln der folgenden Seiten auf die meist
+n\"utzlicheren vollen Elastizit\"aten.
+Das bleibt aber theoretisch, da es von den
+``Nichtw\"ahlern'' meist keine Daten gibt!} 
+
+
+%##################################
+\section{L\"osung anhand eines Beispiels}
+%##################################
+
+Nachgefragt wird ein Flug nach Antalya, welcher von verschiedenen
+Flugh\"afen $k$ aus erfolgen kann, z.B. $k=1$: M\"unchen, $k=2$: Frankfurt,
+$k=3$: Berlin usw. Gegeben sind auch die Kosten $C_{ki}$ des
+Flugs von Flughafen $k$ f\"ur Person $i$\footnote{Nicht jede Person
+hat den gleichen Preis f\"ur dieselbe Leistung bezahlt!} \emph{und} 
+die Zugangskosten $C\sup{appr}_{ki}$mit der g\"unstigsten bzw. realisierten
+ Alternative (z.B. Bahn)  und damit auch die Gesamtkosten
+\be
+C_{ki}\sup{tot}=C\sup{fl}_{ki}+C\sup{appr}_{ki}.
+\ee
+Ferner sind weitere relevante exogene Faktoren wie
+die komplexe Reisezeiten $T_{ki}$ gegeben, so dass das Modell durch
+die deterministische Nutzenfunktion
+\be
+V_{ki}=\beta_1C_{ki}+\beta_2C_{ki}\sup{appr}+\beta_3T_{ki}+ \ldots
+\ee
+voll spezifiziert ist. 
+
+%##################################
+\subsection{Definition der makroskopischen Preiselastizit\"aten}
+%##################################
+
+Die makroskopische Preiselastizit\"at $\epsilon_k$ bez\"uglich
+Verschiebungen von/zu Alternative $k$ \emph{aus Flughafensicht} 
+ist definiert durch
+\be
+\label{epsCmakro}
+\epsilon_k\sup{(C)}:=\epsilon_k=\frac{C_k}{N_k}\ablpart{N_k}{C_k}.
+\ee
+Hingegen gilt \emph{aus Kundensicht} 
+\be
+\label{epsCmakroKunde}
+\epsilon_k\sup{(C,tot)}=\frac{C\sup{tot}_k}{N_k}\ablpart{N_k}{C\sup{tot}_k}.
+\ee
+
+%##################################
+\subsection{Auswertung der Preiselastizit\"at aus Flughafensicht}
+%##################################
+
+Die
+einzelnen Gr\"o\3en von~\refkl{epsCmakro} werden folgenderma\3en berechnet:
+\bi
+\item Der im Ist-Zustand
+modellierten Gesamtpreis aller Tickets f\"ur Fl\"uge von Flughafen $k$
+nach (und von) Antalya ist gegeben durch\footnote{W\"urde man den Preiseinfluss
+alternativenspezifisch definieren, lautet eine Klasse von MNL-
+Sch\"atzbedingungen  
+``modellierter Gesamtpreis bei $k$ gleich realisierter Gesamtpreis bei
+$k$'' und man k\"onnte $C_k$ auch aus den Daten ermitteln. 
+Bei einer globalen Formulierung wie hier gilt hingegen nur
+``modellierter Gesamtpreis  gleich realisierter Gesamtpreis'' und man
+muss die Modellerwartung heranziehen, um Konsistenz zu bewahren.}
+\be
+\label{Ck}
+C_k=\sum_i P_{ki}n_i C_{ki}.
+\ee
+
+\item Die Gesamtzahl aller verkauften Tickets  f\"ur Fl\"uge von Flughafen $k$
+nach (und von) Antalya ist gegeben durch
+\be
+\label{Nk}
+N_k=\sum_i P_{ki}n_i =N_k\sup{data}.
+\ee
+Das zweite Gleichheitszeichen gilt, 
+da zu einem wohlspezifizierten MNL auch ein
+vollst\"andiger Satz an alternativenspezifischen Konstanten geh\"ort
+und die Sch\"atzgleichungen der zugeh\"origen Parameter zu den
+Bedingungen $N_k=N_k\sup{data}$ f\"uhren.
+
+\item Zur Berechnung von $\ablpart{N_k}{C_k}$ muss man zwei F\"alle
+unterscheiden:
+\bi
+\item \textbf{Alle Preise werden um einen festen \emph{Betrag} ver\"andert}
+(absolute Preis\-\"anderung), also $\diff{C_k}=n\diff{C_{ki}}$. Dann gilt
+\bdm
+\diff{N_k}=\sum_{i=1}^I \ablpart{(n_i P_{ki})}{C_{ki}}\diff{C_{ki}}
+ = \frac{1}{n}\sum_{i=1}^I n_i\ablpart{P_{ki}}{C_{ki}}\diff{C_k},
+\edm
+also 
+\be
+\ablpart{N_k}{C_k}= \frac{1}{n}\sum_{i=1}^I
+n_i\ablpart{P_{ki}}{C_{ki}}.
+\ee
+
+\item \textbf{Alle Preise werden um einen festen \emph{Prozentsatz}
+ver\"andert} (relative Preis\"anderung), 
+also $\diff{C_k}/C_k=\diff{C_{ki}}/C_{ki}$. Dann gilt
+\bdm
+\diff{N_k}=\sum_{i=1}^I \ablpart{(n_i P_{ki})}{C_{ki}}\diff{C_{ki}}
+ = \sum_{i=1}^I n_i\ablpart{P_{ki}}{C_{ki}} \left(\frac{C_{ki}}{C_k}\right)\diff{C_k},
+\edm
+also 
+\be
+\ablpart{N_k}{C_k}= \sum_{i=1}^I n_i 
+\left(\frac{C_{ki}}{C_k}\right) \ablpart{P_{ki}}{C_{ki}}.
+\ee
+Es wird also $1/n$ durch $C_{ki}/C_k$ ersetzt. Bei der relativen
+Preis\"anderung werden also bei der Berechnung der Elastizit\"at 
+die Hochpreistickets st\"arker gewichtet.
+
+In jedem Fall kann man die makroskopische Elastizit\"at $\epsilon_k$
+als mehr oder weniger kompliziert gewichteter Mittelwert der
+\emph{mikroskopischen} Elastizit\"at
+\be
+\epsilon_{ki}\sup{mic}=\frac{C_{ki}}{P_{ki}} \ablpart{P_{ki}}{C_{ki}}
+\ee
+ansehen.
+
+\ei
+\ei
+%
+Schlie\3lich wird die Ableitung der prognostizierten
+Kaufwahrscheinlichkeit nach dem Ticketpreis mit dem gesch\"atzten
+Logitmodell 
+\be
+P_{ki}=\frac{e^{V_{ki}}}{N}, \quad
+N=\sum_l e^{V_{li}}
+\ee
+berechnet:
+\bea
+\ablpart{P_{ki}}{C_{ki}} &=& \ablpart{}{C_{ki}}
+ \left(\frac{e^{V_{ki}}}{\sum_l e^{V_{li}}}\right) \nonumber \\
+&=& \frac{1}{N} e^{V_{ki}} \beta_1 
+ - \frac{^{V_{ki}}}{N^2} e^{V_{ki}} \beta_1\nonumber  \\
+&=& \beta_1 P_{ki}\left(1-P_{ki}\right)
+\eea
+Hierbei wurde
+\bea
+\ablpart{V_{ki}}{C_{ki}} &=&\ablpart{}{C_{ki}}
+\left(\beta_1C_{ki}+\beta_2C_{ki}\sup{appr}+\beta_3T_{ki}+ \ldots\right)
+ = \beta_1,\\
+\ablpart{N}{C_{ki}} &=&\ablpart{}{C_{ki}}
+\left(\sum_l e^{V_{li}}\right)=\ablpart{V_{ki}}{C_{ki}}= \beta_1
+\eea
+ausgenutzt.
+
+%\newpage
+
+%##################################
+\subsection{Alles zusammengefasst}
+%##################################
+
+Bez\"uglich absolute Preis\"anderungen ergibt sich die makroskopische
+\emph{mode choice} Elastizit\"at aus Flughafensicht durch
+
+\be
+\label{epsmacabs}
+\epsilon_k\sup{abs}=\frac{\beta_1 C_k}{N_k}\sum_i \frac{n_i}{n} P_{ki}\left(1-P_{ki}\right)
+\ee
+%
+und bez\"uglich  relativer Preis\"anderungen durch
+\be
+\label{epsmacrel}
+\epsilon_k\sup{rel}=\frac{\beta_1 }{N_k}\sum_i n_iC_{ki} P_{ki}\left(1-P_{ki}\right).
+\ee
+Man beachte, dass man eine Vielzahl verschiedener Preiselastizit\"aten
+sauber auseinanderhalten muss. Beispielsweise haben die obigen beiden
+Elastizit\"aten mindestens vier qualifizierende Attribute. Es handelt sich
+bei~\refkl{epsmacrel} beispielsweise um
+\bi
+\item eine makroskopische (und nicht etwa mikroskopische) Elastizit\"at
+\item eine \emph{mode choice} Elastizit\"at (und nicht etwa eine
+\emph{volle} bzw. \emph{gew\"ohnliche} Elastizit\"at)
+\item eine Elastizit\"at aus Anbietersicht (und nicht etwa aus Kundensicht)
+\item eine Elastizit\"at bez\"uglich prozentualer (und nicht etwa
+absoluter) Preis\"anderungen.
+\ei
+Ferner handelt es sich
+\bi
+\item Um eine Preiselastizit\"at (und nicht etwa eine
+Reisezeitelastizit\"at),
+\item Um eine Eigenelastizit\"at (und nicht etwa um eine
+Kreuz-Elastizit\"at $\epsilon_{kl}=C_l/N_k\ablpart{N_k}{C_l}$, also
+eine relative Nachfrage\"anderung pro relativer Preis\"anderung eines
+\emph{anderen} Anbieters $l \neq k$)
+\item etc.
+\ei
+%
+Die mikroskopische 
+Ticketpreis-Elastizit\"at (nicht Reisepreis-Elastizit\"at!) ergibt
+sich hingegen durch den einfachen Ausdruck
+\be
+\epsilon_{ki}\sup{mic}=\beta_1 C_{ki}  \left(1-P_{ki}\right),
+\ee
+%
+so dass man die makroskopischen Elastizit\"aten~\refkl{epsmacabs} und
+\refkl{epsmacrel} als gewichtete Mittel dieser mikroskopischen
+Elastizit\"at auffassen kann. Bei $\epsilon_k\sup{rel}$ sind die
+Gewichtungen besonders einfach, n\"amlich gleich dem erwarteten Anteil
+$n_iP_{ki}/N_k$ einer Person/Personengruppe an der Gesamtzahl der
+verkauften Tickets (man beachte Gl.~\refkl{Nk}).
+
+Nat\"urlich sind alle Elastizit\"aten $<0$,
+da $\beta_1<0$ (der Nutzen sinkt mit
+wachsendem Preis). Nur f\"ur einen Monopolmarkt (nur eine Alternative
+pro Kunde, $P_{1i}=1$) ergibt sich eine Mode-Choice-Preiselastizit\"at von null,
+da ja $\epsilon_k$ die Preiselastizit\"at f\"ur die
+Alternative $k$ \emph{bez\"uglich Verschiebungen} darstellt und solche
+ohne eine Alternative nat\"urlich nicht stattfinden k\"onnen.
+
+\end{document}
+%########################################################
+

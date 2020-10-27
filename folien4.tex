@@ -1,0 +1,534 @@
+
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+%\usepackage{ngerman}
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{$HOME/tex/inputs/defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+% !! Siehe templateFolienPicture.tex !!
+
+
+%###################################################
+\bfsf{Beispiel Wahlentscheidungen:\\Vierstufenmodell der Verkehrsplanung}
+%###################################################
+\vspace{2em}
+\fig{1.3\textwidth}{figsDiscr/vierstufenmodellDiscr.eps}
+
+\newpage
+%###################################################
+\bfsf{Entscheidung bei zwei Alternativen}
+%###################################################
+\vspace{1em}
+\fig{1.3\textwidth}{figsDiscr/zweiAlternat-U.eps}
+
+\newpage
+%############################################
+\bfsf{Zufallsnutzen: Die Entscheidung wird unsicher}
+%############################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsDiscr/zweiAlternat-P.eps}
+\vspace{2em}
+
+\parbox{1.1\textwidth}{Auf Individualebene lautet
+die Entscheidung nur ja (1) oder Nein (0); Auf Kollektivebene bzw. bei
+Zufallselementen in der Nutzenfunktion ergibt sich eine
+Wahrscheinlichkeit zwischen 0 und 1.}
+
+\newpage
+%###################################################
+\bfsf{Komponenten von Modellen der diskreten Wahltheorie}
+%###################################################
+\vspace{0em}
+\fig{1.2\textwidth}{figsDiscr/discrKomp.eps}
+
+\newpage
+%############################################
+\bfsf{Dichten und Verteilungsfunktion der Gau\3verteilung}
+%############################################
+\vspace{1em}
+\begin{tabular}{cc}
+ \includegraphics[width=0.68\textwidth]{./figsDiscr/fGauss.eps} &  
+ \includegraphics[width=0.68\textwidth]{./figsDiscr/binProbit_P1.eps}   
+\end{tabular}
+
+\parbox{1.1\textwidth}{Probit-Modell: Links: Dichte der 
+normalverteilten Zufallsnutzen $\epsilon_1$ und $\epsilon_2$ sowie die
+Dichte der Nutzendifferenz $\Delta \epsilon$. Rechts:
+Verteilungsfunktion der Zufallsnutzen und resultierende
+Auswahlwahrscheinlichkeit f\"ur Alternative 1 in Abh\"angigkeit der
+deterministischen Nutzendifferenz $V_1-V_2$.
+}
+\newpage
+
+%############################################
+\bfsf{Dichtefunktionen von Gumbelverteilungen}
+%############################################
+\vspace{1em}
+
+ \includegraphics[width=1.0\textwidth]{./figsDiscr/gumbel_f.eps}   
+\vspace{1em}
+
+
+
+\newpage
+%###########################################
+\bfsf{Multinomiales Probitmodell }
+%###########################################
+\vspace{1em}
+\fig{1.1\textwidth}{figsDiscr/multiProbit_P1.eps}
+\parbox{1.1\textwidth}{Multinomiales Probitmodell mit
+gleichen Nutzen $V_k$ f\"ur $k\ge 2$ als Funktion der Nutzendifferenz
+$V_1-V_k$.}
+
+\newpage
+%###################################################
+\bfsf{Gumbelverteilung als Grenzverteilung I}
+%###################################################
+\vspace{1em}
+
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/gumbelGrenz_F.eps}   
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/gumbelGrenz_f.eps}   
+\vspace{1em}
+
+\newpage
+%###################################################
+\bfsf{Gumbelverteilung als Grenzverteilung II}
+%###################################################
+\vspace{1em}
+
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/gumbelGrenz2_F.eps}   
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/gumbelGrenz2_f.eps}   
+\vspace{1em}
+
+\parbox{1.1\textwidth}{Hier ist das Maximum von
+Zufallsvariablen gezeigt, welche im Interval $-1.98 \le x \le 1.5$
+gleichverteilt sind (konstante Dichte) und erst danach exponentiell
+(Exponent $\lambda=1$) abfallen.
+}
+\newpage
+%###################################################
+\bfsf{Auswahlwahrscheinlichkeiten der MNL und MNP Modelle }
+%###################################################
+\vspace{0em}
+\fig{1.1\textwidth}{figsDiscr/multiLogit_P1.eps}
+\parbox{1.3\textwidth}{Multinomial-Logitmodell mit
+gleichen Nutzen $V_k$ f\"ur $k\ge 2$ als Funktion der Nutzendifferenz
+$V_1-V_k$.
+Zum Vergleich sind f\"ur zwei F\"alle auch die
+Probit-Wahrscheinlichkeiten geplottet. 
+}
+
+\newpage
+%###########################################
+\bfsf{Auswahlwahrscheinlichkeiten in den trinomialen Probit- und Logitmodellen }
+%###########################################
+\vspace{1em}
+
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/p1ProbitTrinom_V1V2.eps}   
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/pLogitTrinom_V1V2.eps}   
+\vspace{1em}
+
+\parbox{1.1\textwidth}{Bei auf die Zufallsnutzen-Standardabweichung skalierten
+  Nutzenfunktionen gibt 
+es bei beiden Modellen kaum Unterschiede zwischen Probit (links) und Logit (rechts)!}
+
+
+\newpage
+%##########################################
+\bfsf{Parametersch\"atzung bei binomialen Logit-und Probitmodellen}
+%##########################################
+
+\vspace{1em}
+
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/kalProbitBinom_beta1beta2.eps}
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/kalLogitBinom_beta1beta2.eps}   
+\vspace{1em}
+
+\parbox{1.1\textwidth}{Beispiel der \"Ubung 2010/11 Nr. 7:
+Nahezu identische Sch\"atzer bei beiden Modellen (falls
+  man die Nutzenfunktionen auf eine  Zufallsnutzen-Standardabweichung
+  $\sigeps$ skaliert). Wieder  Probit (links) und Logit (rechts)}
+
+\newpage
+%##########################################
+\bfsf{Parametersch\"atzung bei trinomialen Logit-und Probitmodellen}
+%##########################################
+
+\vspace{1em}
+
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/kalProbitTrinom_beta1beta2.eps}
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/kalLogitTrinom_beta1beta2.eps}   
+\vspace{1em}
+
+\parbox{1.1\textwidth}{Analoges gilt f\"ur den trinomialen Fall (die
+  nichtmotorisierten Alternativen wurden in Fu\3 und Rad aufgespalten).
+}
+
+
+
+\newpage
+%##########################################
+\bfsf{Ausf\"uhrliches Beispiel f\"ur den binomialen Fall:\\
+Auswertung einer Umfrage in der Vorlesung}
+%##########################################
+\vspace{3em}
+\begin{center}
+\begin{tabular}{|l||c|c|c||c|} \hline
+Klasse $i$ & 
+\myBox{4em}{Klassen-\\mitte $r^*_i$} &
+\myBox{4em}{ $h_{1i}$\\(Fu\3/Rad)} &
+\myBox{5em}{ $h_{2i}$\\ (\"OPNV/Kfz)}  & $n_i$ \\
+\hline\hline
+$i=1$: 0-2 km  & \unit[1.0]{km} & 8 & 5 & 13 \\
+$i=2$: 2-5 km  & \unit[3.5]{km} & 8 & 9 & 17\\
+$i=3$: 5-10 km  & \unit[7.5]{km} & 2 & 11 & 13\\
+$i=4$: 10-20 km  & \unit[15.0]{km} & 0 & 6 & 6 \\ \hline
+\end{tabular}
+\end{center}
+\vspace{3em}
+
+Deterministische Nutzenfunktion:
+\vspace{1em}
+
+$
+V_{ki}(\beta_1,\beta_2) =(\beta_1r^*_i+\beta_2)\delta_{k1}.
+$
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse  I: Likelihood-Funktion des binomialen Logit-Modells}
+%###################################################
+\vspace{-4em}
+\fig{1.2\textwidth}{figsDiscr/BNL_kalib_L.eps}
+\vspace{-1.5em}
+\parbox{1.35\textwidth}{Der Quotient
+$L(\beta_1,\beta_2)/L\sub{max}$, welcher direkt die zweidimensionale
+Dichtefunktion der tats\"achlichen Parameterwerte angibt. 
+Der Rand der Konfidenzregion bez\"uglich des
+Trivialmodells $V_{ki}=0$ zur Fehlerwahrscheinlichkeit
+$\alpha=\unit[5]{\%}$ entspricht einer
+Log-Likelihood-Differenz von $1/2 \chi^2_{2,1-\alpha}\approx 3$, also 
+$L(\beta_1,\beta_2)/L\sub{max}=e^{-3}$ (dick umrandet)
+}
+
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse II: Log-Likelihood}
+%###################################################
+\vspace{-1em}
+\fig{1.20\textwidth}{./figsDiscr/BNL_kalib_logL.eps}
+\vspace{-1em}
+
+\hspace{0.1\textwidth}
+\parbox{1.1\textwidth}{
+Log-Likelihood $l(\beta_1,\beta_2)$ um den Punkt\\
+ ($\beta_1^*=-0.328$,
+  $\beta_2^*=0.997$)
+ der gesch\"atzten Modell\-parameter
+}
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse  IIa: Log-Likelihood bei mehr
+Daten}
+%###################################################
+\vspace{-1em}
+\fig{1.20\textwidth}{./figsDiscr/BNL_kalib_logL10.eps}
+\vspace{-1em}
+
+\hspace{0.1\textwidth}
+\parbox{1.1\textwidth}{
+Alle Teilnehmerzahlen  um den Faktor 10
+erh\"oht  bei gleichen relativen H\"aufigkeiten
+}
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse  III: Aussage des binomialen Logit-Modells}
+%###################################################
+\vspace{0em}
+\fig{1.1\textwidth}{figsDiscr/BNL_result1.eps}
+\parbox{1.3\textwidth}{Vergleich des kalibrierten Modells
+($\beta_1=-0.353$, $\beta_2=0.975$) 
+mit den Daten. Dargestellt ist die Modellvorhersage (Kurven) mit den
+entsprechenden relativen H\"aufigkeiten $f_k|i=h_{ki}/n_i$ f\"ur $k=1$
+und $k=2$.
+}
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse IV: Sensitivit\"at gegen\"uber Daten\"anderungen}
+%###################################################
+\vspace{0em}
+\fig{1.1\textwidth}{figsDiscr/BNL_result2.eps}
+\parbox{1.3\textwidth}{Sachverhalt wie in
+vorhergehender Abbildung, aber mit dem 
+Entfernungsmittel $x^*_2=\unit[3]{km}$ statt \unit[3.5]{km}.
+Die dazugeh\"origen kalibrierten Werte sind $\beta^*_1=-0.354$ und
+$\beta^*_2=0.897$. 
+}
+
+
+\newpage
+%###########################################
+\bfsf{Ausf\"uhrliches Beispiel f\"ur den multinomialen Fall:\\
+Detailliertere Auswertung der Umfrage}
+%###########################################
+\vspace{2em}
+\begin{center}
+\begin{tabular}{|l||c|c|c|c|} \hline
+\includegraphics[width=10em]{figsGeneric/diagonal.eps} &
+  \myBox{3em}{ $k=1$\\(Fu\3)} &
+  \myBox{3em}{ $k=2$\\(Rad)} &
+  \myBox{3em}{ $k=3$\\(\"OPNV)}  & 
+  \myBox{3em}{ $k=4$\\(Kfz)} \\
+\hline\hline
+$i=1$: 0-2 km, kein Rad & 2 & -- & 3 & 1 \\
+$i=2$: 0-2 km, Rad & 1 & 5 & 1 & 0 \\ 
+$i=3$: 2-6 km, kein Rad & 1 & -- & 2 & 1 \\ 
+$i=4$: 2-6 km, Rad & 0 & 7 & 6 & 0 \\ 
+$i=5$: 6-10 km & 0 & 2 & 8 & 3 \\ 
+$i=6$: 10-20 km & 0 & 0 & 1 & 5 \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+Deterministische Nutzenfunktion:
+\vspace{-2em}
+
+\bdma
+\label{VdetMult}
+V_{ki}(\vec{\beta}) 
+ &=& \beta_1 r_{i}\delta_{k1}
++\beta_2 r_{i}\delta_{k2}
++\beta_3 r_{i}\delta_{k3} \\
+&&+\beta_4\delta_{k1}+\beta_5\delta_{k2}
++\beta_6\delta_{k3}
++\delta_{k2} \twoCases{0}{\text{$i$ hat Rad}}{-10^6}{\text{$i$ hat kein Rad}}.
+\edma
+
+
+\newpage
+%###################################################
+\bfsf{Multinomiales Beispiel: MNL-Ergebnis}
+%###################################################
+\vspace{-0.5em}
+\fig{1.1\textwidth}{figsDiscr/MNL_result1Kum.eps}
+\vspace{-0.5em}
+\parbox{1.2\textwidth}{{\small 
+\textbf{Nutzenfunktion:}\\
+$
+V_{ki}(\vec{\beta})=\beta_1 r_{i}\delta_{k1}
++\beta_2 r_{i}\delta_{k2}
++\beta_3 r_{i}\delta_{k3}
++\beta_4\delta_{k1}+\beta_5\delta_{k2}
++\beta_6\delta_{k3}+\text{Radlos-Strafkosten}
+$
+
+\textbf{Gesch\"atzte Werte:} \\
+$\beta_1=-1.04$, $\beta_2=-0.50$, $\beta_3=-0.27$,
+$\beta_4=3.20$, $\beta_5=3.25$, $\beta_6=2.72$. 
+}
+}
+
+
+
+\newpage
+%###################################################
+\bfsf{Nested-Logit Modell am Beispiel ``Shopping''}
+%###################################################
+\vspace{1em}
+
+{\small
+\begin{tabular}{|c||c|c|c|c||c|c|} \hline
+Person 
+ & \myBox{4.5em}{T\\Emma,\"OV\\(min)}
+ & \myBox{4.5em}{T\\Emma,MIV\\(min)}
+ & \myBox{4.5em}{T\\Zentr,\"OV\\(min)}
+ & \myBox{4.5em}{T\\Zentr,MIV\\(min)}
+ & \myBox{3.5em}{Wahl $l$\\1=Emma\\2=Zentr.}
+ & \myBox{3em}{Wahl~$m$\\1=\"OV\\2=MIV} \\ \hline
+1 & 15 & 20 & 55 & 60 & 1 & 1 \\
+2 & 25 & 20 & 45 & 40 & 1 & 1 \\
+3 & 25 & 10 & 25 & 10 & 2 & 2 \\
+4 & 15 & 20 & 10 & 15 & 2 & 1 \\
+5 & 22 & 20 & 17 & 15 & 2 & 2 \\
+6 & 45 & 30 & 35 & 20 & 1 & 2 \\ \hline
+\end{tabular}
+}
+\vspace{1em}
+
+\parbox{1.1\textwidth}{Eine geschachtelte \emph{Revealed
+Choice}-Befragung: 
+\bi
+\item \"Ubergeordnete Entscheidung eines Ladentyps
+\item  Bedingte Verkehrsmittelwahl
+\ei
+}
+
+\newpage
+%###################################################
+\bfsf{Nichtlineare Nutzenfunktion I: Schwelle: Daten}
+%###################################################
+\vspace{1em}
+
+\begin{tabular}{|c||c|c|c|c|} \hline
+\myBox{4em}{Personen-\\[-3ex]klasse}
+ & \myBox{8em}{Zeit Alternative~1\\(min)}
+ & \myBox{8em}{Zeit Alternative~2\\(min)}
+ & \myBox{2.5em}{Wahl\\Alt.~1}
+ & \myBox{2.5em}{Wahl\\Alt.~2} \\ \hline
+1 & 25 & 30 & 11 & 10 \\
+2 & 30 & 30 & 10 & 10 \\
+3 & 35 & 30 & 10 & 10 \\
+4 & 40 & 30 & 9 & 11 \\
+5 & 45 & 30 & 5 & 15 \\
+6 & 50 & 30 & 2 & 15 \\
+7 & 55 & 30 & 1 & 15 \\
+8 & 60 & 30 & 0 & 15 \\ \hline
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Nichtlineare Nutzenfunktion I: Schwelle: Modellierung}
+%###################################################
+\vspace{1em}
+\fig{1.3\textwidth}{figsDiscr/nonlinUtility_4param.skriptFig.eps}
+
+\bdm
+V_{n1}-V_{n2}=\beta_1 +\beta_2\left[\Delta T_n+\beta_3 \,
+  \tanh\left(\frac{\Delta T_n}{\beta_4}\right)\right]
+\edm
+
+$
+\hatbeta_1= 0.043 \pm 0.236, \quad
+\hatbeta_2= -0.29 \pm 0.38, \quad
+\hatbeta_3= -15 \pm 18, \quad
+\hatbeta_4= 14 \pm 21.
+$
+
+\newpage
+%###################################################
+\bfsf{Nichtlineare Nutzenfunktion II: Erh\"ohte sSensitivit\"at:  Daten}
+%###################################################
+\vspace{1em}
+
+\begin{tabular}{|c||c|c|c|c|} \hline
+\myBox{4em}{Personen-\\[-3ex]klasse}
+ & \myBox{8em}{Zeit Alternative~1\\(min)}
+ & \myBox{8em}{Zeit Alternative~2\\(min)}
+ & \myBox{2.5em}{Wahl\\Alt.~1}
+ & \myBox{2.5em}{Wahl\\Alt.~2} \\ \hline
+1 & 25 & 30 & 16 & 7 \\
+2 & 30 & 30 & 10 & 10 \\
+3 & 35 & 30 & 7 & 20 \\
+4 & 40 & 30 & 3 & 20 \\
+5 & 45 & 30 & 3 & 25 \\
+6 & 50 & 30 & 2 & 30 \\
+7 & 55 & 30 & 1 & 17 \\
+8 & 60 & 30 & 2 & 50 \\ \hline
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Nichtlineare Nutzenfunktion II: Erh\"ohte Sensitivit\"at: Modell}
+%###################################################
+\vspace{1em}
+\fig{1.3\textwidth}{figsDiscr/nonlinUtility_4param_Tversky.skriptFig.eps}
+
+\bdm
+V_{n1}-V_{n2}=\beta_1 +\beta_2\left[\Delta T_n+\beta_3 \,
+  \tanh\left(\frac{\Delta T_n}{\beta_4}\right)\right]
+\edm
+
+$
+\hatbeta_1= -0.08 \pm 0.25, \quad
+\hatbeta_2= -0.05 \pm 0.10, \quad
+\hatbeta_3= 27 \pm 101, \quad
+\hatbeta_4= 10 \pm 16.
+$
+
+\newpage
+%###################################################
+\bfsf{Nichtlineare Nutzenfunktion II: Test weitere Modelle}
+%###################################################
+\vspace{1em}
+\fig{1.3\textwidth}{figsDiscr/nonlinUtility_3param2param.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Log-Likelihoods des Nested-Logit-Beispiels}
+%###################################################
+\vspace{1em}
+
+\begin{tabular}{cc}
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/nestedLogit_beta1beta2.eps}
+&
+ \includegraphics[width=0.65\textwidth]{./figsDiscr/nestedLogit_beta3beta4.eps}
+\\
+\parbox{0.55\textwidth}{Log-Likelihood der bedingten
+Ent\-schei\-dung (Wahl des Ver\-kehrs\-mittels)}
+&
+\parbox{0.55\textwidth}{Log-Likelihood der  \"uber\-ge\-or\-dne\-ten 
+Ent\-schei\-dung (Wahl des Ladentyps)}
+
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{}
+%###################################################
+\vspace{1em}
+%\fig{1.3\textwidth}{}
+
+%###################################################
+
+\end{center}
+\end{landscape}
+\end{document}

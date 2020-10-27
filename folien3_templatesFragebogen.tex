@@ -1,0 +1,215 @@
+
+
+\documentclass[a4paper]{foils}
+\usepackage{eurosym}  %Euro-Symbol: \euro{Zahl} oder euro{}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+%\usepackage{ngerman}
+
+\textheight240mm
+\textwidth200mm
+\oddsidemargin-20mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{center}
+
+
+%###################################################
+\bfsf{Stated-Choice-Experiment, 2 Alternativen}
+%###################################################
+\vspace{1em}
+
+Datum: \hspace{6em} Wetter:
+\vspace{1em}
+
+Exogene alternativenspezifische Variable: Komplexe Reisezeit,
+Ad-Hoc-Kosten, Wetter etc
+\vspace{1em}
+
+\begin{tabular}{|c||c|c||r|r|}
+\hline 
+\myBox{2em}{Choice\\Set} &
+  \myBox{3em}{Alt. 1:\\Fu\3/Rad} &
+  \myBox{3em}{Alt. 2:\\ \"OV} &
+  Wahl 1 & Wahl 2 \\[0.5em] \hline\hline
+1 & \unit[30]{min} & \unit[30]{min} + \unit[0]{\euro{}} & & \\[0.5em] \hline
+2 & \unit[30]{min} & \unit[40]{min} + \unit[0]{\euro{}} & & \\[0.5em] \hline
+3 & \unit[30]{min} & \unit[50]{min} + \unit[0]{\euro{}} & & \\[0.5em] \hline
+4 &  &  & & \\[0.5em] \hline
+5 &  &  & & \\[0.5em] \hline
+6 &  &  & & \\[0.5em] \hline
+7 &  &  & & \\[0.5em] \hline
+8 &  &  & & \\[0.5em] \hline
+9 &  &  & & \\[0.5em] \hline
+10 &  &  & & \\[0.5em] \hline
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment, 3 Alternativen}
+%###################################################
+\vspace{1em}
+
+Datum: \hspace{3em} angenommenes Wetter:
+\vspace{1em}
+
+Exogene alternativenspezifische Variable: Komplexe Reisezeit,
+Ad-Hoc-Kosten, Wetter etc
+\vspace{1em}
+
+{\small
+\begin{tabular}{|r||c|c|c||r|r|r|}
+\hline 
+\myBox{2em}{Choice\\Set} &
+  \myBox{3em}{Alt. 1:\\Fu\3} &
+  \myBox{3em}{Alt. 2:\\Rad} &
+  \myBox{3em}{Alt. 3:\\ \"OV/MIV} &
+  Wahl 1 & Wahl 2 & Wahl 3 \\ \hline\hline
+1 & \unit[30]{min} & \unit[30]{min} & \unit[30]{min}  & & & \\[0.5em] \hline
+2 & & &  & & & \\[0.5em] \hline
+3 & & &  & & & \\[0.5em] \hline
+4 & & &  & & & \\[0.5em] \hline
+5 & & &  & & & \\[0.5em] \hline
+6 & & &  & & & \\[0.5em] \hline
+7 & & &  & & & \\[0.5em] \hline
+8 & & &  & & & \\[0.5em] \hline
+9 & & &  & & & \\[0.5em] \hline
+10 & & &  & & & \\[0.5em] \hline
+11 & & &  & & & \\[0.5em] \hline
+12 & & &  & & & \\[0.5em] \hline
+\end{tabular}
+}
+
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment, 3 Alternativen allgemein}
+%###################################################
+\vspace{1em}
+
+Datum: \hspace{3em} angenommenes Wetter:
+\vspace{1em}
+
+
+{\small
+\begin{tabular}{|r||c|c|c||r|r|r|}
+\hline 
+\myBox{2em}{Choice\\Set} &
+  \myBox{4em}{Alt. 1:\\ \vspace{2em}} &
+  \myBox{4em}{Alt. 2:\\ \vspace{2em}} &
+  \myBox{4em}{Alt. 3:\\ \vspace{2em}} &
+  \myBox{1.5em}{Wahl\\1} &
+  \myBox{1.5em}{Wahl\\2} &
+  \myBox{1.5em}{Wahl\\3}
+ \\ \hline\hline
+1 & & &  & & & \\[0.5em] \hline
+2 & & &  & & & \\[0.5em] \hline
+3 & & &  & & & \\[0.5em] \hline
+4 & & &  & & & \\[0.5em] \hline
+5 & & &  & & & \\[0.5em] \hline
+6 & & &  & & & \\[0.5em] \hline
+7 & & &  & & & \\[0.5em] \hline
+8 & & &  & & & \\[0.5em] \hline
+9 & & &  & & & \\[0.5em] \hline
+10 & & &  & & & \\[0.5em] \hline
+11 & & &  & & & \\[0.5em] \hline
+12 & & &  & & & \\[0.5em] \hline
+\end{tabular}
+}
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment, 4 Alternativen}
+%###################################################
+\vspace{1em}
+
+Datum: \hspace{6em} Wetter:
+\vspace{1em}
+
+{\small
+\begin{tabular}{|r||c|c|c|c||r|r|r|r|}
+\hline 
+Set &
+  \myBox{2em}{Alt~1:\\Fu\3} &
+  \myBox{2em}{Alt~2:\\Rad} &
+  \myBox{2em}{Alt~3:\\ \"OV} &
+  \myBox{2em}{Alt~4:\\ MIV} &
+  $y_1$ & $y_2$ & $y_3$  & $y_4$ \\ \hline\hline
+1  & & & &  & & & & \\[1em] \hline
+2  & & & &  & & & & \\[1em] \hline
+3  & & & &  & & & & \\[1em] \hline
+4  & & & &  & & & & \\[1em] \hline
+5  & & & &  & & & & \\[1em] \hline
+6  & & & &  & & & & \\[1em] \hline
+7  & & & &  & & & & \\[1em] \hline
+8  & & & &  & & & & \\[1em] \hline
+9  & & & &  & & & & \\[1em] \hline
+10 & & & &  & & & & \\[1em] \hline
+11 & & & &  & & & & \\[1em] \hline
+12 & & & &  & & & & \\[1em] \hline
+\end{tabular}
+}
+
+\newpage
+%###################################################
+\bfsf{Revealed-Choice-Experiment: Gew\"ahlte Verkehrmittel}
+%###################################################
+\vspace{1em}
+
+Datum: \hspace{6em} Wetter:
+\vspace{2em}
+
+{\small
+\begin{tabular}{|r||c|c||r|r|r|r|}
+\hline 
+ \myBox{2em}{Attr.-\\[-1.5em]klasse} &
+ % \myBox{3em}{Geschl.} &
+  \myBox{3em}{Kfz-\\Verf\"ugb.} &
+  \myBox{3em}{Entf\\ (km)} &
+  Fu\3 & Rad & \"OV  & MIV \\ \hline\hline
+1  & J &$<1$  & & & & \\[0.5em] \hline
+2  & N &$<1$  & & & & \\[0.5em] \hline
+3  & J & 1-2  & & & & \\[0.5em] \hline
+4  & N & 1-2  & & & & \\[0.5em] \hline
+5  & J & 2-3  & & & & \\[0.5em] \hline
+6  & N & 2-3  & & & & \\[0.5em] \hline
+7  & J & 3-5  & & & & \\[0.5em] \hline
+8  & N & 3-5  & & & & \\[0.5em] \hline
+9  & J & 5-10  & & & & \\[0.5em] \hline
+10  & N & 5-10  & & & & \\[0.5em] \hline
+11  & J & $>10$  & & & & \\[0.5em] \hline
+12 & N & $>10$  & & & & \\[0.5em] \hline
+\end{tabular}
+}
+
+\end{center}
+\end{document}
+

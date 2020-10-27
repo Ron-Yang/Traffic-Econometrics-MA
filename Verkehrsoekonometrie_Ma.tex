@@ -1,0 +1,125 @@
+
+%#############################################
+%\documentclass[11pt]{scrartcl}
+\documentclass[11pt,oneside,openany,a4paper]{scrbook}
+%\usepackage[automark,headsepline]{scrpage2}
+\usepackage{scrpage2}
+%\usepackage{mdframed}
+%\automark{subsection}
+\pagestyle{scrheadings}
+\setkomafont{pagehead}{\normalfont\sffamily\bfseries}
+\setkomafont{pagenumber}{\normalfont\rmfamily\slshape}
+%\ofoot{\pagemark} %seitenzahl
+%\cfoot{}
+%\setheadsepline{0.5pt} %linie
+%#############################################
+
+\usepackage[german]{babel}
+
+
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  %korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+%%%%%%\usepackage{ulem}
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\usepackage{hyperref}
+%                  Internet-Link: \href{http://www.WasAuchImmer.html}
+%                  {\blue{\underline{TextDesLinks} }}
+%                  Lokaler Link: \hyperlink{targetName}{TextDesLinks}
+%                  Link-Target: \hypertarget{targetName}
+%                  Achtung: lokale Links funktionieren z Z nicht
+
+%\usepackage[ngerman]{babel}
+%\usepackage{ngerman}
+
+\usepackage{eurosym}  %Euro-Symbol: \euro{Zahl} oder euro{}
+
+%usage: \varDef{$formel$}{Erklaerungstext}
+%#############################################
+
+%######## Definitionen von Martin Treiber
+
+%\input{/home/vwitme/staff/treiber/tex/inputs/defsSkript} 
+\input{defsSkript} 
+
+%usage: \varDef{$formel$}{Erklaerungstext}
+\newcommand{\varDef}[2]{
+                  \parbox{0.2\textwidth}{\sloppy \vspace*{2mm} #1\vspace*{2mm}}
+                 &\parbox{0.75\textwidth}{\vspace*{2mm}#2\vspace*{2mm}}
+                  \\}
+
+\providecommand{\martin}[1]{\green{Martin: #1}} %Preprint
+\providecommand{\arne}[1]{\red{Arne: #1}} % fuer Veroeffentlichung
+
+
+\providecommand{\gr}[1]{{\text{(#1)}}}
+\providecommand{\grsup}[1]{^{\text{(#1)}}}
+
+%#############################################
+\usepackage{nomencl}  % nomenklatur
+%%% um glossar zu machen: aufruf:
+%%% makeindex Verkehrsplanung.glo -s nomencl.ist -o Verkehrsplanung.gls        
+\renewcommand{\nomname}{Symbolverzeichnis}
+\makeglossary
+%#############################################
+
+%########################################
+% Index Tools
+% call: makeindex texfile
+\usepackage{makeidx}
+\makeindex
+\renewcommand{\indexname}{Sachregister}
+%########################################
+
+
+\hyphenation{Mo-dell}
+
+
+\includeonly{vkoek_Teil1,vkoek_Teil2,vkoek_Teil3,vkoek_Teil4,vkoek_Teil5,vkoek_Teil6,vkoek_Teil7,vkoek_Teil8}
+
+%!!!ACHTUNG!! nur jeweils eine includeonly
+ % vor \begin{document}
+%########################################
+
+\begin{document}
+
+\include{vkoek_Teil1}  % Defs Verkehrsoekonometrie; externe Kosten
+\include{vkoek_Teil2}  % (quasi-)lineare Modelle
+\include{vkoek_Teil3}  % Verkehrserhebungen; einiges in Teil 1
+\include{vkoek_Teil4}  % Diskrete Wahltheorie
+\include{vkoek_Teil5}  % Input-Output-Modell
+%\include{vkoek_Teil6}  % modellgestuetzte Prognose (evtl. todo)
+%\include{vkoek_Teil7}  % Appendix (Europaparlament etc)
+
+%\include{literatur_glossary}
+
+%\bibliographystyle{unsrtdin}
+%database und webcitations aus zentralem Repository; 
+%specialRefs anderweitig irrelev. Refs
+%\bibliography{database}
+
+\end{document}
+
+%####################################################
+
+ZU MACHEN!!!
+
+%##########################################################
+\section{\label{sec:FaktenFaktenFakten} Einige verkehrsrelevante Zahlen}
+%##########################################################
+
+entweder in \ref{sec:Allg} oder am Anfang von Vkoek-Skript!
+
+\bi
+\item Bunte Vielfalt von Zahlen aus diversen Gr\"un- und
+Wei\3-B\"uchern, BMW-Studien etc.
+\item Kostenanteile: Zeitkosten, Kosten durch zus\"atzliche Unf\"alle,
+Kosten durch zus\"atzliche Emissionen, quantifiziert z.B. durch den
+``CO2-Kurs'' an der ``Emissionsb\"orse''
+\item Ergebnis (Rechnung Unterlagen 2. Vorlesungsstunde): 
+Die Zeitkosten sind's!
+\ei

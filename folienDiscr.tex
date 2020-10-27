@@ -1,0 +1,111 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+%########################################
+%  Examples
+%########################################
+
+%\fig{\textwidth}{figsAllg/oekonometrieDef.eps}
+
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{\textwidth}{figsAllg/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+
+%latex Bug with landscape: textwidth=textheight=smaller of both
+
+%\begin{landscape}
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+%\end{landscape}
+
+%\begin{landscape}
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg/oekonometrieDef.eps}}
+%{\centering{\parbox{\textwidth}{Bildbeschreibung}}}
+%\end{landscape}
+
+%########################################
+%########################################
+
+%\documentclass[11pt]{scrartcl}
+\documentclass[a4paper]{foils}
+
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+\usepackage{ngerman}
+
+\textheight240mm
+\textwidth170mm
+\oddsidemargin-0mm
+
+\input{defsSkript}
+
+
+
+%########################################
+\begin{document}
+
+%###################################################
+\begin{landscape}
+\myfigure{ML-Kalibrierung des Binomial-Logit-Modells}
+{\vspace{-2em}\fig{1.3\textwidth}{figsDiscr/BNL_kalib_logL1.eps}\vspace{-2em}}
+{\centerline{Beispiel: Verkehrsmittelwahl}}
+\end{landscape}
+\newpage
+
+%###################################################
+\begin{landscape}
+\myfigure{ML-Kalibrierung des Binomial-Logit-Modells 2}
+{\vspace{-2em}\fig{1.3\textwidth}{figsDiscr/BNL_kalib_logL2.eps}\vspace{-2em}}
+{\begin{center}Detail; der Bereich der dichten Linien gibt die Region
+der Unsch\"arfe an \end{center}}
+\end{landscape}
+\newpage
+%###################################################
+
+\begin{landscape}
+\myfigure{ML-Kalibrierung des Binomial-Logit-Modells 3}
+{\vspace{-2em}\fig{1.3\textwidth}{figsDiscr/BNL_kalib_L2.eps}\vspace{-2em}}
+{\begin{center}Die Likelihood selbst, $L-L\sub{max}$ \end{center}}
+\end{landscape}
+\newpage
+%###################################################
+
+\begin{landscape}
+\myfigure{Ergebnisse des Beispiels}
+{\vspace{-0.5em}\fig{1.1\textwidth}{figsDiscr/BNL_result1.eps}\vspace{0em}}
+{\begin{center}Aussage des Logit-Modells (Kurven) und die
+tats\"achlich beobachteten relativen H\"aufigkeiten in jeder
+Entfernungsklasse (Punkte)\end{center}}
+\end{landscape}
+
+%###################################################
+
+
+\end{document}

@@ -1,0 +1,593 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}%$
+\input{$HOME/tex/inputs/styleVorl}%$
+%\input{../style/defs}
+\usepackage{graphicx}
+
+\newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
+
+%##############################################################
+
+\begin{document}
+
+\section{3. Obtaining the Data}
+
+%##############################################################
+\frame{\frametitle{Chapter 3: Obtaining the Data}
+%##############################################################
+\bi
+\item 3.1. General procedure
+\item 3.2. Classification of surveys
+\item 3.3. Revealed-choice design
+\item 3.4. Stated choice and choice-based conjoint analysis
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{3.1. General procedure}
+%##############################################################
+
+\fig{0.8\textwidth}{figsErh/flussdiag-komplett_eng.png}
+}
+
+%##############################################################
+\frame{\frametitle{Flow diagram of the sampling procedure}
+%##############################################################
+
+\fig{0.9\textwidth}{figsErh/flussdiag-ablauf_eng.png}
+}
+
+%##############################################################
+\frame{\frametitle{3.2. Survey designs}
+%##############################################################
+
+\fig{0.8\textwidth}{figsErh/Zeitdimension_eng.png}
+}
+
+
+
+%##############################################################
+\frame{\frametitle{Electronic surveys I}
+%##############################################################
+
+\placebox[center]{0.34}{0.33}
+{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung1.png}}
+
+\placebox[center]{0.82}{0.50}
+{\parbox{0.35\textwidth}{
+  \bi
+  \item
+    Surveys of cumulative properties ($m$ in $n$): use
+    squared checkboxes. \\
+  \item Don't forget the ``others'' category\\[1em]
+  \item Surveying ordinally scaled subjective variables (opinions
+    etc): chose a symmetric
+    \emph{Likert scale} with a neutral central element.\\[1em]
+  \item Essential: feedback about the progress!
+  \ei
+}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Electronic surveys II}
+%##############################################################
+
+\placebox[center]{0.34}{0.33}
+{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung2.png}}
+
+
+\placebox[center]{0.82}{0.50}
+{\parbox{0.35\textwidth}{
+  \bi
+  \item
+    Exclusive properties with many possible values (1 in $n$):
+    \emph{choice boxes} are best
+  \item Binary attributes\\(1 in 2): exclusive \emph{check
+    boxes} are best
+  \item Transform ordinal cumulative properties in exclusive (1 in $n$)
+    variables, e.g., \emph{highest} obtained education level
+  \ei
+}}
+
+}
+%\end{document}
+%##############################################################
+\frame{\frametitle{The question about the age and income}
+%##############################################################
+
+Tricky questions!
+
+\bi
+\item Asking for the birth year is more neutral and gives the
+  same information as asking for the age
+\item Asking for age groups is less intrusive and often sufficient for
+  the objective of the investigation \\[1em]
+\pause \item Nobody wants to reveal his/her true income 
+\item Nor do most people
+  know it exactly. It also is conditional to after/before taxes,
+  social security etc.\\[1em]
+\pause \item Solution:
+\bi
+\item[(i)] Ask relative to a reference  (``the average income after
+  taxes is 1\,300 \euro{} per month'')
+\item[(ii)] Use categories (``much more, more, about the same, less,
+  much less'') in a Likert scale
+\ei
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Automated aquisition (measuring) of time-series data}
+%##############################################################
+
+%\begin{center}
+\vspace{1em}
+
+One-minute stationary detector data (SDD), 
+
+flow [vehicles/h] and speed [km/h]
+%\end{center}
+\vspace{-1em}
+
+\fig{1.05\textwidth}{figsErh/ganglinien-A9munich.png}
+}
+
+
+
+
+%##############################################################
+\frame{\frametitle{Revealed Preferences/Choice: Survey in the audience}
+%##############################################################
+
+% from
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/RC_SS18_3alt.tex
+
+Distance classes for the trip home to university
+\vspace{0em}
+
+Weather: perfect, cloudless, 15 degrees Celsius (Apr 11, 2018)
+\vspace{1em}
+
+{\small\begin{tabular}{|r|r||c|c|c|}
+\hline 
+\myBox{4em}{Distance} & 
+  \myBox{4em}{Class-\\center} &
+  \myBox{3em}{Choice\\Alt. 1:\\ped} &
+  \myBox{3em}{Choice\\Alt. 2:\\bike} &
+  \myBox{3em}{Choice\\Alt. 3:\\ PT} \\ \hline\hline
+\unit[0-1]{km} & \unit[0.5]{km}    &  5 & 1 & 0\\[0.2em] \hline
+\unit[1-2]{km} & \unit[1.5]{km}    &  2 & 2 & 6\\[0.2em] \hline
+\unit[2-3]{km} & \unit[2.5]{km}    &  0 & 2 & 7\\[0.2em] \hline
+\unit[3-5]{km} & \unit[4.0]{km}    &  0 & 1 & 6\\[0.2em] \hline
+\unit[5-10]{km} & \unit[7.5]{km}   &  0 & 0 & 3\\[0.2em] \hline
+\unit[10-20]{km} & \unit[12.5]{km} &  0 & 0 & 1\\[0.2em] \hline
+\end{tabular}}
+}
+
+
+%###################################################
+\frame{\frametitle{Model specification and calibration}
+%###################################################
+
+\placebox[center]{0.36}{0.78}{\parbox{0.7\textwidth}{\normalsize
+  Deterministic utilities:\\[0.3em]
+  %
+  $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
+  +r \left(\beta_3 \delta_{i1}+\beta_4 \delta_{i2}\right)$
+}}
+
+\pause
+\placebox[center]{0.82}{0.75}{\parbox{0.4\textwidth}{\normalsize
+or \quad
+$
+\begin{array}{l}
+V_1=\beta_1 + \beta_3 r,\\ 
+V_2=\beta_2 + \beta_4 r,\\
+V_3=0
+\end{array}
+$
+}}
+
+\placebox[center]{0.35}{0.37}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProb.png}
+}
+\pause
+\placebox[center]{0.80}{0.30}{\parbox{0.20\textwidth}{
+   $
+   \begin{array}{l}
+   \ln L\sub{init}=-39.55,\\
+   \ln L=-20.9,\\
+   \hatbeta_1=4.1\pm 1.7, \\
+   \hatbeta_2=0.3\pm 1.1, \\
+   \hatbeta_3=-3.5\pm 1.3, \\
+   \hatbeta_4=-0.6\pm 0.5
+   \end{array}
+   $
+}}
+
+
+}
+
+%###################################################
+\frame{\frametitle{Prediction: modal split as a function of distance}
+%###################################################
+%\\[1em]
+
+\placebox[center]{0.50}{0.78}{\parbox{0.7\textwidth}{\normalsize
+$V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
++r \left(\beta_3 \delta_{i1}+\beta_4 \delta_{i2}\right)$
+}}
+
+\placebox[center]{0.35}{0.37}{
+ \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProbKumDist.png}
+}
+
+
+\placebox[center]{0.80}{0.30}{
+  \parbox{0.20\textwidth}{
+   $
+   \begin{array}{l}
+   \hatbeta_1=4.1\pm 1.7, \\
+   \hatbeta_2=0.3\pm 1.1, \\
+   \hatbeta_3=-3.5\pm 1.3, \\
+   \hatbeta_4=-0.6\pm 0.5
+   \end{array}
+   $
+  }
+}
+
+
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Revealed Preference Mobility Study SrV (TU Dresden)}
+%###################################################
+\placebox[center]{0.20}{0.47}{
+  \figSimple{0.35\textwidth}{figsErh/SrV_logo.png}}
+\placebox[center]{0.65}{0.47}{\parbox{0.65\textwidth}{
+  \bi
+  \item Mobility study in trend design, scientific lead TU Dresden
+  \item Mobility is, e.g., 
+\bi
+\item how many trips per day, 
+\item modal split, 
+\item activity
+    and temporal pattern, 
+\item distribution and average of trip length,
+    traffic volume,...
+\ei
+  \item Population: Germany cities, 1972-open end 
+  \item Sample: Selected cities, survey period 1 year,
+    campaign every 4 or 5 years, 2018 was the last (11$\sup{th}$)
+  \ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{SrV sampling methodology}
+%###################################################
+\vspace{-1em}
+\fig{0.85\textwidth}{figsErh/SrV2008_2.png}
+\vspace{-1em}
+\bi
+\item Sample spacially (city size) and temporally (season) layered
+\item Sampling basis: personal register of the cities
+\item Sampling: random selection from the register
+\ei
+}
+
+%###################################################
+\frame{\frametitle{SrV interviewing strategy}
+%###################################################
+\fig{0.60\textwidth}{figsErh/SrV2013_Befragungsdesign.png}
+}
+
+%###################################################
+\frame{\frametitle{Variables 1: houshold and general 
+socioeconomic attributes}
+%###################################################
+\vspace{-0.2em}
+\fig{0.95\textwidth}{figsErh/SrV1998_Haushaltsfragebogen.png}
+}
+
+%###################################################
+\frame{\frametitle{2: mobility related socioeconomic variables}
+%###################################################
+\vspace{-0.5em}
+
+\fig{1.0\textwidth}{figsErh/SrV1998_Personenfragebogen.png}
+}
+
+%###################################################
+\frame{\frametitle{Purpose: Not all trips are valuable}
+%###################################################
+
+\fig{0.7\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}
+}
+
+%###################################################
+\frame{\frametitle{3: Activity-related variables: Purpose and time}
+%###################################################
+
+\vspace{-0.1em}
+\fig{0.95\textwidth}{figsErh/SrV2003_Wegefragebogen1.png}
+}
+
+%###################################################
+\frame{\frametitle{Activitiy variables 2: Mode, target, distance travelling
+    time}
+%###################################################
+
+\vspace{-0.1em}
+\fig{0.95\textwidth}{figsErh/SrV1998_Wegefragebogen2.png}
+}
+
+%###################################################
+\frame{\frametitle{Results 1: average daily distance as a function of
+    age,\\ mode, and city}
+%###################################################
+
+\placebox[center]{0.50}{0.45}{
+\figSimple{1.05\textwidth}{figsErh/SrV2008_3.png}}
+}
+
+%###################################################
+\frame{\frametitle{Results 2: modal split during the year}
+%###################################################
+\placebox[center]{0.50}{0.45}{
+ \figSimple{0.85\textwidth}{figsErh/SrV2008_4.png}}
+}
+
+%###################################################
+\frame{\frametitle{Results 3: temporal distribution of the commute
+    trip\\ to/from work and change over the years (trend design!)}
+%###################################################
+
+\placebox[center]{0.50}{0.45}{
+ \figSimple{1.10\textwidth}{figsErh/SrV2008_5.png}}
+}
+
+%###################################################
+\frame{\frametitle{Results 4: total mobility as a function
+    of age and gender}
+%###################################################
+
+\placebox[center]{0.50}{0.45}{
+ \figSimple{1.03\textwidth}{figsErh/SrV2008_6.png}}
+
+\placebox[center]{0.70}{0.78}{\# trips}
+
+
+}
+
+%###################################################
+\frame{\frametitle{Stated preference/choice (SP): in-class survey
+    WS18/19 \red{(red: bad weather)}}
+%###################################################
+\vspace{0.5em}
+
+{\small
+\begin{tabular}{|r||c|c|c||r|r|r|}
+\hline 
+\myBox{2.5em}{Choice\\Set} &
+  \myBox{3em}{Alt. 1:\\Ped} &
+  \myBox{3em}{Alt. 2:\\Bike} &
+  \myBox{3em}{Alt. 3:\\ PT/Car} &
+  Alt 1 & Alt 2 & Alt 3 \\ \hline\hline
+1  & 30\,min & 20\,min & 20\,min+0\euro{} & 1  & 3 & 7 \\[0.1em] \hline
+2  & 30\,min & 20\,min & 20\,min+2\euro{} & 2  & 9 & 2\\[0.1em] \hline
+3  & 30\,min & 20\,min & 20\,min+1\euro{} & 1  & 5 & 7\\[0.1em] \hline
+4  & 30\,min & 20\,min & 30\,min+0\euro{} & 2  & 9 & 3\\[0.1em] \hline
+5  & 50\,min & 20\,min & 30\,min+0\euro{} & 0  & 9 & 4\\[0.1em] \hline
+6  & 50\,min & 30\,min & 30\,min+0\euro{} & 0  & 3 & 9\\[0.1em] \hline
+7  & 50\,min & 40\,min & 30\,min+0\euro{} & 0  & 2 & 10\\[0.1em] \hline
+8  & 180\,min & 60\,min & 60\,min+2\euro{} & 0 & 4 & 11\\[0.1em] \hline
+9  & 180\,min & 40\,min & 60\,min+2\euro{} & 0 & 9 & 6\\[0.1em] \hline
+\red{10}  & \red{180\,min}  & \red{40\,min} & \red{60\,min+2\euro{}}
+  & \red{0}  & \red{1}  & \red{14}                   \\[0.1em] \hline
+11 & 12\,min & 8\,min & 10\,min+0\euro{} & 3  & 5 & 6\\[0.1em] \hline
+12 & 12\,min & 8\,min & 10\,min+1\euro{} & 5  & 7 & 2\\[0.1em] \hline
+\end{tabular}
+}
+}
+
+%###################################################
+\frame{\frametitle{Model specification and calibration}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
+}
+
+\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+\begin{array}{ll}
+ V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T\\
+ & + \beta_4 W\delta_{i3}
+\end{array}
+$
+}}}
+
+\pause
+
+\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
+V_3=\beta_2 K + \beta_3 T + \beta_4 W
+\end{array}
+$
+}}}
+
+
+\pause
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+  \ln L\sub{init}=-176.9,\\
+  \ln L=-128.5, \\
+  \beta_0=-0.65 \pm 0.37, \\
+  \beta_1=-0.42 \pm 0.25, \\
+  \beta_2=-0.10 \pm 0.20, \\
+  \beta_3=-0.09 \pm 0.02, \\
+  \beta_4= 4.2  \pm 1.1
+  \end{array}
+ $
+}}}
+
+\pause
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
+   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
+   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
+   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
+   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
+   \end{array}
+   $
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Choice-based conjoint analysis 1:\\
+Exhaustive enumeration}
+%###################################################
+
+\bi
+\item Total travel time ped/bike $T_1$: 10, 15, 20, 25 und 30 minutes,\\[-2em]
+\item Total PT travel time  $T_2$: 10, 15, 20, 25 und 30 minutes,\\[-2em]
+\item PT ad-hoc costs $K_2$: 0.00, 1.50, 3.00 oder 4.50 \euro{}
+\ei
+\centering{\textbf{\red{$\Rightarrow$ 5*5*4=100 combinations}}}
+\vspace{2em}
+
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & {\small Ped/bike travel time $T_1$}
+  & {\small PT travel time $T_2$} & {\small PT ad-hoc costs $K_2$}
+   \\ \hline
+1 & \unit[10]{min} & \unit[10]{min} & \unit[0.00]{\euro{}}\\
+2 & \unit[10]{min} & \unit[10]{min} &\unit[1.50]{\euro{}}\\
+\vdots & \vdots & \vdots & \vdots  \\
+99 & \unit[30]{min} & \unit[30]{min} & \unit[3.00]{\euro{}}\\
+100 & \unit[30]{min} & \unit[30]{min} & \unit[4.50]{\euro{}}\\
+ \hline
+\end{tabular}
+}
+
+%###################################################
+\frame{\frametitle{Choice-based conjoint analysis 2:
+orthogonal design}
+%###################################################
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & {\small Ped/bike travel time $T_1$}
+  & {\small PT travel time $T_2$} & {\small PT ad-hoc costs $K_2$}
+   \\ \hline
+2 & \unit[10]{min} & \unit[10]{min} & \unit[1.50]{\euro{}}\\
+18 & \unit[10]{min} & \unit[30]{min} & \unit[1.50]{\euro{}}\\
+84 & \unit[30]{min} & \unit[10]{min} &\unit[3.00]{\euro{}}\\
+99 & \unit[30]{min} & \unit[30]{min} &\unit[3.00]{\euro{}}\\
+\hline
+\end{tabular}
+\vspace{1em}
+
+\bi
+\item No correlation (orthogonality) 
+between the travel times of the two alternatives
+\item Correlation allowed between attributes that are correlated in
+  reality such as time and costs
+  (here, $\text{Cov}(T_1,K_2)=0$ but $\text{Cov}(T_2,K_2)>0$)
+\item Otherwise, dominant alternatives are nearly unavoidable in some
+  choice sets
+\ei
+
+}
+
+%###################################################
+\frame{\frametitle{Choice-based conjoint analysis 3:
+effective design}
+%###################################################
+
+\placebox[center]{0.29}{0.77}{
+  \parbox{0.35\textwidth}{Exhaustive enumeration\\ 
+   $N=100$ choice sets}
+}
+
+\placebox[center]{0.29}{0.54}{
+  \begin{tabular}{|r|c|c|c|} \hline
+  $i$ & $T_1$ & $T_2$ &  $K_2$
+   \\ \hline
+  1 & \unit[10]{min} & \unit[10]{min} & \unit[0.00]{\euro{}}\\
+  2 & \unit[10]{min} & \unit[10]{min} &\unit[1.50]{\euro{}}\\
+  \vdots & \vdots & \vdots & \vdots  \\
+  99 & \unit[30]{min} & \unit[30]{min} & \unit[3.00]{\euro{}}\\
+  100 & \unit[30]{min} & \unit[30]{min} & \unit[4.50]{\euro{}}\\
+   \hline
+  \end{tabular}
+}
+
+\placebox[center]{0.56}{0.54}{\LARGE $\Rightarrow$}
+
+\placebox[center]{0.85}{0.77}{\parbox{0.5\textwidth}{
+  effizientes design\\
+   for $n=10$ choice sets
+}}
+
+\placebox[center]{0.85}{0.54}{\parbox{0.5\textwidth}{
+ \begin{tabular}{|r|c|c|c|} \hline
+ $i$ & $T_1$ & $T_2$ &  $K_2$
+    \\ \hline
+  7 & ... & ... & ... \\
+  22 & ... & ... & ... \\
+  \vdots & \vdots & \vdots & \vdots  \\
+  79 & ... & ... & ... \\
+  89 & ... & ... & ... \\
+   \hline
+  \end{tabular}
+}}
+
+
+\placebox[center]{0.50}{0.20}{\parbox{1.0\textwidth}{
+\bi
+ \item Specify the number $n$ of desired choice sets (advantage!)
+ \item \bfred{Select $n$ out of $N$ sets such that an error metric, e.g.,
+  $||\m{V}_{\hatvecbeta}||$, is minimized}
+\item Problem: Need prior guess about the parameters to populate
+  synthetic surveys with which to determine the calibration errors
+\ei
+}}
+
+
+}
+
+
+\end{document}

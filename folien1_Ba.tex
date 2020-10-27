@@ -1,0 +1,201 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie/Skript/folienTemplate.tex
+%#############################################
+
+%########################################
+%  Examples
+%########################################
+
+%\fig{\textwidth}{figsAllg_vkoek/oekonometrieDef.eps}
+
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{\textwidth}{figsAllg_vkoek/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+
+%latex Bug with landscape: textwidth=textheight=smaller of both
+
+%
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg_vkoek/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+%
+
+%
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg_vkoek/oekonometrieDef.eps}}
+%{\centering{\parbox{\textwidth}{Bildbeschreibung}}}
+%
+
+%########################################
+%########################################
+
+%\documentclass[11pt]{scrartcl}
+\documentclass[a4paper]{foils}
+
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with  ... 
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+\usepackage{ngerman}
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+%###################################################
+
+\myfigure{Der Wirkungsbereich der \"Okonometrie --\\ mathematisch gesehen}
+{\vspace{2em}\fig{1.3\textwidth}{figsAllg_vkoek/oekonometrieDef.eps} \vspace{2em}}
+{}
+
+\newpage
+
+%###################################################
+
+\myfigure{Flussdiagramm eines ``klassischen'' \"okonometrischen Modells}
+{\vspace{2em}\fig{\textwidth}{figsAllg_vkoek/flussdiag-Normal.eps}}
+{}
+\newpage
+
+%###################################################
+
+\myfigure{Kopplung}
+{\fig{0.7\textwidth}{figsAllg_vkoek/flussdiag-Kopplung.eps}}
+{}
+\vspace{0.5em}
+\myfigure{Verkettung}
+{\fig{\textwidth}{figsAllg_vkoek/flussdiag-Verkettung.eps}}
+{}
+\vspace{0.5em}
+\myfigure{R\"uckkopplung}
+{\fig{\textwidth}{figsAllg_vkoek/flussdiag-Rueckkopplung.eps}}
+{}
+
+\newpage
+
+%###################################################
+
+
+\myfigure{Modelle der Zeitentwicklung (``dynamische'' Modelle)}
+{\vspace{2em}\fig{1.4\textwidth}{figsAllg_vkoek/flussdiag-Zeitentwicklung.eps}\vspace{2em}}
+{\centering{\parbox{\textwidth}{Flussdiagramm der
+Verkettung im Falle dynamischer Modelle. Das Modell selbst ist in der
+Regel in allen Schritten dasselbe, oft mit unver\"anderten Parametern
+(\textit{autonomes} dynamisches Modell), manchmal mit von der Zeit
+abh\"angigen (\textit{nichtautonomes} Modell}}}
+
+\newpage
+
+
+%###################################################
+
+\myfigure{Anwendung: Berechnung externer Kosten des Stra\3enverkehrs}
+{\vspace{2em}\fig{\textwidth}{figsAllg_vkoek/ELOS_ger.eps}}
+{}
+%###################################################
+
+%###################################################
+\newpage
+\myfigure{Modell f\"ur beschr\"anktes Wachstum}
+{\vspace{1em}
+\fig{0.8\textwidth}{figsAllg_vkoek/limitedGrowth.eps}}
+{Beschr\"anktes Wachstum gem\"a\3 der
+L\"osung  der Differenzialgleichung
+$\abl{y}{t}=\frac{1}{\tau}\left(1-\frac{y(t)}{y_s}\right)$  
+f\"ur den Anfangswert $y_0=3$ zur Zeit
+$t_0=1950$ und den Modellparametern Wachstumszeitkonstante $\tau=10$
+und S\"attigung $y_s=60$. Das Ergebnis k\"onnte die Ausstattungsrate
+an Pkw pro Person in Prozent repr\"asentieren.}
+%###################################################
+
+%###################################################
+\newpage
+
+\myfigure{Das klassische Vierstufenmodell der Verkehrsplanung}
+{\vspace{2em}\fig{1.35\textwidth}{figsAllg_vkoek/vierstufenmodell.eps}}
+{}
+%###################################################
+
+ %###################################################
+\newpage
+
+\myfigure{Struktur eines Modalsplitt-Modells}
+{\vspace{0.5em}\fig{1.35\textwidth}{figsAllg_vkoek/beispiel-aufteilung.eps}
+\vspace{1em}}
+{Exogene Variablen $x_{kj}$: Einflussfaktoren $j$ 
+f\"ur Modus $k$
+
+Endogene Variablen $y_k$: Nutzungsh\"aufigkeit f\"ur Modus $k$
+}
+%###################################################
+\newpage
+
+\myfigure{Beispiel von exogenen und endogenen Variablen\\[0.5em]bei zwei
+Alternativen: Zu Fu\3 und Rad}
+{\vspace{2em}
+{\small
+ \begin{tabular}{|l||l|l|l|l|l|l||l|l|}
+\hline
+\myBox{13mm}{Gr\"o\3e} & 
+\myBox{6mm}{Alter} &
+\myBox{10mm}{Ge-\\schl.} &
+\myBox{15mm}{Zeit-\\bedarf\\ Rad}&
+\myBox{14mm}{Kosten\\Rad} &
+\myBox{20mm}{Kompl.\\Reisezeit \\ \"OPNV}  & 
+\myBox{10mm}{Kosten \"OPNV}  & 
+\myBox{17mm}{Wahl-\\entsch.\\Rad} &
+\myBox{17mm}{Wahl-\\entsch. \"OPNV}
+\\ \hline
+\myBox{15mm}{Variable} &  
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $y_{1i}$ & $y_{2i}$
+\\ \hline
+\myBox{22mm}{Person 1} & 30 & w & 
+  \unit[20]{min} & \unit[0]{\euro{}} & \unit[30]{min} & \unit[1.00]{\euro{}} & 0 & 1 \\
+\myBox{22mm}{Person 2} & 24 & m & 
+  \unit[11]{min} & \unit[0]{\euro{}} & \unit[20]{min} & \unit[2.00]{\euro{}} & 1 & 0 \\
+\myBox{22mm}{Person 3} & 27 & m & 
+  \unit[34]{min} & \unit[0]{\euro{}} & \unit[15]{min} & \unit[2.00]{\euro{}} & 0 & 1 \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & 
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ \\
+\hline
+\end{tabular}
+}
+\vspace{1em}
+}
+{Diese Angaben m\"ussten einer Befragung entnehmbar sein}
+%\vspace{1em}
+
+\end{center}
+\end{landscape}
+\end{document}

@@ -1,0 +1,218 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+
+
+\textheight250mm
+\textwidth190mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Reales Beispiel nichtlinearer Bewertungen: Mensawahl}
+\\[1ex]
+%###################################################
+\parbox{1.3\textwidth}{``Welche Mensa oder
+Imbissbude w\"urden Sie f\"ur das Mittagessen w\"ahlen? Folgende
+Situationen unterscheiden sich nur durch die (immer zu Fu\3
+durchgef\"uhrte) Zugangszeit und die Kosten der Mahlzeit. Die
+Qualit\"at des Essens ist jeweils identisch. Ihre Freunde
+bzw. `Mitesser'  gehen
+gleich gerne zu beiden Zielen.''}
+\\[3ex]
+
+\begin{center}
+\begin{tabular}{|r||r|r|r|r|} \hline
+\myBox{3em}{Choice\\Set}
+ & \myBox{4em}{Ziel~1}
+ & \myBox{4em}{Ziel~2}
+ & \myBox{3em}{Wahl\\Ziel~1}
+ & \myBox{3em}{Wahl\\Ziel~2} \\ \hline
+1 & 1 Min., \unit[3.10]{\euro{}} & 2 Min., \unit[3.00]{\euro{}} & 1 & 28\\
+2 & 5 Min., \unit[2.70]{\euro{}} & 3 Min., \unit[2.80]{\euro{}} & 7 & 20\\
+3 & 2 Min., \unit[3.70]{\euro{}} & 9 Min., \unit[3.20]{\euro{}} & 8 & 21\\
+4 & 5 Min., \unit[3.60]{\euro{}} & 9 Min., \unit[3.50]{\euro{}} & 28& 1\\
+5 &10 Min., \unit[3.00]{\euro{}} & 1 Min., \unit[3.50]{\euro{}} & 5 & 24\\
+6 & 6 Min., \unit[2.70]{\euro{}} & 1 Min., \unit[2.20]{\euro{}} & 0 & 29\\
+7 & 1 Min., \unit[2.00]{\euro{}} & 3 Min., \unit[1.50]{\euro{}} & 0 & 29\\
+8 & 2 Min., \unit[2.90]{\euro{}} & 5 Min., \unit[2.80]{\euro{}} & 24& 5\\
+9 & 3 Min., \unit[3.20]{\euro{}} & 4 Min., \unit[3.10]{\euro{}} & 6 & 23\\
+10&10 Min., \unit[2.60]{\euro{}} & 6 Min., \unit[3.10]{\euro{}} & 19& 10\\
+11& 7 Min., \unit[2.85]{\euro{}} & 4 Min., \unit[3.35]{\euro{}} & 26& 3\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\newpage
+%###################################################
+\bfsf{Modell M$_1$: Lineares Modell als Referenz}
+%###################################################
+\\[3ex]
+
+$
+\begin{array}{l}
+V_{n1}=\beta_1+\beta_2 K_{n1}+\beta_3 T_{n1},\\ 
+V_{n2}=\beta_2 K_{n2}+\beta_3 T_{n2}
+\end{array}
+$
+
+\vspace{3ex}
+
+\begin{tabular}{ll}
+\parbox{1.00\textwidth}{
+\includegraphics[width=1.0\textwidth]{figsDiscr/nonlinUtility_statedChoiceWS1213_restr_fProb.eps}
+}
+\parbox{0.30\textwidth}{
+ {\small
+ $
+ \begin{array}{l}
+\hatbeta_1=-0.84 \pm 0.18, \\
+\hatbeta_2=-11.6 \pm 1.3, \\
+\hatbeta_3=-0.86 \pm 0.10, \\
+\tilL=-127.2.
+ \end{array}
+ $
+}}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Modell M$_2$: Nichtlinear, auch in den Parametern}
+%###################################################
+\\[3ex]
+
+$
+\begin{array}{l}
+V_{n1}=\beta_1 +\Delta V\sub{lin}
++\beta_4 \tanh\left(\frac{\Delta  V\sub{lin}}{\beta_5}\right),\quad
+V_{n2}=0, \\
+\Delta V\sub{lin}=\beta_2 \Delta K_n+\beta_3\Delta T_n,
+\end{array}
+$
+
+
+\vspace{3ex}
+
+\parbox{1.39\textwidth}{
+ \includegraphics[width=0.69\textwidth]
+   {figsDiscr/nonlinUtility_statedChoiceWS1213_fProb.eps}
+ \includegraphics[width=0.69\textwidth]
+   {figsDiscr/nonlinUtility_statedChoiceWS1213_Vfun.eps}
+}
+
+\vspace{3ex}
+
+
+ $
+ \begin{array}{lll}
+\hatbeta_1=-0.55 \pm 0.18, &
+\hatbeta_2=-7.5 \pm 0.3, &
+\hatbeta_3=-0.54 \pm 0.03, \\
+\hatbeta_4=0.7 \pm 0.2, &
+\hatbeta_5=0.002 \pm 0.509, &
+\tilL=-123.5
+ \end{array}
+ $
+
+
+\newpage
+%###################################################
+\bfsf{Modell M$_3$: Nichtlinear, aber parameterlinear}
+%###################################################
+\\[2ex]
+
+{\small
+$
+\begin{array}{lll}
+V_{n1} &=& \beta_1 + \beta_2 \Delta K_n 
++ \beta_3 \Delta x_{3n}+\beta_4 \Delta x_{4n},\\
+V_{n2} &=& 0,\\
+\Delta x_{3n} &=& \twoCases{\Delta T_n}{|\Delta T_n| \le \unit[5]{Minuten}}
+ {\text{sign}(\Delta T_n) \ (\unit[5]{Minuten})}{\text{sonst,}} \\[2ex]
+\Delta x_{4n} &=& \twoCases{0}{|\Delta T_n| \le \unit[5]{Minuten}}
+ {\text{sign} (\Delta T_n) \ (|\Delta T_n|-\unit[5]{Minuten})}{\text{sonst}}
+\end{array}
+$
+}
+
+\vspace{1ex}
+
+\parbox{1.39\textwidth}{
+ \includegraphics[width=0.65\textwidth]
+   {figsDiscr/nonlinUtility_statedChoiceWS1213_quasi_fProb.eps}
+ \includegraphics[width=0.65\textwidth]
+   {figsDiscr/nonlinUtility_statedChoiceWS1213_quasi_Vfun.eps}
+}
+
+\vspace{1ex}
+
+ $
+ \begin{array}{lll}
+\hatbeta_1=-1.08 \pm 0.19, &
+\hatbeta_2=-14.0 \pm 1.6, &
+\hatbeta_3=-1.27 \pm 0.16, \\
+\hatbeta_4=-0.32 \pm 0.15,&
+\tilL=-119.1
+ \end{array}
+ $
+
+
+\newpage
+%###################################################
+\bfsf{``Optimierungslandschaft'' des nichtlinearen Modells M$_2$}
+%###################################################
+\\[0em]
+\fig{1.3\textwidth}{figsDiscr/nonlinUtility_statedChoiceWS1213.corrMatrix.eps}
+
+\newpage
+%###################################################
+\bfsf{``Optimierungslandschaft'' des quasilinearen Modells M$_3$}
+%###################################################
+\\[0em]
+\fig{1.3\textwidth}{figsDiscr/nonlinUtility_statedChoiceWS1213_quasi.corrMatrix.eps}
+
+
+\end{center}
+\end{landscape}
+\end{document}
+

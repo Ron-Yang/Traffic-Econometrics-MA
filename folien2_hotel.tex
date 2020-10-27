@@ -1,0 +1,215 @@
+
+%#############################################
+% Generelles Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+% Template fuer bivar-Projekte in
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folien2_templRegrBivar.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Hotel-Auslastung in Abh\"angigkeit von Sternexahl und Preis}\vspace{0em}  
+%###################################################
+
+\begin{tabular}{cc}
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x1x2.eps}
+&
+\parbox{0.5\textwidth}{\vspace{-10em}
+
+Projizierte Streudiagramme: Die 
+exogenen Variablen sind korreliert, aber nicht perfekt kolinear\\
+$x_1$=Sternzahl,\\ $x_2$=Preis (\euro{}/Nacht),\\ $y=$ Auslastung (\%)
+}
+\end{tabular}
+
+\vspace{0em}
+
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x1y.eps}
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x2y.eps}
+
+
+
+\newpage
+%###################################################
+\bfsf{Visualisierung der Zweifachregression}
+%###################################################
+
+
+\hspace{-0.1\textwidth}
+\includegraphics[width=0.8\textwidth]{figsRegr/hotel_scatter3d_1.eps}
+\hspace{-0.2\textwidth}
+\includegraphics[width=0.8\textwidth]{figsRegr/hotel_scatter3d_2.eps}
+\hspace{-0.1\textwidth}
+
+{\small
+LSE-Sch\"atzung:  $\hatbeta_0=25.5$, $\hatbeta_1=38.2$, $\hatbeta_2=-0.953$.
+
+\vspace{2em}
+
+\bi
+\item Schwarze Punkte: Daten 
+(rechts: 90 Grad entgegen Uhrzeigersinn um $z$ gedreht)\\[-1ex]
+
+\item Ebene: Modell 
+$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[-1ex]
+
+\item Blaue Striche:  unbestimmte Anteile
+$\epsilon_i$\\ (negativ, wenn unter der Ebene bzw. \"uber dem Datenpunkt)
+\ei
+}
+
+\newpage
+%###################################################
+\bfsf{Auswirkungen der Korrelation der exogenen Variablen} \vspace{0em}
+%###################################################
+
+\fig{1.0\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1.eps}
+
+
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervall f\"ur ``Stern-Sensitivit\"at'' $\beta_1$
+ (volles Modell)}\vspace{0em}
+%###################################################
+\begin{tabular}{cc}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{figsRegr/hotel_f_hatbeta1.eps}
+  \fig{0.68\textwidth}{figsRegr/hotel_F_hatbeta1.eps}
+\vspace{-5em}
+}
+&
+\hspace{2em}
+\parbox{0.6\textwidth}{Konfidenzintervall (KI):
+
+
+ 
+{\small 
+$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
+ \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
+
+$\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
+\sqrt{\hat{V}(\hat{\beta}_1)}$
+
+$\hat{V}(\hat{\beta}_1)
+  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
+
+$\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
+ \left(\hat{y}_i-y_i\right)^2$
+}
+}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervall f\"ur Preissensitivit\"at $\beta_2$
+ (volles Modell)}\vspace{0em}
+%###################################################
+\begin{tabular}{cc}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{figsRegr/hotel_f_hatbeta2.eps}
+  \fig{0.68\textwidth}{figsRegr/hotel_F_hatbeta2.eps}
+\vspace{-5em}
+}
+&
+\hspace{3em}
+\parbox{0.5\textwidth}{Konfidenzintervall (KI):
+
+Analoge Formeln f\"ur das KI zu $\beta_2$.
+}
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Auswirkungen der Korrelation der Anstiegsparameter} \vspace{0em}
+%###################################################
+
+\begin{tabular}{ll}
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal1.eps}
+&
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal2.eps}
+\\
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal3.eps}
+&
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal4.eps}
+\end{tabular}
+
+
+
+\newpage
+%###################################################
+\bfsf{Hotelbeispiel: Verbundene Tests und zweidimensionale Konfidenzregionen}
+%###################################################
+\vspace{-0.3em}
+\hspace{-0.15\textwidth}
+\includegraphics[width=1.1\textwidth]{figsRegr/hotel_f2_hatbeta1_hatbeta2.eps}
+\vspace{-1em}
+
+{\scriptsize
+$\Rightarrow$ Nichtverschwindende Korrelation $V_{12}(\vec{\hat{\beta}})=-0.926$ 
+der Sch\"atzfehler!
+
+Einfache Nullhypothesen ($t$-Test): 
+\hspace{0.1\textwidth}
+\parbox{0.6\textwidth}{
+$H_{01}: \beta_1=\beta_{10}=27$ \\
+$H_{02}: \beta_2=\beta_{20}=-1.4$ usw. 
+}
+
+Verbundene Nullhypothesen ($F$-Test):
+\hspace{0.1\textwidth}
+\parbox{0.6\textwidth}{
+ $\bullet=H_{01}: \beta_{10}=30$ und $\beta_{20}=-1$\\
+ {\scriptsize $\triangle$}\,$=H_{02}: \beta_{10}=34$ und
+ $\beta_{20}=-1$
+}
+}
+
+
+%###################################################
+
+\end{center}
+\end{landscape}
+\end{document}

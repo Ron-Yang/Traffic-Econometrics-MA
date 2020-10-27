@@ -1,0 +1,1453 @@
+
+
+
+%#######################################
+\chapter{\label{sec:IOM}\label{sec:verfl}\"Okonometrische
+  Verflechtungsmodelle}
+%#######################################
+
+%\hyphenation{\"Oko-no-me-trie}  FUCK geht nicht mit Umlauten -
+%                                 de-facto useless
+%\hyphenation{\"Oko-bi-lanz}
+%\hyphenation{be-n\"o-tigt}
+\hyphenation{Res-sour-cen-ver-brauch}
+\hyphenation{Ver-kehrs-be-trie-be}
+\hyphenation{Ver-kehrs-leis-tung}
+\hyphenation{Ver-kehrs-mit-tel}
+\hyphenation{Ver-kehrs-nach-frage}
+\hyphenation{Ver-kehrs-sek-tor}
+\hyphenation{wirt-schaft-li-cher}
+
+%#######################################
+\section{Allgemeines}
+%#######################################
+
+Eine wichtige Aufgabenstellung der \"Okonometrie und insbesondere der
+Verkehrs\"okono\-me\-trie ist die quantitative Beschreibung der
+Str\"ome von Waren, Produkten und sonstiger wirtschaftlicher
+Leistungen vom Anbieter (Output) zum Empf\"anger (Input).
+Dies ist nichttrivial, da 
+Produkte und Dienstleistungen
+nicht nur vom Endverbraucher konsumiert werden, sondern auch von den
+Herstellern/Anbietern  dieser oder anderer Produkte und Dienstleistungen. 
+
+
+%#######################################
+\begin{figure}
+\fig{1.0\textwidth}{figsIOM/AKWfig.eps}
+\caption{\label{fig:AKW}
+%#######################################
+Atomkraftwerke (AKW) emittieren bei der eigentlichen
+Stromerzeugung durch Kernspaltung keinerlei CO$_2$. Aber zum Betrieb
+eines AKW sind andere Produkte und Dienstleistungen n\"otig, deren
+Bereitstellung  sehr
+wohl mit der Emission von CO$_2$ verbunden ist: Rohstoffgewinnung, die
+Aufbereitung des Rohstoffes zum Brennstoff, Entsorgung, der Transport
+von Roh- Brenn- und Abfallstoffen sowie der elektrischen Energie, Bereitstellung und Betrieb der
+Infrastruktur zum Transport von Warenstr\"omen und elektrischer
+Energie (Hochspannungsleitung), aber auch anteilig der Bau sowie der Betrieb (u.a. Heizung)
+der eigentlichen Bauwerke der Anlage usw. Diese 
+Kette muss man, streng genommen, ad infinitum fortsetzen: Unter
+anderem sollten auch die Emissionen durch die Heizung der
+Verwaltungsgeb\"aude der Firmen, welche die Anlage herstellen oder den
+Stahl f\"ur die Strommasten liefern, anteilig enthalten sein.
+}
+\end{figure}
+%#######################################
+
+Ein aktuelles
+Beispiel ist die Frage, wie viel CO$_2$ die Atomkraftwerke (AKW) effektiv
+zur Herstellung einer kWh an Strom erzeugen (Abb. \ref{fig:AKW} und \ref{fig:AKWflussdiag}).
+Die Frage ist nun: Wie hoch ist die  tats\"achliche Kohlendioxidbilanz
+(g CO$_2$ pro kWh), wenn man nicht nur den direkten Output, sondern
+auch die unendliche Kette all dieser indirekten Emissionen
+ber\"ucksichtigt? Wie hoch ist diese Bilanz im Vergleich der Gesamtbilanz f\"ur 
+Kohle- oder Gaskraftwerken oder bei der Erzeugung erneuerbarer
+Energie?\footnote{Die Durchf\"uhrung der Rechnung ergibt f\"ur AKWs
+etwa \unit[40]{g} CO$_2$/kWh, f\"ur Kohlekraftwerke etwa 
+\unit[800]{g} CO$_2$/kWh und
+f\"ur alternative Energiequellen \unit[50-100]{g} CO$_2$/kWh.}
+
+Generell bewirken diese Kopplungen, dass Nachfrageschwankungen
+bez\"uglich eines Wirtschaftsbereiches auch die anderen Sektoren
+beeinflussen. Beispielsweise bewirkt eine steigende Nachfrage nach
+Kraftfahrzeugen auch eine Konjunktur bei den Herstellern von Stahl,
+beim Maschinenbau und bei der Kfz-Elektronik. Dadurch ergibt sich
+folgende  Fragestellung:
+
+\maintext{\bfblack{Problemformulierung}:
+Wie \"andern sich die Nachfragen nach Produkten oder
+Dienstleistungen der verschiedenen Wirtschaftszweige, wenn sich die
+Nachfrage der Endverbraucher an Leistungen eines bestimmten Wirtschaftszweiges um
+einen bestimmten Betrag \"andert? 
+}
+
+
+
+%#######################################
+\section{\label{sec:IOMdef}Formulierung des Verflechtungsmodells}
+%#######################################
+
+Bemerkenswerterweise lassen sich im linearen statischen Grenzfall all
+diese Verflechtungen und Kopplungen sehr kompakt durch 
+das \"okonometrische \bfblue{Verflechtungsmodell}, auch
+\bfblue{Input-Output-Modell (IOM)} oder nach seinem Begr\"under
+Wassily Leontief \bfblue{Leontief-Modell}
+genannt, beschreiben. Im Rahmen dieses Modells gliedert man die gesamte
+Volkswirtschaft in verschiedene Sektoren $i =1, \ldots, n$ auf und
+modelliert die Waren- und Dienstleistungsstr\"ome $x_{ij}$ vom
+Sektor $i$ nach $j$ sowie die Str\"ome $y_i$ vom Sektor $i$ zum
+Endverbraucher\footnote{Der Begriff des ``Endverbrauchers'' kann auch allgemeiner gefasst werden und neben dem
+eigentlichen Konsumenten auch alle externen Sektoren umfassen, die man in einer
+gegebenen Untersuchung nicht separat erfassen will.}
+ durch eine \textit{lineare,
+zeitunabh\"angige, deterministische}  Kopplung:
+\maineq{IOM}{
+x_i=y_i+\sum\limits_{j=1}^n x_{ij} =y_i+\sum\limits_{j=1}^n A_{ij} x_j.
+}
+Hierbei bedeuten (vgl. auch Abb.~\ref{fig:AKWflussdiag}):
+\bi
+\item $x_i$ der Gesamtaussto\3 an Produkten oder Leistungen im Sektor
+$i$ in mit den anderen Sektoren kommensurablen Einheiten (im Allgemeinen Geldeinheiten),
+\item $x_{ij}$ die Menge an Produkten oder Dienstleistungen
+des Sektors $i$, welche f\"ur Sektor
+$j$ be\-n\"o\-tigt wird,
+\item $y_i$ die direkt von Sektor $i$ an den Endverbraucher bzw. an
+nicht direkt ber\"ucksichtigte Sektoren gehenden
+Produkte oder Leistungen,
+\item $A_{ij}$ die Elemente  der  \bfblue{Koeffizientenmatrix des direkten
+Aufwandes}, also die Zahl der Einheiten des Produkts/der Dienstleistung $i$, welche
+  zur Herstellung/Erbringung einer Einheit des Produkts/der
+  Dienstleistung des Sektors $j$ ben\"o\-tigt wird.
+\ei
+%
+Die verrschiedenen Sektoren werden beispielsweise duch
+die Input-Output-Rechnung des Bundes definiert. In der aktuellsten Ausgabe 2009 werden
+73 Sektoren unterschieden\footnote{Statistisches Bundesamt (2013):
+  Volkswirtschaftliche Gesamtrechnungen -- Input-
+Output-Rechnung 2009, \url{https://www.destatis.de/} (Zugriff 06.08.2013).}
+Das IOM ist durch folgende Annahmen charakterisiert:
+\bi
+\item Alle G\"uter- und Dienstlestungsstr\"ome  m\"ussen sich \emph{genau
+  einem Sektor} zuordnen lassen, z.B. einem der 73 Sektoren der
+  Input-Output-Rechnung des Bundes.
+\item Alle Str\"ome werden in \emph{Geldeinheiten} pro Zeiteinheit gemessen.
+\item Es wird \emph{Stationarit\"at} angenommen, d.h. alle Str\"ome werden
+  aus der laufenden Produktion gespeist. Lagerbest\"ande sowie ggf. die
+  Altersstruktur der G\"uter (z.B. beim Fahrzeugsektor) bleiben
+  unver\"andert.
+\item Es wird \emph{Linearit\"at} angenommen. Skaleneffekte,
+  beispielsweise Effizienzsteigerungen durch Massenproduktion, bleiben unber\"ucksichtigt.
+\ei
+%
+Im Rahmen der allgemeinen Klassifikation \"okonometrischer Modelle
+stellt das Verflechtungsmodell ein lineares, statisches,
+deterministisches Modell mit Kopplung dar:
+
+
+%#######################################
+\begin{figure}
+\fig{0.9\textwidth}{figsIOM/AKWflussdiag.eps}
+\caption{\label{fig:AKWflussdiag}Auswahl an G\"uterstr\"omen
+ im AKW-Beispiel.}
+\end{figure}
+%#######################################
+
+
+\bi
+\item Die endogenen Variablen\footnote{Um Kompatibilit\"at mit den
+sonstigen Darstellungen des IOM 
+zu bewahren, bedeuten hier ausnahmsweise $y_i$
+die exogenen und $x_i$ die endogenen Variablen. Ohnehin ist die
+Interpretation ``exogen'' bzw. ``endogen'' hier nicht eindeutig zu
+treffen. Handelt es sich um eine rein nachfragegetriebene
+(Keynesianische) Wirtschaft, ist der Nachfragevektor $\vec{y}$ exogen (die Nachfrage bestimmt
+das Angebot $\vec{x}$). Bei angebotsgetriebenen M\"arkten (``der Kunde
+muss essen, was auf den Tisch kommt'') ist es umgekehrt.}
+sind durch die Gesamtproduktionen $x_i$
+der Sektoren gegeben. Die verschiedenen $x_i$ sind gekoppelt, da
+ sie auch auf der rechten Seite der Gleichungen vorkommen.
+\item Die exogenen Variablen sind durch die externen Nachfragen $y_i$
+ gegeben.
+\item Die Modellparameter sind durch die Elemente $A_{ij}$ 
+gegeben. 
+\ei
+Je nach Sachverhalt ist es sinnvoll, die $x_i$ und $y_i$ entweder als
+\bfblue{Bestandsmassen} oder \bfblue{Bewegungsmassen} zu definieren.
+\bi
+\item Bewegungsmassen sind nur \"uber Zeit\emph{intervalle} definiert und
+nehmen im \bfblue{Flie\3gleichgewicht} linear mit der L\"ange des
+Intervalls zu. Es handelt sich um G\"uter\-\emph{men\-gen}, welche
+z.B. durch den Wert in \euro{} angegeben werden.
+\item Bestandsmassen sind f\"ur Zeit\emph{punkte} definiert. Es handelt sich um G\"uter\emph{str\"ome}, welche
+z.B. durch die ``Stromst\"arke'' in \euro{}/h gemessen werden. Im
+Flie\3gleichgewicht sind sie konstant.
+\ei
+H\"aufig ist es am anschaulichsten, alles als Bestandsmassen bei
+festen Betrachtungs-Zeitintervall anzusehen, vgl. die Beispiele.
+
+Die Modellparameter, also die \bfblue{Koeffizienten $A_{ij}$  des
+direkten Aufwandes}, werden an den \"okonomischen Sachverhalt
+angepasst,
+ indem die tats\"achlichen Verh\"altnisse in die
+Definitionsgleichung
+
+\maineq{Aij}{A_{ij}=\frac{x_{ij}}{x_j}
+}
+%
+eingesetzt werden bzw. das Modell bez\"uglich dieser Parameter
+kalibriert wird. In Worten bedeutet Gl. \refkl{Aij}:
+\maintext{Der direkte Aufwandskoeffizient 
+$A_{ij}$ ist die Zahl der Einheiten des Wirtschaftsgut $i$, welche direkt zur
+Herstellung einer Einheit des Produktes $j$ bzw. Erbringung einer
+Einheit der Dienstelistung $j$ ben\"otigt wird.}
+
+
+
+\verstaendnisbox{Machen Sie sich klar, dass im Falle der Verwendung
+kommensurabler Einheiten (z.B. der Waren- oder Dienstleistungswert in
+\euro) die Koeffizient des direkten Aufwandes nur im Bereich $0\le
+A_{ij}<1$ liegen d\"urfen.}
+
+{\scriptsize \textit{Antwort:} Da sonst nach Gl.~\refkl{IOM} ein Teil des
+  G\"uterstroms gr\"o\3er ist als der gesamte Strom.}
+
+%#######################################
+\subsection{Kompakte Formulierung in Vektor-Matrix-Notation}
+%#######################################
+
+%\renewcommand{\vec}[1]{\underline{#1}}
+%\newcommand{\mat}[1]{\underline{\underline{#1}}}
+
+Das Verflechtungsmodell \ref{IOM} stellt ein lineares inhomogenes Gleichungssystem
+f\"ur die unbekannten Gesamtproduktionen $x_i$ bei gegebenen externen
+Nachfragen $y_i$ dar. Zur Darstellung der formalen (und auch der
+expliziten) L\"osung dieses Systems werden die Produktionen und
+externen Nachfragen durch Spaltenvektoren dargestellt:
+\bdma
+\vec{x}^T &=& (x_1,x_2, \ldots, x_n),\\
+\vec{y}^T &=& (y_1,y_2, \ldots, y_n).
+\edma
+Hierbei bedeutet, wie im Kapitel~\ref{sec:regr},
+  das Superskript T, ``transponiert''.
+Damit kann man \refkl{IOM} schreiben als
+
+\be
+\label{IOMMatrixEx}
+\myVector{x_1 \\ \vdots \\ x_n} 
+ = \myMatrixThree{A_{11}&\cdots & A_{1n}\\ 
+                              \vdots && \vdots \\
+                            A_{n1}&\cdots & A_{nn}
+} \cdot  \myVector{x_1 \\ \vdots \\ x_n}
++ \myVector{y_1 \\ \vdots \\ y_n}
+\ee
+oder
+\maineq{IOMMatrix}{
+\vec{x}=\m{A}\cdot \vec{x}+\vec{y}.
+}
+
+%#######################################
+\section{L\"osung des Verflechtungsmodells}
+%#######################################
+
+Mit der Einheitsmatrix 
+\bdm
+\m{1}=\myMatrixFour{1 & 0 & \cdots & \\
+ 0 & \ddots &  & \vdots \\
+  \vdots & & \ddots & 0\\
+  & \cdots & 0 & 1}
+ \edm
+und
+\bdm
+\m{M}=\m{1}-\m{A}
+\edm
+kann man Gl. \refkl{IOMMatrix} schreiben als
+\bdm
+\m{M}\cdot \vec{x}=\vec{y}.
+\edm
+Ist $\m{M}$ invertierbar, gibt es also eine Inverse $\m{M}^{-1}$
+mit $\m{M}^{-1}\cdot \m{M}=\m{M}\cdot \m{M}^{-1}=\m{1}$, so
+kann man diese Gleichung durch Links-Multiplikation von $\m{M}^{-1}$
+``l\"osen'':
+\bdma
+\m{M}^{-1}\cdot \m{M}\cdot \vec{x} &=& \m{M}^{-1}\cdot \vec{y},\\
+ \vec{x} &=& \m{M}^{-1}\cdot \vec{y}.
+\edma
+Dies f\"uhrt nach Einsetzen der Definition von $\m{M}$ zur formalen
+L\"osung des Verflechtungsmodells:
+\maineq{IOMloes}{
+ \vec{x}=\left(\m{1}-\m{A}\right)^{-1}\cdot\vec{y}
+ \equiv \m{B}\cdot\vec{y}.
+}
+Hierbei wird die neu definierte Matrix
+$\m{B}=\left(\m{1}-\m{A}\right)^{-1}$ als die
+\bfblue{Koeffizientenmatrix des vollen Aufwandes} bezeichnet. Die
+Bedeutung ihrer Elemente ist wie folgt:
+
+\maintext{$B_{ij}$ ist die Menge an Wirtschaftsgut $i$, welche zur
+Herstellung einer Einheit des Wirtschaftsgutes $j$ vom Sektor $j$ selbst
+\textit{und von allen Zuliefersektoren $k$} des Sektors $j$  ben\"otigt
+wird. Also die Menge an Wirtschaftsgut $i$, welche zur Bereitstellung 
+einer Einheit von $j$ \textit{an den Verbraucher}  ben\"otigt wird. }
+
+%#######################################
+\subsection{Veranschaulichung der Koeffizientenmatrix des vollen Aufwandes}
+%#######################################
+
+Ist eine Funktion durch eine Reihenentwicklung definiert, wie
+$e^x=1+x+\frac{x^2}{2}+\ldots$ oder auch z.B. $\cos(x)$, so sind als Argumente
+dieser Funktion nicht nur Zahlenwerte m\"oglich, sondern alle Objekte,
+welche sich addieren, multiplizieren und invertieren
+lassen, wobei das Ergebnis dieser Operationen in der Objektmenge
+bleiben muss. Dies ist insbesondere f\"ur die Menge der
+quadratische Matrizen erf\"ullt.\footnote{Genauer muss die sog. ``Gruppeneigenschaft''
+bez\"uglich Addition und Multiplikation erf\"ullt sein, das Ergebnis
+dieser Operationen muss also wieder ein Element aus der betrachteten Objektmenge sein; dies ist
+z.B. bei Vektoren mit dem Skalarprodukt als Multiplikation nicht erf\"ullt.}
+Insbesondere gilt dies f\"ur die ``geometrische Reihe''
+\bdm
+\frac{1}{1-x}=1+x+x^2+x^3+\ldots = \sum\limits_{j=0}^{\infty}x^j.
+\edm
+Schreibt man die Inverse einer Matrix $\m{M}$ als
+$\m{M}^{-1}=''1/\m{M}''$ und $\m{M}\cdot\m{M}=\m{M}^2$,
+$\m{M}\cdot\m{M}\cdot\m{M}=\m{M}^3$ usw.,  sowie $\m{M}^0=\m{1}$,
+sieht man, dass die L\"osung des
+Input-Output-Modells nichts anderes ist als die geometrische Reihe,
+angewandt auf die Matrix $A$:
+\be
+\label{IOMgeomReihe}
+\m{B}=\left(\m{1}-\m{A}\right)^{-1}
+= ``\frac{1}{\m{1}-\m{A}}''
+= \m{1}+\m{A}+\m{A}^2+\m{A}^3+\ldots
+= \sum\limits_{j=0}^{\infty}\m{A}^j.
+\ee
+Im Folgenden wird anhand von zwei Sektoren gezeigt, wie diese
+unendliche Reihe die unendliche Sequenz der Kopplungen
+repr\"asentiert.
+
+\subsubsection{Beispiel: Zwei-Sektoren-Modell}
+Es werden die beiden Sektoren
+\bi
+\item Sektor 1: Transport und Verkehr,
+\item Sektor 2: Maschinenbau
+\ei
+betrachtet. Ferner werden alle anderen Sektoren zu den externen Verbrauchern,
+also zu den Konsumenten $y_i$ von Verkehr und Maschinenbau, gez\"ahlt.
+Es soll gelten
+
+
+\bdm
+\m{A}=\frac{1}{4}\myMatrixTwo{1&1\\1&1}.
+\edm
+Die Sektoren verbrauchen also je 25\% ihrer Produkte f\"ur den
+Eigenbedarf und ben\"otigen au\3erdem Produkte des jeweils anderen
+Sektors in einer Menge, welche ein Viertel des Wertes der gesamten eigenen Produktion
+entspricht.
+Fortgesetzte Matrixmultiplikation ergibt f\"ur $n\ge 1$
+\bdm
+\m{A}^n=\frac{1}{2^{n+1}}\myMatrixTwo{1&1\\1&1}
+\edm
+
+und damit z.B.
+\bdm
+B_{11}
+=\left(\sum\limits_{j=0}^{\infty}\m{A}^j\right)_{11}
+=1+\frac{1}{4}\sum\limits_{j=0}^{\infty}\left(\frac{1}{2}\right)^j
+ = 1+\frac{1}{4\left(1-\frac{1}{2}\right)}=\frac{3}{2},
+\edm
+und
+\bdm
+B_{12}=\frac{1}{4}\sum\limits_{j=0}^{\infty}\left(\frac{1}{2}\right)^j = \frac{1}{2}.
+\edm
+Damit kann man die Kopplungen der Wirtschaftssektoren Verkehr und
+Maschinenbau veranschaulichen: Der Koeffizient $B_{11}$ hat die
+Anteile
+\bdm
+B_{11}=\left(\m{1}+\m{A}+\m{A}^2+\m{A}^3+\ldots\right)_{11}
+  = 1+A_{11}+\sum\limits_{k=1}^2 A_{1k}A_{k1}
++\sum\limits_{k=1}^2\sum\limits_{l=1}^2A_{1k}A_{kl}A_{l1} + \ldots
+\edm
+mit den Bedeutungen
+\bi
+\item Beitrag 1: Eine Einheit an Verkehrsleistung an die Endverbraucher.
+\item Beitrag $A_{11}=\frac{1}{4}$: F\"ur eine Einheit an den Verbraucher ben\"otigen die
+Verkehrsbetriebe 1/4 an Verkehrsleistungen f\"ur den Eigenbedarf
+(Arbeitswege des Personals, 
+\"Uberf\"uhrung von Fahrzeugen, Wartungsfahrten, Leerfahrten zur
+ersten Einsatzstelle etc).
+\item Beitrag $A_{11}^2$: Der
+Eigenbedarf erh\"oht die Verkehrsnachfrage, welche wiederum
+\textit{zu\-s\"atz\-li\-chen} Eigenbedarf hervorruft. Ein Stra\3enbahnf\"uhrer
+f\"ahrt z.B. mit \"OV zum Startpunkt seiner
+Schicht; aber auch die Fahrer dieser Verkehrsmittel nehmen
+Verkehrsleistung zum Antritt und am Ende \textit{ihrer} Schicht in
+Anspruch. 
+\item Beitrag $A_{12}A_{21}$: Die Verkehrsmittel altern und
+m\"ussen kontinuierlich durch neue ersetzt werden (Anteilige
+Auftr\"age  $A_{21}$ an den Maschinenbau). Der Maschinenbau ben\"otigt
+f\"ur seinen Betrieb (Mitarbeiterwege, Transport von Teilen etc)
+f\"ur eine Einheit  eine Verkehrsleistung von $A_{12}$ Einheiten, also
+f\"ur den an die Verkehrsbetriebe gelieferten Bruchteil  $A_{21}$
+anteilig die Verkehrsleistung $A_{12}A_{21}$.
+\item Die Str\"ome h\"oherer Ordnung werden schnell
+un\"ubersehbar. Beispielsweise bedeutet der Beitrag
+$A_{12}A_{22}A_{21}$ 
+die Verkehrsleistung $A_{12}$ an den Maschinenbau, damit dieser seinen
+eigenen Maschinenpark up-to-date h\"alt ($A_{22}$), um schlie\3lich
+neue Fahrzeuge an den Verkehrssektor liefern zu k\"onnen ($A_{21}$).
+\ei
+
+\aufgabenbox{Aufgabe}{Verdeutlichen Sie sich die Anteile von $B_{12}$.
+}
+
+%#######################################
+\subsection{Explizite L\"osungen f\"ur zwei und drei Sektoren}
+%#######################################
+
+Gl\"ucklicherweise nimmt einen die Inversion einer einzigen Matrix das
+Verfolgen der einzelnen Verflechtungen zwischen den Sektoren nach der
+Art des letzten Unterabschnitts ab. ``Per Hand'' kann man die Inverse
+einer $n\times n$ Matrix 
+bis maximal f\"ur $n=5$ sinnvoll mit dem \bfblue{Gau\3'schen
+Eliminationsverfahren} l\"osen, numerisch ist die L\"osung auch f\"ur
+Hunderte von Sektoren problemlos (der Aufwand steigt mit $n^3$). F\"ur
+ $2\times 2$ und $3\times 3$ - Matrizen gibt es einfache explizite
+Formeln, vgl. Abschnitt~\ref{sec:matrix}.
+
+\subsubsection{Zwei Sektoren}
+
+Sei $\m{M}$ eine allgemeine invertierbare 
+$2\times 2$ Matrix mit den Elementen $M_{ij}$. Dann
+gilt nach~\refkl{matrixinv2}
+\bdm
+\m{M}^{-1}=\frac{1}{\text{det}(\m{M})}
+\myMatrixTwo{M_{22} & -M_{12} \\ -M_{21} & M_{11}}
+\edm
+und damit
+\maineq{BtwoTimesTwo}{
+\m{B}=\left(\m{1}-\m{A}\right)^{-1}
+= \frac{1}{\text{det}(\m{1}-\m{A})}
+\myMatrixTwo{1-A_{22} & A_{12} \\ A_{21} & 1-A_{11}}.
+}
+
+Das obige Beispiel f\"ur $A_{11}=A_{12}=A_{21}=A_{22}=\frac{1}{4}$
+liefert
+\bdm
+\m{1}-\m{A}=\frac{1}{4}\myMatrixTwo{3&-1\\-1&3}, \quad
+\text{det}\left(\m{1}-\m{A}\right)=\frac{1}{16}(9-1)
+=\frac{1}{2}, \quad
+\m{B}=\frac{1}{2}\myMatrixTwo{3&1\\1&3}.
+\edm
+also insbesondere die oben mittels der geometrischen Reihe berechneten
+Koeffizienten des vollen Aufwands $B_{11}=\frac{3}{2}$ und $B_{12}=\frac{1}{2}$.
+
+
+\subsubsection{Drei Sektoren}
+
+Hier benutzt man Gleichung~\refkl{matrixinv3}. Alternativ kann man
+auch die Eigenschaften von Skalar- und Kreuzprodukten von
+Vektoren nutzen, vgl.~\refkl{matrixprodukte}.
+Schreibt man die drei Zeilen der Inversen einer invertierbaren
+$3\times 3$ Matrix mit Hilfe von drei Zeilenvektoren,
+\bdm
+\m{M}^{-1}=\myVector{ - \vec{z}_1^T - \\ - \vec{z}_2^T - \\ - \vec{z}_3^T- },
+\edm
+und die Spalten der Matrix selbst mit Spaltenvektoren,
+\bdm
+\m{M}=\myMatrixThree{| & | & | \\ \vec{m}_1 & \vec{m}_2 & \vec{m}_3 \\ | & | & | }
+\edm
+dann gilt
+\be
+\vec{z}_1 =\frac{\vec{m}_2 \times \vec{m}_3}
+{\text{det}\left(\m{M}\right)}, \quad
+\vec{z}_2 =\frac{\vec{m}_3 \times \vec{m}_1}
+{\text{det}\left(\m{M}\right)}.  \quad
+\vec{z}_3 =\frac{\vec{m}_1 \times \vec{m}_2}
+{\text{det}\left(\m{M}\right)}.
+\ee
+sowie
+\be
+\label{detDrei}
+\text{det}\left(\m{M}\right)= \vec{m}_1 \cdot \left(\vec{m}_2 \times \vec{m}_3\right).
+\ee
+%
+Nat\"urlioch muss man zur Bestimmung der Matrix $\m{B}$ 
+ f\"ur $\m{M}$ wieder die Differenzmatrix
+$\m{1}-\m{A}$ einsetzen.
+
+\aufgabenbox{Aufgabe: Zwei-Sektor-Modell}{Im obigen Beispiel der zwei
+Sektoren Verkehr und Maschinenbau mit den direkten Aufwandskoeffizienten
+$A_{11}=A_{12}=A_{21}=A_{22}=\frac{1}{4}$ ist bisher die externe Nachfrage
+nach Transport-Dienstleistungen doppelt so hoch wie die nach Produkten
+des Maschinenbaus. Nun erh\"oht sich die Nachfrage
+nach Verkehr um 10\%, w\"ahrend die nach Produkten
+des Maschinenbaus unver\"andert bleibt. Um wieviel Prozent m\"ussen
+die Gesamtleistungen der beiden Sektoren steigen, um die neue
+Nachfrage zu befriedigen?
+}
+
+%#######################################
+\section{\label{sec:LCA-IOM}Lebenszyklusanalyse und Einbindung des
+  Input-Output-Modells}
+%#######################################
+
+
+Ausgehend von einer aktuellen Fragestellung k\"onnte dieser Abschnitt
+auch lauten: \textit{Sind E-Fahrzeuge wirklich
+  umweltfreundlicher?}. Die Lebenszyklusanalyse wird deshalb anhand
+der CO$_2$-Emissionen von Fahrzeugen erl\"autert, sie kann aber f\"ur
+beliebige, Ressourcenverbrauch oder Emissionen betreffende
+Produkten oder Prozessen eingesetzt werden wie die Emissionen bei Produktion
+eines Kilowatts elektrischer Energie aus Kohle- oder Atomkraftwerken,
+Windkraft, Wasserkraft, Biomasse, Sonnenzellen oder Solarthermie.
+
+Hintergrund ist, dass
+Elektrofahrzeuge im Betrieb \emph{lokal} weder CO$_2$ noch
+andere Schadstoffe (au\3er Feinstaub) emittieren, weshalb sie von einigen
+Stadtverwaltern sehr geliebt werden, um lokale Umweltprobleme zu
+mildern.  Aber geht man hier nicht lediglich nach dem
+St-Florians-Prinzip vor? Dies ist insbesondere f\"ur nichtfl\"uchtige
+Emissionen, allen voran CO$_2$, relevant. Fr\"uher oder sp\"ater
+verteilen sie diese weltweit, egal ob sie im Betrieb lokal
+(Verbrennungsmotoren), nichtlokal (Produktion der Kraftstoffe bei Verbrennungsmotoren,
+Stromerzeugung bei E-Fahrzeugen, au\3erdem Verschlei\3teile und
+Verbrauchsmaterialien), oder in 
+vor- oder nachgelagerten Prozessen (Herstellung, Entsorgung)
+anfallen. Dies gilt im abgemilderter Sch\"arfe auch f\"ur
+konventionelle Kfz mit Verbrennungsmotor, bei der neben den direkten CO$_2$
+Emissionen beim Betrieb ebenfalls weitere Emissionen anfallen. 
+
+Man ben\"otigt also eine Analysemethode, welche \emph{alle} Emissionen
+erfasst, welche irgendwo oder irgendwann unmittelbar oder mittelbar
+durch die Nutzung eines Fahrzeugs (oder allgemein bei der Nutzung
+eines ressourcenverbrauchenden und die Umwelt beeinflussenden
+Produkts oder Prozesses) anfallen. Dazu werden zwei Methoden
+kombiniert:
+\bi
+\item Die \bfblue{Lebenszyklusanalyse} bzw. 
+\bfblue{Life-Cycle-Assessment (LCA)}, auch \bfblue{\"Oko\-bi\-lanz}
+genannt, umfasst  welche alle direkt mit der
+  Herstellung, dem Betrieb und der Entsorgung anfallenden Emissionen
+  umfasst,\footnote{Beispielsweise LCA nach DIN EN ISO 14040. Die
+  GEMIS Datenbank enthaelt viele Sachbilanzen und das HBEFA ``Handbuch
+  f\"ur Emissionsfaktoren'' die dazugeh\"origen Emissionsfaktoren.}
+% 
+% Genaueres in BA Marcus Neumann (12.11.13)
+
+\item und die Input-Output-Analse mit dem IOM, welche alle durch
+  Verflechtungseffekte anfallenden indirekten Emissionen
+  ber\"ucksichtigt.\footnote{Die Abgrenzung ist nicht immer
+    scharf. Beispielsweise werden bei der LCA meist nicht nur die
+    \emph{Tank-to-Wheel} Emissionen durch die direkte Verbrennung
+    ber\"ucksichtigt, sondern auch die \emph{Well-to-Tank} Emissionen durch
+    die Produktion und den Transport des Kraftstoffs bis in den
+    Tank. Letztere k\"onnte man auch mittels des IOM durch die
+    Verflechtung des Sektors ``Treibstoffe'' mit ``Transport'',
+    ``Verarbeitung'' und ``Bergbau'' modellieren.} Die LCA wird in das
+  Input-Output-Modell meist mittels der hybriden Methodik 
+\bfblue{Econometric Input-Output LCA (EIO-LCA)} eingebunden.
+\ei
+Betrachtet man nur Emissionen pro End-Nachfrage (in Geldeinheiten)
+nach Produkten oder Dienstleistungen eines gewissen Sektors, kann man
+die EIO-LCA vereinfachen zur IOM-LCA.
+
+%#############################################
+\subsection{Lebenszyklusanalyse (LCA)}
+%#############################################
+
+Die Lebenszyklusanalyse verl\"auft in mehreren Schritten
+(vgl.Abbildung~\ref{fig:LCA}):
+%#######################################
+\begin{figure}
+%\fig{0.9\textwidth}{figsIOM/LCA.eps}
+\caption{\label{fig:LCA}Vereinfachtes Flussdiagramm der
+  Lebenszklusanalyse 
+ eines Kraftfahrzeugs bez\"uglich Emissionen (noch nicht vorhanden,
+ vgl. Vorlesungsmitschrift)
+} 
+\end{figure}
+%#######################################
+
+\paragraph{1. Definition der Lebensphasen:}
+Bei einem Fahrzeug sind das im Wesentlichen
+\bi
+\item die Herstellung,
+\item der Betrieb
+\item und die Entsorgung.
+\ei
+
+\paragraph{2. Aufstellung der Sachbilanz:} 
+In jeder der Lebensphasen verbraucht einer betrachtete Einheit (hier:
+ein Auto) gewisse Mengen verschiedener Ressourcen wie
+\bi
+\item $y_1\sup{s}$: Masse (kg) an Eisen/Stahl,  
+\item $y_2\sup{s}$  Menge (Liter) an Treibstoff (z.B. Benzin),
+\item $y_3\sup{s}$: Masse (kg)  an Aluminium,
+\item $y_4\sup{s}$: Masse (kg)  an Kunststoffen,
+\item $y_5\sup{s}$: Masse (kg)  an Gummi
+\ei
+und weitere Materialien wie Gummi, Lack, Textilien usw.
+\"Uber alle Lebensphasen summiert ergibt dies den
+Vektor $\vec{y}\sup{s}$ der \bfblue{Sachbilanz}.
+
+\paragraph{3. Aufstellung der Emissionsfaktoren:} 
+Die Bereitstellung der  ben\"otigten Materialien und Ressourcen
+ist mit  Emissionen verschiedenster Schadstoffe verbunden.
+Dies definiert die sachbilanzbezogene Emissionsfaktoren-Matrix $\m{C}$:
+
+\maintext{Bei $n$ betrachteten
+  Emissionsarten (z.B. 1=CO$_2$, 2=Feinstaub, 3=NO$_x$) und $m$ Posten der Sachbilanz (z.B. 1=Stahl, 2=Benzin) ist die
+  sachbilanzbezogene Emissionsfaktoren-Matrix $\m{C}$ eine
+  unsymmetrische reellwertige  
+ $n\times m$-Matrix. Die Komponente $C_{ij}$ gibt an, wieviele
+  Einheiten des Schadstoffes $i$ bei der Herstellung einer Einheit des
+  Postens $j$ der Sachbilanz \emph{einschlie\3lich der kompletten
+    Kette der Vorprodukte} (vgl. Abb.~\ref{fig:WtT}) im Mittel
+  anfallen.}
+
+Die erste Zeile der Matrix betrifft also den ersten Schadstoff und
+die erste Spalte den ersten Postens der Sachbilanz.
+Bei der Bereitstellung eines Liters Benzin ($m=2$) von der F\"orderung bis zur
+Tankstelle (\textit{Well-to-Tank}) fallen beispielsweise etwa
+\unit[0.3]{kg} an CO$_2$ an. Das entsprechende Matrixelement ist also
+(ohne die eigentliche Verbrennung im Motor, siehe Punkt 4)
+gleich
+\bdm
+C_{12}=C_{WtT}=\unit[0.3]{kg CO_2/l}.
+\edm
+Meist wird hier nicht direkt CO$_2$,
+  sondern das sogenannte \bfblue{CO$_2$-\"Aquivalent} angegeben. Dabei
+  wird die auf einen kg CO$_2$ bezogene Klimawirksamkeit aller
+  Emissionen betrachtet. Auf einen 100-Jahres-Zeitraum
+  bezogen, wird beispielsweise Methan 25-fach\footnote{Damit wird auch
+    der Grund klar,
+    warum  ein Kilogramm Rindfleisch so einen hohen Emissionsfaktor
+    bez\"uglich CO$_2$ hat: Vornehm ausgedr\"uckt, sind es die
+    Flatulenzen der  K\"uhe.} und Lachgas
+  298 fach gewichtet. 
+
+\paragraph{4. Ermittlung der Gesamtemissionen w\"ahrend der Lebenszeit:}
+
+Direkt anhand der Definition der Emissionsfaktorenmatrix ist
+offensichtlich, dass die mit der Herstellung der ben\"otigten
+Materialien und Verbrauchsstoffe verbundenen Emissionen durch die
+Multiplikation der  Emissionsfaktoren-Matrix mit der Materialbilanz 
+gegeben sind. Hinzu kommen noch die direkt mit dem Verbrauch (hier von
+Benzin) verursachten Emissionen:
+
+\maineq{emissionen-LCA}{ 
+\vec{e}\sub{LCA}=\vec{e}\sup{dir} + \m{C}\cdot \vec{y}\sup{s}
+}
+
+Bei obiger Definitionen der Sachbilanz sind 
+die CO$_2$-Emissionen durch  die erste Komponente gegeben:
+\be
+\label{emissionenCO2-LCA}
+e\sub{CO2}=e_1=e_1\sup{dir} + \sum_{j=1}^n C_{1j} y_j\sup{s}
+\ee
+
+Die direkten Emissionen sind bei Verbrennungsmotorfahrzeugen durch
+die
+\bfblue{Tank-to-Wheel} Emissionen, multipliziert mit der Laufleistung
+$L$ w\"ahrend der Lebenszeit, gegeben:
+\be
+e_1\sup{dir}=C\sub{TtW} L
+\ee
+Die  Tank-to-Wheel Emissionen ergeben sich dadurch, dass Benzin oder
+Diesel im Wesentlichen vollst\"andig verbrennen, dass hei\3t, jedes
+Kohlenstoffatom im Treibstoff verbindet sich mit dem Luftsauerstoff zu
+einem CO$_2$-Molek\"ul. Damit ergibt sich
+\be
+C\sub{TtW} = \rho f_c \frac{M\sub{CO2}}{M_C}
+\ee
+mit der Dichte $\rho$ in kg pro Litern, dem Gewichtsanteil $f_C$ an
+Kohlenstoff im Treibstoff und den Molmassen $M\sub{CO2}=\unit[44]{g}$ sowie
+$M_C=\unit[12]{g}$. Dies ergibt f\"ur Benzin etwa \unit[2.4]{kg/l} und f\"ur
+Diesel etwa \unit[2.65]{kg/l}.
+
+\paragraph{5. Bezug auf eine Leistungseinheit:}
+Schlie\3lich werden die Lebenszeit-Emissionen auf eine
+Leistungseinheit, hier also auf einen Kilometer Laufleistung, bezogen:
+\be
+\label{eLCAspez}
+\vec{e}\sub{spez}=\frac{1}{L}\vec{e}
+\ee
+Mit \"ublichen Annahmen ergibt sich bei Kompaktklasse-Benzinfahrzeugen
+etwa $e_{1,spez}=\unit[180]{g/km}$, w\"ahrend die direkten Emissionen
+bei etwa \unit[140]{g/km} (entspricht einem Verbrauch von 5.8~Liter
+Benzin auf 100~km) liegen.
+
+\verstaendnisbox{Wie w\"urde man bei der LCA-Ananlyse eines
+  Elektrofahrzeugs vorgehen? Was sind hier die wichtigsten Posten der
+  Sachbilanz? Wie hoch sind hier die direkten CO$_2$-Emissionen
+  $e_1\sup{dir}$?
+}
+
+%#######################################
+\begin{figure}
+%\fig{0.9\textwidth}{figsIOM/WtT.eps}
+\caption{\label{fig:WtT}Die gesamte Kette der Well-to-Tank Emissionen
+  bei der Bereitstellung eines Liters an Benzin (noch nicht vorhanden,
+ vgl. Vorlesungsmitschrift).
+} 
+\end{figure}
+%#######################################
+
+
+
+%#############################################
+\subsection{Econometric Input-Output LCA (EIO-LCA)}
+%#############################################
+\EinsteinBeg
+
+Im Allgemeinen wird das Input-Output-Modell f\"ur volkswirtscahfliche
+Fragestellungen angewandt und dabei die gesamte Volkswirtschaft in
+Sektoren gegliedert. Gelingte es jedoch, die Sachbilanz auf diese
+Sektoren abzubilden, ist auch eine \bfblue{produktbezogene
+  Input-Output-Analyse} m\"oglich. Das EIO-LCA verbindet diese
+Abbildungen mit einer Lebenszyklusanalyse und umfasst folgende
+Schritte:
+
+\paragraph{1. Definition der Lebensphasen:}  Wie bei der LCA.
+\paragraph{2. Aufstellung der  Sachbilanz:} 
+Im Wesentliche wie bei der LCA. Allerdings sollte man
+zus\"atzliche rein dienstleistungsorientierte Aktivit\"aten w\"ahrend
+eines Autolebens zus\"atzlich ber\"ucksichtigen, beispielsweise
+Reparatur-Dienstleistungen, was hier als \bfblue{erweiterte Sachbilanz}
+bezeichnet wird.
+
+\paragraph{3. Abbildung der Sachbilanz auf den IOM-Nachfragevektor:}
+Aufgrund der Datenlage kann man die volkswirtschaftlichen Sektoren
+nicht frei w\"ahlen, sondern zieht beispielsweise die Einteilung des
+Statistischen Bundesamtes in 71
+Sektoren heran.
+
+Knackpunkt ist es, die $m$ Posten der Sachbilanz $\vec{y}\sup{s}$ in die $M$ Eintr\"age
+des sektorbezogenen Nachfragevektors $\vec{y}$ (bzw, in eine
+Untermenge davon) abzubilden. Im
+Allgemeinen bezieht sich  ein Posten der Sachbilanz auf mehrere
+Sektoren und mehrere Posten der Sachbilanz k\"onnen zur Nachfrage
+ein- und desselben Sektors beitragen. Nimmt man an, dass der
+Zusammenhang linear-statisch ist, entspricht die Abbildung daher einer
+reellwertigen $M\times m$-Matrix $\m{T}$:
+
+\be
+\label{y-EIO-LCA}
+\vec{y}=\m{T}\cdot \vec{y}\sup{s}
+\ee
+Neben der eigentlichen Abbildung beinhaltet diese Matrix auch eine
+Transformation auf einheitliche Einheiten, also auf Geldeinheiten.
+
+Im obigen Beispiel bildet die erste Spalte von $\m{T}$ den
+Sachbilanzposten $y_1^s$: ``Eisen und
+Stahl'' auf die volkswirtschaftlichen Sektoren ab. Verwendet man die
+73 Sektoren des Bundes, gibt es im Wesentlichen nur einen von null
+signifikant unterschiedlichen Eintrag: den Sektor 
+ 27.10: ``Roheisen, Stahl und Ferrol''. Diese Spalte hat also nur 
+einen von null signifikant unterschiedlichen Eintrag,
+z.B. \unit[3]{\euro{}/kg}, wenn dies der Preis von einem kg Stahl
+ist.  Die zweite Spalte bildet den Sachbilanzposten $y_2^s$:
+``Benzin'' auf den Sektor 11:00: ``Erd\"ol, Erdgas und
+-produkte'' ab. Der entsprechende Wert des $\m{T}$-Elements ist der
+aktuelle Treibstoffpreis in
+Euro pro Liter. Schlie\3lich werden die Sachbilanzposten  Aluminium,
+Kupfer und Lithium (wichtig als Material f\"ur die Batterie von
+Elektroautos) alle auf den Sektor 27.00: ``NE-Metalle'' abgebildet. 
+Hier sieht man einen Nachteil des Verfahrens: Materialien mit
+unterschiedlichen Emissionen bei der Herstellung (die Herstellung
+eines kg an Kupfer impliziert weniger CO$_2$ Emissionen als Aluminium
+oder gar Lithium) werden im Wesentlichen auf den selben Sektor
+abgebildet und damit gleichbehandelt. \footnote{Die Skalierung auf den
+  Preis anstelle auf die Masse lindert diesen Nachteil allerdings
+  etwas: Ist Lithium beispielsweise pro kg 10 mal so teuer wie Kupfer,
+  w\"urden auch die Emissionen pro kg um den Faktor 10 h\"oher
+  berechnet.}
+
+\paragraph{4. Berechnung des Produktionsvektors mit der Standard-IOM:}
+
+Mit der Abbildung \refkl{y-EIO-LCA} der erweiterten Sachbilanz auf den
+Nachfragevektor ist der \"Ubergang zur IOM vollzogen und die Abbildung
+auf den Produktionsvektor entspricht der Standardabbildung der IOM mit
+der Matrix des vollen Aufwandes:
+\bdm
+\vec{x}=\m{B}\vec{y}=(\m{1}-\m{A})^{-1} \vec{y}
+\edm
+Bei Fahrzeugen koppelt die Matrix $\m{B}$ den Nachfragevektor insbesondere stark an
+den Sektor 38.00: ``elektrische Energie'', auch wenn dieser bei
+Benzin-Fahrzeugen nicht direkt in der erweiterten Sachbilanz vorkommt.
+
+\paragraph{5. Ermittlung der Gesamtemissionen:}
+
+Der Emissionsvektor berechnet sich aus dem Produktionsvektor mittels
+der sektorbezogenen Emissionsfaktorenmatrix:
+\maintext{Die  sektorbezogene
+  Emissionsfaktormatrix $\m{D}$ ist eine $n\times M$-Matrix. Die
+  Komponente $D_{ij}$ gibt an, wieviele
+  Einheiten des Schadstoffes $i$ bei der Herstellung eines Gegenwertes
+  von einem Euro des Gutes $j$ \emph{direkt} anfallen. Im Gegensatz
+  zur Matrix $\m{C}$ werden die Vorketten \emph{nicht}
+  ber\"ucksichtigt, da diese ja in viel vollst\"andigerer Form
+  einschlie\3lich aller R\"uckkopplungen durch die Verflechtungsmatrix
+  $\m{B}$ abgebildet werden.}
+
+Nach Definition ergibt dies
+
+\maineq{emissionen-EIO-LCA}{
+\vec{e}\sub{EIO-LCA}
+       =\vec{e}\sup{dir} + \m{D}  \vec{x}
+       =\vec{e}\sup{dir} + \m{D} \m{B} \vec{y}
+       =\vec{e}\sup{dir} + \m{D} (\m{1}-\m{A})^{-1} \vec{y}
+}
+%
+Diese Hauptformel sieht \"ahnlich aus wie Gl.~\refkl{emissionen-LCA}
+der konventionellen LCA. Insbesondere werden die direkten Emissionen
+$\vec{e}\sup{dir}$ gleich berechnet. Es gibt aber folgende Unterschiede:
+\bi
+\item
+Der Nachfragevektor $\vec{y}$ bezieht sich auf die volkswirtschaftlichen
+Sektoren in Euro anstelle auf den Sachbilanzvektor $\vec{y}\sup{s}$ in physikalischen
+Einheiten
+\item 
+Die Emissionsfaktormatrix $\m{D}$ enth\"alt nur die direkten
+Beitr\"age, nicht die Vorketten wie die in $\m{C}$ enthaltenen produktbezogenen
+Emissionsfaktoren
+\item Daf\"ur ist statt der Einheitsmatrix bei der konventionellen LCA
+  die Kopplung der Sektoren untereinander durch die Matrix
+  $\m{B}=(\m{1}-\m{A})^{-1}$ ber\"ucksichtigt.
+\ei
+
+%#############################################
+\subsection{Emissionen bei direkter Verwendung des
+  IOM (IOM-LCA)}
+%#############################################
+
+Betrachtet man keine Einzelprodukte sondern die durch eine Geldeinheit
+an Nachfrage in den verschiedenen Sektoren verursachten Emissionen,
+ist es meist g\"unstiger, alle direkten Emissionen in die
+Emissionsfaktorenmatrix $\m{D}$ zu stecken. Dazu ist es allerdings
+notwendig, dass die Ergebnisse von aggregierten Lebenszyklusanalysen
+f\"ur die Produkte bzw. Dienstleistungen der 
+betrachteten Sektoren in Form einer sektorbezogenen direkten
+Emissionsfaktorenmatrix $\m{D}$ vorliegen. Betrachtet man beispielsweise
+den Sektor des \"OPNV, werden die direkten Emissionen beim Betrieb der Busse
+oder Diesel-Loks (elektrifizierte Verkehrsmittel haben ja keine
+direkten Emissionen sondern nur indirekte \"uber die
+Verflechtungseffekte bzw. Vorketten!) auf den Fahrpreis
+umgelegt. Formel~\refkl{emissionen-EIO-LCA} vereinfacht sich dann zu
+\maineq{emissionen-IOM}{
+\vec{e}\sub{IOM}
+       =\m{D}  \vec{x}
+       =\m{D} \m{B} \vec{y}
+       =\m{D} (\m{1}-\m{A})^{-1} \vec{y}
+}
+
+%
+%Mit Hilfe dieser Methoden werden folgende Gr\"o\3en ermittelt:
+%\bi
+%\item Vom Endverbraucher (=Autofahrer) nachgefragte Mengen $\vec{y}$
+%  an Waren und Dienstleistungen (in Euro) f\"ur Erwerb, Betrieb und Entsorgung
+%  eines Autos \emph{w\"ahrend des gesamten Autolebens}, z.B. bei
+%  Aufgliederungen in die Sektoren 1=Fahrzeuge, 2=Treibstoffe,
+%  3=Sonstiges:\footnote{Nat\"urlich muss man bei einem Vergleich 
+%    E-Fahrzeuge \emph{vs.} Fahrzeuge mit Verbrennungsmotoren die
+%    hier sehr wichtigen Sektoren ``Elektrische Energie'' und
+%    ``Batterien'' separat betrachten, Dies wird hier der Einfachheit
+%    halber nicht gemacht.}
+%\bdm
+%\vec{y}\tr=(\text{1 Auto}, \text{\unit[10\,000]{l} Benzin},
+%  \text{Sonstiges wie Reparaturen+Versicherungen})
+%\edm
+%bzw. entsprechende Geldbetr\"age
+%\bdm
+%\vec{y}\tr=(\unit[20\,000]{\eur}, \unit[15\,000]{\eur}, \unit[15\,000]{\eur})
+%\edm
+%\item Matrix des direkten Aufwandes $\m{A}$, im Beispiel also eine
+%  $3\times 3$ Matrix,
+%\item Emissionsfaktormatrix $\m{D}$. Jede Spalte $j$ gibt dabei die
+%  spezifischen Emissionen an Schadstoff $j$ an, welche \emph{direkt} durch die
+%  Herstellung bzw. der ordnungsgem\"a\3e Nutzung
+%  (Betriebsstoffe, Kraftstoffe) einer Einheit der verschiedenen
+%  Sektoren anfallen. Gibt die erste Spalte $\vec{c}$ von $\m{D}$
+%  beispielsweise die CO$_2$-Emissionen an, so k\"onnte $\vec{c}$ im obigen
+%  Beispiel wie folgt aussehen:\footnote{Die zweite Komponente $e_2$ folgt
+%    direkt aus der Chemie der Verbrennung: \unit[2.4]{kg
+%      CO$_2$/Liter}; bei einer feineren Aufgliederung in Sektoren
+%    w\"urde bei der ersten Komponente $e_1=0$ stehen, da die
+%    Herstellung des Autos direkt keinen Verbrauch impliziert, wohl
+%    aber die dabei verwendeten Materialien, die Montage, die n\"otigen
+%    Transporte, Fabrikhallen und B\"urogeb\"aude. Man k\"onnte auch
+%    bei drei Sektoren $e_1=0$ setzen und alle Emissionen in den ``Sonstiges''
+%    Sektor verlagern.}
+%\bdm
+%\vec{c}\tr=(\unit[10\,000]{kg/Auto}, \unit[2.4]{kg/l}, 0)
+%\edm
+%bzw. in kg/Euro bei einem auch oben angenommenen Preis von \unit[1.5]{\eur/l}:
+%\bdm
+%\vec{c}\tr=(\unit[0.5]{kg/\eur}, \unit[1.6]{kg/\eur}, 0).
+%\edm
+%\ei
+%
+
+\subsection{Konsistenz der Methode bei Preissteigerungen}
+
+Da man, wie bereits in Abschnitt~\ref{sec:IOMdef} erw\"ahnt, alle
+G\"uter und Dienstleistungen in kommensurable Einheiten darstellen
+muss, werden alle Gr\"o\3en auf den ``kleinsten gemeinsamen Nenner''
+einer Geldeinheit (\eur) gebracht. Nun k\"ummert sich die Physik der
+Emissionen nicht um etwas so Menschliches und Ver\"anderliches wie
+Preise.\footnote{Abgesehen davon, dass der Mensch selbst als Reaktion
+  auf Preissteigerungen andere Produktionsmethoden verwendet,
+  beispielsweise bei starkem \"Olpreisanstieg eine vermehrte Nutzung sogenannter
+  ``nichtkonventioneller'' F\"orderungsmethoden wie \"Ol aus
+  Teers\"anden, welche deutlich mehr Energie und CO$_2$ Emissionen pro
+  Liter implizieren. Dies w\"urde aber im Rahmen des IOM durch eine \"Anderung der
+  $\m{A}$-Matrixelemente ber\"ucksichtigt werden.}
+Folglich m\"ussen die nach~\refkl{emissionen-EIO-LCA} berechneten Emissionen
+unabh\"angig von den Preisen der einzelnen Waren und Dienstleistungen
+sein. Nun sind aber alle Matrizen und Vektoren des IOM und alle auf
+den rechten Seiten von~\refkl{emissionen-EIO-LCA}
+ vorkommenden Gr\"o\3en auf
+Preiseinheiten bezogen, so dass sich diese mit den Preisen
+\"andern. Im Folgenden zeigen wir, dass die Emissionen aber
+gegen\"uber Preis\"anderungen invariant sind, das
+Modell~\refkl{emissionen-EIO-LCA} also in dieser Hinsicht konsistent ist.
+
+Wir beschreiben die Preis\"anderungen in den verschiedenen Sektoren
+durch einen Faktorvektor $\vec{f}$ bzw. eine quadratisch-diagonale Faktormatrix $\m{F}$,
+\be
+\vec{f}=\myVector{\text{Preissteigerungsfaktor Sektor 1}\\
+\text{Preissteigerungsfaktor Sektor 2}\\ \vdots}, \quad
+\m{F}=\text{diag} \ \vec{f}=
+\myMatrixThree{f_1 & 0 & \hdots\\0 & f_2 & \\ \vdots & & \ddots}, 
+\ee
+welche die Preissteigerungen einer physikalischen
+bzw. organisatorischen Einheit der verschiedenen Sektoren beschreiben.
+Bei gleichem Verbrauch \"andert sich der Endverbrauchsvektor $\vec{y}$
+gem\"a\3
+\bdm
+\vec{y} \ \to \ \vec{y}^*=\m{F}\vec{y},
+\edm
+w\"ahrend man direkt aus der Definition folgern kann, dass 
+die neue Koeffizientenmatrix des direkten Aufwands aus der alten
+hervorgeht, indem man die Zeilen $i$ mit $f_i$ und die Spalten $j$ mit
+$1/f_j$ multipliziert:
+\bdma
+A_{ij} &=& \frac{x_{ij}}{x_j} \ \Rightarrow \\
+A^*_{ij} &=& \frac{x^*_{ij}}{x^*_j} \\
+   &=& \frac{f_i x_{ij}}{f_j x_j} = \frac{f_i}{f_j} A_{ij}
+\edma
+Dies kann kompakt durch
+\bdm
+\m{A} \ \to \ \m{A}^*=\m{F}\m{A}\m{F}^{-1}
+\edm
+ausgedr\"uckt werden (Beweis durch Nachrechnen). Zur Berechnung der neuen Koeffizientenmatrix des
+vollen Aufwands wendet man sinnvollerweise die
+Reihenentwicklung~\refkl{IOMgeomReihe} an:
+\bdm
+\m{B}^*=\left(\m{1}-\m{A}^*\right)^{-1}
+= \m{1}+\m{A}^*+(\m{A}^*)^2+(\m{A}^*)^3+\ldots
+\edm
+Nun gilt
+\bdma
+(\m{A}^*)^2 &=&\m{F}\m{A}\m{F}^{-1}\m{F}\m{A}\m{F}^{-1}=\m{F}\m{A}^2\m{F}^{-1},\\
+(\m{A}^*)^3
+&=&\m{F}\m{A}\m{F}^{-1}\m{F}\m{A}^2\m{F}^{-1}=\m{F}\m{A}^3\m{F}^{-1},\\
+\vdots  &=& \vdots
+\edma
+also (unter Ber\"ucksichtigung der Assoziativit\"at)
+\bdma
+\m{B}^* &=&\sum\limits_{j=0}^{\infty}(\m{A}^*)^j\\
+ &=& \sum\limits_{j=0}^{\infty}\m{F}\m{A}^j\m{F}^{-1}\\
+ &=& \m{F} \left(\sum\limits_{j=0}^{\infty}\m{A}^j\right)\m{F}^{-1}\\
+ &=& \m{F} \m{B} \m{F}^{-1}.
+\edma
+Schlie\3lich m\"ussen als Folge der Preis\"anderungen alle Spalten $j$ der
+Emissionsfaktormatrix mit $1/f_j$ multipliziert werden, da man bei
+Preissteigerungen pro
+Euro weniger vom Gut $j$ produziert/verbraucht und damit auch
+weniger pro Euro emittiert:
+\bdm
+\m{D}^*=\m{D}\m{F}^{-1}
+\edm
+Damit ergibt sich nach~\refkl{emissionen-EIO-LCA} der Emissionsvektor nach Preissteigerungen zu
+\bdma
+\vec{e}^* - \vec{e}\sup{dir} &=& (\m{D}^*)\m{B}^*\vec{y}^*\\
+  &=& \m{D}\m{F}^{-1}\m{F}\m{B}\m{F}^{-1}\m{F}\vec{y}\\
+   &=& \m{D} \m{B}\vec{y}.
+\edma
+Die Emissionen sind also, wie gefordert,  invariant bez\"uglich
+Preis\"anderungen, obwohl sich alle beteiligten Gr\"o\3en \"andern. 
+
+
+
+%#######################################
+\section{Dynamische Verflechtungsmodelle}
+%#######################################
+\EinsteinBeg
+
+Das klassische Verflechtungsmodell setzt instantane Anpassungen der
+Leistungen der einzelnen Sektoren an eine ver\"anderte Nachfrage
+voraus, so dass zu jedem Zeitpunkt das System bez\"uglich der
+variablen Nachfrage im Gleichgewicht ist, also durch \refkl{IOM}
+beschrieben wird. Dies ist im Allgemeinen unrealistisch:
+\bi
+\item F\"ur h\"ohere Produktion muss man neue Mitarbeiter einstellen,
+bei geringer Nachfrage entlassen,
+\item Maschinen und andere Investitionsg\"uter k\"onnen ebenfalls
+nicht ``\"uber Nacht'' besorgt oder verkauft/abgeschrieben
+werden. W\"ahrend einer \"Ubergangszeit muss deshalb eine gestiegene
+Nachfrage durch Abbau von Lagerbest\"anden befriedigt werden.
+\ei
+
+Bestenfalls k\"onnen die Verantwortlichen \"uber die
+\textit{Steigerungsrate} $\abl{x_i}{t}$ des Produktionsaussto\3es disponieren.
+Ist das System nachfrageorientiert, spielt also eine eventuelle
+Knappheit an Zulieferprodukten oder Rohstoffen keine Rolle, 
+wird die Produktion hochgefahren (die
+Steigerungsrate ist positiv), wenn die Diskrepanz zwischen der
+externen Nachfrage $y_i$ und dem beim momentanen Systemzustand
+f\"ur diese Nachfrage im Flie\3gleichgewicht zur Verf\"ugung stehenden  Angebot
+$y_i\sup{eff}=x_i-\sum_jA_{ij}x_j$ positiv ist: ``Die Nachfrage \"ubersteigt das
+Angebot''. Andernfalls wird die Produktion heruntergefahren.
+
+Im einfachsten Fall wird dies linear modelliert und f\"ur jeden Sektor
+eine charakteristische Anpassungszeit $\tau_i$ angenommen, welche in
+der Gr\"o\3enordnung von Monaten oder Jahren liegt und von der
+``Schnelllebigkeit'' der Investitionsg\"uter des jeweiligen Sektors abh\"angt. Dies f\"uhrt zu
+folgendem linearen, dynamischen und gekoppelten 
+Modell\footnote{Dies
+ist nicht das klassische dynamische Leontief-Modell (LIOM), welches nur bei
+exponentiellem Wachstum funktioniert und ansonsten unrealistische
+instabile L\"osungen liefert. F\"ur das LIOM, siehe z.B. Holub/Schnabl,
+``Input-Output-Rechnung'', Oldenbourg (1994), S. 556 ff, insbesondere
+S. 592.}
+%#####################
+\maineq{IOMdyn}{
+\abl{x_i}{t}=\frac{1}{\tau_i}
+ \left[y_i-\left(x_i-\sum\limits_{j=1}^nA_{ij}x_j\right)\right]
+ = \frac{1}{\tau}\left(y_i-y_i\sup{eq}\right)
+}
+%######################
+In der Matrix-Vektor-Notation wird dies mit der Anpassungszeitmatrix
+\be
+\vec{\tau}=\myMatrixFour{\tau_1 & 0 & \cdots & \\
+ 0 & \tau_2 &  & \vdots \\
+  \vdots & & \ddots & 0\\
+  & \cdots & 0 & \tau_n}
+\ee
+zu der kompakten Modelldarstellung
+%#####################
+\maineq{IOMdynMat}{
+\vec{\tau}\cdot \abl{\vec{x}}{t}=\vec{y}-\left(\m{1}-\m{A}\right)\cdot\vec{x}.
+}
+%#####################
+
+
+\subsection*{Eigenschaften}
+\bi
+\item Bei konstanter Nachfrage, $\abl{y_i}{t}=0$, n\"ahert sich das
+System dem durch das
+klassische statische Modell \refkl{IOM} gekennzeichnete Gleichgewicht
+nach einer Zeit an, welche in etwa der l\"angsten
+Einzelzeitkonstante, $\max(\tau_i)$, entspricht.
+\item Bei einen und zwei Sektoren sind keine Schwingungen m\"oglich,
+auch keine ge\-d\"ampf\-ten.
+\ei
+Mathematisch stellt das Modell ein System von linearen
+Differenzialgleichungen dar, welches mit den Methoden der
+linearen Algebra unschwer, aber h\"aufig m\"uhsam l\"osbar ist.
+Im Rahmen dieser Vorlesung werden allgemeine analytische 
+L\"osungen nur f\"ur  der eindimensionalen
+Fall vorgestellt und ansonsten einige fertig gerechnete zweisektorale
+L\"osungen als Beispiel vorgestellt.
+
+
+%#######################################
+\subsection{Spezialfall: Dynamisches Ein-Sektor-Modell}
+%#######################################
+
+\newcommand{\tiltau}{\tilde{\tau}}
+\newcommand{\tily}{\tilde{y}}
+
+Im dynamischen Ein-Sektor-Modell gibt es nur einen einzigen Waren und
+Dienstleistungen produzierenden Sektor (welcher die
+gesamte Wirtschaft darstellt), sowie die Verbraucher. Mit $x_1=x$,
+$y_1=y$ und $A_{11}=a$ reduziert sich das Modell
+\refkl{IOMdyn}  zu
+\bdm
+\abl{x(t)}{t}=\frac{1}{\tau}\left[y(t)-(1-a)x(t)\right].
+\edm
+Setzt man den eindimensionalen Koeffizient des vollen Aufwandes
+$b=1/(1-a)$ sowie
+$\tiltau=b\tau$ und $\tily=by$, so wird dies zu
+\be
+\label{IOMdynSingle}
+\abl{x(t)}{t}=\frac{1}{\tiltau}\left[\tily(t)-x(t)\right].
+\ee
+Hat man zur Zeit $t=0$ den Ausgangszustand $x(0)=x_0$, so ist die
+L\"osung dieser Differenzialgleichung in Abh\"angigkeit der
+Nachfragekurve $\tily(t)=by(t)$ f\"ur $t\ge 0$ gegeben durch
+\maineq{IOMdynSingleLoes}{
+x(t)=x_0e^{-\frac{t}{\tiltau}}+\frac{1}{\tiltau} \int\limits_0^{t}
+e^{-\frac{t-t'}{\tiltau}}\tily(t')\diff{t'}.
+}
+Insbesondere gilt f\"ur eine zur Zeit $t=0$ sprunghaft vom Wert $y_a$
+auf $y_e$ sich \"andernde Nachfrage die L\"osung
+\be
+x(t)=\left(x_0-by_e\right) e^{-\frac{t}{b\tau}} + by_e.
+\ee
+Die Produktion passt sich also mit der Zeitkonstante $\tiltau=b\tau
+\ge \tau$ dem neuen, durch das klassische Ein-Sektor IOM gegebenen
+Gleichgewichtswert $by_e$ an. Die Zeit $\tiltau$ ist etwas gr\"o\3er
+als $\tau$, da sich die durch die erh\"ohte Produktion erh\"ohte
+interne Nachfrage mittels der Strategie ``Steigerung
+proportional zur Differenz zwischen externer Nachfrage und Nettoangebot''
+sozusagen ``herumsprechen'' muss.
+ Herrscht insbesondere bereits vor dem
+Sprung Gleichgewicht, $x_0=by_a$, so ist das Ergebnis durch 
+\bdm
+x(t)=b\left(y_e+(y_a-y_e)e^{-\frac{t}{b\tau}}\right)
+\edm
+gegeben (vgl. Abbildung \ref{fig:IOMdyn1}).
+
+
+%###############################
+\begin{figure}
+\fig{0.65\textwidth}{figsIOM/IOMdyn1.eps} \vspace{-4mm}
+
+\caption{\label{fig:IOMdyn1}Dynamisches Einsektormodell: Anpassung der
+Gesamtproduktion und des der Nachfrage zur Verf\"ugung
+Angebotes, wenn die Nachfrage sich zum Zeitpunkt $t=0$ pl\"otzlich um
+20\% \"andert. ($A_{11}=a=0.2$, $\tau=1$).
+}
+\end{figure}
+ %###############################
+
+%#######################################
+\subsection{Varianten dynamischer Verflechtungsmodelle}
+%#######################################
+
+%#######################################
+\subsubsection{Begrenzung durch das Angebot}
+%#######################################
+
+Das durch Gl. \refkl{IOMdyn} beschriebene dynamische IOM ist
+nachfragebestimmt, d.h. die Produktionssteigerungen sind proportional
+der Differenz aus Nachfrage $y_i$ und Nettoangebot
+$((\m{1}-\m{A})\cdot \vec{x})_i$. Bisweilen ist jedoch die Produktion
+nicht durch die Nachfrage begrenzt,  sondern durch den Mangel an
+Rohstoffen oder anderen ben\"otigten Zulieferprodukten.
+
+\paragraph{Beispiel f\"ur zwei Sektoren}
+
+Zum Herstellen von Solarzellen ben\"otigt man Siliziumkristalle
+einer bestimmten Spezifikation. Obwohl es Silizium (ziemlich wortgetreu) ``wie
+Sand am Meer'' gibt, ist die Verarbeitungsstufe zum Zustand, wie er
+bei Solarzellen ben\"otigt wird, nur mit aufw\"andigen
+Investitionsg\"utern durchzuf\"uhren. Bezeichnet man den
+Rohstoff verarbeitenden Sektor (Silizium) als Sektor 1 und den Sektor
+alternativer Energieerzeugung (Solarzellen) als Sektor 2,
+hat Sektor 1 also eine hohe
+Zeitkonstante $\tau_1$. Folgende, das Prinzip des Mechanismus 
+nicht beeinflussende weitere
+Annahmen werden getroffen: Weder der Endverbraucher
+noch der Siliziumsektor  ben\"otigen selbst Silizium,  $y_1=A_{11}=0$.
+Solarzellen werden nur
+vom Endverbraucher nachgefragt  (die Sektoren benutzen f\"ur ihre
+Energiebedarf konventionelle Kraftwerke), also $A_{21}=A_{22}=0$.
+Damit gilt im nachfragebegrenzten Zustand das dynamische
+IOM,
+\be
+\label{IOMdynDemand}
+\begin{array}{rcl}
+\tau_1 \abl{x_1}{t} &=& -x_1 + A_{12} x_2, \\
+\tau_2 \abl{x_2}{t} &=& -x_2 + y_2.
+\end{array}
+\ee
+In der Gleichung f\"ur $\abl{x_2}{t}$ kommt $x_1$ gar nicht vor, da
+der Sektor $x_1$ die Produkte von Sektor 2 nicht ben\"otigt, also
+f\"ur die Nachfrage irrelevant ist. Dass Sektor 2 wiederum das
+\textit{Angebot} von Sektor 1 zu seiner Produktion ben\"otigt, wird
+nicht ber\"ucksichtigt, woran man die Nachfrageorientierung dieses
+Ansatzes sieht.
+
+Im angebotsbegrenzten Zustand, wie 2006 und 2007 bei den Solarzellen, ist die Produktion
+$x_2$ jedoch von der Verf\"ugbarkeit geeigneten
+Siliziums begrenzt, so dass nur \"uber kurze Zeit (Verwendung von
+Lagerbest\"anden) der Verbrauch $A_{12}x_2$ an Silizium den Zufluss $x_{12}=x_1$ (alles
+Silizium geht hier  an die Solarzellenhersteller, da es f\"ur Sektor 1
+keinen Endabnehmer gibt) \"uberschreiten kann.
+Damit kann der Solarzellenaussto\3 
+$x_2$ nur kurzfristig (Zeitskala $\tau_2$) den Wert
+$x_1/A_{12}$ \"ubersteigen und Gleichung \refkl{IOMdynDemand} 
+f\"ur $x_2$ wird zu
+\be
+\label{IOMdynSupplyTwo}
+\tau_2 \abl{x_2}{t} =-x_2+\frac{1}{A_{12}} x_1.
+\ee
+Die Nachfrage $y_2$ der Endabnehmer geht nun (\"uber das Dr\"angen
+von Sektor 2 an Sektor 1, doch mehr Silizium zu erzeugen) indirekt auf
+Sektor 1 \"uber, so dass f\"ur diesen Sektor, der nachfragegetrieben
+bleibt, nun bei der Ber\"ucksichtigung der Nachfrage von Sektor 2 nicht dessen
+ aktuellen Produktion $x_2$, sondern die nach dem
+statischen IOM \textit{gew\"unschte} Produktion $x_2=y_2$ relevant
+ist. Damit wird die Gleichung \refkl{IOMdynDemand} 
+f\"ur $x_1$ zu
+\be
+\label{IOMdynSupplyOne}
+\tau_1 \abl{x_1}{t} = -x_1 + A_{12} y_2.
+\ee
+Die kombinierte Dynamik kann jederzeit zwischen den
+f\"ur $y_2<=x_1/A_{12}$ g\"ultigen nachfragebegrenzten Zustand \refkl{IOMdynDemand}
+und den sonst g\"ultigen und durch   \refkl{IOMdynSupplyTwo} und
+\refkl{IOMdynSupplyOne} definierten
+angebotsbegrenzten Zustand wechseln.
+
+%###########################
+\begin{figure}
+\fig{0.7\textwidth}{figsIOM/IOMdyn2.eps}
+\vspace{-7mm}
+
+\caption{\label{fig:IOMdynSupply} Reaktion der Sektoren 1 (Silizium)
+und 2 (Solarzellen) auf eine pl\"otzliche Nachfragesteigerung um 100 \%.
+}
+\end{figure}
+%###########################
+
+\paragraph{Zahlenbeispiel}
+
+Es sei $\tau_1=2$ und $\tau_2=0.5$ (Zeiteinheiten, z.B. Jahre). Die
+H\"alfte des Wertes der Solarzellen 
+bestehe in den eingekauften Siliziumkristallen, also  $A_{12}=0.5$. Im
+Ausgangszustand sei das System bei einer Nachfrage $y_2=1$ im durch
+das statische IOM gegebenen Gleichgewicht, also $x_2=2x_1=y_2=1$. Zum
+Zeitpunkt $t=0$ steigt die Nachfrage sprunghaft von 1 auf 2.
+Da $\tau_1>\tau_2$ will Sektor 2 die Produktion schneller als Sektor 1
+hochfahren, so dass er in den angebotsbegrenzten Zustand
+ger\"at. Die L\"osungen lauten (vgl. Abb. \ref{fig:IOMdynSupply})
+\bdma
+x_1 &=& 1-\frac{1}{2} e^{-\frac{t}{2}}, \\
+x_2 &=& 2 - \frac{1}{3}e^{-2t} - \frac{2}{3} e^{-\frac{t}{2}}.
+\edma
+%
+Zum Vergleich lautet die L\"osung f\"ur $x_2$ beim rein
+nachfragegetriebenen dynamischen IOM
+\bdm
+x_2 = 1-\frac{1}{2} e^{-2t}.
+\edm
+
+
+\subsubsection{Verallgemeinerung auf mehr als zwei Sektoren}
+
+Bei mehreren Sektoren hat der Hersteller des knappen Gutes (wieder als
+Sektor 1 bezeichnet) im
+Allgemeinen die Wahl, mit welchem maximalen Anteil $P_{1j}$ seiner Produktion
+er die Sektoren $j$ und mit welchem maximalen Anteil $P_{1y}$ er die
+externe Nachfrage bedient. (nat\"urlich gilt $\sum_jP_{1j}+P_{1y}=1$).
+Damit k\"onnen die anderen Sektoren $j$ ihre 
+Brutto-Nachfrage $\sum_k A_{jk} + y_j$ nur dann bedienen, wenn diese
+die Zulieferbegrenzung  $P_{1j}/A_{1j}x_1$ nicht \"ubersteigt. 
+
+Generell kann sich jeder Sektor getrennt von den anderen im Nachfrage-
+oder Angebotsbestimmten Zustand befinden und sich dies auch jederzeit
+\"andern, was das allgemeine System schnell un\"ubersichtlich
+ macht.\footnote{Vielleicht ist es deshalb so schwierig, zu bestimmen,
+ob der Ansatz von Keynes (die Nachfrage
+ist marktbestimmend) zutrifft oder nicht.}
+
+%#######################################
+\subsection{Produktionsketten (Supply Chains)}
+%#######################################
+
+
+Oft hat man Produktionsketten, bei denen der Endverbraucher erst
+\"uber eine Reihe von Zwischenstufen erreicht wird. Da bei den
+Zwischenstufen (Vertrieb) nichts produziert sondern nur
+zwischengelagert wird sowie die Lagerkapazit\"at endlich ist, 
+ist es sinnvoll, die $x_{ij}$ als
+Waren\emph{str\"ome} $x_{ij}$ aufzufassen und dar\"uber hinaus noch
+die Menge $W_i$ des in jeder Stufe $i$ vorr\"atigen 
+\textit{Bestands} an Waren bzw. G\"utern
+ in Lagern, Verkaufsr\"aumen etc. als weitere
+dynamische Variable einzuf\"uhren. Die folgenden \"Uberlegungen werden
+einfacher, wenn wir $W_i$ nicht als die Warenmenge, sondern als
+\emph{Differenz} zum angezielten Lagerbestand auffassen. Positive
+Werte bezeichnen also zu hohe und negative Werte zu geringe Lagerbest\"ande.
+
+%###############################
+\begin{figure}
+\fig{0.8\textwidth}{figsIOM/supplyChainSketch.eps} \vspace{-4mm}
+
+\caption{\label{fig:supplyChainSketch}Materialfluss vom Produzenten
+\"uber den Vertrieb zum Verbraucher. 
+}
+\end{figure}
+ %###############################
+
+Wir betrachten nun der \"Ubersichtlichheit halber die konkreten lineare 
+Warenflussbeziehungen der Abb.~\ref{fig:supplyChainSketch}. 
+Zun\"achst gelten folgende unmittelbar
+anschauliche Kontinuit\"ats\-be\-ziehung zwischen den Waren $W_i$ in den
+Lagern des Sektor $i$ und den Warenstr\"omen:
+\be
+\label{supplyChain-kont}
+\abl{W_2}{t}=x_{12}(t)-x_{23}(t), \quad
+\abl{W_3}{t}=x_{23}(t)-y(t).
+\ee
+Des Weiteren versuchen die Warendisponenten der jeweiligen Sektoren,
+zu niedrige oder zu hohe Lagerbest\"ande durch Hoch-
+bzw. Herunterfahren der Warenbestellungen vom jeweils vorgelagerten
+Sektor zu kontrollieren, w\"ahrend die nachgelagerten Sektoren als
+nicht weiter beeinflussbare Nachfrager auftreten. Die \"Anderung des
+Warenflusses vom vorgelagerten Sektor kann jedoch nicht augenblicklich
+geschehen, da beim Hochfahren erst Ressourcen f\"ur die erh\"ohten
+Warenfl\"usse (bzw. beim ersten Sektor f\"ur die Produktionsrate $x_1$)
+bereitsgestellt werden m\"ussen und au\3erdem zwischen
+Bestellung und Lieferung eine endliche Zeitspanne liegt. 
+
+Damit kann man die Warenstr\"me nur allm\"ahlich hoch- oder
+herunterfahren. Es wird nun folgenderma\3en disponiert:
+\bi
+\item Ist zu wenig in den Lagern ($W_i<0$), wird der eingehende
+Warenstrom hochgefahren, und zwar umso mehr, je h\"oher der
+Fehlbestand ist. 
+\item Analog werden bei zu hohem Bestand die Bestellungen
+heruntergefahren.
+\ei
+In der Sprache der Mathematik lautet dies:
+\be
+\label{supplyChain-disponieren}
+\abl{x_{12}}{t}=-\beta_2 W_2, \quad
+\abl{x_{23}}{t}=-\beta_3 W_3.
+\ee
+Hierbei geben die Parameter $\beta_i$ an, wie schnell
+die Sektoren auf Bestellungen reagieren k\"onnen. Leitet man nun die
+Gleichungen von~\refkl{supplyChain-disponieren} noch einmal nach der
+Zeit ab, so kann man mit~\refkl{supplyChain-kont} die Variablen der
+Warenbest\"ande eliminieren und erh\"ahlt ein dynamisches
+Verflechtungsmodell, was f\"ur diesen speziellen Fall
+\bfblue{Supply-Chain-Modell} genannt wird:
+\be
+\label{supplyChain-dyn}
+\ablzwei{x_{12}}{t}=-\beta_2 (x_{12}-x_{23}), \quad
+\ablzwei{x_{23}}{t}=-\beta_3 (x_{23} - y).
+\ee
+Nimmt man nun an, dass die Nachfrage $y(t)$ mit der Amplitude $A_y$ und
+der Periode $2\pi/\omega$ schwankt, also
+\bdm
+y(t)=\bar{y}+A_y\cos \omega t,
+\edm
+und naturgem\"a\3 alle Warenstr\"ome mit derselben Periode schwanken
+(das System ist ja nachfragegetrieben!), so zeigt direktes Einsetzen, 
+dass sich die Amplitude der Schwankungen
+aufschaukelt, wenn man in der Produktionskette
+(\emph{Supply Chain}) ``nach vorne'', also Richtung Hersteller
+geht. Insbesondere haben die Warenstr\"ome $x_{23}$ und $x_{12}$ die
+Amplituden 
+\bdm
+A_{23}=\left|\frac{A_y}{1-\frac{\omega^2}{\beta_3}}\right|, \quad
+A_{12}=\left|\frac{A_{23}}{1-\frac{\omega^2}{\beta_2}}\right|
+= \left|\frac{A_y}{\left(1-\frac{\omega^2}{\beta_2}\right)
+   \left(1-\frac{\omega^2}{\beta_3}\right)}\right|.
+\edm
+%##########################
+\begin{figure}
+\fig{0.7\textwidth}{figsIOM/bullwhip.eps}
+\caption{\label{fig:bullwhip}Der Bullwhip-Effekt bei der Distribution von Bier
+  an die Bierg\"arten}
+\end{figure}
+%##########################
+
+Abbildung~\ref{fig:bullwhip} zeigt dies am Beispiel der Supply Chain des
+Bieres von der Brauerei \"uber den Gro\3handel zur Kneipe bzw. Biergarten 
+ bis zur durstigen
+Kehle des ``Endverbrauchers''. Der Aussto\3 der Endabnehmer schwankt
+w\"ochentlich (z.B. mit Peaks an den Freitagen oder Samstagen). Die Lieferzeit
+$T_3=2\pi/\omega_3$ des Gro\3handels an die Kneipe betr\"agt im Beispiel
+\unit[5]{Tage} und die der Brauerei an den Gro\3handel
+$T_2=2\pi/\omega_2=\unit[9]{Tage}$. Man sieht, dass bei Lieferzeiten l\"anger
+als die Schwankungsperiode der Nachfrage sich die Schwankungen im Vorzeichen
+umkehren, ansonsten nicht.
+
+\subsubsection*{Diskussion}
+\bi
+\item Sind die Nachfrageschwankungen sehr langsam, ist $\omega$ sehr
+viel kleiner  als die durch $\sqrt{\beta_i}$ charakterisierten
+Reaktionsschnelligkeiten der ``Kettenglieder'' der Supply Chain
+($1/\sqrt{\beta_i}$ sind die Reaktionszeiten). Dann kommt
+die Produktionskette mit den Schwankungen mit und die Amplituden
+vergr\"o\3ern sich kaum.
+\item Sind die Nachfrageschwankungen sehr schnell,  $\omega$ also
+deutlich gr\"o\3er als alle $\sqrt{\beta_i}$, nehmen die Schwankungen
+ab: Ehe die Disponenten ihre Warenstr\"ome deutlich hoch- oder
+herunterfahren k\"onnen, hat sich die Nachfrageschwankung schon ins
+Gegenteil verkehrt.
+\item  Sind die Nachfrageschwankungen hingegen von der
+Gr\"o\3enordnung der Reaktionszeiten der Sektoren, $\omega$ also von
+\"ahnlicher Gr\"o\3e wie die $\sqrt{\beta_i}$, steigen die
+Schwankungen rapide an. Dies bezeichnet man auch als
+\bfblue{Bullwhip-Effekt.}
+\ei
+\aufgabenbox{Aufgabe: Geht es besser?}{Was k\"onnte der Lagerdisponent
+unternehmen, um den Bullwhip-Effekt zu vermeiden?}
+{\scriptsize Antwort: (1) vorhersagbare Zyklen (im Bier-Beispielwie der Wochenzyklus und auch
+ ein Jahreszyklus) durch
+  sogenannte \emph{Ganglinien} historischer Daten antizipieren.
+(2) Auf unregelm\"a\3igere Schwankungen (beispielsweise durch Sch\"on-
+bzw. Schlechtwetter) antizipativer disponieren und beispielsweise die
+Bestellungen nicht nur nach dem Lager\emph{bestand}, sondern zus\"atzlich
+in Abh\"angigkeit der aktuellen \emph{\"Anderungen} des Bestands
+hoch oder herunterfahren. (Dies ergibt in den Gleichungen zus\"atzliche
+``D\"ampfungsterme'', welche die Schwankungen m\"a\3igen.)}
+%
+%%###############################
+%\begin{figure}
+%\fig{0.65\textwidth}{figsIOM/supplyChain1.eps} \vspace{-4mm}
+%
+%\caption{\label{fig:supplyChain1}Supply Chain eines Sektors 1, welcher
+%nur f\"ur den Vertrieb (Sektor 2) produziert. Dargestellt ist die
+%L\"osung der Gleichung \protect\ref{supplyChainTwo} mit
+%$\tau_1=\tau_2=1$ f\"ur den Fall,
+%dass das System anfangs ($t<0$) bei einer Nachfrage von $y_2=1$ im
+%Gleichgewicht ist und die Nachfrage zur Zeit $t=0$ pl\"otzlich auf
+%$y_2=2$ steigt.
+%}
+%\end{figure}
+% %###############################
+%
+%Abbildung \ref{fig:supplyChain1} zeigt das Ergebnis f\"ur
+%Gl. \refkl{supplyChainTwo} f\"ur den Fall, dass die Nachfrage
+%pl\"otzlich von 1 auf 2 steigt. Hier konnte die Nachfrage gerade noch
+%zu jeder Zeit befriedigt werden; bei einem h\"oheren als 100\%-tigen
+%Anstieg g\"abe es Knappheit. Solche Anstiege k\"onnten vom Anbieter  dadurch
+%ber\"ucksichtigt werden, dass er $\tau_2/\tau_1$ erh\"oht: $\tau_2$
+%gibt die Zeit an, in der sich ein auf dem Normf\"ullstand befindliches
+%Lager ohne Nachschub bei gleichbleibender Nachfrage
+%vollst\"andig leeren w\"urde ($x_2=-1$) und $\tau_1$ die Zeit, die
+%der Produzent im Mittel ben\"otigt, um seine Produktion $x_1$ 
+%hoch oder herunterzufahren.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

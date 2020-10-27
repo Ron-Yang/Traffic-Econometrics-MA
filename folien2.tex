@@ -1,0 +1,504 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+%\usepackage{ngerman}
+
+\textheight250mm
+\textwidth190mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Flussdiagramm der \"okonometrischen Methode}
+%###################################################
+\fig{1.0\textwidth}{figsRegr/flussdiagRegr.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation I: Funktionale Spezifikation 1}
+%###################################################
+\fig{0.8\textwidth}{figsRegr/linRegBivar.eps}
+\fig{1.2\textwidth}{figsRegr/linRegBivar_xz_yz.eps}
+1. Alle relevanten Einflussfaktoren sind ber\"ucksichtigt (oben, nicht
+aber unten)
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation I: Funktionale Spezifikation 2}
+%###################################################
+\vspace{2em}
+\fig{0.9\textwidth}{figsRegr/scatterplot2.eps}
+\vspace{2em}
+2. Das Modell ist  linear, was hier
+nicht erf\"ullt ist
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation I: Funktionale Spezifikation 2}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot5.eps}
+Manchmal kann das Modell durch Transformationen der exogenen und/oder
+endogenen Variablen linearisiert werden
+
+
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation I: Funktionale Spezifikation 3}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot6.eps}
+\vspace{2em}
+3. Homogenit\"atskriterium (z.B. kein Strukturbruch im Raum der
+exogenen Variablen, wie hier gezeigt)
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation II: Statistische Spezifikation 1}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot7.eps}
+\vspace{2em}
+1. Der Erwartungswert der St\"orgr\"o\3e
+muss verschwinden.
+
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation II: Statistische Spezifikation 2}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot8.eps}
+\vspace{2em}
+2. Der Residualterm $\epsilon$ ist homoskedastisch (rechts),\\ nicht etwa
+heteroskedastisch (links) 
+
+
+\newpage
+%##################################################
+\bfsf{Modellspezifikation II: Statistische Spezifikation 3}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot9.eps}
+\vspace{2em}
+Keine Korrelationen von $\epsilon$ bez\"uglich $x_i$ oder $y$
+(rechts),\\ w\"ahrend das Modell links fehlspezifiziert ist
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation II: Statistische Spezifikation 4}
+%###################################################
+\vspace{2em}
+\fig{1.4\textwidth}{figsRegr/scatterplot10.eps}
+\vspace{2em}
+Der Residualterm $\epsilon$ ist gau\3verteilt (rechts),\\
+nicht etwa bimodal verteilt (links) 
+
+
+\newpage
+%###################################################
+\bfsf{Modellspezifikation III: Datenspezifikation}
+%###################################################
+\vspace{1em}
+\fig{1.4\textwidth}{figsRegr/scatterplot4.eps}
+
+Keine der exogenen Variablen darf sich als Linearkombination aus
+Konstanten und anderen exogenen Variablen darstellen lassen (oben);
+nichtperfekte Korrelationen sind aber erlaubt (unten)
+
+
+\newpage
+%###################################################
+\bfsf{Lineares Modell mit zwei exogenen Variablen (schematisch)}
+%###################################################
+
+\vspace{2em}
+
+\fig{1.4\textwidth}{figsRegr/linRegBivar.eps}
+Achsabschnitt $\beta_0$, Anstiegsparameter $\beta_1$ und $\beta_2$. Wenn die Datenpunkte genau auf der Ebene liegen, gehorchen sie dem linearen Modell exakt
+
+
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervalle und die Entstehung der Student-Verteilung}
+\vspace{1em}
+%###################################################
+\fig{1.35\textwidth}{figsRegr/KI_veranschaulichung.eps}
+
+\newpage
+%###################################################
+\bfsf{Dichten der Standardnormal \textit{vs.} Student-t-verteilung}
+%###################################################
+\vspace{2em}
+\fig{1.1\textwidth}{figsRegr/f_gaussStudent.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Standardnormal \textit{vs.} Student-t-verteilung}
+%###################################################
+\vspace{2em}
+\fig{1.1\textwidth}{figsRegr/F_gaussStudent.eps}
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervalle}
+%###################################################
+\vspace{3em}
+
+\parbox{1.31\textwidth}{
+\includegraphics[width=0.65\textwidth]{figsRegr/f_student_KI.eps}
+\includegraphics[width=0.65\textwidth]{figsRegr/F_student_KI.eps}
+}
+\vspace{2em}
+
+\parbox{1.0\textwidth}{KI zu einer Fehlerwahrscheinlichkeit
+  $\alpha=\unit[5]{\%}$ f\"ur\\ $n-J-1=2$ 
+Freiheitsgrade.}
+
+\newpage
+%###################################################
+\bfsf{Parameter-Sch\"atzfehler (bedingte W-Dichte)\\
+ bei linearer Einfachregression}
+%###################################################
+
+\vspace{0.8em}
+
+$\hat{y}(x)=\bar{y}+\beta_1(x-\bar{x}), 
+n=20, \bar{x}=3, \bar{y}=4, \beta_1=0.5$
+\vspace{-2.3em}
+
+\fig{1.2\textwidth}{figsRegr/regression3dFig.eps}\vspace{-1em}
+
+Die Residualfehler sind i.i.d. $N(0, 3^2)$ verteilt 
+
+
+
+\newpage
+%###################################################
+\bfsf{Definition der Fehler erster und 2. Art bei Signifikanztests}
+%###################################################
+\vspace{3em}
+
+\fig{0.8\textwidth}{figsRegr/fehlerErsterZweiterArt.eps}
+
+\newpage
+%###################################################
+\bfsf{Annahme und Ablehnungsbereiche}
+%###################################################
+
+\vspace{0.5em}
+\begin{tabular}{ll}
+\includegraphics[width=1.0\textwidth]{figsRegr/annahmeAblehn_einZweiseit.eps}
+&
+\parbox{0.3\textwidth}{\vspace{-1.1\textwidth}Die schwarze Kurve ist nur dann die Dichte der Testfunktion, wenn
+$H_0$ \emph{grenzwertig} zutrifft!}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Fehler erster und 2. Art bei ``$<$'' und
+  ``$\le$''-Tests, \\bekannte Varianz}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsRegr/fehler12art_leGauss.eps}
+\parbox{1.1\textwidth}{Fehlerwahrscheinlichkeit f\"ur Fehler 1. und
+  2. Art ($\alpha$- bzw. $\beta$-Fehler) bei einem Signifikanzniveau
+  $\alpha=\unit[5]{\%}$ in 
+  Abh\"angigkeit des \emph{wahren} Abstandes  $(\beta-\beta_{0})/\sigma$
+des Parameters vom $H_0$-Grenzwert in Einheiten der \emph{wahren} Standardabweichung des Sch\"atzers 
+}
+\newpage
+%###################################################
+\bfsf{Fehler erster und 2. Art bei ``$<$'' und
+  ``$\le$''-Tests, \\unbekannte Varianz, $n-J-1=2$ Freiheitsgrade}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsRegr/fehler12art_leStudent_2FG.eps}
+\parbox{1.1\textwidth}{Der skalierte Abstand des wahren $\beta$-Wertes von der Grenze der
+Nullhypothese ist immer noch in Einheiten der \emph{wahren}
+Standardabweichung gegeben
+}
+
+\newpage
+%###################################################
+\bfsf{Fehler erster und 2. Art bei ``$>$'' und
+  ``$\ge$''-Tests, \\bekannte Varianz}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsRegr/fehler12art_geGauss.eps}
+\parbox{1.1\textwidth}{Wieder ist das Signifikanzniveau=maximale Wahrscheinlichkeit eines
+Fehlers 1. Art durch $\alpha=\unit[5]{\%}$ gegeben}
+
+\newpage
+%###################################################
+\bfsf{Fehler erster und 2. Art bei ``$>$'' und
+  ``$\ge$''-Tests, \\unbekannte Varianz, $n-J-1=2$ Freiheitsgrade}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsRegr/fehler12art_geStudent_2FG.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Fehler erster und 2. Art bei zweiseitigen (Punkt-)Tests, \\
+  unbekannte Varianz, $n-J-1=2$ Freiheitsgrade}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsRegr/fehler12art_eqStudent_2FG.eps}
+\parbox{1.1\textwidth}{Signifikanzniveau=maximale Wahrscheinlichkeit
+  $\alpha=\unit[5]{\%}$}
+
+
+\newpage
+%###################################################
+\bfsf{Hotelbeispiel: Verbundene Tests und 2d Konfidenzregionen}
+%###################################################
+\vspace{-0.3em}
+\hspace{-0.15\textwidth}
+\includegraphics[width=1.1\textwidth]{figsRegr/hotel_f2_hatbeta1_hatbeta2.eps}
+\vspace{-1em}
+
+{\scriptsize
+$\Rightarrow$ Nichtverschwindende Korrelation $V_{12}(\vec{\hat{\beta}})=-0.926$ 
+der Sch\"atzfehler!
+
+Einfache Nullhypothesen ($t$-Test): 
+\hspace{0.1\textwidth}
+\parbox{0.6\textwidth}{
+$H_{02}: \beta_1=\beta_{10}=27$ \\
+$H_{04}: \beta_2=\beta_{20}=-1.4$ usw. 
+}
+
+Verbundene Nullhypothesen ($F$-Test):
+\hspace{0.1\textwidth}
+\parbox{0.9\textwidth}{
+ $\bullet=H_{01}: \beta_{10}=30$ und $\beta_{20}=-1$\\
+ {\scriptsize $\triangle$}\,$=H_{03}: \beta_{10}=34$ und
+ $\beta_{20}=-1$ \hspace{3em} $\Rightarrow$ extra Folien zum Hotelbeispiel!
+}
+}
+
+
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik bei normalverteilter A-Priori-Verteilung}
+%###################################################
+\fig{1.3\textwidth}{figsRegr/PH0_PriorGauss_beta0eq0.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik bei normalverteilter A-Priori-Verteilung}
+%###################################################
+\fig{1.3\textwidth}{figsRegr/PH0_PriorGauss_beta0eq1sigbeta.eps}
+
+
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik bei normalverteilter A-Priori-Verteilung}
+%###################################################
+\fig{1.3\textwidth}{figsRegr/PH0_PriorGauss_beta0eq3sigbeta.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik bei normalverteilter A-Priori-Verteilung}
+%###################################################
+\fig{1.3\textwidth}{figsRegr/PH0_PriorGauss_beta0eqm0.5sigbeta.eps}
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik bei diskreter zweiwertiger\\
+ A-Priori-Verteilung (Navigations-Beispiel)}
+%###################################################
+\fig{1.25\textwidth}{figsRegr/PH0post_b_PriorProb0.8.eps}
+
+
+
+\newpage
+%###################################################
+\bfsf{Bayes'sche Statistik des Navigations-Beispiels,\\ aber nun als
+  Funktion des $p$-Wertes}
+%###################################################
+\fig{1.25\textwidth}{figsRegr/PH0post_p_PriorProb0.8.eps}
+
+\newpage
+%###################################################
+\bfsf{Logistische Regression\\[-0.2ex] mit naiver LSE-Sch\"atzung der
+  log-Odd-Ratios:\\[0.5ex]
+RC-Umfrage WS14/15 und WS15/16 kumuliert}
+%###################################################
+
+\vspace{1em}
+
+%\begin{minipage}{1.5\textwidth}
+\parbox{0.65\textwidth}{
+\begin{center}
+{\small
+Daten und Ergebnis\\mit 4 Entfernungsklassen\\
+}
+\vspace{1em}
+
+\includegraphics[width=0.65\textwidth]{figsRegr/regr_logistic_WS1516cum_f.eps}
+\end{center}
+}
+\hspace{1em}
+\parbox{0.65\textwidth}{
+\begin{center}
+{\small
+Unbeobachtete Variable\\ $y^*=\ln(f_1/(1-f_1))$\\
+}
+\vspace{1em}
+
+\includegraphics[width=0.65\textwidth]{figsRegr/regr_logistic_WS1516cum.eps}
+\end{center}
+}
+
+ {\small $ \beta_0=-0.58, \quad \beta_1=0.79 $}
+
+%\end{minipage}
+
+\newpage
+%###################################################
+\bfsf{Logistische Regression\\[-0.2ex] mit naiver LSE-Sch\"atzung der
+  log-Odd-Ratios:\\[0.5ex] 5. Datenpunkt addiert mit f=0.9999}
+%###################################################
+
+\vspace{1em}
+
+%\begin{minipage}{1.5\textwidth}
+\parbox{0.65\textwidth}{
+\begin{center}
+{\small
+Daten und Ergebnis\\mit 4 Entfernungsklassen\\
+}
+\vspace{1em}
+
+\includegraphics[width=0.65\textwidth]{figsRegr/regr_logistic_WS1516cum_alt_f.eps}
+\end{center}
+}
+\hspace{1em}
+\parbox{0.65\textwidth}{
+\begin{center}
+{\small
+Unbeobachtete Variable\\ $y^*=\ln(f_1/(1-f_1))$\\
+}
+\vspace{1em}
+
+\includegraphics[width=0.65\textwidth]{figsRegr/regr_logistic_WS1516cum_alt.eps}
+\end{center}
+}
+
+ {\small $ \beta_0=-3.12, \quad \beta_1=2.03 $}
+
+\newpage
+
+%###################################################
+\bfsf{Vergleich: ``echte'' Maximum-Likelihood-Sch\"atzung}\vspace{0em}  
+%###################################################
+
+% eps File von von ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/
+% setze beta1_levmar=-beta1_LogR_LSE
+% setze beta2_levmar=-beta0_LogR_LSE
+% Vorzeichen: Da delta_{i1}->delta_{i0} statt delta_{i2}->delta_{i2} 
+% Reihenfolge/Bezeichnung: inkonsistent historisch
+% Im latex File Bez. wie bei LSE-logist Regr in ../skripts/figsRegr/
+
+{\small Alternativen 0 (kein \"OV) und 1 (\"OV) \quad
+$V_i(r)=\beta_0 \delta_{i1} + \beta_1 r \delta_{i1}$}
+
+\begin{tabular}{ll}
+\parbox{1.00\textwidth}{
+\includegraphics[width=1.0\textwidth]{figsRegr/revealedChoiceWS1516cum_2al_4dataPoints_fProb_r.eps}
+}
+\parbox{0.30\textwidth}{
+ {\small
+ $
+ \begin{array}{l}
+ \beta_0=-0.50\pm 0.65,\\
+ \beta_1=+0.71\pm 0.30
+ \end{array}
+ $
+}}
+\end{tabular}
+
+\newpage
+
+%###################################################
+\bfsf{Vergleich: ``echte'' Maximum-Likelihood-Sch\"atzung\\[0.2ex] 
+mit 5. Datenpunkt}\vspace{0em}  
+%###################################################
+
+% eps File von von ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/
+% Bemerkungen wie oben
+
+{\small Alternativen 0 (kein \"OV) und 1 (\"OV) \quad
+$V_i(r)=\beta_0 \delta_{i1} + \beta_1 r \delta_{i1}$}
+
+
+\begin{tabular}{ll}
+\parbox{1.00\textwidth}{
+\includegraphics[width=1.0\textwidth]{figsRegr/revealedChoiceWS1516cum_2al_fProb_r.eps}
+}
+\parbox{0.30\textwidth}{
+ {\small
+ $
+ \begin{array}{l}
+ \beta_0=-0.55\pm 0.63, \\
+ \beta_1=+0.75\pm 0.27
+ \end{array}
+ $
+}}
+\end{tabular}
+
+
+
+
+\end{center}
+\end{landscape}
+\end{document}

@@ -1,0 +1,225 @@
+\begin{appendix}
+
+\chapter{Appendix}
+
+
+%########################################
+\section{\label{sec:App-quadratwurzel}Zu Abschnitt \protect\ref{sec:zufall}: 
+``Quadratwurzelgesetz'' im Europaparlament}
+%########################################
+
+
+Vereinfacht geht die Abstimmung im Europaparlament zweistufig
+vonstatten:
+\bi
+\item Die Vertreter jedes der 25 L\"ander (Einwohnerzahl $N_i$, i=1,
+\ldots,  25) stimmen mit ``Nein'' ($Y_i=0$) oder ``Ja'' ($Y_i=1$) ab; 
+die letztendliche Entscheidung $Z$ im Parlament h\"angt nach folgender
+Regel von den L\"andergewichten $w_i$ und dem Quorum $R$ ab:
+\bdm
+Z=\twoCases{1 \text{(``Ja'')}}{\text{falls} \ \sum\limits_{i=1}^{25}w_iY_i\ge R,}
+      {0 \text{(``Nein'')}}{\text{sonst.}}
+\edm
+
+\item Die Vertreter selbst werden direkt (Referendum) oder indirekt
+(\"uber die Parteien) vom Volk gew\"ahlt.
+\ei
+die Bef\"urworter der ``Quadratwurzelregel'' schlagen folgende Formel f\"ur die
+L\"andergewichte vor und behaupten, dass sie im
+statistischen Mittel f\"ur gr\"o\3tm\"ogliche
+Gleichheit der Wahl-Einflussm\"oglichkeiten (``Voting power'') der
+einzelnen B\"urger sorgt:
+\bdm
+w_i=\frac{\sqrt{N_i}}{\sum\limits_{j=1}^{25} \sqrt{N_j}}.
+\edm
+Die ``Voting Power'' ist dabei  gleich der Wahrscheinlichkeit daf\"ur, dass
+eine individuelle Stimme bei der Wahlentscheidung genau die entscheidende
+ist. 
+
+%#############################################
+\aufgabenbox{\Einstein Aufgabe zum Quadratwurzelgesetz}{
+%#############################################
+Pr\"ufen Sie unter Verwendung von \refkl{VzufallBin}, den
+Definitionen von Verteilungs- und Dichtefunktionen (siehe Statistik I)
+sowie dem Zentralen
+Grenzwertsatz (Statistik II), ob die ``Quadratwurzelregel'' zu einer
+gleichen ``Voting Power'' f\"ur alle  B\"urger zumindest unter folgenden
+Annahmen f\"uhrt:
+\bi
+\item Alle B\"urger und
+alle L\"ander entscheiden unabh\"angig voneinander.
+\item In jedem
+Land gibt es nur zwei relevante Parteien oder Koalitionen.
+\item Die mittlere Zustimmungsquote in allen L\"andern  liegt bei 0.5.
+\item Die Voting
+Power eines Landes (also die Wahrscheinlichkeit daf\"ur, dass gerade
+die Stimme $Y_i$ dieses Landes wahlentscheidend ist) w\"achst proportional mit
+dem L\"andergewicht $w_i$.
+\ei
+}
+
+%#############################
+\bfsf{L\"osung}
+%#############################
+Die Stimme $Y_i$ des  Landes $i$ (mit den Werten 1 f\"ur ``Ja'' und 0
+f\"ur ``Nein'') h\"angt nach der
+Aufgabenstellung  (bei 100\% Wahlbeteiligung) von der Zustimmungsquote
+$Y_i$
+der B\"urger ab,
+\bdm
+Y_i=\frac{1}{N_i}\sum\limits_{j=1}^{N_i} Y_{ij},
+\edm
+und damit letztendlich von jeder einzelnen Stimme $Y_{ij}$ der
+B\"urger in diesem Land. Bei zwei Parteien/Koalitionen
+(Mehrheitsentscheidung) ist der
+Erwartungswert der Landes-Stimme gleich der Wahrscheinlichkeit
+daf\"ur, dass die Zustimmungsquote oberhalb 50\% liegt:
+\bdm
+E(Y_i)=P(Y_i>0.5)
+\edm
+Die Voting Power $P_{ij}=E(Y_i|Y_{ij}=1)-E(Y_i|Y_{ij}=0)$ der Stimme
+$Y_{ij}$ eines B\"urgers $j$ bez\"uglich der
+Landes-Entscheidung $Y_i$ ist
+offensichtlich durch die \"Anderung der bedingten Wahrscheinlichkeiten
+gegeben:
+\be
+\label{Pij}
+P_{ij}=P(Y_i>0.5 | Y_{ij}=1) - P(Y_i>0.5 | Y_{ij}=0).
+\ee
+Da die Stimmen der anderen B\"urger $j'\neq j$ nach Voraussetzung
+unabh\"angig von $j$ sind, kann man auch schreiben
+\bdm
+P_{ij}=P\left(\frac{1}{N_i}\sum\limits_{j'} Y_{ij'}>0.5-\frac{1}{N_i}\right)
+      - P\left(\frac{1}{N_i}\sum\limits_{j'} Y_{ij'}>0.5\right).
+\edm
+Mit der allgemeinen Definition von Verteilungsfunktion (Vgl. Statistik-Vorlesung)
+$F_y(y)=P(Y\le y)$ und ihrer Dichte $f_y(y)=\abl{F(y)}{y}$ erh\"alt
+man
+\be
+\label{Pijf}
+P_{ij}=F_{y_i}(0.5)-F_{y_i}(0.5-1/N_i)\approx
+\frac{f_{y_i}(0.5)}{N_i}.
+\ee
+
+Die Zustimmungsquote $Y_i$ der B\"urger eines Landes und damit ihre Dichtefunktion
+$f_{y_i}(y)$ gehorchen der selben statistischen Verteilung  wie die Anteilswerte in Abschnitt
+\ref{sec:zufallAnteil}, also $E(Y_i)=\mu$ und
+$V(Y_i)=\mu(1-\mu)/N_i$. Wegen der gro\3en Bev\"olkerungszahl gilt auf
+jedem Fall der zentrale Grenzwertsatz, $Y_i$ ist also normalverteilt
+mit Mittelwert $\mu$ und Varianz $\mu(1-\mu)/N_i$. Setzt man die
+Dichtefunktion dieser Normalverteilung in Gl. \refkl{Pijf} ein, erh\"alt man
+\be
+\label{Pijgauss}
+P_{ij}= \sqrt{\frac{1}{2 N_i \pi\mu(1-\mu)}}
+e^{-\frac{N_i(0.5-\mu)^2}{2\mu(1-\mu)}}.
+\ee
+Da nun nach Voraussetzung die Voting Power $Q_i=E(Z|Y_i=1)-E(Z|Y_i=0)$ eines Landes bei der
+Europawahl proportional seiner Gewichtung $w_i$ ist, $Q_i=\alpha w_i$,
+gilt f\"ur die Voting-Power $Q_{ij}$ eines
+Einzelb\"urgers bez\"uglich der Europarat-Entscheidung nach \refkl{Pij}
+\be
+\label{Qij}
+Q_{ij}=E(Z|Y_{ij}=1)-E(Z|Y_{ij}=0) = \alpha w_i P_{ij}.
+\ee
+Setzt man nun gem\"a\3 Aufgabenstellung 
+ in allen L\"andern denselben Mittelwert $\mu=0.5$ f\"ur die
+Zustimmungsquote voraus, erh\"alt man nach Einsetzen von
+\refkl{Pijgauss} in \refkl{Qij}
+\bdm
+Q_{ij}=\alpha w_i  \sqrt{\frac{2}{N_i \pi}}.
+\edm
+Damit haben in Europawahlen alle B\"urger denselben Wert der
+Voting Power, falls 
+\bdm
+w_i \propto \sqrt{N_i},
+\edm
+womit der ``Quadratwurzelvorschlag''
+begr\"undet ist. 
+
+\textit{Bemerkung}W\"ahrend das Ergebnis \refkl{Pijgauss} von den
+Arbeit von Penrose und Banzhaff schon lange bekannt ist, wurde die
+Anwendung auf die Europawahl mit den zus\"atzlichen Annahmen
+\refkl{Qij} und $\mu=0.5$ erst k\"urzlich vorgestellt.\footnote{Zwei
+der vier Autoren der wichtigsten Arbeit zu diesem Thema sind Polen.}
+Die Annahme \refkl{Qij} ist durchaus nichttrivial und nur f\"ur
+bestimmte Werte des Quorums (im konkreten Fall $R=0.62$) hinreichend gut erf\"ullt.
+
+
+%########################################
+\section{\label{sec:App-opt}Zu Abschnitt \protect\ref{sec:stichpr}: 
+Optimale Aufteilung der Schichten einer Stichprobe}
+%########################################
+\EinsteinBeg 
+
+Offensichtlich kann man mit Entzerrungsfaktoren auch eine Stichprobe mit
+``falschen'' Anteilen der verschiedenen Klassen des Quotenmerkmals
+erwartungstreu sch\"atzen. Dies erm\"oglicht es, eine 
+Quoten-Stichprobe  mit gezielt verzerrten Quoten zu ziehen unter der
+Zielsetzung das die Varianz  \refkl{V-entzerr} des entzerrenden Erwartungswertsch\"atzers
+$\hat{\mu}\sup{(E)}$ minimal wird, vgl. Abb. \ref{fig:entzerr}. Konkret wird
+bei festem Stichprobenumfang $n=\sum_k n_k$ die Varianz
+\refkl{V-entzerr} nur in Abh\"angigkeit der festen wahren Anteile und
+der  einzelnen
+absoluten Stichprobenh\"aufigkeiten $n_k$ ausgedr\"uckt
+(vgl. zweite Zeile der Herleitung dieser Formel) und unter der
+Nebenbedingung eines festen Stichprobenumfangs minimiert:
+\be
+V(\hat{\mu}\sup{(E)}) =  V(n_1,n_2, \ldots)=\sum\limits_k \theta_k^2 \frac{\sigma_k^2}{n_k}
+\stackrel{!}{=} \min\limits_{n_1,n_2,...}, \quad \sum_k n_k=n.
+\ee
+
+Dies geschieht mit dem sog. ``Lagrange-Verfahren'', bei der nicht die
+Funktion selbst, sondern die Summe aus der Funktion und der mit sog.
+``Lagrange-Faktoren''  multiplizierten Nebenbedingungen gleich 0 gesetzt wird:
+\bdm
+\ablpart{V(n_1,n_2, \ldots)}{n_k} 
++ \lambda
+\ablpart{}{n_k}\left(\sum\limits_{k'}n_{k'}-n\right)\stackrel{!}{=}0.
+\edm
+Dies f\"uhrt zu
+\bdm
+\frac{-\theta_k^2\sigma_k^2}{n_k^2} + \lambda=0,
+\edm
+also ist f\"ur alle $k$ das Produkt $\theta_k\sigma_k/n_k$ konstant,
+also
+$n_k$ proportional zu $\theta_k\sigma_k$ Aus der Nebenbedingung
+$\sum_kn_k=n$ ergibt sich damit folgende ``optimale'' Schichtung,
+ausgedr\"uckt als relativen
+Stichprobenh\"aufigkeiten $f_k$ der Klassen des Schichtungsmerkmals:
+\be
+\label{fk-opt}
+f_k\sup{opt}=\frac{n_k\sup{opt}}{n}
+=\frac{\theta_k\sigma_k}{\sum\limits_{k'}\theta_{k'}\sigma_{k'}}
+\ee
+und nach Einsetzen in die Varianzformel die minimierte Varianz selbst:
+\be
+\label{V-opt}
+V\sup{opt}(\hat{\mu}\sup{(E)})=\frac{1}{n}\left(\sum\limits_k \theta_k\sigma_k\right)^2.
+\ee
+
+\aufgabenbox{Aufgabe: Studentenstadt}{Berechnen Sie in dem bereits bei der Schichtung und
+Entzerrung verwendeten Beispiel der ``Studentenstadt''  die optimale Schichtung bez\"uglich
+Studenten und Nichtstudenten und die bei einem Stichprobenumfang von
+2\ 500 resultierende Varianz und Standardabweichung des Merkmals
+``MIV-Bevorzugung''.
+}
+
+\bfsf{L\"osung:}
+
+\bdm
+n_1\sup{opt}=843, \quad n_2\sup{opt}=n-n_1\sup{opt}=1\ 657
+\edm
+
+\bdm
+E_1=1.186, \quad E_2=0.906, \quad V(\hat{\mu}\sup{(E)})=6.14*10^{-5},
+\edm
+und damit eine Standardabweichung von $\sqrt{V}=0.784\%$.
+Dies ist nur minimal besser als die Entzerrung bei
+Zufallsauswahl. Allgemein liefert die ``optimale Schichtung'' nur dann
+nennenswerte Vorteile, wenn die Varianzen innerhalb der Schichten
+sich stark unterscheiden. Dann werden die Schichten mit
+vergleichsweise gro\3er
+Varianz \"uberproportional ber\"ucksichtigt. 
+
+
+\end{appendix}

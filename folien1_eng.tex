@@ -1,0 +1,582 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript} %$
+\input{$HOME/tex/inputs/styleVorl} %$
+%\input{../style/defs}
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+\section{1. Econometrics in General}
+
+%##############################################################
+\frame{\frametitle{Scope of econometrics --
+from a mathematical point of view}
+%##############################################################
+
+\visible<1>{
+  \placebox{0.50}{0.55}{\figSimple{1.0\textwidth}{figsAllg/oekonometrieDef1_eng.png}}}
+
+\pause
+\visible<2>{
+  \placebox{0.50}{0.55}{\figSimple{1.0\textwidth}{figsAllg/oekonometrieDef2_eng.png}}}
+
+\pause
+\visible<3>{
+  \placebox{0.50}{0.55}{\figSimple{1.0\textwidth}{figsAllg/oekonometrieDef3_eng.png}}}
+
+\pause
+\visible<4>{
+  \placebox{0.50}{0.55}{\figSimple{1.0\textwidth}{figsAllg/oekonometrieDef4_eng.png}}}
+
+\pause
+\visible<5->{
+  \placebox{0.50}{0.55}{\figSimple{1.0\textwidth}{figsAllg/oekonometrieDef5_eng.png}}}
+
+\pause
+\visible<6->{
+ \placebox{0.50}{0.15}{\maintextSimple{The field of \bfblue{Traffic
+       Econometrics} includes all mathematical models and statistical
+     procedures to quantitatively analyze empirical (transportation)
+     data with respect 
+     to economic effects.
+}}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{General procedure of an econometric analysis}
+%##############################################################
+
+\visible<1>{
+  \placebox{0.50}{0.45}{\figSimple{0.75\textwidth}{figsErh/flussdiag-komplett1_eng.png}}}
+
+\pause
+\visible<2>{
+  \placebox{0.50}{0.45}{\figSimple{0.75\textwidth}{figsErh/flussdiag-komplett2_eng.png}}}
+
+\pause
+\visible<3>{
+  \placebox{0.50}{0.45}{\figSimple{0.75\textwidth}{figsErh/flussdiag-komplett3_eng.png}}}
+
+\pause
+\visible<4>{
+  \placebox{0.50}{0.45}{\figSimple{0.75\textwidth}{figsErh/flussdiag-komplett4_eng.png}}}
+
+\pause
+\visible<5>{
+  \placebox{0.50}{0.45}{\figSimple{0.75\textwidth}{figsErh/flussdiag-komplett5_eng.png}}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Examples}
+%##############################################################
+\bi
+\item The model must be compatible to the research objective:
+
+\pause
+\bi
+\item Model for fuel/energy consumption $\to$ real-valued output $\to$
+  e.g., \bfdef{regression models}
+\pause \item Model for trip or mode choice $\to$ discrete output $\to$
+e.g., \bfdef{discrete-choice models}
+\pause \item Classification of different days with respect to the
+traffic demand profile (mid-workdays, sundays, holidays, ...) $\to$
+econometric \bfdef{discriminant analysis}
+\ei
+\vspace{1em}
+
+\pause \item If the model is a \bfdef{discrete-choice model}, the questions
+  of the survey must be sets of alternatives that are ..
+\pause
+\bi
+\item exclusive: at most one alternative can be ticked
+\pause \item complete: at least one alternative may be ticked
+$\Rightarrow$ exactly one
+\pause \item sufficiently different
+\pause \itemAsk How to formulate a question regarding the kind of schools visited?
+\pause \itemAsk For route choice, we have two routes that only differ
+ in that one route contains a small detour of to go to a bakery. Which
+ criterion is violated?
+\ei
+
+\ei
+
+}
+
+
+
+%##############################################################
+\frame{\frametitle{Information flow of an econometric model}
+%##############################################################
+
+\placebox[center]{0.22}{0.45}
+{\figSimple{0.4\textwidth}{figsAllg/ModellTrichter_eng.png}}
+
+\pause
+\visible<2->{\placebox[center]{0.72}{0.45}
+{\figSimple{0.5\textwidth}{figsAllg/flussdiag-Kopplung_eng.png}}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Econometric models}
+%##############################################################
+Since econometrics describes things quantitatively, its basic language
+is mathematics and its basic concept a \bfdef{(mathematical) model}
+
+
+\maindm{
+Y_k=f_k(\tilx_1, ..., \tilx_m, ..,\tilx_M, \beta_0, ..., \beta_j, ..., \beta_J)
++ \epsilon_k
+= f_k(\tilvecx, \vecbeta) + \epsilon_k
+}
+
+
+\pause
+\bi
+\item A model consists of one or more equations $Y_k=f_k(\vec{x},
+  \vec{\beta}) + \epsilon_k$ explaining the output quantity $Y_k$ as a
+  function of the input $\tilvecx$
+\pause \item to \emph{tune} the model, there are \bfdef{model parameters}
+  $\vec{\beta}$
+\pause \item a model can be stochastic ($\epsilon_k \neq 0$) or deterministic
+  ($\epsilon_k = 0$)
+\pause \item the above formulation is the most general one and
+includes \emph{all} conceivable econometric models. 
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Endogenous Variables}
+%##############################################################
+
+\bi
+\item The name \bfdef{endogenous variable} comes from the Greek
+  \emph{endo} ($\epsilon\nu\delta$)  and the 
+  suffix \emph{gen} ($\gamma \epsilon\nu o\varsigma$) meaning
+  generated from the inside [the model]
+\pause\item in systems theory, the endogenous variables are the
+\bfdef{output}
+\pause\item mathematically, the endogenous variable are the
+\bfdef{dependent variables}
+\pause \item logically, they are the \bfdef{explained variables}
+\ei
+\pause \textit{Example mode choice}: $Y_k$= \#decisions for mode $k$ (e.g.,
+walking, cycling, public transport, car, combined/others)
+
+}
+
+%##############################################################
+\frame{\frametitle{Exogeneous variables}
+%##############################################################
+
+\bi
+\item The name \bfdef{exogenous variable} comes from the Greek
+  \emph{exo} ($\epsilon\xi\omega$)  and the 
+  suffix \emph{gen} ($\gamma \epsilon\nu o\varsigma$) meaning
+  ``coming from the outside''
+\pause\item in systems theory, the endogenous variables are the
+\bfdef{input}
+\pause\item mathematically, the endogenous variable are the
+\bfdef{independent variables}
+\pause \item logically, they are the \bfdef{explanatory variables}
+\pause \item an additive fixed function of explanatory variables is often
+called a \bfdef{factor}
+\ei
+\pause Since the exogenous variable describe explanatory factors, they are
+generally considered to be deterministic with all stochasticity
+deferred to additional random terms $\epsilon_k$ 
+\vspace{1em}
+
+\pause \textit{Example mode choice}: $x_m$ can be travel times or costs for the
+different modes, and also socioeconomic factors such as age, gender,
+or income
+
+
+}
+
+%##############################################################
+\frame{\frametitle{Random terms}
+%##############################################################
+
+The \bfdef{random terms}, also called \bfdef{residual terms} $\epsilon_k$
+  (from \emph{residuum}: the rest) summarize all what is not known and
+  cannot be explained by the exogenous/explanatory variables:
+\vspace{-0.5em}
+
+\maintextbox{0.7\textwidth}{\emph{Scio nescio} (I know that I do not know)}
+
+\pause 
+possible reasons for $\epsilon_k$:
+\bi
+\item cannot include all factors \bfred{watch out for bias!}
+\pause \item the model is not appropriate (e.g., explaining the fuel
+  consumption by a linear function of speed)
+\pause\item the data used for model calibration contain errors
+\pause\item in case of human decisions: 
+\maintextbox{0.7\textwidth}{
+man $\neq$ machine; \quad homo $\neq$ \emph{homo oeconomicus} }
+\ei
+
+\pause \textit{Example mode choice}: we ignored the weather or
+ the additional utility to stop by
+at a bakery (not provided by public transport), or need of a certain
+mode (car) for subsequent trips of 
+that day
+
+}
+
+%##############################################################
+\frame{\frametitle{Model parameters}
+%##############################################################
+The \bfdef{model parameters} $\beta_j$, $j=0, \ldots, J$ \emph{tune} the
+model to fit the data
+\pause
+\bi
+\item The parameters are determined by fitting the model to
+  \emph{learning data sets}, a process called \bfdef{calibration}
+\pause \item To test the \emph{explanatory/prediction power} of a
+model, the calibrated model is applied to \emph{test data sets} with
+known output, a process called \bfdef{validation}
+\pause \item In contrast to the exogenous variables changing from application
+  to application, the parameters are \emph{fixed} after calibration.
+\ei
+
+\pause \maintextbox{0.65\textwidth}{The existence of well validated models is
+  the \emph{raison d' \^{e}tre} for econometrics as such}
+
+\pause \textit{Example mode choice}: Parameters characterize, e.g.,
+the monetary \bfdef{value of time} (VoT) in \euro{}/h
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Model functions}
+%##############################################################
+The \bfdef{model function} is a mathematical representation of the
+economic process under investigation. The model's mathematical
+structure must reflect reality as well as 
+  possible:
+
+\bi
+\pause \item linear \emph{vs.} nonlinear
+\pause \item deterministic \emph{vs.} stochastic
+\pause \item single or multiple equations that may be linked, chained, or
+  with feedback
+\pause \item which exogenous variables are relevant?
+\ei
+%
+\pause
+\maintextbox{0.65\textwidth}{The model structure defines the
+  qualitative aspects and the model parameters the quantitative aspects
+  of whatever is to be investigated}
+\pause 
+\maintextbox{0.65\textwidth}{\emph{Make it as simple as possible but
+    not simpler}\\
+\hspace*{\fill}(Einstein)} 
+}
+
+%##############################################################
+\frame{\frametitle{Mathematical structure I: linear \emph{vs.} nonlinear}
+%##############################################################
+Four steps from linearity to nonlinearity:
+\bi
+\item[1.] \bfdef{Truly linear models:}
+\bdm
+Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
+=\sum_{j=0}^J\beta_jx_j+\epsilon=\vecbeta\tr\tilvecx+\epsilon
+\edm
+Because of linearity, each endogenous variables has its own
+uncoupled single equation, so it is enough to consider a single component.
+
+\item[2.] \bfdef{Parameter-linear (quasi-linear) models}
+\bdm
+Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
+=\sum_{j=0}^J\beta_jg_j(\tilvecx)+\epsilon
+=\sum_{j=0}^J\beta_jx_j+\epsilon
+=\vecbeta\tr\vec{x}+\epsilon
+\edm
+If it is reasonable to assume fixed functions $x_j=g_j(\tilvecx)$, we
+have a linear model with the new \bfdef{factors} $x_j$ becoming the
+``new'' exogenous variables
+\ei
+
+}
+
+%##############################################################
+\frame{\frametitle{Example: average distance travelled in vehicles per year}
+%##############################################################
+
+\bi
+\item $y$: distance [km/year] (deterministic because of
+  ``average'')
+\item $\tilx_1$: income [\euro{}/year]
+\item $\tilx_2$: fuel cost [\euro{}/liter]
+\pause \item factors: $g_0(\tilvecx)=1$, 
+ $g_1(\tilvecx)=\tilx_1$,
+ $g_2(\tilvecx)=\tilx_2$,
+ $g_3(\tilvecx)=\tilx_1 \tilx_2$,
+\ei
+\pause
+\bdm
+\text{\textbf{Model}:} \quad
+y=\beta_0+\beta_1\tilx_1+\beta_2\tilx_2+\beta_3\tilx_1\tilx_2=\sum_{j=0}^3\beta_jx_j
+\edm
+
+\bi
+\pause \itemAsk \colAsk{Discuss the elasticity 
+$
+\epsilon_2=\frac{\bar{x}_2}{\bar{y}}\abl{y}{x_2}=\frac{\beta_2\bar{x}_2}{y}=-0.15
+$
+}
+\pause \itemAnswer {\colAnswer{\footnotesize \unit[0.15]{\%} 
+decrease in kilometrage per increase of the fuel costs  by \unit[1]{\%}}}
+
+\pause \itemAsk \colAsk{Discuss the meaning of the factors, particularly the
+product $x_3$}
+\pause \itemAnswer {\colAnswer{\footnotesize 
+$x_0=1$: constant; $x_1=\tilx_1$: increase with income ($\beta_1>0$);
+$x_2=\tilx_2$: price sensitivity ($\beta_2<0$);
+$x_3=\tilx_1\tilx_2$: increase of price sensitivity (becoming less
+    negative) with increasing income ($\beta_3>0$)
+}}
+
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Mathematical structure I: linear \emph{vs.} nonlinear}
+%##############################################################
+
+\bi
+\item[3.] \bfdef{Nonlinear models that can be linearized}
+
+Classical example: unlimited growth
+\bdm
+G(t)=G_0e^{t/\tau+\epsilon}
+\edm
+\vspace{-1em}
+\bi
+\pause \item endogenous variable $G$: growth measure, e.g., company size,
+  \#items sold of a newly introduced product
+\pause \item exogenous variable $t$: time
+\pause \item parameter $G_0$: initial growth measure
+\item parameter $\tau$: time for growing by a factor of $e=2.71...$
+\pause \item random multiplicative factor  $e^{\epsilon}$
+\ei
+\pause
+\bdm
+\text{\textbf{Linearisation}:} \quad
+Y(t)=\ln G(t)=\ln G_0+\frac{t}{\tau}+\epsilon
+\edm
+\pause Reformulation  by setting
+$x_0=1$, $x_1=t$, $\beta_0=\ln G_0$, $\beta_1=1/\tau$:
+\bdm
+\text{\textbf{Standard form}:} \quad
+Y(\vec{x})=\vecbeta\tr\vec{x}+\epsilon
+\edm
+\ei
+}
+
+
+
+
+
+%##############################################################
+\frame{\frametitle{Example: Dow Jones Industrial Average linear}
+%##############################################################
+
+\placebox{0.50}{0.48}{\figSimple{1.05\textwidth}{figsAllg/dowJones_lin.png}}
+\placebox{0.84}{0.15}{
+\myHyperlink{https://www.macrotrends.net}{\tiny{Longterm charts by macrotrends}}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Example: Dow Jones Industrial Average log scale}
+%##############################################################
+
+\placebox{0.50}{0.48}{\figSimple{1.05\textwidth}{figsAllg/dowJones_log.png}}
+\placebox{0.84}{0.15}{
+\myHyperlink{https://www.macrotrends.net}{\tiny{Longterm charts by macrotrends}}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Mathematical structure I: linear \emph{vs.} nonlinear}
+%##############################################################
+
+\placebox{0.27}{0.51}
+ {\parbox{0.60\textwidth}{
+  \bi
+  \item[4.] \bfdef{Irreducibly nonlinear models}
+  Classical example: limited growth
+  \bdm
+  y(t)=\frac{y_s}{1+(y_s/y_0-1)e^{-t/\tau}}
+  \edm
+  \bi
+  \pause \item Solution of the ODE\\
+  $\abl{y}{t}=\frac{1}{\tau}\left(1-\frac{y(t)}{y_s}\right)$ 
+  for the initial value $y(t_0)=y_0$
+  \pause \item Plot for $t_0=1950$, $y_0=\unit[3]{\%}$, $y_s=\unit[60]{\%}$,
+    and $\tau=\unit[10]{years}$
+  \pause \itemAsk \colAsk{What might this represent?}
+  \pause \itemAnswer \colAnswer{For example, the penetration rate
+  for passenger cars per person.}
+  \ei
+  \ei
+}}
+
+\visible<3->{\placebox{0.75}{0.50}
+ {\figSimple{0.50\textwidth}{figsAllg/limitedGrowth_eng.png}}
+}
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Linking}
+%##############################################################
+\fig{0.7\textwidth}{figsAllg/flussdiag-Kopplung_eng.png}
+}
+
+%##############################################################
+\frame{\frametitle{Chaining and feedback}
+%##############################################################
+\fig{1.00\textwidth}{figsAllg/flussdiag-Verkettung_eng.png}
+\vspace{1em}
+\pause
+\visible<2->{\fig{1.00\textwidth}{figsAllg/flussdiag-Rueckkopplung_eng.png}}
+}
+
+
+
+%##############################################################
+\frame{\frametitle{Models of time evolution (``dynamic models'')}
+%##############################################################
+\fig{0.9\textwidth}{figsAllg/flussdiag-Zeitentwicklung_eng.jpg}
+\pause
+\begin{itemize}
+\item Special case of chaining: The endogenous variables at time $t$
+  are the exogenous variables at the next time step $t+\Delta t$
+\pause
+\item The model itself is generally the same in all steps
+\pause
+\item Sometimes, however, it has time dependent parameters
+  (\textit{non-autonomous} model)
+\end{itemize}
+}
+
+%##############################################################
+\frame{\frametitle{Application: Calculating the external costs of road traffic}
+%##############################################################
+\fig{0.9\textwidth}{figsAllg/ELOS_eng.png}
+}
+
+%##############################################################
+\frame{\frametitle{Model for limited growth}
+%##############################################################
+\fig{0.5\textwidth}{figsAllg/limitedGrowth_eng.png}
+
+\parbox{0.95\textwidth}{{\small Limited growth according to the
+    solution of the differential equation
+\myblue{$\abl{y}{t}=\frac{1}{\tau}\left(1-\frac{y(t)}{y_s}\right)$} 
+for the initial value $y_0=3$ at the moment in time
+$t_0=1950$ and the model parameters growth time constant $\tau=10$
+and saturation $y_s=60$. The result might represent the penetration rate
+for passenger cars per person in \%.}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Structure of a modal split model}
+%##############################################################
+
+
+\fig{0.9\textwidth}{figsAllg/beispiel-aufteilung_eng.png}
+
+\pause
+\bi
+\item
+Exogenous variables $x_{kj}$: influencing factors $j$ 
+for mode $k$
+
+\pause \item
+Endogenous variables $y_k$: frequency of utilization for mode $k$
+\ei
+
+
+}
+
+%##############################################################
+\frame{\frametitle{Mode choice for two
+alternatives:\\[-0.2ex] by bike or by public transport (PT)}
+%##############################################################
+{\small
+\hspace{-2em}
+ \begin{tabular}{|l||l|l|l|l|l|l||l|l|}
+\hline
+\myBox{0.1\textwidth}{} & 
+\myBox{0.04\textwidth}{Age} &
+\myBox{0.04\textwidth}{Sex} &
+\myBox{0.07\textwidth}{time\\needed\\ bike}&
+\myBox{0.06\textwidth}{costs\\bike} &
+\myBox{0.07\textwidth}{total\\travel time \\ PT}  & 
+\myBox{0.06\textwidth}{costs PT}  & 
+\myBox{0.06\textwidth}{choice\\bike} &
+\myBox{0.06\textwidth}{choice\\PT}
+\\ \hline
+Variables &  
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $y_{1i}$ & $y_{2i}$
+\\ \hline
+Person 1 & 30 & w & 
+  \unit[20]{min} & \unit[0]{\euro{}} & \unit[30]{min} & \unit[1.00]{\euro{}} & 0 & 1 \\
+Person 2 & 24 & m & 
+  \unit[11]{min} & \unit[0]{\euro{}} & \unit[20]{min} & \unit[2.00]{\euro{}} & 1 & 0 \\
+Person 3 & 27 & m & 
+  \unit[34]{min} & \unit[0]{\euro{}} & \unit[15]{min} & \unit[2.00]{\euro{}} & 0 & 1 \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & 
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & 
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & 
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ \\
+\hline
+\end{tabular}
+}\vspace{1em}
+
+These data can be obtained from interviews.
+
+}
+
+
+
+
+\end{document}
+
+%##############################################################
+\frame{\frametitle{}
+%##############################################################
+\fig{0.9\textwidth}{figsAllg/.jpg}
+}

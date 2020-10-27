@@ -1,0 +1,182 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie/Skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+\usepackage{ngerman}
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Hotel-Auslastung in Abh\"angigkeit von Sternen und Preis}\vspace{0em}
+%###################################################
+
+\begin{tabular}{cc}
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x1x2.eps}
+&
+\parbox{0.4\textwidth}{\vspace{-10em}
+
+Projizierte Streudiagramme: Die 
+exogenen Variablen sind korreliert, aber nicht perfekt kolinear}
+\end{tabular}
+
+\vspace{0em}
+
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x1y.eps}
+\includegraphics[width=0.6\textwidth]{figsRegr/hotel_scatterplot_x2y.eps}
+
+$x_1$=Sternzahl, $x_2$=Preis (Euro), $y=$ Auslastung (\%)
+
+\newpage
+%###################################################
+\bfsf{}
+%###################################################
+
+
+\hspace{-0.1\textwidth}
+\includegraphics[width=0.8\textwidth]{figsRegr/hotel_scatter3d_1.eps}
+\hspace{-0.2\textwidth}
+\includegraphics[width=0.8\textwidth]{figsRegr/hotel_scatter3d_2.eps}
+\hspace{-0.1\textwidth}
+
+\bi
+\item Schwarze Punkte: Daten 
+(rechts: 90 Grad entgegen Uhrzeigersinn um $z$ gedreht)\\[-1ex]
+
+\item Ebene: Modell 
+$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[-1ex]
+
+\item Blaue Striche:  unbestimmte Anteile
+$\epsilon_i$\\ (negativ, wenn unter der Ebene bzw. \"uber dem Datenpunkt)
+\ei
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervall f\"ur $\beta_1$
+ (volles Modell)}\vspace{0em}
+%###################################################
+\begin{tabular}{cc}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{figsRegr/hotel_f_hatbeta1.eps}
+  \fig{0.68\textwidth}{figsRegr/hotel_F_hatbeta1.eps}
+\vspace{-5em}
+}
+&
+\parbox{0.6\textwidth}{Konfidenzintervall (KI):
+
+{\small 
+$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
+ \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
+
+$\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
+\sqrt{\hat{V}(\hat{\beta}_1)}$
+
+$\hat{V}\hat{\beta}_1
+  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
+
+$\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
+ \left(\hat{y}_i-y_i\right)^2$
+}
+}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Konfidenzintervall f\"ur $\beta_2$
+ (volles Modell)}\vspace{0em}
+%###################################################
+\begin{tabular}{cc}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{figsRegr/hotel_f_hatbeta2.eps}
+  \fig{0.68\textwidth}{figsRegr/hotel_F_hatbeta2.eps}
+\vspace{-5em}
+}
+&
+\parbox{0.6\textwidth}{Konfidenzintervall (KI):
+
+Analoge Formeln f\"ur das KI zu $\beta_2$.
+}
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Likelihoodfunktion  der
+Anstiegsparameter} \vspace{-2em}
+%###################################################
+
+\fig{1.1\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2.eps}
+\vspace{-2em}
+
+\parbox{1.2\textwidth}{\bi
+\item Nichtverschwindende Korrelation $V_{12}(\vec{\hat{\beta}})$ 
+der Schwankungsbreiten von  $\hat{\beta}_1$ und 
+$\hat{\beta}_2$! \\[-2em]
+\item 
+$t$-Test f\"ur $H_0: \beta_1=\beta_{10}$ 
+\textit{oder} $\beta_2=\beta_{20}$\\[-2em]
+\item
+$F$-Test f\"ur $H_0: \beta_1=\beta_{10}$ 
+\textit{und} $\beta_2=\beta_{20}$
+\ei
+}
+
+\newpage
+%###################################################
+\bfsf{Auswirkungen der Korrelation der Anstiegsparameter} \vspace{0em}
+%###################################################
+
+\begin{tabular}{ll}
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal1.eps}
+&
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal2.eps}
+\\
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal3.eps}
+&
+\includegraphics[width=0.65\textwidth]{figsRegr/hotel_scatterplot_x2ycondx1_notCal4.eps}
+\end{tabular}
+
+%###################################################
+
+\end{center}
+\end{landscape}
+\end{document}

@@ -1,0 +1,550 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+\usepackage{eurosym}  %Euro-Symbol: \euro{Zahl} oder euro{}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+\usepackage{epsfig} % fuer kompakten epsfig Befehl in picture Umgebung
+\providecommand{\bfl}{\begin{flushleft}}
+\providecommand{\efl}{\end{flushleft}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+%\usepackage{ngerman}
+
+\textheight240mm
+\textwidth190mm
+\oddsidemargin-10mm
+
+%\input{defsSkript}
+\input{$HOME/tex/inputs/defsSkript}  %$
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+% !! Siehe templateFolienPicture.tex !!
+
+%###################################################
+\bfsf{Datenerhebung}
+%###################################################
+\vspace{1em}
+\fig{0.95\textwidth}{figsErh/flussdiag-komplett.eps}
+
+Eingliederung der Datenerhebung
+in den allgemeinen Ablauf einer \"okonometrischen
+Untersuchung.
+
+\newpage
+%###################################################
+\bfsf{Verkehrs\"okonometrischen Datenerhebung: Ablaufdiagramm}
+%###################################################
+\vspace{1em}
+\fig{1.2\textwidth}{figsErh/flussdiag-ablauf.eps}
+
+\newpage
+%###################################################
+\bfsf{Zeit- und Merkmalstr\"agerdimension}
+%###################################################
+\vspace{1em}
+\fig{0.95\textwidth}{figsErh/Zeitdimension.eps}
+
+\newpage
+%###################################################
+\bfsf{Verkehrsflussdaten am Beispiel der A5-Frankfurt}
+%###################################################
+\vspace{2em}
+
+\fig{1.4\textwidth}{figsErh/ganglinien-A9munich.eps}
+
+\newpage
+%###################################################
+\bfsf{Designprinzipien bei Frageb\"ogen I}
+%###################################################
+
+\setlength{\unitlength}{1mm}
+{\small
+
+\begin{picture}(230,175)(10,0)
+\put(0,0){\epsfig{width=140mm, file=figsErh/UmfrageWohnortJung1.eps}}
+\put(150,80){\parbox{100mm}{
+  \bfl \bi
+  \item
+    H\"aufbare Merkmale (eckige Tickboxen) eignen sich am Besten
+    f\"ur eine qualitative Auswertung\\[1em]
+  \item Subjektive Meinungsbekundungen: Symmetrische
+    \emph{Likert-Skala} mit einem neutralen Element\\[1em]
+  \item Wichtig: R\"uckmeldung des Ausf\"ullfortschritts!
+  \ei \efl
+}}
+\end{picture}
+}
+
+\newpage
+%###################################################
+\bfsf{Designprinzipien bei Frageb\"ogen II}
+%###################################################
+
+\setlength{\unitlength}{1mm}
+{\small
+
+\begin{picture}(230,175)(10,0)
+\put(0,0){\epsfig{width=140mm, file=figsErh/UmfrageWohnortJung2.eps}}
+\put(150,80){\parbox{100mm}{
+  \bfl \bi
+  \item
+    Nichth\"aufbare  Merkmale mit vielen
+    Auspr\"agungen werden am besten mit
+    \emph{Choiceboxen} realisiert
+  \item Bin\"are, nichth\"aufbare Merkmale oder welche mit wenigen
+    Auspr\"agungen besser explizit durch exklusiv ankreuzbare
+    \emph{Checkboxen} realisieren.
+  \item Wenn m\"oglich, nichth\"aufbare Attribute erfragen, z.B. den
+    \emph{h\"ochsten} Bildungsabschluss, nicht alle Abschl\"usse
+
+  \item Frage nach dem Einkommen: Keine Zahl abfragen, eher z.B. 
+``Nach Steuerabzug stehen dem deutschen
+Durchschnittsbürger ca. 1300 Euro netto zur Verfügung. 
+Wie hoch ist das monatliche Nettoeinkommen Ihrer Eltern im Vergleich
+zu diesem deutschen Durchschnitt?'' (viel geringer, geringer, gleich, mehr,
+viel mehr)
+
+  \ei \efl
+}}
+\end{picture}
+}
+
+
+\newpage
+%###################################################
+\bfsf{Revealed Choice: Vorlesungsumfrage WS 2014/15}
+%###################################################
+
+\vspace{2em}
+\begin{center}
+\begin{tabular}{|l||c||c|c|c|c||c|} \hline
+Klasse $i$ & 
+\myBox{4em}{Klassen-\\mitte $r^*_i$} &
+\myBox{2em}{ $h_{1i}$\\Fu\3} &
+\myBox{2em}{ $h_{2i}$\\ Rad}  &
+\myBox{2em}{ $h_{3i}$\\ \"OV} &
+\myBox{2em}{ $h_{4i}$\\ MIV}  &
+  $n_i$ \\
+\hline\hline
+$n=1$: 0-1 km  & \unit[0.5]{km}    & 2 & 0 & 2 & 0 & 4  \\
+$n=2$: 1-2 km  & \unit[1.5]{km}    & 1 & 2 & 1 & 0 & 4  \\
+$n=3$: 2-3 km  & \unit[2.5]{km}    & 0 & 1 & 5 & 0 & 6  \\
+$n=4$: 3-5 km  & \unit[4.0]{km}    & 0 & 1 & 7 & 0 & 8  \\
+$n=5$: 5-10 km  & \unit[7.5]{km}   & 0 & 0 & 8 & 0 & 8  \\
+$n=6$: $>10$ km  & \unit[15.0]{km} & 0 & 0 & 0 & 1 & 1  \\ \hline
+\end{tabular}
+\end{center}
+\vspace{2em}
+
+Deterministische Nutzenfunktion (\"OV und MIV zu ``MV'' zusammengefasst):
+\vspace{1em}
+
+$
+V_{ni}(\vecbeta) =(\beta_1r^*_n+\beta_3)\delta_{i1}
++(\beta_2r^*_n+\beta_4)\delta_{i2}
+$
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse I: Parametersch\"atzung mit ML-Methode}
+%###################################################
+\vspace{-1em}
+
+\fig{1.20\textwidth}{figsErh/revealedChoiceWS1415_3alt.corrMatrix.eps}
+{\small
+Vorteil MV gegen\"uber Fu\3 pro Kilometer:
+$-\beta_1=\unit[2.05]{NE/km}$
+
+Vorteil MV gegen\"uber Rad pro Kilometer:
+$-\beta_2=\unit[0.52]{NE/km}$
+}
+\newpage
+%###################################################
+\bfsf{Ergebnisse II: tats\"achliche vs. vorausgesagte\\ relative H\"aufigkeiten}
+%###################################################
+
+\fig{1.00\textwidth}{figsErh/revealedChoiceWS1415_3alt_fProbKumDist.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Revealed Choice: Alle bisherigen VL-Umfragen bis WS 2014/15
+  zusammengenommen}
+%###################################################
+
+\vspace{2em}
+\begin{center}
+\begin{tabular}{|l||c||c|c|c|c||c|} \hline
+Klasse $i$ & 
+\myBox{4em}{Klassen-\\mitte $r^*_i$} &
+\myBox{2em}{ $h_{1i}$\\Fu\3} &
+\myBox{2em}{ $h_{2i}$\\ Rad}  &
+\myBox{2em}{ $h_{3i}$\\ \"OV} &
+\myBox{2em}{ $h_{4i}$\\ MIV}  &
+  $n_i$ \\
+\hline\hline
+$n=1$: 0-1 km  & \unit[0.5]{km}    & 30 & 20 & 13 &  0 & 63  \\
+$n=2$: 1-2 km  & \unit[1.5]{km}    & 13 & 31 & 24 &  3 & 68  \\
+$n=3$: 2-3 km  & \unit[2.5]{km}    &  2 & 16 & 38 &  2 & 58  \\
+$n=4$: 3-5 km  & \unit[4.0]{km}    &  1 & 21 & 43 &  4 & 69  \\
+$n=5$: 5-10 km  & \unit[7.5]{km}   &  0 &  9 & 52 & 10 & 71  \\
+$n=6$: $>10$ km  & \unit[15.0]{km} &  0 &  0 & 20 & 14 & 35  \\ \hline
+\end{tabular}
+\end{center}
+\vspace{2em}
+
+Deterministische Nutzenfunktion:
+\vspace{1em}
+
+$
+V_{ni}(\vecbeta) =(\beta_1r^*_n+\beta_4)\delta_{i1}
++(\beta_2r^*_n+\beta_5)\delta_{i2}
++(\beta_3r^*_n+\beta_6)\delta_{i3}
+$
+
+\newpage
+%###################################################
+\bfsf{Ergebnisse I: Parametersch\"atzung mit ML-Methode}
+%###################################################
+\vspace{-1em}
+
+\fig{1.20\textwidth}{figsErh/revealedChoiceWS1415cum_4alt.corrMatrix.eps}
+{\small
+Vorteil MV gegen\"uber Fu\3 pro Kilometer:
+$-\beta_1=\unit[1.79]{NE/km}$
+
+Vorteil MV gegen\"uber Rad pro Kilometer:
+$-\beta_2=\unit[0.57]{NE/km}$
+}
+\newpage
+%###################################################
+\bfsf{Ergebnisse II: tats\"achliche vs. vorausgesagte\\ relative H\"aufigkeiten}
+%###################################################
+
+\fig{1.00\textwidth}{figsErh/revealedChoiceWS1415cum_4alt_fProbKumDist.eps}
+
+
+
+\newpage
+%###################################################
+\bfsf{Grundgesamtheit und Stichprobe bei der SrV }
+%###################################################
+\vspace{2em}
+\fig{0.8\textwidth}{figsErh/SrV-Stichprobe.eps}
+
+\newpage
+%###################################################
+\vspace*{-0.35\textwidth}
+\fig{0.8\textwidth}{figsSrV/SrV2003_Haushaltsfragebogen.eps}
+
+%###################################################
+\vspace*{-0.30\textwidth}
+\fig{0.9\textwidth}{figsSrV/SrV2003_Personenfragebogen.eps}
+
+%###################################################
+\vspace*{-0.25\textwidth}
+
+\fig{0.8\textwidth}{figsSrV/SrV2003_Wegefragebogen_p1.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Experimentelles Design I: Stated Preference}
+%###################################################
+\vspace{1em}
+
+\fig{1.1\textwidth}{figsErh/statedPreference.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Experimentelles Design II: Stated Choice}
+%###################################################
+\vspace{2em}
+
+\fig{1.1\textwidth}{figsErh/statedChoice.eps}
+
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment SS 2009: Wahlentscheidungen}
+%###################################################
+{\small
+\begin{center}
+\begin{tabular}{|c||c|c||r|r|}
+\hline \myBox{6em}{ Hypothetische\\Situation} & Alternative 1: Fu\3/Rad & Alternative 2: \"OV & Wahl 1 & Wahl 2 \\ \hline\hline
+1 & \unit[30]{min} & \unit[30]{min} + \unit[0]{\euro{}} & 5 & 70\\ \hline
+2 & \unit[30]{min} & \unit[40]{min} + \unit[0]{\euro{}} & 21 & 54\\ \hline
+3 & \unit[30]{min} & \unit[50]{min} + \unit[0]{\euro{}} & 63 & 12\\ \hline
+4 & \unit[30]{min} & \unit[60]{min} + \unit[0]{\euro{}} & 75 & 0 \\ \hline
+5 & \unit[30]{min} & \unit[30]{min} + \unit[1]{\euro{}} & 26 & 49\\ \hline
+6 & \unit[30]{min} & \unit[30]{min} + \unit[2]{\euro{}} & 50 & 25\\ \hline
+7 & \unit[30]{min} & \unit[30]{min} + \unit[3]{\euro{}} & 70 & 5 \\ \hline
+8 & \unit[20]{min} & \unit[30]{min} + \unit[0]{\euro{}} & 35 & 40\\ \hline
+9 & \unit[15]{min} & \unit[30]{min} + \unit[0]{\euro{}} & 64 & 11\\ \hline
+\end{tabular}
+\end{center}
+}
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment SS 2009: Parametersch\"atzung}
+%###################################################
+
+\text{Modell:} \quad 
+$V_1= \beta_{0}+\beta_{1}T_1$, \quad
+$V_2= \beta_{2}T_2+\beta_{3}K_2$.
+\vspace{-1em}
+
+\includegraphics[width=1.3\textwidth]{figsErh/VkoekSS09_statedChoice_L.eps}
+\vspace{-1.5em}
+
+{\scriptsize
+$
+\begin{array}{lllll}
+\text{SS 2009:} & 
+\beta_{0}=-1.37\pm 0.47, &
+\beta_{1}=-0.228\pm 0.022, &
+\beta_{2}=-0.195\pm 0.014, &
+\beta_{3}=-1.75 \pm 0.12 \\
+\end{array}
+$
+}
+
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment SS 2009: Ergebnisse}
+%###################################################
+
+\begin{tabular}{cc}
+\includegraphics[width=0.66\textwidth]{figsErh/VkoekSS09_statedChoice_1.eps}&
+\includegraphics[width=0.66\textwidth]{figsErh/VkoekSS09_statedChoice_2.eps}
+\\
+\includegraphics[width=0.66\textwidth]{figsErh/VkoekSS09_statedChoice_3.eps}&
+\includegraphics[width=0.66\textwidth]{figsErh/VkoekSS09_statedChoice_4.eps}
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experimente SS 2009: Erwartete Anteilswerte}
+%###################################################
+\vspace{1em}
+
+Kontourplot der Anteilswerte f\"ur
+die Alternative ``\"OPNV'' in Abh\"angigkeit der Widerstandsfunktionen
+(negative Nutzen) der zwei Alternativen
+\vspace{1em}
+
+\begin{tabular}{cc}
+\includegraphics[width=0.65\textwidth]{figsErh/VkoekSS09_statedChoice_5.eps}&
+\includegraphics[width=0.65\textwidth]{figsErh/StatedChoice.eps}
+\\[1em]
+\parbox{0.5\textwidth}{Auf das
+Umfrageergebnis\\kalibrierte Logit-Modell} &
+\parbox{0.5\textwidth}{So sieht es wohl\\
+realistischerweise eher aus.}
+\end{tabular}
+
+
+
+\newpage
+%###################################################
+\bfsf{Vergleich: Stated-Choice-Experiment WS 2010/11}
+%###################################################
+{\small
+\begin{center}
+\begin{tabular}{|c||c|c||r|r|}
+\hline \myBox{6em}{ Hypothetische\\Situation} & Alternative 1: Fu\3/Rad & Alterna
+tive 2:
+\"OV & Wahl 1 & Wahl 2 \\ \hline\hline
+1 & \unit[30]{min} & \unit[30]{min}, kostenlos & 3 & 16 \\ \hline 
+2 & \unit[30]{min} & \unit[40]{min}, kostenlos & 6 & 13 \\ \hline
+3 & \unit[30]{min} & \unit[50]{min}, kostenlos & 19 & 0 \\ \hline 
+4 & \unit[30]{min} & \unit[60]{min}, kostenlos & 19 & 0 \\ \hline 
+5 & \unit[30]{min} & \unit[30]{min} + \unit[1]{\euro{}} & 17 & 2 \\ \hline
+6 & \unit[30]{min} & \unit[30]{min} + \unit[2]{\euro{}} & 19 & 0 \\ \hline
+7 & \unit[30]{min} & \unit[30]{min} + \unit[3]{\euro{}} & 19 & 0 \\ \hline
+8 & \unit[20]{min} & \unit[30]{min}, kostenlos & 14 & 5 \\ \hline 
+9 & \unit[10]{min} & \unit[30]{min}, kostenlos & 19 & 0 \\ \hline 
+\end{tabular}
+\end{center}
+}
+
+
+
+\newpage
+%###################################################
+\bfsf{WS 2010/11: Parametersch\"atzung}
+%###################################################
+
+\includegraphics[width=1.3\textwidth]{figsErh/VkoekWS1011_statedChoice_L.eps}
+\vspace{-2.0em}
+
+{\scriptsize
+$
+\begin{array}{lllll}
+\text{SS 2009:} & 
+\beta_{0}=-1.37\pm 0.47, &
+\beta_{1}=-0.228\pm 0.022, &
+\beta_{2}=-0.195\pm 0.014, &
+\beta_{3}=-1.75 \pm 0.12 \\
+\text{WS 2010/11:} & 
+\beta_{0}=+1.46\pm 1.21, &
+\beta_{1}=-0.409\pm 0.057, &
+\beta_{2}=-0.268\pm 0.042, &
+\beta_{3}=-4.94 \pm 0.72 \\
+\end{array}
+$
+}
+
+
+\newpage
+%###################################################
+\bfsf{Stated-Choice-Experiment WS 2010/11: Ergebnisse}
+%###################################################
+
+\begin{tabular}{cc}
+\includegraphics[width=0.62\textwidth]{figsErh/VkoekWS1011_statedChoice_1.eps}&
+\includegraphics[width=0.62\textwidth]{figsErh/VkoekWS1011_statedChoice_2.eps}
+\\
+\includegraphics[width=0.62\textwidth]{figsErh/VkoekWS1011_statedChoice_3.eps}&
+\includegraphics[width=0.62\textwidth]{figsErh/VkoekWS1011_statedChoice_4.eps}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Design der Choice Sets I: Vollst\"andige Enumeration}
+%###################################################
+\vspace{1em}
+
+\bi
+\item Komplexe Fu\3/Rad-Reisezeit $T_1$: 10, 15, 20, 25 und 30 Minuten,\\[-2em]
+\item Komplexe \"OV-Reisezeit  $T_2$: 10, 15, 20, 25 und 30 Minuten,\\[-2em]
+\item \"OV-Ad-Hoc-Kosten $K_2$: 0.00, 1.50, 3.00 oder 4.50 Euro
+\ei
+\vspace{3em}
+
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & Fu\3-Rad Reisezeit $T_1$ & \"OV-Reisezeit  $T_2$ & \"OV Ad-Hoc-Kosten $K_2$
+   \\ \hline
+1 & \unit[10]{min} & \unit[10]{min} & \unit[0.00]{\euro{}}\\
+2 & \unit[10]{min} & \unit[10]{min} &\unit[1.50]{\euro{}}\\
+\vdots & \vdots & \vdots & \vdots  \\
+99 & \unit[30]{min} & \unit[30]{min} & \unit[3.00]{\euro{}}\\
+100 & \unit[30]{min} & \unit[30]{min} & \unit[4.50]{\euro{}}\\
+ \hline
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Design der Choice Sets II: Orthogonales Design}
+%###################################################
+
+\vspace{2em}
+
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & Fu\3-Rad Reisezeit $T_1$ & \"OV-Reisezeit  $T_2$ & \"OV Ad-Hoc-Kosten $K_2$
+   \\ \hline
+2 & \unit[10]{min} & \unit[10]{min} & \unit[1.50]{\euro{}}\\
+18 & \unit[10]{min} & \unit[30]{min} & \unit[1.50]{\euro{}}\\
+84 & \unit[30]{min} & \unit[10]{min} &\unit[3.00]{\euro{}}\\
+99 & \unit[30]{min} & \unit[30]{min} &\unit[3.00]{\euro{}}\\
+\hline
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Design der Choice Sets III: Effizientes Design}
+%###################################################
+
+Beispiel $n=10$ Fragek\"artchen:
+\vspace{3em}
+
+\begin{tabular}{lll}
+\parbox{0.5\textwidth}{
+Vollst\"andige Enumeration:\\ 
+100 Choice Sets
+\vspace{1em}
+
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & $T_1$ & $T_2$ &  $K_2$
+   \\ \hline
+1 & \unit[10]{min} & \unit[10]{min} & \unit[0.00]{\euro{}}\\
+2 & \unit[10]{min} & \unit[10]{min} &\unit[1.50]{\euro{}}\\
+\vdots & \vdots & \vdots & \vdots  \\
+99 & \unit[30]{min} & \unit[30]{min} & \unit[3.00]{\euro{}}\\
+100 & \unit[30]{min} & \unit[30]{min} & \unit[4.50]{\euro{}}\\
+ \hline
+\end{tabular}
+}
+
+& \hspace{2em}
+{\LARGE $\Rightarrow$}
+\hspace{0.02\textwidth}
+
+&
+\parbox{0.5\textwidth}{
+Effizientes Design:\\
+\vspace{1em}
+
+\begin{tabular}{|r|c|c|c|} \hline
+$i$ & $T_1$ & $T_2$ &  $K_2$
+   \\ \hline
+7 & ... & ... & ... \\
+22 & ... & ... & ... \\
+\vdots & \vdots & \vdots & \vdots  \\
+79 & ... & ... & ... \\
+89 & ... & ... & ... \\
+ \hline
+\end{tabular}
+}
+
+\end{tabular}
+
+\vspace{3em}
+
+\bfred{W\"ahle 10 aus 100 so, dass
+$||\m{V}_{\hatvecbeta}||$ minimal ist!}
+
+
+%###################################################
+
+
+\end{center}
+\end{landscape}
+\end{document}
+

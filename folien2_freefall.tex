@@ -1,0 +1,286 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/folienTemplate.tex
+%#############################################
+
+%########################################
+%  Examples
+%########################################
+
+%\fig{\textwidth}{figsAllg/oekonometrieDef.eps}
+
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{\textwidth}{figsAllg/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+
+%latex Bug with landscape: textwidth=textheight=smaller of both
+
+%\begin{landscape}
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg/oekonometrieDef.eps}}
+%{Bildbeschreibung}
+%\end{landscape}
+
+%\begin{landscape}
+%\myfigure{Grundprinzip der mathematischen Modellierung}
+%{\fig{1.3\textheight}{figsAllg/oekonometrieDef.eps}}
+%{\centering{\parbox{\textwidth}{Bildbeschreibung}}}
+%\end{landscape}
+
+%########################################
+%########################################
+
+%\documentclass[11pt]{scrartcl}
+\documentclass[a4paper]{foils}
+
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+\usepackage{hyperref} 
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+\usepackage{ngerman}
+
+\textheight250mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Fallschirmsprung von Baumgartner als Regressionsmodell}
+%###################################################
+
+\vspace{1ex}
+
+\vspace{1em}
+
+Die Facts:
+\vspace{1em}
+
+\hspace{0.3\textwidth}
+\parbox{0.9\textwidth}{
+\bi
+\item Sprung aus \unit[39\,045]{m} H\"ohe (\"uber NN)
+\item Fallschirm\"offnung \unit[260]{s} nach dem Sprung in
+  \unit[2\,500]{m} \"uber NN
+\item Angegebene h\"ochste erreichte Geschwindigkeit: \unit[1\,342.8]{km/h}
+\item Live-Angaben der gesch\"atzten Geschwindigkeit \"uber der Zeit
+  k\"onnen einem
+\myHyperlink{http://www.youtube.com/watch?v=OBaV6qZiO6A}{YouTube-Filmchen}
+  entnommen werden.
+\item N\"aheres im
+\myHyperlink{http://de.wikipedia.org/wiki/Red_Bull_Stratos}{Wikipedia-Artikel}
+\ei
+}
+
+\newpage
+%###################################################
+\bfsf{Hat er wirklich mehr als \unit[1\,300]{km/h} erreicht?}
+%###################################################
+
+\vspace{1ex}
+\fig{1.1\textwidth}{figsFreefall/freefall_vdata.eps}
+
+Au\3erdem: $y(0)=\unit[39\,045]{m}$, 
+$y(\unit[260]{s})=\unit[2\,516]{m}$
+
+
+
+\newpage
+%###################################################
+\bfsf{Regressionsmodell der Fallbeschleunigung I:\\Physikalische Basis}
+%###################################################
+
+\vspace{1ex}
+
+
+\fboxdm{
+m\abl{v}{t}=m\ablzwei{y}{t}=-mg+\frac{1}{2}c_w \rho_L A v^2
+}
+\vspace{1em}
+
+\parbox{1.2\textwidth}{
+\bi
+\item $y$: H\"ohe \"uber NN, $v=\abl{y}{t}$: Fallgeschwindigkeit\\[-2.5em]
+\item $-mg$: Kraft durch Gravitation\\[-2.5em]
+\item Zweiter Term ist Luftwiderstand\\[-2.5em]
+\item $\rho_L=\rho_0 e^{-y/h}$: Mit der H\"ohe abnehmende Luftdichte\\[-2.5em]
+\item $h=\frac{p_0}{\rho_0g}$: H\"ohendifferenz, in der Luftdichte um
+  Faktor $1/e$ abnimmt\\[-2.5em]
+\item Piloteigenschaften: $m$, $c_w$, $A$\\[-2.5em]
+\item Physikalische Gr\"o\3en: $g$, $p_0$, $\rho_0$
+\ei
+}
+
+N\"aherungen:
+\bi
+\item Die Temperaturabh\"angigkeit der Luftdichte und der
+  Luftdruckkurve wird ignoriert (Verwendung der
+  US-Standardatmosph\"are: Siehe weiter unten) \\[-3em]
+\item Der $c_w$-Wert wird als konstant angenommen, also u.a. der
+  Anstieg im transsonischen Bereich sowie das 
+\myHyperlink{http://www.youtube.com/watch?v=OBaV6qZiO6A}{Trudeln} ignoriert.\\[-3em]
+\ei
+
+
+
+\newpage
+%###################################################
+\bfsf{Regressionsmodell der Fallbeschleunigung II:\\Das eigentliche Modell}
+%###################################################
+
+\vspace{1em}
+Gravitationsbeschleunigung $g=\unit[9.81]{m/s^2}$ bekannt 
+\ $\Rightarrow$ Nach Division durch $m$ kommen nur zwei Produkte nicht
+genau bekannter Gr\"o\3en vor: $c_w\rho_0 A/m$ und $h$. Daraus die
+zur Regression verwendete
+Beschleunigungsgleichung:
+\vspace{1ex}
+
+\fboxdm{
+\abl{v}{t}=g\left[-1+\left(\frac{v}{v_0}\right)^2 \, e^{-\frac{y}{h}}\right]
+}
+\vspace{1em}
+
+Terminalen Fallgeschwindigkeit auf Meeresh\"ohe:
+\vspace{-2em}
+
+\bdm
+v_0=\sqrt{\frac{2mg}{c_w \rho_0A}}
+\edm
+
+\vspace{1em}
+
+$\Rightarrow$ nichtlineares Regressionsmodell mit zwei Parametern: 
+\parbox{0.8\textwidth}{
+\bi
+\item $v_0$ (etwa \unit[200]{km/h}) \\[-2em]
+\item $h$ (etwa
+\unit[8\,000]{m}).
+\ei
+}
+
+
+\newpage
+%###################################################
+\bfsf{Modellkalibrierung mit der LSE-Methode}
+%###################################################
+\vspace{2ex}
+
+Zwei Kategorien von Daten: Geschwindigkeits-Zeitreihen sowie
+Zeitpunkt sowie H\"ohe 
+(\"uber NN)  beim \"Offnen des Fallschirms:
+
+\includegraphics[width=0.65\textwidth]{figsFreefall/freefall_vdata.eps}
+\includegraphics[width=0.65\textwidth]{figsFreefall/freefall_ydata.eps}
+
+\vspace{3ex}
+
+Fehlerquadratsumme (Geschwindigkeiten in m/s und H\"ohen in Metern):
+
+\vspace{1ex}
+
+\fboxdm{
+S(v_0,h)=\sum_i \left(v_i-\hat{v}(t_i)\right)^2 + w
+(y_f-\hat{y}(t_f))^2
+}
+$w$: Relative Wichtung der H\"ohenabweichung 
+
+
+\newpage
+
+%###################################################
+\bfsf{Die Fehlerquadratsumme}
+%###################################################
+\vspace{-2em}
+
+\begin{tabular}{ll}
+\includegraphics[width=0.96\textwidth]{figsFreefall/freefall_objLandscape.eps}
+&
+\parbox{0.30\textwidth}{\vspace{-20em}
+
+$\Rightarrow$ um die Modell-Sch\"atzwerte $\hat{v}(t_i)$ sowie
+$\hat{y}(t_f)$ zu bestimmen, ist eine komplette Simulation des freien
+Falls durch  Integration der Beschleunigungsgleichung n\"otig!
+}
+\end{tabular}
+
+
+\newpage
+%###################################################
+\bfsf{Kalibrierungsergebis I: Geschwindigkeiten}
+%###################################################
+\vspace{1ex}
+
+\fig{1.1\textwidth}{figsFreefall/freefall_vdataSim.eps}
+
+$\hat{v}_0=\unit[174]{km/h}$, $\hat{h}=\unit[7\,800]{m}$
+
+\newpage
+%###################################################
+\bfsf{Kalibrierungsergebis II: Zielt die simulierte Trajektorie auf
+  den richtigen Orts-Zeitpunkt der Fallschirm\"offnung?}
+%###################################################
+\vspace{1ex}
+
+\fig{1.1\textwidth}{figsFreefall/freefall_ydataSim.eps}
+
+Nach mehr als \unit[36]{km} freien Fall Abweichung von gerade mal
+etwa \unit[50]{m}!
+
+\newpage
+%###################################################
+\bfsf{Verbessertes Modell: Nutzuing der US-Standardatmosph\"are}
+%###################################################
+
+\bi
+\item Nur noch ein Parameter: Endgeschwindigkeit $v_0$ in Meeresh\"ohe
+\item Wichtung y-Datenpunkt/v-Datenpunkte mit 1 $\Rightarrow$
+  haupts\"achlich auf Fallschirm-\"Offnungszeitpunkt und -h\"ohe
+  kalibriert, weder gesch\"atzte Geschw. noch angegebene
+  Max-Geschwindigkeit stark beachtet
+\ei
+\fig{0.9\textwidth}{figsFreefall/freefall_vdata_ydataSimTvar.eps}
+
+\newpage
+%###################################################
+\bfsf{Verbessertes Modell: Geschwindigkeit vs. H\"ohe}
+%###################################################
+\fig{1.1\textwidth}{figsFreefall/freefall_vdataSimTvar.eps}
+Ignoriert man die Realtime-Sch\"atzwerte, ist Ergebnis nahezu
+konsistent mit Max-Geschwindigkeit. Aber f\"uhrt
+Trudeln/Widerstandserh\"ohung im transsonischen Bereich nicht eher zu
+den Realtime-Sch\"atzwerten?
+
+\end{center}
+\end{landscape}
+\end{document}
