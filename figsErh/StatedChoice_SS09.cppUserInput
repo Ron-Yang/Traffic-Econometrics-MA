@@ -1,0 +1,88 @@
+
+  
+//#####################################################
+// User input Daten 2009
+// paste into discrChoice_kalib.cpp
+// then call make discrChoice_kalib
+//#####################################################
+
+
+// (jul09) Das Zwei-Alternativen-Stated Choice-Beispiel aus der VL
+// Im Ggs zu userInputUmfrageSS09_ohneRestr.txt sind die exogenen Vars
+//die Zeiten und Kosten, diese sind fuer jede Entscheidungssituation und
+//jede Alternative anders; Entfernungsgruppen gibt es 7 Situationen mit
+//je zwei Alternativen
+
+// Achtung: nk kann im gs zu ni oder nl
+// nicht einfach veraendert werden! 
+// Bei Aenderung von nk immer auch x_{lki} aendern!
+// (ansonsten leicht V  lin abhaeng. => Matrix nicht invertierbar)
+
+  int ni=7; //Zahl der Personengruppen bzw. Situationen  ( >= nl/(nk-1)!)
+  int nk=2; // Zahl der Alternativen 
+  int nl=4;  // Zahl der Modellparameter beta_l
+  
+
+  // Absolute frequency h_{ij}
+  int nSample=75;
+  int h[discrChoice.NK][discrChoice.NI];
+  h[0][0]=5;       h[1][0]=nSample-h[0][0];
+  h[0][1]=21;      h[1][1]=nSample-h[0][1];
+  h[0][2]=63;      h[1][2]=nSample-h[0][2];
+  h[0][3]=75;       h[1][3]=nSample-h[0][3];
+  h[0][4]=35;        h[1][4]=nSample-h[0][4];
+  h[0][5]=26;        h[1][5]=nSample-h[0][5];
+  h[0][6]=50;        h[1][6]=nSample-h[0][6];
+
+
+  // Travelling  time (min)
+  
+  double T[discrChoice.NK][discrChoice.NI];  
+  T[0][0]=30;    T[1][0]=30;
+  T[0][1]=30;    T[1][1]=40;
+  T[0][2]=30;    T[1][2]=50;
+  T[0][3]=30;    T[1][3]=60;
+  T[0][4]=20;    T[1][4]=30;
+  T[0][5]=30;    T[1][5]=30;
+  T[0][6]=30;    T[1][6]=30;
+
+  // Cost (Euros)
+  
+  double K[discrChoice.NK][discrChoice.NI];  
+  K[0][0]=0;    K[1][0]=0;
+  K[0][1]=0;    K[1][1]=0;
+  K[0][2]=0;    K[1][2]=0;
+  K[0][3]=0;    K[1][3]=0;
+  K[0][4]=0;    K[1][4]=0;
+  K[0][5]=0;    K[1][5]=1;
+  K[0][6]=0;    K[1][6]=2;
+
+
+  // The "Criteria" x_{lki}; adapt the utility function V_{ki}=sum_l beta_l x_{lki}
+
+  double x[discrChoice.NL][discrChoice.NK][discrChoice.NI];
+  for (int k=0; k<nk; k++){
+    for (int i=0; i<ni; i++){
+      x[0][k][i]=delta(k,0); // Alternative 1 => k=0!
+      x[1][k][i]=T[k][i]*delta(k,0); // Alternative 1 => k=0!
+      x[2][k][i]=T[k][i]*delta(k,1);
+      x[3][k][i]=K[k][i]*delta(k,1); 
+    }
+  }
+
+  // Possible restrictions
+  
+  bool restrictions[discrChoice.NK][discrChoice.NI];
+  for (int k=0; k<nk; k++){
+    for (int i=0; i<ni; i++){
+      restrictions[k][i]=false;
+    }
+  }
+  
+
+
+//#####################################################
+// End user input
+//#####################################################
+
+
