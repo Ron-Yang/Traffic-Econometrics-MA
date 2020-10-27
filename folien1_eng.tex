@@ -6,8 +6,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript} %$
 \input{$HOME/tex/inputs/styleVorl} %$
@@ -84,7 +84,7 @@ from a mathematical point of view}
 
 
 %##############################################################
-\frame{\frametitle{Examples}
+\frame{\frametitle{Examples of models and compatible data}
 %##############################################################
 \bi
 \item The model must be compatible to the research objective:
@@ -151,7 +151,7 @@ Y_k=f_k(\tilx_1, ..., \tilx_m, ..,\tilx_M, \beta_0, ..., \beta_j, ..., \beta_J)
 
 \pause
 \bi
-\item A model consists of one or more equations $Y_k=f_k(\vec{x},
+\item A model consists of one or more equations $Y_k=f_k(\tilvecx,
   \vec{\beta}) + \epsilon_k$ explaining the output quantity $Y_k$ as a
   function of the input $\tilvecx$
 \pause \item to \emph{tune} the model, there are \bfdef{model parameters}
@@ -178,7 +178,7 @@ includes \emph{all} conceivable econometric models.
 \bfdef{dependent variables}
 \pause \item logically, they are the \bfdef{explained variables}
 \ei
-\pause \textit{Example mode choice}: $Y_k$= \#decisions for mode $k$ (e.g.,
+\pause \textit{Example mode choice}: $Y_k$: \#decisions for mode $k$ (e.g.,
 walking, cycling, public transport, car, combined/others)
 
 }
@@ -205,7 +205,7 @@ generally considered to be deterministic with all stochasticity
 deferred to additional random terms $\epsilon_k$ 
 \vspace{1em}
 
-\pause \textit{Example mode choice}: $x_m$ can be travel times or costs for the
+\pause \textit{Example mode choice}: $\tilde{x}_m$ can be travel times or costs for the
 different modes, and also socioeconomic factors such as age, gender,
 or income
 
@@ -221,12 +221,12 @@ The \bfdef{random terms}, also called \bfdef{residual terms} $\epsilon_k$
   cannot be explained by the exogenous/explanatory variables:
 \vspace{-0.5em}
 
-\maintextbox{0.7\textwidth}{\emph{Scio nescio} (I know that I do not know)}
+\maintextbox{0.55\textwidth}{\emph{Scio nescio} (I know that I do not know)}
 
 \pause 
 possible reasons for $\epsilon_k$:
 \bi
-\item cannot include all factors \bfred{watch out for bias!}
+\item cannot include all factors \bfred{(watch out for bias!)}
 \pause \item the model is not appropriate (e.g., explaining the fuel
   consumption by a linear function of speed)
 \pause\item the data used for model calibration contain errors
@@ -302,7 +302,7 @@ Four steps from linearity to nonlinearity:
 \item[1.] \bfdef{Truly linear models:}
 \bdm
 Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
-=\sum_{j=0}^J\beta_jx_j+\epsilon=\vecbeta\tr\tilvecx+\epsilon
+=\sum_{j=0}^J\beta_j\tilde{x}_j+\epsilon=\vecbeta\tr\tilvecx+\epsilon
 \edm
 Because of linearity, each endogenous variables has its own
 uncoupled single equation, so it is enough to consider a single component.
@@ -314,8 +314,9 @@ Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
 =\sum_{j=0}^J\beta_jx_j+\epsilon
 =\vecbeta\tr\vec{x}+\epsilon
 \edm
-If it is reasonable to assume fixed functions $x_j=g_j(\tilvecx)$, we
-have a linear model with the new \bfdef{factors} $x_j$ becoming the
+If it is reasonable to assume fixed (generally nonlinear) functions
+$x_j=g_j(\tilvecx)$, we 
+have a linear model with the \bfdef{factors} $x_j$ becoming the
 ``new'' exogenous variables
 \ei
 
@@ -328,9 +329,10 @@ have a linear model with the new \bfdef{factors} $x_j$ becoming the
 \bi
 \item $y$: distance [km/year] (deterministic because of
   ``average'')
-\item $\tilx_1$: income [\euro{}/year]
-\item $\tilx_2$: fuel cost [\euro{}/liter]
-\pause \item factors: $g_0(\tilvecx)=1$, 
+\pause \item $\tilx_1$: income [\euro{}/year]
+\pause \item $\tilx_2$: fuel cost [\euro{}/liter]
+\pause \item Two exogenous variables $\to$ 4 factors: \\
+$g_0(\tilvecx)=1$, 
  $g_1(\tilvecx)=\tilx_1$,
  $g_2(\tilvecx)=\tilx_2$,
  $g_3(\tilvecx)=\tilx_1 \tilx_2$,
@@ -435,7 +437,7 @@ Y(\vec{x})=\vecbeta\tr\vec{x}+\epsilon
   \edm
   \bi
   \pause \item Solution of the ODE\\
-  $\abl{y}{t}=\frac{1}{\tau}\left(1-\frac{y(t)}{y_s}\right)$ 
+  $\abl{y}{t}=\frac{y(t)}{\tau}\left(1-\frac{y(t)}{y_s}\right)$ 
   for the initial value $y(t_0)=y_0$
   \pause \item Plot for $t_0=1950$, $y_0=\unit[3]{\%}$, $y_s=\unit[60]{\%}$,
     and $\tau=\unit[10]{years}$
@@ -447,27 +449,100 @@ Y(\vec{x})=\vecbeta\tr\vec{x}+\epsilon
 }}
 
 \visible<3->{\placebox{0.75}{0.50}
- {\figSimple{0.50\textwidth}{figsAllg/limitedGrowth_eng.png}}
-}
+ {\figSimple{0.50\textwidth}{figsAllg/limitedGrowth_eng.png}}}
 
 
 }
+
+%##############################################################
+\frame{\frametitle{Actual example: Corona simulation}
+%##############################################################
+
+\placebox{0.50}{0.50}{
+ \figSimple{1.05\textwidth}{figsCorona/coronaSimulationDe_1.png}}
+
+\placebox{0.50}{0.10}{\parbox{0.9\textwidth}{
+Simplest macroscopic SI (susceptible-infected) model:\\
+$y(t+\tau)=y(t) + R_0 y(t)(1-y(t))$ $\to$ same model as above}}
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Mathematical structure II: Other criteria}
+%##############################################################
+
+\bi
+\item \bfdef{deterministic} \textit{vs.} \bfdef{stochastic}
+models\\[1em]
+\pause \item \#exogenous variables: 1: \bfdef{univariate};
+ $\ge 2$ \bfdef{multivariate} models\\[1em]
+\pause \item \#endogenous variables: single- \emph{vs.} multi-equation
+models\\[1em] 
+\pause \item Scaling of the endogenous variables: real-valued $\to$
+  \bfdef{regression} models; discrete $\to$ \bfdef{discrete choice}
+  models\\[1em]
+\pause \item Linking, chaining, and feedback
+\ei
+}
+
 
 
 %##############################################################
 \frame{\frametitle{Linking}
 %##############################################################
 \fig{0.7\textwidth}{figsAllg/flussdiag-Kopplung_eng.png}
+One or more endogenous variables of a model equation serve as
+exogenous variables of other model equations
 }
 
 %##############################################################
-\frame{\frametitle{Chaining and feedback}
+\frame{\frametitle{Chaining}
 %##############################################################
-\fig{1.00\textwidth}{figsAllg/flussdiag-Verkettung_eng.png}
+\fig{0.95\textwidth}{figsAllg/flussdiag-Verkettung_eng.png}
+
+The endogenous variables of Model~1 serve as exogenous variables
+  of Model~2 
 \vspace{1em}
+
 \pause
-\visible<2->{\fig{1.00\textwidth}{figsAllg/flussdiag-Rueckkopplung_eng.png}}
+\visible<2->{
+  \fig{1.05\textwidth}{figsAllg/flussdiag-Zeitentwicklung_eng.jpg}}
+
+\begin{itemize}
+\item Special case of chaining: \bfdef{time evolution}: the endogenous
+  variables at time $t$ 
+  are the exogenous variables at the next time step $t+\Delta t$
+\item The model itself is generally the same in all steps (autonomous model)
+\end{itemize}
+
 }
+
+
+
+%##############################################################
+\frame{\frametitle{Feedback}
+%##############################################################
+\fig{0.95\textwidth}{figsAllg/flussdiag-Rueckkopplung_eng.png}
+Combination of chaining and linking
+}
+
+%##############################################################
+\frame{\frametitle{Complex example: 
+Four-Step Model of transportation planning }
+%##############################################################
+
+\placebox{0.5}{0.44}{
+\figSimple{1.05\textwidth}{figsAllg/vierstufenmodell_eng.png}}
+
+}
+\end{document}
+
+
+
+
+
 
 
 
@@ -493,20 +568,6 @@ Y(\vec{x})=\vecbeta\tr\vec{x}+\epsilon
 \fig{0.9\textwidth}{figsAllg/ELOS_eng.png}
 }
 
-%##############################################################
-\frame{\frametitle{Model for limited growth}
-%##############################################################
-\fig{0.5\textwidth}{figsAllg/limitedGrowth_eng.png}
-
-\parbox{0.95\textwidth}{{\small Limited growth according to the
-    solution of the differential equation
-\myblue{$\abl{y}{t}=\frac{1}{\tau}\left(1-\frac{y(t)}{y_s}\right)$} 
-for the initial value $y_0=3$ at the moment in time
-$t_0=1950$ and the model parameters growth time constant $\tau=10$
-and saturation $y_s=60$. The result might represent the penetration rate
-for passenger cars per person in \%.}}
-
-}
 
 
 %##############################################################
@@ -575,8 +636,3 @@ These data can be obtained from interviews.
 
 \end{document}
 
-%##############################################################
-\frame{\frametitle{}
-%##############################################################
-\fig{0.9\textwidth}{figsAllg/.jpg}
-}

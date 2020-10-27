@@ -1,0 +1,245 @@
+
+Siehe auch movsim_myAdditions/README_gitUpdateCompileRun
+
+Mein Home (zB Uebersicht von mir angelegter Projekte)
+Neues Projekt in git anlegen
+Neues Projekt von git holen
+Neuen Branch zur Entwicklung anlegen
+Committen usw
+Graphische Versions-History 
+Aktuelle Aenderungen loeschen
+
+
+Mein Home (zB Uebersicht von mir angelegter Projekte)
+====================================================
+
+https://github.com/MTGrmany
+(2019) eigene Projekte: einloggen,Bildsymbol-my projects oder aehnl
+(2016) Meine projekte mit Push-Moeglichkeit (Glockensymbol re oben auf
+gitSeiten - Watching)
+(2018) Achtung! geanedert! Zunaechst Glockensymbol erst nach Einloggen
+oen im schwarzen Balken, dieses gibt aber nicht mehr die aktuellen
+Projekte an, ich kann nur meine 3 eigenen sehen
+(mai2018) Nun links nach Einloggen:
+
+Allgemeine Hilfe: NUR nach Einloggen, NUR auf gewissen Seiten,
+insbesondere auf Default: Komisches "M" Symbol klicken => nun mein
+Bild, dann "your 
+profile" => Help als eine Schublade.
+
+Alle Projekte mit Push-Moeglichkeit: Hilfe-Stichwort "Watching", ist
+alles korrekt eingestellt, listet aber
+keine mehr...
+
+
+https://github.com/
+
+    MTGermany/traffsimjs
+    movsim/movsim
+    movsim/bibtex
+    movsim/trafficflowdynamics
+    movsim/traffic-simulation-de
+    MTGermany/mic
+    akegermany/verkehrsdynamik-website
+
+    akegermany/trafficflowdynamics-website
+    akegermany/trafficstates-website
+    MTGermany/www-traffic-simulation-de
+    MTGermany/CoronaSim (2020-04)
+    MTGermany/Traffic-Econometrics-MA (2020-10)
+    movsim/verkehrsdynamik
+    akegermany/www-trafficsimulation-de
+    martinbudden/movsimviewer
+    git@git.sbbdb.de:Felsampel/sbb_fa_estimate-humidity
+
+Erklaerung zu obigen Projekten (Mai 2018)
+
+https://github.com/MTGermany/traffsimjs (erste eigene js Version, obsolet)
+https://github.com/MTGermany/MASTER
+https://github.com/MTGermany/Traffic-Econometrics-MA 
+   local mounted  @ ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/
+https://github.com/movsim/traffic-simulation-de (Aktuelle html5 js Version)
+https://github.com/MTGermany/www-traffic-simulation-de (Java Version)
+https://github.com/akegermany/www-trafficsimulation-de (ebenfalls Java Version)
+
+https://github.com/movsim/trafficflowdynamics (Buch, private, von Arne)
+https://github.com/akegermany/trafficflowdynamics-website
+https://github.com/akegermany/verkehrsdynamik-website
+https://github.com/movsim/verkehrsdynamik
+
+https://github.com/movsim/movsim (zentrales movsim-Repository, viel traffic)
+https://github.com/martinbudden/movsimviewer (private)
+[https://github.com/movsim/movsim-webpage] funzt nicht 2019-04
+
+https://github.com/movsim/bibtex (private, von Arne)
+https://github.com/akegermany/trafficstates-website
+   => http://www.h2063376.stratoserver.net/trafficstates
+
+git clone git@git.sbbdb.de:Felsampel/sbb_fa_estimate-humidity.git
+
+"Watching" following projects mit Push access unter meinen Namen (Mail
+12.9.2018, funzt feb 2019): 
+
+[obsolete, nun sbbdb]
+https://github.com/stphnmttldrf/sbb_fa_estimate-humidity
+
+
+
+Neues Projekt in git anlegen (oct20)
+===================================
+
+(Bsp www-traffic-simulation-de)
+
+[README.md anlegen] z.B. mit emacs oder 
+echo "# www-traffic-simulation-de" >> README.md
+git init
+git add README.md
+[ein .gitignore holen, z.B.]
+cp ../traffic-simulation-de/.gitignore .
+[alle relevanten zu versionierenden Files und Dirs adden:]
+git add <files/dirs>
+git commit -m "first commit"
+[initialer push; spaeter nur "git push". ]
+[auf git page re-oben '+' clicken, Namen (z.B. mic) waehlen]
+git remote add origin git@github.com:MTGermany/<project>.git
+z.B.
+git remote add origin git@github.com:MTGermany/mic.git
+git remote add origin git@github.com:MTGermany/MASTER.git
+git push -u origin master
+MTGermany
+mtghpwd1
+
+ACHTUNG: Muss vorher tatsaechlich interaktiv auf der github-Seite
+neues Repo adden, ehe git remote add origin funzt (OK Oct 2020)
+
+
+Neues Projekt von git holen (jan16)
+===================================
+
+git clone git@github.com:MTGermany/mixedTraffic  (jul19)
+git clone git@github.com:movsim/trafficflowdynamics.git
+git clone git@github.com:akegermany/verkehrsdynamik-website
+git clone git@github.com:MTGermany/mic.git (geht nich Ubuntu18 aug19)
+git clone https://github.com/MTGermany/mic.git (geht Ubuntu18 aug19)
+(mit ssh, alternative mit https wie oben)
+
+dann bekommst du das verzeichnis mit Namen trafficflowdynamics angelegt
+
+(du kannst es dann umbenennen, nur alles *im* Verzeichnis sind "unter
+beobachtung")
+
+
+
+(2014)
+
+Alles vom Basedir (z.B. movsim)
+
+Neues Projekt aus git-Webprojekt:
+git clone <website>
+z.B.
+git clone https://github.com/akegermany/trafficflowdynamics-website
+
+=> funzt! (Aug14)
+
+
+
+Committen usw
+==============
+
+
+Update
+=====
+
+Von der "Cloud":
+
+git pull
+
+(pw: mtghpwd1)
+
+(nur 1 Stufe=Stufe 2)
+
+
+Commit
+======
+
+Stufe 1: Lokal
+git commit -m "Message"
+[Von Eclipse aus: team-commit]
+[muss vorher addeen ("git add <files>"), was committed werden soll]
+Stufe 2: "In die Cloud": 
+cmdline =>
+git push
+MTGermany
+mtghpwd1
+
+
+Adden (nur Stufe 1!)
+===============
+
+git add <files>
+
+(falls bereits in der Cloud, geht nur lokales Loeschen+commut+push)
+
+Rausnehmen aus Versionsverwaltung (nicht Loeschen von Platte!)
+===============================================
+.gitignore editieren
+
+[NICHT in .git, sondern direkt in movsim!]
+
+Mergen, Konfliktverwaltung (feb12)
+==========================
+
+<Finden der konfligierenden Files:>
+git stash
+
+<Mergen>
+git mergtool
+
+Graphische Versions-History (feb12)
+===========================
+
+gitk
+
+
+Neuen Branch zur Entwicklung anlegen
+===================================
+
+Ziel: und erst zum Schluss, wenn alles
+funxt, in Hauptbranch mergen
+
+
+# änderungen holen:
+git pull
+
+# branch anlegen
+git branch renderer
+
+# in diesen branch wechseln
+git checkout renderer
+
+# wo bin ich? (an den Files sieht man irgendwie nix)
+git status
+
+# dort committen (durchaus kleine commits) mit
+git commit -am "message" # achtung, -a sorgt dafür, dass alle modified
+Dateien committed werden. Falls du eine neue Datei anlegst, musst du
+diese explizit adden mit "git add file"
+
+# mit der entwicklung zufrieden, dann
+git checkout master
+git merge renderer
+# und temporären branch löschen:
+git branch -d renderer
+
+# pushen auf das zentrale repo:
+git push origin master
+
+# mir eine mail schreiben 
+
+Aktuelle Aenderungen loeschen
+=============================
+
+git log => "hash keys" for latest commits
+git reset -- hard <hash key>
+         => zurueckgesetzt auf Stand dieses commits
+git push (zur Sicherheit, falls andere geupdatet haben)
