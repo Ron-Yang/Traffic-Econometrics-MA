@@ -1,0 +1,1163 @@
+
+
+
+% ACHTUNG Referenz bei $HOME/tex/inputs/desfsSkript.tex
+% gleich wie lokale defsSkript.tex bei den Skripten!!!
+% verlinke mit \input{$HOME/tex/inputs/defsSkript}
+
+%#####################################################
+% Hyperlink
+%#####################################################
+\usepackage{units} %\unit[3]{m/s^2} => 3 m/s^2 etc!
+\usepackage{eurosym}  %Euro-Symbol: \euro{Zahl} oder euro{}
+
+%implements blocks: \begin{addmargin}[1em]{0em}% 1em left, 2em right
+\usepackage{scrextend} 
+
+\usepackage{hyperref}
+% nternet-Link: \href{http://www.WasAuchImmer.html}
+% {\blue{\underline{TextDesLinks} }}
+% Lokaler Link: \hyperlink{targetName}{TextDesLinks}
+% Link-Target: \hypertarget{targetName}
+
+% Lokale Links: mark target with e.g. 
+% \hypertarget{fig:IDM}{Target mit label fig:IDM}
+% and link to it with \myLocalLink{fig:IDM}{Link zu Target fig:IDM}
+\providecommand{\myHyperlink}[2]{\href{#1}{\blue{\underline{#2}}}}
+\providecommand{\myLocalLink}[2]{\hyperlink{#1}{\blue{\underline{#2}}}}
+
+%###################################################################
+% bibliography-hack to put citation in my order and at several places
+%###################################################################
+
+% * need name-oriented citation style such that citation 
+%   can be attributed, e.g., \bibliographystyle{elsarticle-harv}
+
+% * compile normally with bibtex and enter resulting .bbl file
+%   manually at appropriate places (commenting out bib commands)
+
+% * remove \bibliography{...} and compile ONCE (at the second time, we
+% get ?? in the citation places)
+
+\newcommand{\mybibentry}[1]{
+\parindent0em
+\hspace{2em}
+\parbox{0.95\textwidth}{
+\parindent-2em
+#1
+\vspace{1ex}
+}
+
+}
+
+
+% use no-link generation for cite and citep because they are broken
+% as a side effect
+
+\newcommand*{\nolinkcite}[1]{%
+  {\protect\NoHyper\cite{#1}\protect\endNoHyper}%
+}
+\newcommand*{\nolinkcitep}[1]{%
+  {\protect\NoHyper\citep{#1}\protect\endNoHyper}%
+}
+
+% end bibliography-hack to put citation in my citation order 
+% and at several places
+%########################################################
+
+
+%#####################################################
+% Preprint vs. Publikation
+%#####################################################
+\providecommand{\martin}[1]{\green{Martin: #1}} %Preprint
+%\providecommand{\martin}[1]{}                  %fuer Veroeffentlichung
+\providecommand{\arne}[1]{\green{Martin: #1}}   %Preprint
+%\providecommand{\arne}[1]{}                    %fuer Veroeffentlichung
+
+
+%#####################################################
+% latest changes from Arne
+%#####################################################
+
+% 8-10-04: ex: \includefig{110mm}{psfile}
+\newcommand{\includefig}[2]{\includegraphics[width=#1]{#2}}
+\providecommand{\bra}{\langle}
+\providecommand{\ket}{\rangle}
+%#####################################################
+% defs of Arne
+%#####################################################
+
+\providecommand{\uul}{\uu}
+\providecommand{\ug}{\approx}  % ungefaehr gleich
+\providecommand{\nor}[1]{\mathrm{#1}}
+\providecommand{\sollsein}{\,{\stackrel{!}{=}}\,}
+\providecommand{\binom}[2]{\ueber{#1}{#2}}
+\providecommand{\www}[1]{\texttt{#1}}
+\providecommand{\mytilde}{\symbol{126}} % ist die Tilde!!!
+\providecommand{\etal}{\textit{et al.}}
+%
+\providecommand{\cl}[1]{{\centering #1}}
+\providecommand{\no}{\noindent}  % keine Einrückung bei neuer Zeile
+%
+\providecommand{\bno}{\begin{equation*}}   % no citation number
+\providecommand{\eno}{\end{equation*}}
+
+\providecommand{\also}{$\to\,$}
+\providecommand{\kasten}[1]{\begin{displaymath}\fbox{$\quad\displaystyle #1\quad$}\end{displaymath}}
+\providecommand{\ul}[1]{\underline{#1}}   
+\providecommand{\uu}[1]{\underline{\underline{#1}}}  % bereits in latex def!
+\providecommand{\uul}{\uu}
+\providecommand{\ol}[1]{\overline{#1}} 
+%fuer mich:
+%irgendwie mit german schon definiert !?
+\providecommand{\3}{{\ss }}
+
+
+
+%******************************************************************
+%  General definitions for latex, revtex
+%******************************************************************
+\renewcommand{\ae}{{\"a}\hspace{-0.4em}}
+\renewcommand{\oe}{{\"o}\hspace{-0.4em}}
+\providecommand{\ue}{{\"u}\hspace{-0.4em}}
+\providecommand{\Ae}{{\"A}\hspace{-0.4em}}
+\providecommand{\Oe}{{\"O}\hspace{-0.4em}}
+\providecommand{\Ue}{{\"U}\hspace{-0.4em}}
+
+
+% to circumvent a bug that euro symbols are not displayed in math mode
+\providecommand{\eur}{\text{\euro{}}}
+
+
+\providecommand{\IR}{I\!\!R}
+\providecommand{\IN}{I\!\!N}
+
+\providecommand{\lowtilde}{{\mbox{$_{\tilde{}}$}}}
+\providecommand{\backsl}{\mbox{$\backslash\!$}}
+
+
+
+
+%##################################################
+% colors
+%##################################################
+
+% defines {\black ...}, {\red ...}, ... and
+%\black{} \red{} \green{} \turk{} \viol{} \orange{}
+% \brown{} \grey{}
+% visible only in ps not in dvi! (=>tex2ps <texfile w/o ext>)
+
+%\usepackage[dvips]{color} %!! sometimes ``option clash''=> def w/o options
+\usepackage{color}
+
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{red}{rgb}{0.8,0,0}
+\definecolor{lightred}{rgb}{1,0.5,0.5}
+\definecolor{green}{rgb}{0,0.8,0}
+\definecolor{blue}{rgb}{0,0,1}
+\definecolor{turk}{rgb}{0,1,1}
+\definecolor{viol}{rgb}{1,0,1}
+\definecolor{orange}{rgb}{1,0.4,0.}
+\definecolor{yellow}{rgb}{1,0.7,0.}
+\definecolor{brown}{rgb}{0.7,0.4,0}
+\definecolor{gray}{rgb}{0.7,0.7,0.7}
+\definecolor{darkgray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightgray}{rgb}{0.95,0.95,1.0}
+\definecolor{verylightred}{rgb}{1,0.7,0.5}
+
+\definecolor{TUDblue1}{rgb}{.05,.22,.410}
+\definecolor{TUDblue2}{rgb}{.11, .42, .81}
+\definecolor{mygreen}{rgb}{0.,0.4,0.4}
+\definecolor{myred}{rgb}{1,0.0,0.0}
+\definecolor{blueTUD}{rgb}{0.1,0,0.5} %my color
+
+%% !! only so cumbersome. Short search: 
+% No shortcut defining rgb directly (nov19)
+
+\providecommand{\verylightred}[1]{\textcolor{verylightred}{#1}}
+\providecommand{\black}[1]{\textcolor{black}{#1}}
+\providecommand{\red}[1]{\textcolor{red}{#1}}
+\providecommand{\blue}[1]{\textcolor{blue}{#1}}
+\providecommand{\green}[1]{\textcolor{green}{#1}}
+\providecommand{\turk}[1]{\textcolor{turk}{#1}}
+\providecommand{\viol}[1]{\textcolor{viol}{#1}}
+\providecommand{\orange}[1]{\textcolor{orange}{#1}}
+\providecommand{\yellow}[1]{\textcolor{yellow}{#1}}
+\providecommand{\brown}[1]{\textcolor{brown}{#1}}
+\providecommand{\gray}[1]{\textcolor{gray}{#1}}
+\providecommand{\lightgray}[1]{\textcolor{lightgray}{#1}}
+\providecommand{\lightred}[1]{\textcolor{lightred}{#1}}
+
+\newcommand{\myred}[1]{{\color{myred} #1}}
+\newcommand{\myblue}[1]{{\color{TUDblue1} #1}}
+\newcommand{\mygreen}[1]{{\color{mygreen} #1}}
+\newcommand{\blueTUD}[1]{{\color{blueTUD} #1}}  %my color
+\providecommand{\bfblueTUD}[1]{\hspace*{0.01em}{\boldmath \textbf{\blueTUD{#1}}}}
+\providecommand{\bfblue} [1]{\hspace*{0.01em}{\boldmath \textbf{\blue{#1}}}}
+\providecommand{\bfblack}[1]{\hspace*{0.01em}{\boldmath \textbf{\black{ #1}}}}
+\providecommand{\bfgreen}[1]{\hspace*{0.01em}{\boldmath \textbf{\green{#1}}}}
+\providecommand{\bfred}  [1]{\hspace*{0.01em}{\boldmath \textbf{\red{#1}}}}
+
+
+
+%#################################################################
+% special colors definitions for special structures in scripts/transparencies
+%#################################################################
+
+% main text
+\definecolor{colMainText}{rgb}{1,0.75,0.3}
+\newcommand{\colMainText}[1]{{\color{colMainText} #1}}
+
+% main equations
+\definecolor{colMainEq}{rgb}{1,0.75,0.3}
+\newcommand{\colMainEq}[1]{{\color{colMainEq} #1}}
+
+
+% definitions
+\definecolor{colDef}{rgb}{0.6,0,0.2}
+\newcommand{\colDef}[1]{{\color{colDef} #1}}
+\providecommand{\bfdef}[1]{\hspace*{0.01em}{\boldmath \textbf{\colDef{#1}}}}
+
+% questions and answers
+
+\definecolor{colAsk}{rgb}{1,0.5,0.}
+\newcommand{\colAsk}[1]{{\color{colAsk} #1}}
+
+\definecolor{colAnswer}{rgb}{0,0.5,0.5}
+\newcommand{\colAnswer}[1]{{\color{colAnswer} #1}}
+
+\providecommand{\bfAsk}[1]{\hspace*{0.01em}{\boldmath \textbf{\colAsk{#1}}}}
+\providecommand{\bfAnswer}[1]{\hspace*{0.01em}{\boldmath
+    \textbf{\colAnswer{#1}}}}
+
+\providecommand{\itemAsk}{\item[\bfAsk{?}]}
+\providecommand{\itemAnswer}{\item[\bfAnswer{!}]}
+
+% answers
+
+%#################################################################
+
+\newcommand{\rlogo}[1]{\hfill {\color{black} {\texttt{#1.}}} \hspace*{-3mm} \includegraphics[width=4mm]{../style/Rlogo}}
+
+%###########################################################
+% absolute positioning of boxes or images
+%###########################################################
+
+
+% https://tex.stackexchange.com/questions/311007/change-package-option-overlay-from-textpos-package-in-document/311031#311031
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\newcommand{\placebox}[4][center]{%
+  % [#1]: box anchor: center (default) | 
+  %                 south west | west | north west | north |
+  %                 north east | east | south east | south | 
+  %                 mid west | mid | mid east |
+  %                 base west | base | base east 
+  % #2: horizontal position (fraction of page width)
+  % #3: vertical position (fraction of page height)
+  % #4: content
+  %
+  \tikz[remember picture,overlay,x=\paperwidth,y=\paperheight]{%
+    \node[anchor=#1,inner sep=0pt]
+    at ($(current page.south west)+(#2,#3)$) {#4};
+  }%
+}
+%###########################################################
+
+% make images pale (see demo_makePale.tex)
+%\makePale{opacity}{centerXrel}{centerYrel}{wrel}{hrel}
+% e.g., \makePale{0.6}{0.5}{0.5}{1}{0.3}
+
+\usepackage{pgfcore}
+
+\providecommand{\makePale}[5]{
+ \setlength{\unitlength}{0.5\textwidth}
+ \placebox{#2}{#3}{
+   \begin{picture}(0,0)
+   \put(-#4,-#5){
+    \pgfsetfillopacity{#1}{
+     \textcolor{white}{\rule{#4\textwidth}{#5\textheight}}
+    }
+   }
+   \end{picture}
+ }
+}
+
+%###########################################################
+
+
+
+%usage \circled{2} gives 2 in a circle
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle, draw, inner sep=1pt, 
+        minimum height=12pt] (char) {#1};}}
+
+
+
+
+
+% example own definition
+\definecolor{lyellow}{rgb}{1,1,0.5}
+\providecommand{\lyellow}[1]{\textcolor{lyellow}{#1}}
+\definecolor{lblue}{rgb}{0.91,1,1}
+\providecommand{\lblue}[1]{\textcolor{lblue}{#1}}
+
+% (jul19, old notebook) ACHTUNG: \textsf{ statt \sffamily{ DOS !!
+
+% find keywords: caption, title
+\providecommand{\bfsf}[1]{\large{\sffamily\textbf{#1}}}
+\providecommand{\secfont}[1]{\Large{\sffamily\textbf{#1}}}
+\providecommand{\myheading}[1]{\Large{\sffamily\textbf{\blueTUD{#1}}}}
+\providecommand{\mysubheading}[1]{\large{\sffamily\textbf{\blueTUD{#1}}}}
+\providecommand{\mysubsubheading}[1]{\sffamily\textbf{\blueTUD{#1}}}
+
+
+%******************************************************************
+% General defs for structural units and environments 
+%******************************************************************
+
+% see also \mysubheading etc
+
+\providecommand{\mysection}[1]   {\section{{\textsf\Large\textbf{#1}}}}
+\providecommand{\mysubsection}[1]{\subsection{{\textsf\large\textbf{#1}}}}
+
+% fuer usepackage[a4paper]{foils}  (sonst Headings groe\3er)
+%calling sequence: \myfigure{title}{images}{explanatory text}
+\providecommand{\myfigure}[3]{
+%\newpage
+\begin{center}
+{\large\textsf\textbf{#1}} \\[-4mm]
+\end{center}
+#2
+
+#3
+}
+
+
+\providecommand{\bc}{\begin{center}}
+\providecommand{\ec}{\end{center}}
+\providecommand{\be}{\begin{equation}}
+\providecommand{\ee}{\end{equation}}
+\providecommand{\bea}{\begin{eqnarray}}
+\providecommand{\eea}{\end{eqnarray}}
+\providecommand{\bdm}{\begin{displaymath}}
+\providecommand{\edm}{\end{displaymath}}
+\providecommand{\bdma}{\begin{eqnarray*}}
+\providecommand{\edma}{\end{eqnarray*}}
+\providecommand{\ba}{\begin{eqnarray*}}
+\providecommand{\ea}{\end{eqnarray*}}
+\providecommand{\bi}{\begin{itemize}}
+\providecommand{\ei}{\end{itemize}}
+\providecommand{\benum}{\begin{enumerate}}
+\providecommand{\eenum}{\end{enumerate}}
+
+
+\providecommand{\dis}[1]{ {\displaystyle #1}}
+
+%example:\dmTwo{qlhs1 &=rhs1 \\ lhs2 &=rhs2}
+\providecommand{\dmTwo}[1]{
+  \begin{displaymath}
+    \begin{array}{ll} #1
+    \end{array}
+  \end{displaymath}
+}
+% wie bdma ... edma, aber alles linkszentriert
+
+\providecommand{\dmThree}[1]{
+  \begin{displaymath}
+    \begin{array}{lll} #1
+    \end{array}
+  \end{displaymath}
+}
+
+%example: $ f(x)=\twoCases{0}{x<0}{1}{x\ge 0}$
+\providecommand{\twoCases}[4]{
+  \left\{ 
+    \begin{array}{ll} 
+      #1 & #2 \\
+      #3 & #4 
+    \end{array} 
+  \right.
+}
+\providecommand{\threeCases}[6]{
+  \left\{ 
+    \begin{array}{ll} 
+      #1 & #2 \\
+      #3 & #4 \\ 
+      #5 & #6 
+    \end{array} 
+  \right.
+}
+\providecommand{\fourCases}[8]{
+  \left\{ 
+    \begin{array}{ll} 
+      #1 & #2 \\
+      #3 & #4 \\ 
+      #5 & #6 \\ 
+      #7 & #8 
+    \end{array} 
+  \right.
+}
+
+% column vector with parentheses, e.g.,
+%\myVector{1\\2\\3}
+
+\providecommand{\myVector}[1]{
+  \left(\begin{array}{c} 
+      #1 
+   \end{array} \right)
+}
+
+%matrix with two columns, e.g.,
+% \myMatrixTwo{c11&c12\\c21&c22\\c31&c32}
+%BESSER: \begin{pmatrix} c11&c12\\c21&c22\end{pmatrix}
+
+\providecommand{\myMatrixTwo}[1]{
+  \left(\begin{array}{cc} 
+      #1 
+   \end{array} \right)
+}
+
+%matrix with three columns, e.g.,
+% \myMatrixThree{c11&c12&c13\\c21&c22&c23\\c31&c32&c33}
+%BESSER: \begin{pmatrix} c11&c12\\c21&c22\end{pmatrix}
+
+\providecommand{\myMatrixThree}[1]{
+  \left(\begin{array}{ccc} 
+      #1 
+   \end{array} \right)
+}
+
+\providecommand{\myMatrixFour}[1]{
+  \left(\begin{array}{cccc} 
+      #1 
+   \end{array} \right)
+}
+
+\providecommand{\myMatrixFive}[1]{
+  \left(\begin{array}{ccccc} 
+      #1 
+   \end{array} \right)
+}
+
+\providecommand{\non}{\nonumber \\}
+\providecommand{\no}{\nonumber}
+
+\providecommand{\refkl}[1]{(\ref{#1})}
+
+%######################################
+% boxed displayed equations
+%######################################
+
+\providecommand{\fboxdm}[1]{
+ \begin{center} \fbox{
+   ${\displaystyle \begin{array}{l} #1 \end{array}}$} \end{center}
+}
+
+\providecommand{\fboxeq}[1]{
+\begin{equation}
+ \fbox{${\displaystyle  #1 }$}
+\end{equation}
+}
+
+
+\providecommand{\fboxtext}[1]{
+  \begin{center} \framebox{
+    \begin{minipage}{0.8\textwidth} #1 \end{minipage}
+  }
+  \end{center}
+}
+
+\providecommand{\fitfboxtext}[1]{
+  \begin{center} 
+    \fbox{{#1}}
+  \end{center}
+}
+
+
+
+%#####################################################
+% Numberered equation with background color (including the numbering)
+% needs colors.sty; ex.: \bgcoloreq{green}{x^2 = y^2+z^2}
+\providecommand{\bgcoloreq}[2]{
+  \mbox{\colorbox{#1}{
+    \begin{minipage}{\textwidth}
+      \begin{equation} #2 \end{equation}
+    \end{minipage}
+  }}
+}
+
+%###################################################
+% Numberered equation with background color only behind the formula
+% needs colors.sty; ex.: \bgeq{green}{label}{x^2 = y^2+z^2}
+
+\providecommand{\bgeq}[3]{
+  \begin{equation}
+  \label{#2}
+  \colorbox{#1}{$ {\displaystyle #3}$}
+  \end{equation}
+}
+
+%###################################################
+% Displayed equation with background color (over whole width)
+% needs colors.sty; ex.: \bgcolordm{red}{x^2=1}
+\providecommand{\bgcolordm}[2]{
+  \mbox{\colorbox{#1}{
+    \begin{minipage}{\textwidth}
+       \vspace*{-2ex} % folg. Leerzeile wichtig; vspace nicht woanders...
+
+       \begin{displaymath} #2 \end{displaymath}
+       \vspace*{-3.8ex} % folg. Leerzeile wichtig, ... da ignoriert
+
+
+    \end{minipage}
+  }}
+}
+
+%###############################################
+% Centered equation with background color only behind the formula
+% needs colors.sty; ex.: \bgcolormath{red}{x^2=1}
+\providecommand{\bgcolormathcenter}[2]{
+ \begin{center}
+  \colorbox{#1}{${\displaystyle #2}$}
+ \end{center}
+}
+
+%###############################################
+% non-centered displayed equation with background color only behind the formula
+% needs colors.sty; ex.: \bgcolormath{red}{x^2=1}
+\providecommand{\bgcolormath}[2]{
+  \colorbox{#1}{${\displaystyle #2}$}
+}
+
+
+%################################################################
+% Standard colored box with some margins and width=whole textwidth
+% needs colors.sty; ex.: \widecolorbox{lilablassblau}{bel. Inhalt}
+\providecommand{\widecolorbox}[2]{
+  \mbox{\colorbox{#1}{
+    \hspace*{0.5em}\begin{minipage}{0.94\textwidth}
+      \vspace*{1ex}
+
+       #2
+       \vspace*{1ex}
+
+
+    \end{minipage}\hspace*{0.5em}
+  }}
+}
+
+\providecommand{\widecolorboxExmpl}[2]{
+  \mbox{\colorbox{#1}{
+    \hspace*{0.5em}\begin{minipage}{0.88\textwidth}
+      \vspace*{1ex}
+
+       #2
+       \vspace*{1ex}
+
+
+    \end{minipage}\hspace*{0.5em}
+  }}
+}
+
+%################################################################
+% Standard colored box without margins and width=whole textwidth
+% needs colors.sty; ex.: \colbox{lilablassblau}{bel. Inhalt}
+% NOTE: much more flexible than usual \colorbox!
+\providecommand{\colbox}[2]{
+  \mbox{\colorbox{#1}{
+    \hspace*{0.1em}\begin{minipage}{\textwidth}
+      \vspace*{0ex}
+
+       #2
+       \vspace*{0ex}
+
+
+    \end{minipage}\hspace*{-0.1em}
+  }}
+}
+
+
+%######################################
+% Non-buggy multiline table entry: a component of entryExample below
+% Calling sequence: \myBox{width}{text}
+%######################################
+
+\newcommand{\myBox}[2]{
+  \hspace{-0.2mm}\parbox{#1}{
+      \vspace*{2mm}#2\vspace*{2mm}      
+  } \hspace*{-1mm}
+}
+ 
+%######################################
+% Example: 3-column table with
+% non-buggy multiline behaviour of the entries (as in usual latex)
+% \begin{tabular}{|l|l|l|}  \hline
+% \entryExample{left}{center}{right} \entry{ ....} ...
+% \end{tabular}  
+%######################################
+
+\providecommand{\entryExample}[3]{
+       \hspace{2mm}\parbox{40mm}{\vspace*{2mm}#1\vspace*{2mm}} \hspace*{-2mm}
+     & \hspace{2mm}\parbox{30mm}{\vspace*{2mm}#2\vspace*{2mm}} \hspace*{-2mm}
+     & \hspace{2mm}\parbox{30mm}{\vspace*{2mm}#3\vspace*{2mm}} \hspace*{-2mm}
+                        \\ \hline
+                       }
+
+
+%######################################
+% Example table with decimal-point centered entries:
+
+% \usepackage{dcolumn}  % Ausrichtung an Dezimalpunkt
+% \begin{tabular}{|D{.}{.}{1}|D{.}{.}{1}|D{.}{.}{1}|} \hline
+% \entryDec{left}{center}{right}
+% \end{tabular}  
+%!! aber auch Bug: vergroessert gewaltsam Tabellen, ohne dass
+% andere Nichtzahlenzeilen (Titel) dies ausnutzen koennten!
+% => muss diesen Bug mit erhoehten \hspace-Werten in \entry (fuer Titel)
+% ausmerzen! (anderes geht nicht!! DOS!
+%######################################
+
+\providecommand{\entryDec}[3]{
+ &&\\[-4mm]                      % schafft oben mehr Platz
+ #1 & #2 & #3 \\[1mm] \hline     % schafft unten mehr Platz 
+}                              % ! \vspace{..} unterbr Tab, \\[] nicht!
+
+
+
+%!! citebox:Latex-Bug: Setzt nicht kleineren Textabstand bei kleinerer Schrift
+% breche laengere Eintraege gewaltsam mit \\[-4mm] um
+% Bug 2: vertikaler Abstand des Zitierenden #2 oft falsch; korrigiere mit
+% \vspace beim #!-Eintrag!
+
+\providecommand{\citebox}[2]{
+  \hspace*{\fill}
+  \begin{minipage}{90mm}
+  %\renewcommand{\baselinestretch}{1.0}
+  \footnotesize {\textsl #1}
+  \end{minipage}
+  \vspace*{-2mm}
+
+  \hspace*{\fill}{ \scriptsize #2 }
+}
+
+\providecommand{\citeboxi}[2]{
+  \hspace*{\fill}
+  \begin{minipage}{100mm}
+  \renewcommand{\baselinestretch}{1.0}
+  \footnotesize {\sl #1}
+  \vspace*{-3mm}\\
+  \hspace*{\fill} #2\\
+  \end{minipage}
+  }
+
+\providecommand{\footnotespace}[1]{\footnote{\hspace{0.3em}#1}}
+\providecommand{\tabsetting}{
+              \renewcommand{\baselinestretch}{1.0}\small \normalsize}
+\providecommand{\tabspacesetting}[1]{
+              \renewcommand{\baselinestretch}{#1}\small \normalsize}
+
+
+%#########################################################
+% Create custom environemnts : Those used for Vkmod.tex 
+%#########################################################
+
+% usage: \begin{itemize} ... \itemgray{text} ... \end{itemize}
+% beware: \colorbox{lightgray}{  .. } extends only over 1 line!
+% triangle: tip up
+% triangleright: tip right but not filled
+% blacktriangleright: tip right, filled=OK override black by color
+
+\providecommand{\itemgray}[1]{
+{\color{darkgray}
+  \item[\color{darkgray}\scalebox{0.7}{$\blacktriangleright$}] #1}
+}
+
+% usage: \aufgabenbox{caption}{text}
+\providecommand{\aufgabenbox}[2]{
+  \vspace{3mm}
+  {\parindent0mm
+  \widecolorbox{lightgray}{
+    {\textsf\textbf{#1}} \vspace{3mm}
+
+ #2
+  }}
+ \vspace{5mm}
+
+}
+
+% usage: \verstaendnisbox{text}
+
+\providecommand{\verstaendnisbox}[1]{
+  \vspace{3mm}
+  {\parindent0mm
+  \widecolorbox{lightgray}{
+    \textbf{Verst\"andnisfrage:}\\[-8mm]
+    \begin{itemize}
+      \item[] #1
+    \end{itemize}
+  \vspace*{-2mm}
+  }}
+ \vspace{5mm}
+
+}
+
+\providecommand{\examplebox}[2]{
+ \begin{center}
+  \vspace{3mm}
+  {\parindent0mm
+  \widecolorboxExmpl{lblue}{
+%  \widecolorboxExmpl{lightgray}{
+    \textit{#1}\\[0.5em]
+    #2
+    \vspace*{0.5em}
+    }
+  }
+  \vspace{1em}
+  \end{center}
+}
+
+
+%\providecommand{\verstaendnisbox}[1]{
+%  \vspace{5mm}
+%  \textbf{Verst\"andnisfrage:}\\[-8mm]
+%  \begin{itemize}
+%    \item[] #1
+%  \end{itemize}
+%}
+
+%usage: \maineq{eq_label}{formula}
+
+\providecommand{\maineq}[2]{
+ \bgeq{colMainEq}{#1}{#2}
+}
+
+%usage: \maindm{formula}
+
+\providecommand{\maindm}[1]{
+ \bgcolormathcenter{colMainEq}{#1}
+}
+
+
+\providecommand{\maindmIntext}[1]{
+ \bgcolormath{colMainEq}{#1}
+}
+
+%usage: \maintextbox{width}{text}
+
+\providecommand{\maintextbox}[2]{
+\vspace{0.5mm}
+\begin{center}
+  \colorbox{colMainText}{
+   \hspace*{0.5mm}
+     \parbox{#1}{\vspace*{0.5mm}
+     #2\vspace*{0.5mm}
+     }
+   \hspace*{0.5mm} 
+  }
+\end{center}
+\vspace{0mm}
+}
+
+%usage: \maintext{text}
+
+\providecommand{\maintext}[1]{
+ \maintextbox{0.95\textwidth}{#1}
+}
+
+\providecommand{\maintextSimple}[1]{ % bug: no center allowed in placebox
+  \colorbox{colMainText}{
+   \hspace*{0.5mm}
+     \parbox{0.95\textwidth}{\vspace*{0.5mm}
+     #1\vspace*{0.5mm}
+     }
+   \hspace*{0.5mm} 
+  }
+}
+
+
+
+%******************************************************************
+% General defs for words, text symbols and icons
+%******************************************************************
+\providecommand{\text}[1]{{\mbox{ #1}}}
+
+\providecommand{\Angstroem}{{\AA}}
+\providecommand{\cels}{\mbox{$^{\circ}{\textrm C}$}}
+\providecommand{\emptySet}{\{\not\hspace{-1mm}0\}}
+\providecommand{\Fr}{\mbox{Fr\'{e}edericksz--}}
+\providecommand{\Poincare}{Poincar\'{e}}
+\providecommand{\rb}{Rayleigh--B\'{e}nard}
+\providecommand{\RB}{Rayleigh--B\'{e}nard}
+\providecommand{\via}{\textit{via}}
+\providecommand{\msii}{\mbox{m/s$^2$}}
+\providecommand{\result}[1]{\underline{\underline{#1}}}
+ 
+\newcommand{\EinsteinPdflatex}{
+\parbox{3ex}{\vspace{-0ex}
+\includegraphics[width=3ex]{figsGeneric/Einstein.jpg}
+\vspace{0ex}}
+\hspace{0ex} 
+}
+
+\newcommand{\Einstein}{
+\parbox{7mm}{\vspace{2mm}
+\includegraphics[width=10mm]{figsGeneric/Einstein.eps}
+\vspace{-3mm}}\vspace{-3mm}
+\hspace{2mm} 
+}
+
+\newcommand{\EinsteinLarge}{
+\parbox{15mm}{\vspace{2mm}
+\includegraphics[width=18mm]{figsGeneric/Einstein.eps}
+\vspace{-2mm}}\vspace{-2mm}
+\hspace{2mm} 
+}
+
+
+
+\providecommand{\EinsteinBeg}{
+\vspace{-3mm}
+
+\Einstein
+\vspace{3mm}
+
+}
+
+\newcommand{\OK}{\includegraphics[width=1.2em]
+   {$HOME/tex/inputs/figsGeneric/OK.png}}
+\newcommand{\OKeps}{\includegraphics[width=1.2em]
+   {$HOME/tex/inputs/figsGeneric/OK.eps}}
+\newcommand{\contradiction}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=0.9em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/contradiction.png}\vspace*{0.2em}}
+}
+\newcommand{\contradictioneps}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=0.9em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/contradiction.eps}\vspace*{0.2em}}
+}
+
+\newcommand{\male}{\includegraphics[height=1em]
+   {$HOME/tex/inputs/figsGeneric/male.eps}}
+\newcommand{\female}{\includegraphics[height=1em]
+   {$HOME/tex/inputs/figsGeneric/female.eps}}
+
+\newcommand{\malepng}{\includegraphics[height=1em]
+   {$HOME/tex/inputs/figsGeneric/male.png}}
+\newcommand{\femalepng}{\includegraphics[height=1em]
+   {$HOME/tex/inputs/figsGeneric/female.png}}
+
+\newcommand{\circlei}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=1.2em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/1circle.eps}\vspace*{0.2em}}
+}
+
+\newcommand{\circleii}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=1.2em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/2circle.eps}\vspace*{0.2em}}
+}
+
+\newcommand{\circleiii}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=1.2em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/3circle.eps}\vspace*{0.2em}}
+}
+
+\newcommand{\circleiv}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=1.2em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/4circle.eps}\vspace*{0.2em}}
+}
+
+\newcommand{\circlev}{
+  \parbox{1.2em}{\vspace*{-0.2em}
+  \includegraphics[width=1.2em, origin=br]
+   {$HOME/tex/inputs/figsGeneric/5circle.eps}\vspace*{0.2em}}
+}
+
+
+%******************************************************************
+% General defs for tables
+%******************************************************************
+
+\providecommand{\titlebox}[1]{\parbox{140mm}{\vspace{2mm} #1 \vspace{2mm}}}
+
+% top/bottom lines of the tables too close
+\providecommand{\spacelinebot}[1]{\parbox[t]{1mm}{\hspace{1mm}\vspace{#1}}}
+\providecommand{\spacelinetop}[1]{\parbox[b]{1mm}{\hspace{1mm}\vspace{#1}}}
+\providecommand{\spacelinemid}[1]{\parbox[c]{1mm}{\hspace{1mm}\vspace{#1}}}
+\providecommand{\spacingbot}{\parbox[t]{1mm}{\hspace{1mm}\vspace{3mm}}}
+\providecommand{\spacingtop}{\parbox[b]{1mm}{\hspace{1mm}\vspace{6mm}}}
+\providecommand{\spacingmid}{\parbox[c]{1mm}{\hspace{1mm}\vspace{9mm}}}
+
+
+
+%******************************************************************
+% General defs for figures                                        *
+%******************************************************************
+
+\providecommand{\icon}[1]{
+  \parbox{7mm}{\vspace{2mm}
+    \includegraphics[width=7mm]{#1}
+    \vspace{-3mm}
+  }
+  \vspace{-3mm}
+\hspace{1mm} }
+
+% ex: \fig{0.9\textwidth}{epsfile}
+\providecommand{\fig}[2]{
+   \begin{center}
+     \includegraphics[width=#1]{#2}
+   \end{center}
+}
+\providecommand{\figSimple}[2]{
+     \includegraphics[width=#1]{#2}
+}
+
+% ex: \figBox{0.9\textwidth}{epsfile}
+% figure with parbox; necessary to make horizontal placement of figures/text
+% without latex bugs
+\providecommand{\figBox}[2]{
+  \parbox{#1}{
+     \begin{center}
+     \includegraphics[width=#1]{#2}
+    \end{center}
+  }
+}
+
+% ex: \figBox{0.9\textwidth}{epsfile}{text}
+
+\providecommand{\figBoxText}[3]{
+  \parbox{#1}{
+     \begin{center}
+     \includegraphics[width=#1]{#2}
+     \end{center}
+     #3
+  }
+}
+
+\providecommand{\oldfigc}[2]{
+   \renewcommand{\baselinestretch}{1.0}
+   \parbox[t]{#1}{\sloppy \small #2}
+   \renewcommand{\baselinestretch}{\usualstretch}
+   \small \normalsize
+   }
+
+
+% ex: \figps{110mm}{psfile}
+
+\providecommand{\figps}[2]{
+   \begin{minipage}[]{#1}
+       \epsfxsize #1
+       \epsffile{#2}
+   \end{minipage}
+   }
+
+\providecommand{\figcaption}[3]{
+   \renewcommand{\baselinestretch}{1.0} 
+   \noindent
+   \parbox[]{#1}
+      {\sloppy \small Figure #2 \ 
+       #3
+       }
+    \renewcommand{\baselinestretch}{\usualstretch}
+    \small \normalsize
+   }
+
+% ex: \largefig{filename}{5mm}{\label}{captiontext}
+
+\providecommand{\largefig}[4]{    % left fig, right text
+   \begin{minipage}{\lenxtot}
+       \figps{\lenxtot}{#1}
+       \vspace{#2} \\
+       \figcaption{\lenxtot}{#3}{#4}
+   \end{minipage}
+   }
+
+% ex: \smallfig{\lenxa}{filename}{\lenxb}{\label}{captiontext}
+
+\providecommand{\smallfig}[5]{    % left fig, right text
+   \begin{minipage}{\lenxtot}
+       \begin{minipage}{#1}
+         \figps{#1}{#2}
+       \end{minipage}
+       \hfill
+       \begin{minipage}{#3}
+         \figcaption{#3}{#4}{#5}
+       \end{minipage}
+   \end{minipage}
+   }
+
+
+%******************************************************************
+% General macros for math expressions                             *
+%******************************************************************
+
+\providecommand{\Int}{\int\limits}
+\providecommand{\Sum}{\sum\limits}
+
+\providecommand{\bfall}\textbf{\boldmath } % usual text AND math (after$)
+\providecommand{\bfmath}[1]{\mbox{\textbf\boldmath{$#1$}}} % italics+fett!
+\providecommand{\fett}\textbf{\boldmath } % usual text AND math (after$)
+
+\providecommand{\dd}{{\textrm d}} %example \dd f/\dd x
+\providecommand{\diff}[1]{ \ {\textrm d} #1 \, } % dx: differential operator d roman!
+\providecommand{\dif}{\mathrm d} %example \dif f/\dif x
+\providecommand{\e}{\mathrm e}   % example: \e^x
+%!! Achtung: part, dp etc alles reservierte Befehle!!
+\providecommand{\ablpart}[2]{\frac{\partial #1}{\partial #2}}  %d(#1)/d(#2)
+\providecommand{\abl}[2]   {\frac{{\textrm d} #1}{{\textrm d} #2}}  % =\abltot
+\providecommand{\abltot}[2]{\frac{{\textrm d} #1}{{\textrm d} #2}}  % d(#1)/d(#2)
+\providecommand{\ablpartzwei}[2]{\frac{\partial^{2} #1}{\partial #2^{2}}} 
+\providecommand{\ablparttwo}[2]{\frac{\partial^{2} #1}{\partial #2^{2}}} 
+\providecommand{\ablpartmix}[3]{\frac{\partial^{2} #1}
+           {\partial  #2 \ \partial #3}}
+\providecommand{\ablpartmixed}[3]{\frac{\partial^{2} #1}
+           {\partial  #2 \ \partial #3}}
+\providecommand{\ablzwei}[2]{\frac{{\textrm d}^{2} #1}{{\textrm d} #2^{2}}} 
+
+\providecommand{\cc}{^{\ast}}         %konj. komplex 
+\providecommand{\complex}{C \hspace*{-0.65 em}
+   \parbox{3mm}{\vspace*{-0.2 em} {\scriptsize /}}
+    }
+\providecommand{\cov}{\mbox{cov}}
+\providecommand{\Cov}{\mbox{Cov}} %gross Cov!
+
+\renewcommand{\d}[1]{\partial_{#1}}              %Diff.-operator
+\providecommand{\deltat}{\mbox{$\delta(t-t')$}}
+\providecommand{\deltar}{\mbox{$\delta(\v{r}-\v{r'})$}}
+\providecommand{\deltax}{\mbox{$\delta(x-x')$}}
+\providecommand{\deltavx}{\mbox{$\delta(\v{x}-\v{x}')$}}
+\providecommand{\deltay}{\mbox{$\delta(y-y')$}}
+\providecommand{\deltaz}{\mbox{$\delta(z-z')$}}
+\providecommand{\deltart}{\mbox{$\delta(\v{r}-\v{r'})\delta(t-t')$}}
+\providecommand{\deltaxyt}{\mbox{$\delta(x-x')\delta(y-y')\delta(t-t')$}}
+\providecommand{\deltaij}{\mbox{$\delta_{ij}$}}
+\providecommand{\deltaik}{\mbox{$\delta_{ik}$}}
+\providecommand{\deltail}{\mbox{$\delta_{il}$}}
+\providecommand{\deltajk}{\mbox{$\delta_{jk}$}}
+\providecommand{\deltajl}{\mbox{$\delta_{jl}$}}
+%arne klappt nicht:
+%\providecommand{\dfrac}[2]{{\displaystyle \frac{#1}{#2}}}
+\providecommand{\dsumi}{{\displaystyle \sum\limits_{i=1}^{n}}} %Summe im D-stil
+\providecommand{\dint}[2]{{\displaystyle\int\limits_{#1}^{#2}}}
+\providecommand{\dsum}[2]{{\displaystyle \sum\limits_{#1}^{#2}}}
+\providecommand{\dsuml}[2]{{\displaystyle \sum\limits_{#1}^{#2}}} %Summe im D-stil
+%\providecommand{\erw}[1]{\mbox{$\left \langle #1 \right \rangle$}} %Erwartungswert
+\providecommand{\erw}[1]{\mbox{$E \left( #1 \right )$}} %Erwartungswert
+\providecommand{\erf}[1]{\ \mbox{erf} \ #1} %Error function
+\providecommand{\floor}[1]{{\textrm floor}\left(#1\right)}
+\providecommand{\funkint}[1]{\int \!\!\cal{D}[#1]}
+\providecommand{\hc}{^{\dagger}}         %konj. komplex 
+\renewcommand{\Im}{\mbox{Im}}                  
+\providecommand{\intd}[1]{\int \!d#1}
+\providecommand{\intdn}[1]{\int \!\!d^{n}\v{#1}}
+\providecommand{\intvol}{\int \!\!d^{3}} %keine Zahlen (d3) moegl.
+\providecommand{\intvolr}{\int \!\!d^{3} r} %keine Zahlen (d3) moegl.
+%\providecommand{\le}{\stackrel{<}{=}}   % less or equal
+ 
+\providecommand{\nab}{\v{\nabla}}
+\providecommand{\order}[1]{{\cal O}(#1)}
+\providecommand{\overdot}[1]{\stackrel{.}{#1}}        
+\renewcommand{\Re}{\mbox{Re}}                      
+\providecommand{\re}{\mbox{Re}}                       
+\providecommand{\rot}[1]{\v{\nabla}\times \v{#1}}
+\providecommand{\sigeps}{\sigma_{\epsilon}}
+\providecommand{\hatbeta}{\hat{\beta}}
+\providecommand{\hatvec}[1]{\hat{\vec{#1}}}
+\providecommand{\vecbeta}{\vec{\beta}}
+\providecommand{\tilvecx}{\tilde{\vec{x}}}
+\providecommand{\tilx}{\tilde{x}}
+\providecommand{\hatvecbeta}{\hat{\vec{\beta}}}
+\providecommand{\hatsigeps}{\hat{\sigma}_{\epsilon}}
+\providecommand{\veceps}{\vec{\epsilon}}
+\providecommand{\hatveceps}{\hat{\vec{\epsilon}}}
+\providecommand{\hatsigy}{\hat{\sigma}_{y}}
+\providecommand{\hatsig}{\hat{\sigma}}
+\providecommand{\sumi}{\sum_{i=1}^n}
+\renewcommand{\theta}{\vartheta} % zwei Arten von kleinen Thetas, ich
+                                % will eins
+
+\providecommand{\sub}[1]{dummy}
+\providecommand{\sup}[1]{dummy}
+% !! in some latex settings  \hspace{-0.8ex}, in some  \hspace{-0.0ex} right!
+%\renewcommand{\sub}[1]{_{\text{{\scriptsize \hspace{-0.8ex}#1}}}}
+%\renewcommand{\sup}[1]{^{\text{{\scriptsize \hspace{-0.8ex}#1}}}}
+%\renewcommand{\sub}[1]{_{\text{{\scriptsize \hspace{-0.4ex}#1}}}}
+%\renewcommand{\sup}[1]{^{\text{{\scriptsize \hspace{-0.4ex}#1}}}}
+\renewcommand{\sub}[1]{_{\text{{\scriptsize \hspace{-0.0ex}#1}}}}
+\renewcommand{\sup}[1]{^{\text{{\scriptsize \hspace{-0.0ex}#1}}}}
+%\renewcommand{\sub}[1]{_{\rm \hspace{-0.0ex}#1}} %bug if \sub{\"OV} etc
+%\renewcommand{\sup}[1]{^{\rm \hspace{-0.0ex}#1}}
+%\providecommand{\tr}{^{\!\text{\scriptsize{T}}}}
+\providecommand{\tr}{'}
+\providecommand{\ueber}[2]{
+  \left(\begin{array}{c}
+     #1  \\ #2
+  \end{array} \right)
+}
+\providecommand{\tilL}{\tilde{L}}
+
+
+
+%\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\vec}[1]{\text{\boldmath{$#1$}} }
+
+
+%\renewcommand{\v}[1]{\mbox{\boldmath$#1$}}     %Vektor = fett
+\renewcommand{\v}[1]{\vec{#1}}  %Vektorpfeil/fett je nach obigem renewcommand
+%\renewcommand{\v}[1]{\bbox{#1}}     %Vektor = fett, revtex
+%\renewcommand{\v}[1]{\underline{#1}} %Vektor = unterstrichen
+\providecommand{\vscript}[1]{\mbox{{\scriptsize $\textbf #1$}}} % NOT for greek!
+
+
+%\providecommand{\m}[1]{\underline{\v{#1}}}                  %Matrix
+%\providecommand{\m}[1]{\underline{\underline{#1}}}           %Matrix
+\providecommand{\m}[1]{\textbf{\textsf{#1}}\, } %Matrix=fett+gerade(nicht gr)
+\providecommand{\mgr}[1]{\text{\boldmath {$#1$}}}  %Matrix griech. \sigma etc
+
+
+\providecommand{\varabl}[2]{\frac{\delta #1}{\delta #2}}  %d(#1)/d(#2)
+
+%******************************************************************
+%      Independent vars etc.                                      *
+%******************************************************************
+ 
+
+\providecommand{\vonx} {\mbox{$(\v{x})$}}                   %(x)
+\providecommand{\vonk} {\mbox{$(\v{k})$}}                   %(k)
+\providecommand{\vonw} {\mbox{$(\omega )$}}                   %(omega)
+\providecommand{\vonr} {\mbox{$(\v{r})$}}                   %(r)
+\providecommand{\vonrs} {\mbox{$(\v{r'})$}}                   %(r')
+\providecommand{\vonxyt} {\mbox{$(x,y,t)$}}                   %(x,y,z)
+\providecommand{\vongrad} {\mbox{$(\v{\nabla })$}}            %(nabla)
+\providecommand{\vonrgrad} {\mbox{$(\v{r},\v{\nabla })$}}     %(r,nabla)
+\providecommand{\vonxt} {\mbox{$(\v{x},t)$}}                %(x,t)
+\providecommand{\vonrt} {\mbox{$(\v{r},t)$}}                %(r,t)
+\providecommand{\vonrsts} {\mbox{$(\v{r'},t')$}}                %(r',t')
+
+%******************************************************************
+% Misc.                                                           *
+%******************************************************************
+\providecommand{\nonu} {\nonumber}
+\providecommand{\uu}[1]{\underline{\underline{#1}}} 
+\providecommand{\COii}{\text{CO}$_2$}
+
+
+%******************************************************************
+% End general defs                                                *
+%******************************************************************
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
