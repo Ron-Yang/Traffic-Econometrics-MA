@@ -1,0 +1,46 @@
+## user-defined ignores (avoid committing large files)
+
+
+## Core latex/pdflatex auxiliary files:
+
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+logfile
+
+## Intermediate documents:
+
+*.dvi
+*-converted-to.*
+*.ps
+
+## beamer generated files
+
+*.nav
+*.snm
+*.glo
+
+## variable output
+*.ps
+*.pdf
+Verkehrsoekonometrie_work.*
+
+## general
+tmp
+*save
+*old
+*~
+*test*
+*.zip
+*.bak
+epsfiles
+
+## directories
+
+
+
+## Auxiliary and intermediate files from other packages:

@@ -1,0 +1,16 @@
+Formeln (31)-(33)
+Horowitz-Test zum Vergleich der Qualitaet zweier nicht-genesteter
+Modelle! Achtung: Die test-Statistik zieht nur die halbe Zahl der Param
+von logL ab, nicht die ganze wie das "adjusted rho square"
+Die Statistik ist nur dann chi^2(1) verteilt (=Standarnormal mit Wurzel im Arg) im asymptot 
+Fall!
+
+Das Nullmodell ist das Konstantenmodell, nich das voellig parameterfreie Modell
+mit logL0=sum_n sum_i (y_ni ln P_ni)
+         =sum_n sum_i (y_ni ln (Ni/N))
+         = sum_i (N_i ln (Ni/N))
+
+
+
+
+

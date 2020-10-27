@@ -1,0 +1,25 @@
+
+(nov12)
+
+Multinomial-Logit direkt mit Newton-Verfahren: 
+  * Anwendungs-Projekte: ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc/
+  * paedagogisch: userInputProject3.txt,userInputUmfrageSS09_ohneRestr.txt
+  * Eigentl. MNL-Solver: ~/trafficSim/sources/lib/DiscreteChoice.cpp, .h
+
+Verschiedene Logit- und Probitmodelle mit allgemeinen Levenberg-Marquardt-Solver:
+  * Anwendungs-Projekte: ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/
+  * Template-Projkte: statedChoiceWS1213
+  * Eigentl. Solver: ~/trafficSim/sources/levmar-2.5/calibDiscrChoice.cpp, .h
+
+Projekte mit Biogeme:
+  * Anwendungs-Projekte: ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_BIOGEME/
+  * Eigentl. Solver: ~/biogeme-2.0/*, ~/bin/biogeme
+  * Web: http://biogeme.epfl.ch/
+  * Ansprechpartner: Christos Evangelinos <christos.evangelinos@tu-dresden.de>
+
+Verwandt, auch mit lvmar genacht: Trajktorien-Kalirierung
+  ~/tex/papers/ISTTT20_Calibration_2013/calibTraj/
+  ~/tex/papers/ISTTT20_Calibration_2013/calibTrajNGSIM/
+
+
+
