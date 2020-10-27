@@ -1,0 +1,76 @@
+(oct12)
+nun alles in ~/MNL_AndyObermeyer/
+
+=====================================================
+
+
+Hallo Andy,
+
+ich habe nun mal explizit geschaut, ob binäres Logit mit echt nichtlinearen
+Funktionen, welche Thresholds modellieren, funktioniert. 
+
+Meine Nutzenfunktionen in Abhängigkeit der Zeitdifferenz dT in
+Minuten war
+
+V1(dT,b0,b1,b2) =b0+b1*(dT-b2*tanh(dT/b2)) 
+
+b0 = alt.-spez. Konstante
+b1 = linearen Asymptote
+b2 = Plateauweite
+
+Die Funktion modelliert ein horizontales Plateau bei dT=0, welches
+fuer dT>>b2 in eine lineare Funktion mit Steigung b1 übergeht.
+
+Meine erfundenen Daten für 13 Zeitdifferenzen und jeweils 10
+unabhängige Entscheidungen pro Zeitdifferenz sind wie folgt:
+
+n=10. # n unabh. Entscheidungen fuer jede Zeitdifferenz
+dT1=0;   y11=5; # y11=Zahl der Ja-Antworten beim ersten Choice set (y21=n-y11 usw)
+dT2=5;   y21=5; # falls y21=3 und y31=7, kein Threshold!
+dT3=-5;  y31=5;
+dT4=10;  y41=4;
+dT5=-10; y51=6;
+dT6=15;  y61=2;
+dT7=-15; y71=9;
+dT8=20;  y81=1;
+dT9=-20; y91=9;
+dT10=30; y101=0;
+dT11=-30; y111=9;
+dT12=40; y121=0;
+dT13=-40; y131=10;
+
+
+In Abb. LogitThreshold_lnL.png plottete ich die Log-Likelihoodfunktion
+des Logitmodells (ohne Konstanten) für diese Daten. Ergebnis: Es
+gibt eine Schwelle der Breite von etwa 6 Minuten. Der dazugehörige
+lineare Teil entspricht einer Zufallsnutzen-Standardabweichung
+-1/beta1*pi/sqrt(6) von etwa 9 Minuten, was ebenfalls plausibel
+ist. Allerdings ist bei den wenigen Daten die Schwelle nicht
+signifikant, da ein Likelihood-Ratio-Test mit dem kalibrierten linearen Modell
+V1=b0+b1*dT (und beta1=-0.1, siehe unten an der Grafik) eine nur etwa
+um 1.5 geringere Log-Likelihood aufweist. Aber das ist wohl nur eine
+Frage der Datenzahl (hätte ich 50 statt 10 Entscheidungen pro Zeitdifferenz
+genommen, wäre b2 signifikant).
+
+In Abb. LogitNoThreshold_lnL.png veränderte  ich nur die
+Entscheidungshäufigkeiten für dT=-5 und +5 auf 7 statt 5 bzw 3
+statt 5, d.h. ich beseitigte die Indifferenz für +/- 5 Minuten
+Zeitdifferenz. Nun kalibriert das Modell auf beta2=0, also keine
+Schwelle, was plausibel ist!
+
+Allerdings ist die log-Likelihhod Funktion i.A. nicht mehr konvex
+für beliebige Parameter, weshalb viele nichtlineare
+Optimierungsmethoden versagen. Enthalten die Daten keinen wirklich
+linearen Teil in der Nutzenfunktion, gibt es evtl. nicht einmal ein
+sinnvolles globales Maximum. Setze ich z.B. y111=y1(dT=-30 min)=10 statt 9,
+entspricht das Optimum einer rein nichtlinearen Fkt ohne lineare
+Asymptote, da nun beta2 groesser als die maximale Zeitdifferenz
+wird. In diesem Fall sind die kalibrierten Werte (außerhalb des
+Bildes) und das Maximum ist extrem flach. Vielleicht ist das der Grund
+für das Versagen? Allerdings zeigt die Erfahrung, dass solche
+Pathologien bei mehr Daten verschwinden.
+
+
+vG
+
+Martin

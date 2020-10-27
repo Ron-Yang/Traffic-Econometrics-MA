@@ -1,0 +1,25 @@
+
+TUlogo.eps: aus irgendeinem nicht emhr vorhandenen xfig; 
+            makeLinesWhite funktioniert
+TUlogoText.fig: xfig. welches TUlogo.eps einbindet und bei 
+          dessen eps makeLinesWhite funktioniert
+TUlogoCorelText.eps: "offizielles" TU-Logo von der TU
+          makeLinesWhite funktioniert nicht
+
+normal black: 
+       cp TUlogoCorelText.eps TUlogoTextBlack.eps
+       cp TUlogoCorel.eps TUlogoBlack.eps
+
+white: 
+       cp TUlogoText.eps TUlogoTextWhite.eps; 
+       makeLinesWhite TUlogoTextWhite.eps
+       cp TUlogo.eps TUlogoWhite.eps
+       makeLinesWhite TUlogoWhite.eps
+
+
+Bug in xfig beim Einbinden von TUlogo.eps in 
+~/tex/texlettersTUlogoFig.fig
+=> hole fertiges eps File aus ~/tex/texletters
+Sonst bisher kein Bug beim Einbiunden feststellbar
+
+

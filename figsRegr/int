@@ -1,0 +1,52 @@
+
+
+# (2) Ellipsoid-shaped confidence region
+
+set cntrparam levels discrete 0.05  # eine Contour! 
+set key at screen 0.7,0.96 # DOS-bug falls y-Wert > 0.96
+unset pm3d; unset surface
+
+splot[x=xmin:xmax][y=ymin:ymax]\
+  x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_beta1beta2,n-3)\
+   t "Konfidenzregion F-Test" w l ls 17
+
+
+# Falls gruenes Rechteck statt vier gruene schneidende Linien, diese
+# Zeilen in folg. Plotbefehl einsetzten
+#  beta1-dbeta1,beta2-dbeta2+2*t*dbeta2,100+0.01*t\
+#       t "Konfidenzregion t-Test" w l ls 15,\
+#  beta1+dbeta1,beta2-dbeta2+2*t*dbeta2,100+0.01*t t "" w l ls 15,\
+#  beta1-dbeta1+2*t*dbeta1,beta2-dbeta2,100+0.01*t t "" w l ls 15,\
+#  beta1-dbeta1+2*t*dbeta1,beta2+dbeta2,100+0.01*t t "" w l ls 15,\
+
+
+
+#(3) one-parameter confidence limits
+
+set surface
+#bug falls y-Wert > 0.96
+set key at screen 0.42,0.96
+splot[t=0:1]\
+ beta1-dbeta1, ymin+t*(ymax-ymin),100+0.01*t\
+      t "Konfidenzintervalle T-Test {/Symbol b_1, b_2}" w l ls 15,\
+ beta1+dbeta1, ymin+t*(ymax-ymin),100+0.01*t t "" w l ls 15,\
+ xmin+t*(xmax-xmin), beta2-dbeta2,100+0.01*t t "" w l ls 15,\
+ xmin+t*(xmax-xmin), beta2+dbeta2,100+0.01*t t "" w l ls 15,\
+ xminGamH0+t*(xmax-xminGamH0), erwGamH01-c1*(xminGamH0+t*(xmax-xminGamH0))-dGamH01,000+0.01*t\
+   t "Konfidenzintervalle T-Test GamH0_1, GamH0_2" w l ls 6,\
+ xminGamH0+t*(xmax-xminGamH0), erwGamH01-c1*(xminGamH0+t*(xmax-xminGamH0))+dGamH01,200+0.01*t\
+   t "" w l ls 6,\
+ xminGamH0+t*(xmax-xminGamH0), erwGamH02-c2*(xminGamH0+t*(xmax-xminGamH0))-dGamH02,000+0.01*t\
+   t "" w l ls 6,\
+ xminGamH0+t*(xmax-xminGamH0), erwGamH02-c2*(xminGamH0+t*(xmax-xminGamH0))+dGamH02,200+0.01*t\
+   t "" w l ls 6,\
+ 60*t,-2*t,200+0.01*t t "Grenze Test {/Symbol b_1 + 30 b_2}<0" w l ls 11
+
+
+#(4) verbundene H0
+
+set key at screen 0.91,0.92
+
+splot[t=0:1]\
+  beta101,beta20,0.01 t "Verbundene Nullhypothese H_{01}" w p ls 1,\
+  beta103,beta203,0.01 t "Verbundene Nullhypothese H_{03}" w p ls 11

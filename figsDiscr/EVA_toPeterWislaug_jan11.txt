@@ -1,0 +1,53 @@
+Hallo Peter,
+
+also ich sehe in den beiden EVA-Funktionen keinen konzeptionellen Unterschied: Die eine (row 8) ist mit w0 formuliert, die andere (row9) nicht, es beschreibt beides denselben Funktionentyp (die normale EVA-Funktion) nur anders formuliert: Setzen Sie einfach in Reihe 8 statt w0=23.5 den geaenderten Wert w0=50 und Sie bekommen dieselbe  Funktion wie die von Reihe 9. Ich dachte, "EVA2" waere ein neuer FunktionsTYP (so wie es zur klassischen BPR-Capacity-Restraint-Funktion eine "BPR2"-Funktion gibt)
+
+Das eigentliche, von Ihnen erwaehnte Problem ist, dass die ganze EVA-Funktion nicht oekonometrisch sauber spezifiziert ist: Aendert man die Einheit des Widerstands (z.B. von Minuten auf Stunden oder auf Euro), bekommt man unkontrolliert eine neue funktionale Form (also Bullshit): Es gibt KEINE Moeglichkeit der Umskalierung der Parameter, so dass man die "alte" Funktion bekommt (testen Sie z.B. Stunden statt Minuten und w0=23.5/60 statt 23.5). Grund des Uebels ist das Argument (1+w) der in der EVA-Funktion enthaltenen Potenzfunktion (der Nenner), da eine einheitenbehaftete Groesse (der Widerstand w) mit der einheitenlosen 1, also Aepfel mit Birnen verglichen werden. Diese bei Wiwis leider verbreitete Einheiten-Legasthenie hat schon Mars-Sonden am Ziel vorbeischie3en lassen!
+
+Konkret bedeutet das hier wegen des hohen Zahlenwertes von (1+w) bei ueblichen Zeiten wie w=2*w0, dass man im Nenner eine vergleichsweiser hohen Zahl (48, falls w0=23.5) mit einem Exponenten nahe E (bei Ihnen =3) potenziert, was natuerlich zu einem fuer w=2*w0 viel zu kleinen Wert 1/48^3 fuehrt. Summa Summarum haben die Einheiten leider keinen anschaulichen Wert und es hilft nur rumprobieren (oder halt mit Maximum-Likelihood sauber schaetzen, was ich aber nirgendwo gefunden habe).
+
+Es gibt aber eine Loesung, sprich eine sauber definierte EVA-Funktion, zumindest in meinem Skript:
+Meine Homepage - Verkehrsoekonometrie Bachelor - Skript - Kapitel 4 (Zielwahl) - Formel (4.28)
+
+(User: wirtschaft, passwd: verkehr)
+
+Diese modifizierte EVA-Funktion geht fuer gro3e Werte von F*(w-w0)>>1
+in das Powerlaw-Modell ueber, ist aber abgerundeter und vor allem ist
+sie kontrolliert skalierbar: EVA_plot1.pdf zeigt ein Beispiel mit
+Ihren Parametern. Zwar geht die modifizierte EVA-Funktion irgendwann
+in das Power-Law ueber, doch bedeutet ">> 1" etwa ">100". 
+Vergleich mit dem Powerlaw fuer 0.7*w0 zeigt aber
+das Gewuenschte fuer w groesser als etwa 2*w0. Groessenordnungsmaessig steckt also in der
+modifiz. Funktion drin, was draufsteht. Die drei Plots zeigen: 
+
+(1) Mit F kann man die Schaerfe des Abfalls bei w0 einstellen: Geringere Werte
+fuehren zu einem milderen Abfall bei w0, aber einen staerkeren bei w=0
+
+(2) w0 skaliert kontrolliert (Plot 3 gibt die Skalierung in Stunden
+mit w0=1/2 Stunde)
+
+(3) und E gibt die Asymptotik des Powerlaw-Exponenten fuer F*(w-w0)>>1
+an
+
+Das alles ist in der modifizierten Funktion weitgehend orthogonal, d.h
+Aenderung von zwei Parametern beeinflussen nicht bzw. kaum die
+Bedeutung des dritten. Dies ist Ganz im Gegensatz zur originalen Version,
+vgl. die Plots!
+
+
+
+On 01/10/2011 04:47 PM, Peter Wislaug wrote:
+>
+> Sehr geehrter Herr Dr. Treiber,
+>
+>  
+>
+> ich hatte Sie heute schon einmal wegen der EVA-Funktion angerufen. Anbei sende ich Ihnen auch die Datei, auf welche ich mich beziehe. Auf dem Tabellenblatt -Y¥Bewertungsfunktionen´ finden sie mein kleines Problem. Unter der Tabelle ¥Bewertungsfunktionen I´ habe ich mich an der EVA-Funktion versucht. Ich finde, dass die Funktion EVA im Diagramm sehr stark abf-Aällt. Die Funktion EVA2 gefällt mir besser, doch da ist, wie aus den Daten zu entnehmen, kein Wo enthalten. Ich finde die Formel mit dem Wo aber eigentlich plausibler, doch liegt die Bewertung zur Weglänge Wo dort bei unter 0,02. Das macht wenig Sinn, oder?!
+>
+> Ich würde mich über Ihre Hilfe sehr freuen. Ich könnte auch bei Ihnen im Büro vorbeikommen, wenn Ihnen das zwecks Erklärung lieber ist.
+>
+>  
+>
+> Mit freundlichen Grüßen
+>
+> Peter Wislaug

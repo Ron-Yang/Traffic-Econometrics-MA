@@ -1,0 +1,29 @@
+(nov19)
+F... pdflatex erlaubt keine doppelten Extensions, ersetze
+*Tversky.skriptFig.fig -> *Tversky.skriptFig.eps
+durch *Tversky_skriptFig.eps
+
+dann kopieren zu *Tversky_skriptFig_eng.eps
+und direkt im eps File zwei Uebersetzungen (diff...) und dann auf 
+nonlinUtility_4param_Tversky_skriptFig_eng.jpg konvertieren
+
+
+(nov12)
+
+Qullen:
+ ~/trafficSim/sources/levmar-2.5/calibDiscrChoice.cpp
+Ressourcen und Plot-Script: 
+ ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar
+
+Genaueres siehe 
+ ~/vorlesungen/Verkehrsoekonometrie_Ma/README_discrChoice
+
+=======================================================
+
+Breite und Hoehe der Schwelle hoch korreliert, da selbst beides gegen
+unendlich (parabelfoermige Nutzenfunktionen) guten Fit, da Fehler bei sehr hohen
+Nutzendifferenzen, wo beides gegen unendl. hohen fehler erbraechte, 
+ nicht zaehlen, da sum_i P_ni ln(P_ni) dann kaum Beitrag!
+
+=> kann einen der Parameter o.E. fixieren oder gleich
+parameterlin. quadratischen Anteil nehmen!
