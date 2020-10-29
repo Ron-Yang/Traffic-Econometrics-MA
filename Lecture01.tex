@@ -6,8 +6,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript} %$
 \input{$HOME/tex/inputs/styleVorl} %$
@@ -20,6 +20,16 @@
 \begin{document}
 
 \section{1. Econometrics in General}
+
+%##############################################################
+\frame{
+%##############################################################
+\placebox{0.50}{0.50}{
+  \figSimple{1.05\textwidth}{figsAllg/title.png}}
+\placebox{0.50}{0.90}{\myheading{Traffic Econometrics Master's Course}}
+\placebox{0.316}{0.82}{\mysubheading{Lecture 01: General}}
+
+}
 
 %##############################################################
 \frame{\frametitle{Scope of econometrics --
@@ -307,7 +317,7 @@ Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
 Because of linearity, each endogenous variables has its own
 uncoupled single equation, so it is enough to consider a single component.
 
-\item[2.] \bfdef{Parameter-linear (quasi-linear) models}
+\pause \item[2.] \bfdef{Parameter-linear (quasi-linear) models}
 \bdm
 Y=\hat{y}(\tilvecx, \vecbeta)+\epsilon
 =\sum_{j=0}^J\beta_jg_j(\tilvecx)+\epsilon

@@ -1,5 +1,9 @@
 ## user-defined ignores (avoid committing large files)
 
+## video files
+
+*.mkv
+
 
 ## Core latex/pdflatex auxiliary files:
 

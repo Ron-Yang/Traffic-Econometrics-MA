@@ -1,0 +1,45 @@
+Screen aufnehmen
+echtes Filmen
+
+
+
+
+Screen aufnehmen
+================
+
+1. lecture oeffnen: evince ../skript/folien1_eng.pdf
+
+2. pdf window so skalieren, dass page-down/up funzt
+3. Simple Screen recorder oeffnen
+   - Profile Vorlesungen2020 lassen
+   - record a fixed rectangle-select size/Window (pdf)
+     select window -> klick auf Window, aber enthaelt Titelbar etc
+     select size -> ziehe mit Maus auf (blau gezeigt) zumindest
+                    Ubuntu18 sehr gut
+   - aufpassen, dass nichts das Window ueberdeckt, z.B. screen
+     recorder selbst: Wird sonst mitaufgezeichnet! (vorher auf pdf
+     fokussieren)
+     
+4. Ausgabe festlegen: ~/vorlesungen/Verkehrsoekonometrie_MA/VideoLectures/
+5. naechste Seite SimpleScereenR
+   (aufnehmen+Stoppen mit ctrl-s vorher eingestellt)
+   (manchmal error message, check)
+
+6. Maus auf Fokus pdf, dann funzt page up/down, aber auch die 4
+Pfeiltasten (machen entweder pageUp or Dpwn Aktion, logische
+Zuordnung)
+
+7. Mit ctrl-s starten und stoppen. Kann mit weiterem ctrl-s ins selbe
+Video appenden
+
+8. Schnitt mit
+~/scripts/lossless-cut/LosslessCut-linux-x64/LosslessCut
+ => alias losslessCut
+ graphisch oder mit File files einlesen, geschnittene, nicht
+ verbleibende Teile gespeichert
+
+9. Merge mit 
+mkvmerge -o testMerge.mkv test1.mkv +test2.mkv +...
+Achtung! selbe Groesse bei allen Videoteilen noetig!
+
+
