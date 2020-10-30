@@ -14,7 +14,7 @@ allParts="vkoek_Teil1,vkoek_Teil2,vkoek_Teil3,vkoek_Teil4,vkoek_Teil5,vkoek_Teil
 logfile="logfile"
 
 if (($#<1)) ; then
-  echo "Calling sequence: latexChapter.sh <part number or all>"
+  echo "Calling sequence: latexChapter.sh <part number or all> [-pdf]"
   exit -1;
 fi
 
@@ -44,12 +44,15 @@ fi
 echo "latexing (log output in $logfile) ..."
 latex ${skriptname_work}
 echo "produced ${skriptname_work}.dvi"
-exit
 
-echo "export as $chapterName.ps and show it ..."
-dvips -Ppdf  -q -o $chapterName.ps  ${skriptname_work}
+if (($#==2)); then
+  echo "producing $chapterName.pdf  ..."
+  #dvips -Ppdf  -q -o $chapterName.ps  ${skriptname_work}
+  dvips -q -o $chapterName.ps  ${skriptname_work}
+  ps2pdf $chapterName.ps
+  rm $chapterName.ps
+  echo "produced $chapterName.pdf"
+fi
 
-gv  -orientation=portrait $chapterName.ps 
 
-exit
 
