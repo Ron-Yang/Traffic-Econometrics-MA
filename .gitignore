@@ -4,6 +4,10 @@
 
 *.mkv
 
+## c++ generated files
+
+*.o
+figsCorona/sim/*.dat
 
 ## Core latex/pdflatex auxiliary files:
 

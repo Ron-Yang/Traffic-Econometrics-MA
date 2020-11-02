@@ -1,0 +1,287 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}  %$
+\input{$HOME/tex/inputs/styleBeamerTraffDyn}   %$
+
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+\section*{1a: Covid-19 Dynamics}
+
+%##############################################################
+%\frame{\frametitle{}
+\frame{ 
+%##############################################################
+
+
+\placebox{0.50}{0.42}
+ {\figSimple{1.10\textwidth}{figsCorona/coronaSimulationDe_1.png}}
+
+% make images pale (see demo_makePale.tex)
+%\makePale{opacity}{centerXrel}{centerYrel}{wrel}{hrel}
+% e.g., \makePale{0.8}{0.5}{0.5}{1}{0.3}
+
+\makePale{0.7}{0.48}{0.57}{1.2}{1.1}
+
+\placebox{0.50}{0.90}{\myheading{Traffic Econometrics Master's Course}}
+\placebox{0.50}{0.82}{\mysubheading{Lecture 01a: Covid-19 Dynamics}}
+\placebox{0.86}{0.05}{Martin Treiber} 
+
+\placebox{0.50}{0.38}
+ {\parbox{0.8\textwidth}{
+  \bi
+    \item 1a.1. Simple macroscopic models
+    \item 1a.2. Microscopic models
+    \item 1a.3. Detailled macroscopic model of \texttt{Corona-simulation.de}
+    \item 1a.4 Simulation
+  \ei
+}}
+
+}
+
+
+
+
+\subsection*{1a.1 Simple macroscopic models}
+ 
+%##############################################################
+\frame{\frametitle{1a.1 Simple macroscopic models I: SI model}
+%##############################################################
+
+Assumptions:
+\bi
+\item As in any macroscopic model on infection dynamics, the basic
+  dynamic quantities are percentages of the population (e.g., of a
+  country) rather than individual persons
+
+\item Scale separation: The infection dynamics is much faster than the
+  rest of the population dynamics
+  (births, ``normal'' deaths, in- and outwards directed
+  migration/moves) $\Rightarrow$ population number $N=\text{const.}$
+
+\item Any person can be either \emph{susceptible} to infection (S), or
+  already infected (I) which includes actually ill, recovered, or
+  dead. Particularly, there is no reverse transition I$\to$S
+
+\item All infected persons become contagious instantaneously and
+  remain so all the time (notice the
+  inconsistency to the point above)
+
+\item The rate of contagion $\beta$ (\# persons per time unit if
+  everybody else is S) remains constant 
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{SI model II}
+%##############################################################
+
+This leads to the equation
+\maintextbox{0.5\textwidth}{{\large
+$\begin{array}{ll}
+\abl{S}{t} &=-\beta I S,\\[0.5em]
+\abl{I}{t} &=+\beta I S
+\end{array}$
+}
+\qquad
+SI model
+}
+\bi
+\item $S=N_S/N$: fraction of susceptible
+\item $I=N_I/N$: fraction of infected
+\item $\abl{}{t}(S+I)=0$ $\Leftrightarrow$ conservation of
+  population number $N=\text{const.}$
+\ei
+Rewrite with $S+I=1$:
+\bdm
+\abl{I}{t}=\beta I (1-I) 
+\edm
+$\Rightarrow$ classical model for limited growth with saturation 1
+}
+
+%##############################################################
+\frame{\frametitle{ Exponentielles Wachstum II}
+%##############################################################
+
+\bdm
+x_{\tau i}=R_0x_{\tau(i-1)}
+\edm
+
+\pause
+Setze $x_t=x_0e^{\lambda t}$  $\ \Rightarrow$
+\maindm{\lambda=\frac{1}{\tau_R} \ln R_0}
+
+
+\pause
+\bi
+\item \bfdef{exponentielles Wachstum} mit Wachstumsrate $\lambda$
+
+\pause \item Ist \bfred{$R_0>1$}, ist $\lambda>0$ und es gibt ein
+exponentielles Wachstum, z.B. $R_0=2$, $\tau_R=5$ eine Verdoppelung alle
+\unit[5]{Tage}
+
+\pause \item Ist \bfgreen{$R_0<1$}, ist $\lambda<0$ und die \emph{Neu}infektionen nehmen
+exponentiell ab. Bei $R_0=1/2$ und $\tau_R=5$ halbieren sie sich alle \unit[5]{Tage}.
+
+\pause \item Falls \bfblue{$R_0=1$}, ist die Rate der Neuinfektionen konstant, es
+gibt also ein konstantes Wachstum
+
+\ei
+
+Gibt es Teilimmunit\"at, ist die tats\"achliche Reproduktionsrate $R<R_0$
+}
+
+%##############################################################
+\frame{\frametitle{Grenzen des Wachstums durch Teilimmunit\"at}
+%##############################################################
+
+Unter Beibehaltung der idealisierten Annahme ``Infektion
+genau nach $\tau_R$ Tagen der Ansteckung'' ergibt sich als
+Verallgemeinerung 
+\bdm
+x_{i+\tau_R}=R_0(1-u)x_i
+\edm
+mit $u$ dem Anteil der bereits bisher Infizierten
+\bi
+\item Eine gleichbleibende Neuinfektionsrate, 
+$x_{i+\tau_R}=x_i=x$ ist durch die Bedingung 
+\bdm
+x=R_0(1-u)x \quad \Rightarrow \quad u=\frac{R_0-1}{R_0}
+\edm
+gegeben, also z.B. bei $R_0=2$ f\"ur $u=\unit[50]{\%}$
+``Durchseuchung''
+
+\item Damit ist die Infektion aber nicht beendet. Schlie\3lich stiegen
+  die Infektionsraten bis zu z.B. \unit[50]{\%} Durchseuchung und es
+  bedarf weiterer Infektionen, bis die Rate zur\"uck auf 0 sinkt (etwa
+  \unit[75]{\%}, siehe Simulationen)
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Das volle Modell I: Gr\"o\3en}
+%##############################################################
+
+Die ``aktiven'' Gr\"o\3en der Infektionsdynamik m\"ussen nach dem
+\bfdef{Infektionsalter $\tau$}, also der Zeit seit der Infektion in
+Tagen, disaggregiert werden:
+\bi
+\item $x_{\tau}(t)$: Anteil der Erkrankten im Infektionsalter
+  $\tau$ ($x_{\tau} \in [0,1]$),
+\item $y_{\tau}(t)$: Anteil der gesundeten Infizierten `` ``
+\item $z_{\tau}(t)$: Anteil der gestorbenen Infizierten `` ``
+\item $u_{\tau}(t)=x_{\tau}(t)+y_{\tau}(t)+z_{\tau}(t)$: Gesamtanteil
+  an Infizierten `` ``
+\item $u_I(t)$: Immunisierungsgrad
+\ei
+
+Der \bfdef{Immunisierungsgrad} $u_I$ ergibt sich aus allen bereits infizierten
+Personen mit beliebigen Ausgang sowie aus dem Impfanteil $I$:
+\maindm{
+\begin{array}{rcl}
+u_I(t) &=& I + (1-I)u(t), \\
+u(t) &=& \sum_{\tau=0}^t u_{\tau}(t)
+\end{array}
+}
+
+
+}
+
+%##############################################################
+\frame{\frametitle{Das volle Modell II: Prim\"ardynamik}
+%##############################################################
+\bfdef{Infektionsmodell:}
+\textit{Jede erkrankte Person im Infektionsalter $\tau$ steckt
+ an diesem Tag $R_0f_R(\tau)$ neue nicht-immune Personen an}. 
+%\maindm{
+\maintextbox{0.68\textwidth}{
+%\begin{array}{rcl}
+\vspace{-1em}
+\bdma
+x_{\tau+1}(t+1) &=& x_{\tau}(t)-H_{\tau}(t)-D_{\tau}(t),\\
+x_0(t+1) &=& R_0 \big(1-u_I(t)\big) \ \sum_{\tau'} f_R(\tau')x_{\tau'}(t)
+%\end{array}
+\edma
+\vspace{-1em}
+}
+
+\bi
+\item Die erste Zeile ist ein schlichter Erhaltungssatz f\"ur die
+  Personen und Anteile (wir nehmen keine sonstigen Zu- und
+  Abnahmen der Bev\"olkerung an): Verschiebung, Gesundung und Tod.
+\item Die zweite Zeile betrifft die Neuansteckungen (Infektionsalter
+  0) gem\"a\3 obigem Prinzip
+\item \bfdef{Effektive Reproduktionsrate:} $R=R_0(1-u_I)$
+\item $f_R(\tau)$: Verteilungsfunktion der ansteckenden Phase des
+  Infektionsalters mit $\sum_{\tau}f_R(\tau)=1$ 
+\ei
+
+}
+
+%##############################################################
+\frame{\frametitle{Das volle Modell III: Sekund\"ardynamik}
+%##############################################################
+
+Todesf\"alle und die F\"alle der Heilungen:
+\maindm{
+\begin{array}{rcl}
+y_{\tau+1}(t+1) &=& H_{\tau}(t),\\
+z_{\tau+1}(t+1) &=& D_{\tau}(t)
+\end{array}
+}
+\vspace{1ex}
+
+\"Ubergangsraten $H_{\tau}(t)$ und $D_{\tau}(t)$:
+\maindm{
+\begin{array}{rcl}
+D_{\tau}(t) &=&p_D f_D(\tau)u_{\tau}(t),\\
+H_{\tau}(t) &=&(1-p_D) f_H(\tau)u_{\tau}(t)
+\end{array}
+}
+\bi
+\item Sterberisiko $p_D$ (z.B. $p_D=\unit[0.5]{\%}$),
+\item $f_D$: bedingte Verteilungsfunktion f\"ur den Tod im
+  Infektionsalter $\tau$
+\item $f_H$: bedingte Verteilungsfunktion f\"ur Heilung im
+  Infektionsalter $\tau$
+\item $D$ und $H$ sind proportional zu
+  $u_{\tau}=x_{\tau}+y_{\tau}+z_{\tau}$, da sich die
+  Verteilungsfunktionen auf die
+  Gesamtinfiziertenzahl, nicht nur auf die Kranken, beziehen.
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Simulationen unter \texttt{corona-simulation.de}}
+%##############################################################
+
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
