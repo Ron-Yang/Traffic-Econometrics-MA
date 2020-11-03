@@ -61,7 +61,7 @@
 \frame{\frametitle{1a.1 Simple macroscopic models I: SI model}
 %##############################################################
 
-Assumptions:
+Assumptions of this \emph{compartemental model}: 
 \bi
 \item As in any macroscopic model on infection dynamics, the basic
   dynamic quantities are percentages of the population (e.g., of a
@@ -89,6 +89,9 @@ Assumptions:
 \frame{\frametitle{SI model II}
 %##############################################################
 
+\fig{0.6\textwidth}{figsCorona/SI.png}
+\vspace{-1em}
+
 This leads to the equation
 \maintextbox{0.5\textwidth}{{\large
 $\begin{array}{ll}
@@ -111,6 +114,138 @@ Rewrite with $S+I=1$:
 \edm
 $\Rightarrow$ classical model for limited growth with saturation 1
 }
+
+%##############################################################
+\frame{\frametitle{}
+%##############################################################
+
+\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSI.png}}
+
+}
+
+
+
+%##############################################################
+\frame{\frametitle{SIR model}
+%##############################################################
+
+{\small
+\bi
+\item Unlike in the SI model, infected people recover/die after an
+  average  time
+$1/\gamma$ thereby becoming no longer contagious 
+\item Chained models for the transitions susceptible-infected (SI) and
+  infected-recovered persons(IR), $R=N\sub{R}/N$:
+\ei
+
+\vspace{-1em}
+\fig{0.8\textwidth}{figsCorona/SIR.png}
+\vspace{-1em}
+
+%Chained model equations for $S$, $I$ and $R$ (fraction $N_R/N$ of
+%recovered/removed persons): 
+\maintextbox{0.6\textwidth}{{\large
+$\begin{array}{ll}
+\abl{S}{t} &=-\beta I S,\\[0.5em]
+\abl{I}{t} &=+\beta I S - \gamma I,\\[0.5em]
+\abl{R}{t} &=+\gamma I
+\end{array}$
+}
+\qquad
+SIR model
+}
+\vspace{-1ex}
+
+\bi
+\item Conservation of the population number: $S+I+R=1$
+\itemAsk \colAsk{Show that the initial reproduction number is given by
+  $R_0=\beta/\gamma$}\\[-1ex]
+\itemAnswer \colAnswer{\tiny{Initially ($S=1$), any infected person infects
+  $\beta$ other persons per day but recovers after an\\[-1ex]exponentially
+  distributed time $\tau_R \sim \text{Exp}(\gamma)$, so the
+  average \#infected people $= \beta E(\tau_R)=\beta/\gamma$}}
+\ei
+}
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{}
+%##############################################################
+
+\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}
+\visible<2>{\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSI.png}}}
+\visible<3>{\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}}
+}
+
+
+%##############################################################
+\frame{\frametitle{SEIR model}
+%##############################################################
+
+{\small
+\bi
+\item Adds to the SIR model a finite \emph{incubation time} $\tau_I
+  \sim \text{Exp}(\alpha)$ where people are infected but not yet
+  contagious (``exposed'', E)
+\item Triple chain with $S+E+I+R=1$:
+\ei
+
+\vspace{-1em}
+\fig{1.0\textwidth}{figsCorona/SEIR.png}
+\vspace{-1em}
+
+%Chained model equations for $S$, $I$ and $R$ (fraction $N_R/N$ of
+%recovered/removed persons): 
+\maintextbox{0.6\textwidth}{{\large
+$\begin{array}{ll}
+\abl{S}{t} &=-\beta I S,\\[0.5em]
+\abl{E}{t} &=+\beta I S - \alpha E,\\[0.5em]
+\abl{I}{t} &=+\alpha E - \gamma I,\\[0.5em]
+\abl{R}{t} &=+\gamma I
+\end{array}$
+}
+\qquad
+SEIR model
+}
+\vspace{-1ex}
+
+\bi
+\itemAsk \colAsk{Show that
+  $R_0=\beta/\gamma$ and that the initial time for doubling of the
+  infected is given by 
+$\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
+\itemAnswer \colAnswer{\tiny{$R_0$ as in the SIR model. The average
+    time for passing an infection is the\\[-1ex] sum $1/\gamma+1\/\alpha)$ of
+    the incubation and 
+    infection times. In this timescale, there are $\text{log}_2(R_0)$
+    doublings. }}
+\ei
+}
+
+
+}
+
+
+
+%##############################################################
+\frame{\frametitle{}
+%##############################################################
+
+\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSEIR.png}}
+\visible<2>{\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}}
+\visible<3>{\placebox{0.5}{0.5}{
+ \figSimple{1.05\textwidth}{figsCorona/modelSEIR.png}}}
+}
+
 
 %##############################################################
 \frame{\frametitle{ Exponentielles Wachstum II}

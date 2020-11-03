@@ -48,26 +48,42 @@ static const int MAXSTR=500;// max. number of data points
 //#####################################################
 int main(int argc, char* argv[]) {
 
+  // SI model:   no R can be specified, timescale 1/beta
+  // SIR model:  R=beta/gamma, timescale (1/gamma) / ln(R)
+  // SEIR model: R=beta/gamma, timescale (1/gamma+1/alpha) / ln(R)
+
+
+  double betaSI=0.1;   // infection rate #infected per day if everybody is S
+
+  double betaSIR=0.2;  
+  double gammaSIR=0.1;  // inv lifetime of the "I" status (contagious)
+
+  double betaSEIR=0.4;
+  double gammaSEIR=0.2;
+  double alphaSEIR=0.2;  // inv incubation time (only SEIR)
+
+  double beta,gamma,alpha;
+
+  double initS=0.999; //initial infection percentage
+
+  double dt=0.1;   // internal time step
+  int tmax=500;
 
   //#####################################################
   // SI model
   //#####################################################
 
-  double beta=0.1;  // infection rate #infected per day if everybody is S
 
-  double initI=0.001; //initial infection percentage
-  double dt=0.1;   // internal time step
-  int tmax=200;
-
+  beta=betaSI;
 
   // simulation
 
   int ndt=int(1./dt+0.5);
   int nData=tmax;
-  double initS=1.-initI;  // initial percentage of susceptibles 
   double arrI[nData];
   double arrS[nData];
   double arrTime[nData];
+  double initI=1.-initS;
   arrS[0]=initS;
   arrI[0]=initI;
   arrTime[0]=0;
@@ -108,8 +124,8 @@ int main(int argc, char* argv[]) {
   // SIR model
   //#####################################################
 
-  beta=0.2;          // infection rate #infected per day if everybody is S
-  double gamma=0.1;  // inverse lifetime of the "I" status (contagious)
+  beta=betaSIR;
+  gamma=gammaSIR;
 
 
   double arrR[nData];  // percentage of recovered/removed
@@ -154,15 +170,16 @@ int main(int argc, char* argv[]) {
   // S ->beta-> E ->alpha-> I ->gamma->R
   // R0=beta/gamma
 
-  beta=0.2;          // infection rate #infected per day if everybody is S
-  gamma=0.1;         // inverse lifetime of the "I" status (contagious)
-  double alpha=0.2;  // inverse incubation time if exponentially distributed
+  beta=betaSEIR;
+  gamma=gammaSEIR;
+  alpha=alphaSEIR;
 
   double arrE[nData];  // percentage of recovered/removed
   double E;
-  S=arrS[0]=initS;
-  E=arrE[0]=1-initS;
-  I=arrI[0]=0;
+
+  E=arrE[0]=1.0*(1-initS);
+  I=arrI[0]=1.0*(1-initS);
+  S=arrS[0]=1-E-I;
   R=arrR[0]=0;
 
   for(int i=1; i<ndt*tmax; i++){
@@ -195,6 +212,61 @@ int main(int argc, char* argv[]) {
 
   cout <<" writing to "<<fnameOut<<" ..."<<endl;
   inout.write_array(fnameOut, nData, arrTime, arrS, arrE, arrI, arrR, 
+		    titleStr);
+
+
+  //#####################################################
+  // Seasonal SEIR model: beta=gamma*arrR0[i]
+  //#####################################################
+
+  double R0min=0.8;
+  double R0max=2;
+  double tstartYear=59; // start at tstartYear'th day of year
+  double arrR0[nData];
+
+  for(int i=0; i<nData; i++){
+    double phi=2*PI*(tstartYear+i)/365.;
+    arrR0[i]=0.5*(R0max+R0min)+0.5*(R0max-R0min)*cos(phi);
+  }
+
+  E=arrE[0]=1.0*(1-initS);
+  I=arrI[0]=1.0*(1-initS);
+  S=arrS[0]=1-E-I;
+  R=arrR[0]=0;
+  beta=gamma*arrR0[0];
+
+  for(int i=1; i<ndt*tmax; i++){
+    double Sold=S;
+    double Eold=E;
+    double Iold=I;
+
+    beta=gamma*arrR0[i/ndt]; //!!! season effect
+
+    double Spred=Sold - dt*beta*Iold*Sold;
+    double Epred=Eold + dt*beta*Iold*Sold - dt*alpha*Eold;
+    double Ipred=Iold + dt*alpha*Eold     - dt*gamma*Iold;
+
+    S+= -dt*beta*0.5*(Iold*Sold+Ipred*Spred);
+    E+=  dt*beta*0.5*(Iold*Sold+Ipred*Spred) - dt*alpha*0.5*(Eold+Epred);
+    I+=  dt*alpha*0.5*(Eold+Epred) - dt*gamma*0.5*(Iold+Ipred);
+    R=1-S-E-I;
+
+    if(i%ndt==0){
+      arrTime[i/ndt]=i/ndt;
+      arrS[i/ndt]=S;
+      arrE[i/ndt]=E;
+      arrI[i/ndt]=I;
+      arrR[i/ndt]=R;
+    }
+  }
+
+  // output
+
+  sprintf(fnameOut,"%s","modelSEIRseason.dat");
+  sprintf(titleStr,"#SEIR model beta=gamma*R0(t), gamma=%2.4f alpha=%2.4f, R0min=%1.2f, R0max=%1.2f  produced by macroInfection[.cpp]\n#time[days]\tS\tE\tI\tR\tR0", gamma, alpha, R0min, R0max);
+
+  cout <<" writing to "<<fnameOut<<" ..."<<endl;
+  inout.write_array(fnameOut, nData, arrTime, arrS, arrE, arrI, arrR, arrR0, 
 		    titleStr);
 
 
