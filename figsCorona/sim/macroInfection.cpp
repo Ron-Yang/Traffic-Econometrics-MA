@@ -269,8 +269,45 @@ int main(int argc, char* argv[]) {
   inout.write_array(fnameOut, nData, arrTime, arrS, arrE, arrI, arrR, arrR0, 
 		    titleStr);
 
+// #########################################################
+// iterated map model (here time step dt=1, not 0.1)
+// #########################################################
 
- return(0);
+  int tauI=7;
+  int tauR=18;
+  double arrIt[tmax]; // fraction of infected only at day i
+  double R0=1.4;
+
+  // init the tauI memory steps
+
+  for(int i=0; i<tauI; i++){
+    arrIt[i]=1-initS;
+    arrI[i]=(i+1)*(1-initS);
+    arrS[i]=1-arrI[i];
+    arrR[i]=0;
+  }
+
+  // regular loop
+
+  for(int i=tauI; i<tmax; i++){
+    arrIt[i]=R0*arrS[i-tauI]*arrIt[i-tauI];
+    arrS[i]=arrS[i-1] - arrIt[i];
+    arrR[i]=arrR[i-1]+( (i<tauR) ? 0 : arrIt[i-tauR]);
+    arrI[i]=1-arrS[i]-arrR[i];  // =sum_{j=i-tauI+1}^i arrIt[j]
+  }
+
+  // output
+
+  sprintf(fnameOut,"%s","modelSIRiterated.dat");
+  sprintf(titleStr,"#SIR iterated, tauI=%i tauR=%i R0=%.2f  produced by macroInfection[.cpp]\n#time[days]\tS\tI\tR", tauI, tauR, R0);
+
+  cout <<" writing to "<<fnameOut<<" ..."<<endl;
+  inout.write_array(fnameOut, tmax, arrTime, arrS, arrI, arrR, 
+		    titleStr);
+
+
+
+  return(0);
 }
 
 // #########################################################

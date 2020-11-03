@@ -1,3 +1,11 @@
+
+
+% Questions: 
+% 1. SIRM for S=1
+% 2. Sensitivity/specifiity vs. alpha and beta error 
+% 3. Problem alpha,beta error
+
+
 %#############################################
 % New pdflatex format,
 % only png, jpg (or svg?) images but positioning now ok
@@ -246,165 +254,218 @@ $\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
  \figSimple{1.05\textwidth}{figsCorona/modelSEIR.png}}}
 }
 
-
 %##############################################################
-\frame{\frametitle{ Exponentielles Wachstum II}
+\frame{\frametitle{SEIR model with seasons (winter is ``flu'' time)}
 %##############################################################
 
-\bdm
-x_{\tau i}=R_0x_{\tau(i-1)}
-\edm
-
-\pause
-Setze $x_t=x_0e^{\lambda t}$  $\ \Rightarrow$
-\maindm{\lambda=\frac{1}{\tau_R} \ln R_0}
-
-
-\pause
+{\small
+\placebox{0.5}{0.80}{\parbox{0.8\textwidth}{
 \bi
-\item \bfdef{exponentielles Wachstum} mit Wachstumsrate $\lambda$
-
-\pause \item Ist \bfred{$R_0>1$}, ist $\lambda>0$ und es gibt ein
-exponentielles Wachstum, z.B. $R_0=2$, $\tau_R=5$ eine Verdoppelung alle
-\unit[5]{Tage}
-
-\pause \item Ist \bfgreen{$R_0<1$}, ist $\lambda<0$ und die \emph{Neu}infektionen nehmen
-exponentiell ab. Bei $R_0=1/2$ und $\tau_R=5$ halbieren sie sich alle \unit[5]{Tage}.
-
-\pause \item Falls \bfblue{$R_0=1$}, ist die Rate der Neuinfektionen konstant, es
-gibt also ein konstantes Wachstum
-
+\item [$\Rightarrow$] make the reproduction number $R_0(t)$ time dependent
+\\[-0.5ex]
+\item [$\Rightarrow$] %Recovery $\gamma$ and incubation $\alpha$ unchanged
+infection rate
+  $\beta$ variable: $\beta=\gamma R_0(t)$
 \ei
+}}
+}
 
-Gibt es Teilimmunit\"at, ist die tats\"achliche Reproduktionsrate $R<R_0$
+\placebox{0.5}{0.37}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSEIRseason.png}}
+
 }
 
 %##############################################################
-\frame{\frametitle{Grenzen des Wachstums durch Teilimmunit\"at}
+\frame{\frametitle{Iterated map models}
 %##############################################################
-
-Unter Beibehaltung der idealisierten Annahme ``Infektion
-genau nach $\tau_R$ Tagen der Ansteckung'' ergibt sich als
-Verallgemeinerung 
-\bdm
-x_{i+\tau_R}=R_0(1-u)x_i
-\edm
-mit $u$ dem Anteil der bereits bisher Infizierten
 \bi
-\item Eine gleichbleibende Neuinfektionsrate, 
-$x_{i+\tau_R}=x_i=x$ ist durch die Bedingung 
-\bdm
-x=R_0(1-u)x \quad \Rightarrow \quad u=\frac{R_0-1}{R_0}
-\edm
-gegeben, also z.B. bei $R_0=2$ f\"ur $u=\unit[50]{\%}$
-``Durchseuchung''
-
-\item Damit ist die Infektion aber nicht beendet. Schlie\3lich stiegen
-  die Infektionsraten bis zu z.B. \unit[50]{\%} Durchseuchung und es
-  bedarf weiterer Infektionen, bis die Rate zur\"uck auf 0 sinkt (etwa
-  \unit[75]{\%}, siehe Simulationen)
+\item The SI, SIR, SEIR models were \bfdef{ordinary differential
+  equations} (ODEs)
+\item Another more direct approach are \bfdef{iterated maps}:
+  models for time evolution by classical model chaining
+\item can be interpreted as numerical solutions of ODEs but they are
+  more flexible allowing ``real'' memory, e.g., truly nonzero
+  incubation time instead of an exponential distributed one
+\item Of course, this also means we need initialize all past values
+  within the memory time
 \ei
 }
 
+
 %##############################################################
-\frame{\frametitle{Das volle Modell I: Gr\"o\3en}
+\frame{\frametitle{Iterated SIR model with memory (SIRM)}
 %##############################################################
 
-Die ``aktiven'' Gr\"o\3en der Infektionsdynamik m\"ussen nach dem
-\bfdef{Infektionsalter $\tau$}, also der Zeit seit der Infektion in
-Tagen, disaggregiert werden:
+{\small
 \bi
-\item $x_{\tau}(t)$: Anteil der Erkrankten im Infektionsalter
-  $\tau$ ($x_{\tau} \in [0,1]$),
-\item $y_{\tau}(t)$: Anteil der gesundeten Infizierten `` ``
-\item $z_{\tau}(t)$: Anteil der gestorbenen Infizierten `` ``
-\item $u_{\tau}(t)=x_{\tau}(t)+y_{\tau}(t)+z_{\tau}(t)$: Gesamtanteil
-  an Infizierten `` ``
-\item $u_I(t)$: Immunisierungsgrad
+\item An infected person contacts $R_0$ persons and infects $R_0 S$
+  persons \emph{exactly} 
+  $\tau_I$ days after  his/her own infection
+\item [$\Rightarrow$] need
+  history of all fractions
+  $I_{t'}$ of persons infected \emph{exactly} at day $t' \le t$
+\item The person recovers exactly $\tau_R$ days after infection
+\item [$\Rightarrow$] The total fraction of ill persons (\emph{active
+  cases}) at day $t$ is given by 
+\bdm
+I(t)=\sum_{j=i-\tau_I+1}^i I_j
+\edm
 \ei
-
-Der \bfdef{Immunisierungsgrad} $u_I$ ergibt sich aus allen bereits infizierten
-Personen mit beliebigen Ausgang sowie aus dem Impfanteil $I$:
-\maindm{
-\begin{array}{rcl}
-u_I(t) &=& I + (1-I)u(t), \\
-u(t) &=& \sum_{\tau=0}^t u_{\tau}(t)
-\end{array}
+Notice that the recovery does not influence the infection process
+since only infection day $\tau_I$ is contagious
 }
 
+\maintextbox{0.75\textwidth}{{\large
+$\begin{array}{ll}
+I_t &=R_0S(t-\tau_I)I_{t-\tau_J},\\[0.5em]
+S(t) &=S(t-1)-I_t,\\
+R(t) &= R(t-1) + I_{t-\tau_R},\\
+I(t) &= 1-S(t)-R(t)
+\end{array}$
+}
+\qquad
+\parbox{0.20\textwidth}{SIR model\\with memory}
+}
 
 }
 
 %##############################################################
-\frame{\frametitle{Das volle Modell II: Prim\"ardynamik}
+\frame{\frametitle{Simulation of the SIR model with memory}
 %##############################################################
-\bfdef{Infektionsmodell:}
-\textit{Jede erkrankte Person im Infektionsalter $\tau$ steckt
- an diesem Tag $R_0f_R(\tau)$ neue nicht-immune Personen an}. 
-%\maindm{
-\maintextbox{0.68\textwidth}{
-%\begin{array}{rcl}
+
+\placebox{0.5}{0.46}{
+  \figSimple{0.95\textwidth}{figsCorona/modelSIRiterated.png}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Back to reality/econometrics: what can be observed?}
+%##############################################################
+
+\maintextbox{0.8\textwidth}{We want to know: \bfred{\#Infections} 
+$N_I(t)=N\, I(t)$,\\ 
+ideally its ``age
+structure'' $I_0, I_1, ..., I_t$}
 \vspace{-1em}
-\bdma
-x_{\tau+1}(t+1) &=& x_{\tau}(t)-H_{\tau}(t)-D_{\tau}(t),\\
-x_0(t+1) &=& R_0 \big(1-u_I(t)\big) \ \sum_{\tau'} f_R(\tau')x_{\tau'}(t)
-%\end{array}
-\edma
-\vspace{-1em}
+
+\maintextbox{0.8\textwidth}{We do know: \bfred{\#positive tests}
+ $N_T(t)$
+(``cases'') and \\ \bfred{\#Covid-19 deaths} $N_D(t)$ including the
+  history $t'\le t$ 
 }
 
+{\small
+Many uncertainties:
 \bi
-\item Die erste Zeile ist ein schlichter Erhaltungssatz f\"ur die
-  Personen und Anteile (wir nehmen keine sonstigen Zu- und
-  Abnahmen der Bev\"olkerung an): Verschiebung, Gesundung und Tod.
-\item Die zweite Zeile betrifft die Neuansteckungen (Infektionsalter
-  0) gem\"a\3 obigem Prinzip
-\item \bfdef{Effektive Reproduktionsrate:} $R=R_0(1-u_I)$
-\item $f_R(\tau)$: Verteilungsfunktion der ansteckenden Phase des
-  Infektionsalters mit $\sum_{\tau}f_R(\tau)=1$ 
-\ei
-
-}
-
-%##############################################################
-\frame{\frametitle{Das volle Modell III: Sekund\"ardynamik}
-%##############################################################
-
-Todesf\"alle und die F\"alle der Heilungen:
-\maindm{
-\begin{array}{rcl}
-y_{\tau+1}(t+1) &=& H_{\tau}(t),\\
-z_{\tau+1}(t+1) &=& D_{\tau}(t)
-\end{array}
-}
-\vspace{1ex}
-
-\"Ubergangsraten $H_{\tau}(t)$ und $D_{\tau}(t)$:
-\maindm{
-\begin{array}{rcl}
-D_{\tau}(t) &=&p_D f_D(\tau)u_{\tau}(t),\\
-H_{\tau}(t) &=&(1-p_D) f_H(\tau)u_{\tau}(t)
-\end{array}
-}
-\bi
-\item Sterberisiko $p_D$ (z.B. $p_D=\unit[0.5]{\%}$),
-\item $f_D$: bedingte Verteilungsfunktion f\"ur den Tod im
-  Infektionsalter $\tau$
-\item $f_H$: bedingte Verteilungsfunktion f\"ur Heilung im
-  Infektionsalter $\tau$
-\item $D$ und $H$ sind proportional zu
-  $u_{\tau}=x_{\tau}+y_{\tau}+z_{\tau}$, da sich die
-  Verteilungsfunktionen auf die
-  Gesamtinfiziertenzahl, nicht nur auf die Kranken, beziehen.
+\item The tests have an imperfect \bfdef{sensitivity}
+$P(\text{positive}|\text{infected}) \approx \unit[99]{\%}$
+\item ... and an imperfect \bfdef{specifity}
+$P(\text{negative}|\text{not infected}) \approx \unit[99]{\%}$
+%and these figures even have large uncertainties in themselves
+\item Different/inconsistent definitions of a ``Covid-19 death'' event
+\item There is a high number of untested and potentially ill people
+  $\Rightarrow$ high number of unreported cases, probably $\gg N_T$
+\item The fraction of reported cases depends on the number of tests
+  via a monotonously increasing but otherwise unknown function
 \ei
 }
 
+}
 
 %##############################################################
-\frame{\frametitle{Simulationen unter \texttt{corona-simulation.de}}
+\frame{\frametitle{Corona-simulation.de (as of Oct 30, 2020)}
 %##############################################################
+
+Interactive \emph{data-driven} simulator based on an extended SIRM model
+\vspace{1em}
+
+\hspace*{-0.05\textwidth}
+\figSimple{1.05\textwidth}{figsCorona/Germany_oct30_cases.png}
+}
+
+%##############################################################
+\frame{\frametitle{Features I: different countries}
+%##############################################################
+\vspace{1em}
+
+\hspace*{-0.05\textwidth}
+\figSimple{1.05\textwidth}{figsCorona/Czechia_oct30_cases.png}
+}
+
+%##############################################################
+\frame{\frametitle{Features II: different windows}
+%##############################################################
+\placebox{0.25}{0.66}{
+ \figSimple{0.5\textwidth}{figsCorona/Germany_oct30_cum.png}}
+\placebox{0.75}{0.66}{
+ \figSimple{0.5\textwidth}{figsCorona/Germany_oct30_log.png}}
+\placebox{0.25}{0.23}{
+ \figSimple{0.5\textwidth}{figsCorona/Germany_oct30_tests.png}}
+\placebox{0.75}{0.23}{
+ \figSimple{0.5\textwidth}{figsCorona/Germany_oct30_rates.png}}
 
 }
+
+%##############################################################
+\frame{\frametitle{Features III: scenario-based projections}
+%##############################################################
+\placebox{0.52}{0.65}{
+ \figSimple{0.9\textwidth}{figsCorona/Germany_oct30_cases_prog_cropped.png}}
+\placebox{0.45}{0.22}{
+ \figSimple{0.9\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}
+\placebox{0.33}{0.78}{Germany}
+\placebox{0.25}{0.35}{Czechia}
+
+}
+
+%##############################################################
+\frame{\frametitle{Features III: ``lockdown'' shifts ``wave''}
+%##############################################################
+\placebox{0.50}{0.45}{
+ \figSimple{1.05\textwidth}{figsCorona/Germany_oct30_cases_progLockdown.png}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Features IV: sensitivity tests, e.g., ramping up \#tests}
+%##############################################################
+\placebox{0.50}{0.45}{
+ \figSimple{1.05\textwidth}{figsCorona/Germany_oct30_increaseTests.png}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Summary/take-home messages }
+%##############################################################
+\bi
+\item Only \bfred{data brings us ``down to Earth''} allowing for 
+\bi
+\item tests of the model quality
+\item doing useful things such as projection scenarios (do not forget
+  Mark Twains quote about predictions!)
+\ei
+
+\item Always \bfred{check definitions of events}, e.g.,
+   ``Covid-19 infection'' (including all symptom free people?) or
+  ``Covid-19 death'' (including
+  fatal traffic accidents of a test-positive persons?)
+
+\item \bfred{Do not confuse/mix proxies with the real quantities}, e.g.,
+  positive tests \emph{vs.} infection events. Also check how well the
+  proxy \emph{represents} the interesting quantities 
+  (\#positive tests is a poor proxy for the \#infections, \#\emph{recorded}
+  Covid-19 death is a much better proxy for all the Covid-19 deaths)
+
+\item \bfred{Check your sample.} Is it essentially the population or only a
+  small and unknown fraction thereof?
+
+\item \bfred{Be careful with exponentially growing things} since small changes
+  in the scenario setting can greatly influence the result
+
+\ei
+}
+
 
 \end{document}
 
