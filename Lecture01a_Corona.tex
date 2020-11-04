@@ -1,7 +1,9 @@
 
 
 % Questions: 
+% *. time scale ofexp growth for SI, SIR, SIRM models for S->1
 % 1. SIRM for S=1
+% timescale iterated SIRM
 % 2. Sensitivity/specifiity vs. alpha and beta error 
 % 3. Problem alpha,beta error
 
@@ -51,10 +53,10 @@
 \placebox{0.50}{0.38}
  {\parbox{0.8\textwidth}{
   \bi
-    \item 1a.1. Simple macroscopic models
-    \item 1a.2. Microscopic models
-    \item 1a.3. Detailled macroscopic model of \texttt{Corona-simulation.de}
-    \item 1a.4 Simulation
+    \item 1a.1 Simple Macroscopic Models (SI, SIR, SEIR, SIRM)
+    \item 1a.2 Microscopic Models
+    \item 1a.3 Down to Earth: Data-Related Issues
+    \item 1a.4 Simulation \texttt{Corona-simulation.de}
   \ei
 }}
 
@@ -69,40 +71,46 @@
 \frame{\frametitle{1a.1 Simple macroscopic models I: SI model}
 %##############################################################
 
-Assumptions of this \emph{compartemental model}: 
+\bfdef{Compartemental models}: consider different status such as susceptible,
+infected, or recovered and transitions between them
+
 \bi
 \item As in any macroscopic model on infection dynamics, the basic
-  dynamic quantities are percentages of the population (e.g., of a
+  dynamic quantities are \emph{percentages of the population} (e.g., of a
   country) rather than individual persons
 
-\item Scale separation: The infection dynamics is much faster than the
-  rest of the population dynamics
+\pause \item Scale separation: The \emph{infection dynamics} is much faster than the
+  rest of the \emph{population dynamics}
   (births, ``normal'' deaths, in- and outwards directed
   migration/moves) $\Rightarrow$ population number $N=\text{const.}$
 
-\item Any person can be either \emph{susceptible} to infection (S), or
+\pause \item Two compartiments: any person can be either \emph{susceptible} to infection (S), or
   already infected (I) which includes actually ill, recovered, or
   dead. Particularly, there is no reverse transition I$\to$S
-
-\item All infected persons become contagious instantaneously and
-  remain so all the time (notice the
-  inconsistency to the point above)
-
-\item The rate of contagion $\beta$ (\# persons per time unit if
-  everybody else is S) remains constant 
+\visible<3->{\fig{0.6\textwidth}{figsCorona/SI.png}}
 \ei
+
 }
 
 %##############################################################
 \frame{\frametitle{SI model II}
 %##############################################################
 
-\fig{0.6\textwidth}{figsCorona/SI.png}
-\vspace{-1em}
 
-This leads to the equation
-\maintextbox{0.5\textwidth}{{\large
-$\begin{array}{ll}
+{\small
+\bi
+\item All infected persons become \emph{contagious instantaneously} and
+  remain so all the time (notice the
+  inconsistency to the point above)
+
+\pause \item The \emph{rate of contagion} $\beta$ (\# persons per time unit if
+  everybody else is~S) remains constant 
+\ei
+}
+
+\pause
+\maintextbox{0.6\textwidth}{{\large
+$\Rightarrow \quad \begin{array}{ll}
 \abl{S}{t} &=-\beta I S,\\[0.5em]
 \abl{I}{t} &=+\beta I S
 \end{array}$
@@ -112,23 +120,23 @@ SI model
 }
 \bi
 \item $S=N_S/N$: fraction of susceptible
-\item $I=N_I/N$: fraction of infected
-\item $\abl{}{t}(S+I)=0$ $\Leftrightarrow$ conservation of
+\pause \item $I=N_I/N$: fraction of infected
+\pause \item $\abl{}{t}(S+I)=0$ $\Leftrightarrow$ conservation of
   population number $N=\text{const.}$
 \ei
-Rewrite with $S+I=1$:
+\pause Rewrite with $S+I=1$:
 \bdm
 \abl{I}{t}=\beta I (1-I) 
 \edm
-$\Rightarrow$ classical model for limited growth with saturation 1
+$\Rightarrow$ \emph{classical model for limited growth} with saturation 1
 }
 
 %##############################################################
-\frame{\frametitle{}
+\frame{\frametitle{SI model III: Simulation}
 %##############################################################
 
-\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSI.png}}
+\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSI.png}}
 
 }
 
@@ -140,19 +148,21 @@ $\Rightarrow$ classical model for limited growth with saturation 1
 
 {\small
 \bi
-\item Unlike in the SI model, infected people recover/die after an
+\item Unlike the situation in the SI model, infected people recover/die after an
   average  time
-$1/\gamma$ thereby becoming no longer contagious 
-\item Chained models for the transitions susceptible-infected (SI) and
-  infected-recovered persons(IR), $R=N\sub{R}/N$:
+$1/\gamma$ thereby becoming \emph{no longer contagious} 
+\pause \item Chained models for the transitions susceptible-infected (SI) and
+  infected-recovered persons(IR), $R=$ fraction of recovered:
 \ei
 
 \vspace{-1em}
-\fig{0.8\textwidth}{figsCorona/SIR.png}
+\visible<2->{\fig{0.8\textwidth}{figsCorona/SIR.png}}
 \vspace{-1em}
 
 %Chained model equations for $S$, $I$ and $R$ (fraction $N_R/N$ of
 %recovered/removed persons): 
+
+\pause
 \maintextbox{0.6\textwidth}{{\large
 $\begin{array}{ll}
 \abl{S}{t} &=-\beta I S,\\[0.5em]
@@ -166,10 +176,10 @@ SIR model
 \vspace{-1ex}
 
 \bi
-\item Conservation of the population number: $S+I+R=1$
-\itemAsk \colAsk{Show that the initial reproduction number is given by
+\pause \item Conservation of the population number: $S+I+R=1$
+\pause \itemAsk \colAsk{Show that the initial reproduction number is given by
   $R_0=\beta/\gamma$}\\[-1ex]
-\itemAnswer \colAnswer{\tiny{Initially ($S=1$), any infected person infects
+\pause \itemAnswer \colAnswer{\tiny{Initially ($S=1$), any infected person infects
   $\beta$ other persons per day but recovers after an\\[-1ex]exponentially
   distributed time $\tau_R \sim \text{Exp}(\gamma)$, so the
   average \#infected people $= \beta E(\tau_R)=\beta/\gamma$}}
@@ -181,15 +191,15 @@ SIR model
 
 
 %##############################################################
-\frame{\frametitle{}
+\frame{\frametitle{SI and SIR models: simulation}
 %##############################################################
 
-\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}
-\visible<2>{\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSI.png}}}
-\visible<3>{\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}}
+\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSIR.png}}
+\visible<2>{\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSI.png}}}
+\visible<3>{\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSIR.png}}}
 }
 
 
@@ -202,15 +212,17 @@ SIR model
 \item Adds to the SIR model a finite \emph{incubation time} $\tau_I
   \sim \text{Exp}(\alpha)$ where people are infected but not yet
   contagious (``exposed'', E)
-\item Triple chain with $S+E+I+R=1$:
+\pause \item Triple chain with $S+E+I+R=1$:
 \ei
 
 \vspace{-1em}
-\fig{1.0\textwidth}{figsCorona/SEIR.png}
+\visible<2->{\fig{1.0\textwidth}{figsCorona/SEIR.png}}
 \vspace{-1em}
 
 %Chained model equations for $S$, $I$ and $R$ (fraction $N_R/N$ of
 %recovered/removed persons): 
+
+\pause
 \maintextbox{0.6\textwidth}{{\large
 $\begin{array}{ll}
 \abl{S}{t} &=-\beta I S,\\[0.5em]
@@ -225,11 +237,11 @@ SEIR model
 \vspace{-1ex}
 
 \bi
-\itemAsk \colAsk{Show that
+\pause \itemAsk \colAsk{Show that
   $R_0=\beta/\gamma$ and that the initial time for doubling of the
   infected is given by 
 $\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
-\itemAnswer \colAnswer{\tiny{$R_0$ as in the SIR model. The average
+\pause \itemAnswer \colAnswer{\tiny{$R_0$ as in the SIR model. The average
     time for passing an infection is the\\[-1ex] sum $1/\gamma+1\/\alpha)$ of
     the incubation and 
     infection times. In this timescale, there are $\text{log}_2(R_0)$
@@ -243,15 +255,15 @@ $\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
 
 
 %##############################################################
-\frame{\frametitle{}
+\frame{\frametitle{SIR \emph{vs.} SEIR model simulations}
 %##############################################################
 
-\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSEIR.png}}
-\visible<2>{\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSIR.png}}}
-\visible<3>{\placebox{0.5}{0.5}{
- \figSimple{1.05\textwidth}{figsCorona/modelSEIR.png}}}
+\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSEIR.png}}
+\visible<2>{\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSIR.png}}}
+\visible<3>{\placebox{0.5}{0.43}{
+ \figSimple{0.95\textwidth}{figsCorona/modelSEIR.png}}}
 }
 
 %##############################################################
@@ -261,17 +273,17 @@ $\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
 {\small
 \placebox{0.5}{0.80}{\parbox{0.8\textwidth}{
 \bi
-\item [$\Rightarrow$] make the reproduction number $R_0(t)$ time dependent
+\pause \item [$\Rightarrow$] make the reproduction number $R_0(t)$ time dependent
 \\[-0.5ex]
-\item [$\Rightarrow$] %Recovery $\gamma$ and incubation $\alpha$ unchanged
+\pause \item [$\Rightarrow$] %Recovery $\gamma$ and incubation $\alpha$ unchanged
 infection rate
   $\beta$ variable: $\beta=\gamma R_0(t)$
 \ei
 }}
 }
 
-\placebox{0.5}{0.37}{
- \figSimple{0.95\textwidth}{figsCorona/modelSEIRseason.png}}
+\visible<4->{\placebox{0.5}{0.37}{
+ \figSimple{0.90\textwidth}{figsCorona/modelSEIRseason.png}}}
 
 }
 
@@ -281,12 +293,12 @@ infection rate
 \bi
 \item The SI, SIR, SEIR models were \bfdef{ordinary differential
   equations} (ODEs)
-\item Another more direct approach are \bfdef{iterated maps}:
+\pause \item Another more direct approach are \bfdef{iterated maps}:
   models for time evolution by classical model chaining
-\item can be interpreted as numerical solutions of ODEs but they are
+\pause \item can be interpreted as numerical solutions of ODEs but they are
   more flexible allowing ``real'' memory, e.g., truly nonzero
   incubation time instead of an exponential distributed one
-\item Of course, this also means we need initialize all past values
+\pause \item Of course, this also means we need initialize all past values
   within the memory time
 \ei
 }
@@ -301,20 +313,19 @@ infection rate
 \item An infected person contacts $R_0$ persons and infects $R_0 S$
   persons \emph{exactly} 
   $\tau_I$ days after  his/her own infection
-\item [$\Rightarrow$] need
+\pause \item [$\Rightarrow$] need
   history of all fractions
   $I_{t'}$ of persons infected \emph{exactly} at day $t' \le t$
-\item The person recovers exactly $\tau_R$ days after infection
-\item [$\Rightarrow$] The total fraction of ill persons (\emph{active
+\pause \item The person recovers exactly $\tau_R$ days after infection
+\pause \item [$\Rightarrow$] The total fraction of ill persons (\emph{active
   cases}) at day $t$ is given by 
 \bdm
 I(t)=\sum_{j=i-\tau_I+1}^i I_j
 \edm
 \ei
-Notice that the recovery does not influence the infection process
-since only infection day $\tau_I$ is contagious
 }
 
+\pause
 \maintextbox{0.75\textwidth}{{\large
 $\begin{array}{ll}
 I_t &=R_0S(t-\tau_I)I_{t-\tau_J},\\[0.5em]
@@ -326,6 +337,8 @@ I(t) &= 1-S(t)-R(t)
 \qquad
 \parbox{0.20\textwidth}{SIR model\\with memory}
 }
+{\small Notice that the recovery does not influence the infection process
+since only infection day $\tau_I$ is contagious}
 
 }
 
@@ -339,8 +352,72 @@ I(t) &= 1-S(t)-R(t)
 }
 
 
+
+\subsection*{1a.2 Microscopic Models}
 %##############################################################
-\frame{\frametitle{Back to reality/econometrics: what can be observed?}
+\frame{\frametitle{1a.2 Microscopic Models}
+%##############################################################
+The principle is straightforward: Just break down the compartemental
+models to single persons (remember the definition of a microscopic
+model!)
+{\small
+\bi
+\pause \item The health status of each person $i$ is exactly one out of a
+  set, e.g. status $\in \{$ S, E, I, R $\}$
+\pause \item Transition $S_i\to E_i$ if an S person $i$ is 
+sufficiently close to an I person $j$ sufficiently long, e.g.
+\bdm
+S_i(t) \to E_i(t) \quad \text{if} \quad d_{ij}(t') \le \unit[1.5]{m}
+\ \forall \ t': t-\tau_E\le t' \le t
+\edm
+\\[-1em]
+\pause \item Transition to an I person after an incubation time
+$\tau_I$
+\pause \item Transition to an R person after a time period $\tau_R>\tau_I$
+\ei
+}
+
+\pause So the pandemic micromodel is easy: It gets interesting when adding a
+\bfdef{particle dynamics model} for the motion of the people to model,
+e.g., \emph{superspreading events}
+
+
+}
+
+%##############################################################
+\frame{\frametitle{Microscopic example}
+%##############################################################
+\visible<1>{\placebox{0.5}{0.62}{
+  \figSimple{1.05\textwidth}{figsCorona/micro1.png}}}
+\visible<2>{\placebox{0.5}{0.62}{
+  \figSimple{1.05\textwidth}{figsCorona/micro2.png}}}
+\visible<3>{\placebox{0.5}{0.62}{
+  \figSimple{1.05\textwidth}{figsCorona/micro3.png}}}
+\visible<4>{\placebox{0.5}{0.62}{
+  \figSimple{1.05\textwidth}{figsCorona/micro4.png}}}
+\visible<5>{\placebox{0.5}{0.62}{
+  \figSimple{1.05\textwidth}{figsCorona/micro5.png}}}
+
+\placebox{0.5}{0.22}{\parbox{0.9\textwidth}{
+\bi
+\item Time $t$: superspreading event
+\pause \item Time $t+\tau$: three people infected in the middle group
+\pause \item Time $t+2\tau$: one of the newly 
+infected moves to the other group
+\pause \item Time $t+3\tau$: incubation time over (also at the left group)
+\pause \item Time $t+4\tau$: two infections in two groups
+\ei
+}}
+
+
+
+}
+
+
+\subsection*{1a.3 Down to Earth: Data-Related Issues}
+
+%##############################################################
+\frame{\frametitle{1a.3 Down to reality/econometrics: what can be observed?}
 %##############################################################
 
 \maintextbox{0.8\textwidth}{We want to know: \bfred{\#Infections} 
@@ -349,6 +426,7 @@ ideally its ``age
 structure'' $I_0, I_1, ..., I_t$}
 \vspace{-1em}
 
+\pause
 \maintextbox{0.8\textwidth}{We do know: \bfred{\#positive tests}
  $N_T(t)$
 (``cases'') and \\ \bfred{\#Covid-19 deaths} $N_D(t)$ including the
@@ -358,20 +436,24 @@ structure'' $I_0, I_1, ..., I_t$}
 {\small
 Many uncertainties:
 \bi
-\item The tests have an imperfect \bfdef{sensitivity}
+\pause \item The tests have an imperfect \bfdef{sensitivity}
 $P(\text{positive}|\text{infected}) \approx \unit[99]{\%}$
-\item ... and an imperfect \bfdef{specifity}
+\pause \item ... and an imperfect \bfdef{specifity}
 $P(\text{negative}|\text{not infected}) \approx \unit[99]{\%}$
 %and these figures even have large uncertainties in themselves
-\item Different/inconsistent definitions of a ``Covid-19 death'' event
-\item There is a high number of untested and potentially ill people
+\pause \item Different/inconsistent definitions of a ``Covid-19 death'' event
+\pause \item There is a high number of untested and potentially ill people
   $\Rightarrow$ high number of unreported cases, probably $\gg N_T$
-\item The fraction of reported cases depends on the number of tests
+\pause \item The fraction of reported cases depends on the number of tests
   via a monotonously increasing but otherwise unknown function
 \ei
 }
 
 }
+
+
+
+\subsection*{1a.4 Simulation at \texttt{Corona-simulation.de}}
 
 %##############################################################
 \frame{\frametitle{Corona-simulation.de (as of Oct 30, 2020)}
@@ -446,21 +528,23 @@ Interactive \emph{data-driven} simulator based on an extended SIRM model
   Mark Twains quote about predictions!)
 \ei
 
-\item Always \bfred{check definitions of events}, e.g.,
+\pause \item Always \bfred{check definitions of events}, e.g.,
    ``Covid-19 infection'' (including all symptom free people?) or
   ``Covid-19 death'' (including
   fatal traffic accidents of a test-positive persons?)
 
-\item \bfred{Do not confuse/mix proxies with the real quantities}, e.g.,
+\pause \item \bfred{Do not confuse/mix proxies with the real
+  quantities}, e.g.,
   positive tests \emph{vs.} infection events. Also check how well the
   proxy \emph{represents} the interesting quantities 
   (\#positive tests is a poor proxy for the \#infections, \#\emph{recorded}
   Covid-19 death is a much better proxy for all the Covid-19 deaths)
 
-\item \bfred{Check your sample.} Is it essentially the population or only a
+\pause \item \bfred{Check your sample.} Is it essentially the population or only a
   small and unknown fraction thereof?
 
-\item \bfred{Be careful with exponentially growing things} since small changes
+\pause \item \bfred{Be careful with exponentially growing things}
+ since small changes
   in the scenario setting can greatly influence the result
 
 \ei

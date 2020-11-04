@@ -85,7 +85,7 @@ plot\
 set xrange [0:tmax]
 set out "modelSEIR.png"
 print "ploting modelSEIR.png"
-set title "SEIR model, {/Symbol b}=0.4/day, {/Symbol g}={/Symbol a}=0.2/day =>R_0=2,    E(0)=I(0)=0.1%"
+set title "SEIR, {/Symbol b}=0.4/day, {/Symbol g}={/Symbol a}=0.2/day =>R_0=2, E(0)=I(0)=0.1%"
 
 
 plot\
