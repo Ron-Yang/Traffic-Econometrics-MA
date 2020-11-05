@@ -42,7 +42,7 @@ tmp
 *save
 *old
 *~
-*test*
+test.*
 *.zip
 *.bak
 epsfiles
