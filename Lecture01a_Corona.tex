@@ -16,8 +16,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}  %$
 \input{$HOME/tex/inputs/styleBeamerTraffDyn}   %$
@@ -53,10 +53,10 @@
 \placebox{0.50}{0.38}
  {\parbox{0.8\textwidth}{
   \bi
-    \item 1a.1 Simple Macroscopic Models (SI, SIR, SEIR, SIRM)
-    \item 1a.2 Microscopic Models
-    \item 1a.3 Down to Earth: Data-Related Issues
-    \item 1a.4 Simulation \texttt{Corona-simulation.de}
+    \pause \item 1a.1 Simple Macroscopic Models (SI, SIR, SEIR, SIRM)
+    \pause \item 1a.2 Microscopic Models
+    \pause \item 1a.3 Down to Earth: Data-Related Issues
+    \pause \item 1a.4 Simulation \texttt{Corona-simulation.de}
   \ei
 }}
 
@@ -65,8 +65,8 @@
 
 
 
-\subsection*{1a.1 Simple macroscopic models}
- 
+ \subsection*{1a.1 Simple macroscopic models}
+
 %##############################################################
 \frame{\frametitle{1a.1 Simple macroscopic models I: SI model}
 %##############################################################
@@ -240,9 +240,9 @@ SEIR model
 \pause \itemAsk \colAsk{Show that
   $R_0=\beta/\gamma$ and that the initial time for doubling of the
   infected is given by 
-$\tau=(1/\gamma+1\/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
+$\tau=(1/\gamma+1/\alpha)/\text{log}_2(R_0)$}\\[-1ex]
 \pause \itemAnswer \colAnswer{\tiny{$R_0$ as in the SIR model. The average
-    time for passing an infection is the\\[-1ex] sum $1/\gamma+1\/\alpha)$ of
+    time for passing an infection is the\\[-1ex] sum $1/\gamma+1/\alpha$ of
     the incubation and 
     infection times. In this timescale, there are $\text{log}_2(R_0)$
     doublings. }}
@@ -328,7 +328,7 @@ I(t)=\sum_{j=i-\tau_I+1}^i I_j
 \pause
 \maintextbox{0.75\textwidth}{{\large
 $\begin{array}{ll}
-I_t &=R_0S(t-\tau_I)I_{t-\tau_J},\\[0.5em]
+I_t &=R_0S(t-\tau_I)I_{t-\tau_I},\\[0.5em]
 S(t) &=S(t-1)-I_t,\\
 R(t) &= R(t-1) + I_{t-\tau_R},\\
 I(t) &= 1-S(t)-R(t)

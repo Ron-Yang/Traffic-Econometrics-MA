@@ -36,10 +36,17 @@ Video appenden
 ~/scripts/lossless-cut/LosslessCut-linux-x64/LosslessCut
  => alias losslessCut
  graphisch oder mit File files einlesen, geschnittene, nicht
- verbleibende Teile gespeichert
+ verbleibende Teile gespeichert ACHTUNG: Marker '<' und '>' AUF HOEHE
+ DER SCHERE nehmen, nicht die Dreiecke darueber! 
+
+###########################################################################
+ACHTUNG!!! vor 9. ALLES saven. alle Arbeit kann bei Fehlern umsonst sein!!!!
+###########################################################################
 
 9. Merge mit 
 mkvmerge -o testMerge.mkv test1.mkv +test2.mkv +...
+Abkuerzung
+merge.sh testMerge.mkv test?.mkv
 Achtung! selbe Groesse bei allen Videoteilen noetig!
 
 
