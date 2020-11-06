@@ -133,6 +133,10 @@ int main(int argc, char* argv[]) {
   S=arrS[0]=initS;
   I=arrI[0]=initI;
   R=arrR[0]=0;
+  //S=arrS[0]=gamma/beta-0.1;
+  //I=arrI[0]=0.001;
+  //R=arrR[0]=1-S-I;
+
   arrTime[0]=0;
 
   for(int i=1; i<ndt*tmax; i++){
@@ -181,6 +185,11 @@ int main(int argc, char* argv[]) {
   I=arrI[0]=1.0*(1-initS);
   S=arrS[0]=1-E-I;
   R=arrR[0]=0;
+
+  //S=arrS[0]=gamma/beta-0.00;
+  //E=arrE[0]=0.001;
+  //I=arrI[0]=0.001;
+  //R=arrR[0]=1-E-S-I;
 
   for(int i=1; i<ndt*tmax; i++){
     double Sold=S;
