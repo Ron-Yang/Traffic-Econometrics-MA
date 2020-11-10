@@ -22,21 +22,33 @@
 \section{2. Linear (Regression) Models}
 
 %##############################################################
-\frame{\frametitle{Chapter 2: Linear models}
+\frame{
 %##############################################################
-\bi
-\item 2.1. Flow chart of the econometric method
-\item 2.2. Model specification
-\item 2.3. Ordinary least squares estimation
-\item 2.4. Inductive statistics
-\item 2.5. Frequentist vs. Bayesian inference
-\item 2.6. Logistic regression
-\ei
+\placebox{0.50}{0.50}{
+  \figSimple{1.70\textwidth}{figsRegr/regression3dFig.png}}
+
+\makePale{0.85}{0.50}{0.55}{1.20}{1.50}
+
+\placebox{0.50}{0.55} {\parbox{0.6\textwidth}{\bi
+  \item[2.1] Flow Chart of the Econometric Method\\[1em]
+  \item[2.2] Model Specification
+  \bi
+   \item[2.2.1] Functional specification
+   \item[2.2.2] Statistical specification
+   \item[2.2.3] Data specification
+  \ei
+  \vspace{1em}
+  \item[2.3] Ordinary Least Squares (OLS) Estimation
+\ei}}
+
+\placebox{0.50}{0.90}{\myheading{Lecture 02: Linear (Regression) Models}}
+
 }
 
+\subsection{2.1 Flow Chart of the Econometric Method}
 
 %##############################################################
-\frame{\frametitle{2.0. Flow chart of the econometric method}
+\frame{\frametitle{2.1 Flow Chart of the Econometric Method}
 %##############################################################
 
 \visible<1>{\placebox{0.302}{0.735}{
@@ -71,19 +83,77 @@
 }
 
 
-\subsection{2.2. Model specification}
+\subsection{2.2. Model Specification}
 
 %##############################################################
-\frame{\frametitle{2.1. Model specification: 
-Functional specification 1: relevant factors}
+\frame{\frametitle{2.2. Model Specification}
 %##############################################################
 
-\vspace{-1em}
+As \bfdef{model specification}, we denote the \emph{complete
+  structural definition} of the model and its consistency with the
+available data. There are three aspects:
+\bi
+\pause \item \bfdef{Functional specification}: The model's exogenous and
+endogenous variables and the functional form in which they appear,
+particularly how the original exogenous variables $\tilde{\vec{x}}$
+are expressed in terms of linear \bfdef{factors} $x_j=g_j(\tilde{\vec{x}})$
+by fixed, generally nonlinear functions $g_j(.)$
+
+\pause \item \bfdef{Statistical specification}: If the model contains
+  stochastic elements, e.g., residual ``error'' terms we want to know
+  how they are distributed and correlated with each other
+
+\pause \item The \bfdef{data specification} should ensure that the available
+  data can be used to analyze the data, for example, sufficient number of data
+  sets, check if each set contains all the exogenous and endogenous
+  variables
+\ei
+
+
+}
+
+%##############################################################
+\frame{\frametitle{WARNING}
+%##############################################################
+
+\placebox{0.50}{0.55}{\parbox{0.70\textwidth}{
+\maintextbox{0.70\textwidth}{If the
+ econometric model is not specified
+  correctly, all sorts of problems occur, from mild to nasty:
+\bi
+\pause \item \green{mild:} the errors are higher than necessary but the results are 
+  unbiased and the inferential conclusions correct
+\pause \item \orange{medium:} the results are still 
+  unbiased but the inferential analysis gives erroneous conclusions
+  (higher significance than in reality)
+\pause \item \red{nasty:} the results are biased in an unpredictable way
+\ei
+}}}
+
+\pause \placebox{0.25}{0.15}{\bfred{Junk in, junk out!}}
+\pause \placebox{0.75}{0.15}{\parbox{0.25\textwidth}{
+\red{There are lies, damned lies, and \bfred{statistics!}}}}
+
+
+
+}
+
+
+ 
+
+\subsection{2.2.1 Functional specification}
+
+%##############################################################
+\frame{\frametitle{2.2.1 Functional specification 1: relevant factors}
+%##############################################################
+
+\vspace{-0.0em}
 \fig{0.5\textwidth}{figsRegr/linRegBivar_eng.png}
-\vspace{-2em}
+\vspace{-1.0em}
 \fig{0.8\textwidth}{figsRegr/linRegBivar_xz_yz_eng.png}
 \vspace{-1em}
 
+{\small
 \bi
 \item All relevant influencing factors should be taken into account (top),
 not one missed (bottom).
@@ -92,51 +162,102 @@ not one missed (bottom).
 \ei
 }
 
+}
+
 %###################################################
 \frame{\frametitle{Functional specification 2: linearity}
 %###################################################
 
-\fig{0.8\textwidth}{figsRegr/scatterplot2_eng.png}
+\fig{0.7\textwidth}{figsRegr/scatterplot2_eng.png}
 \bi
 \item The model should be linear which is not fulfilled here.
 \pause \item Serious consequences: ``junk in, junk out''.
-\pause \item A change of the independent variable into several factors,
-e.g. $x_0'=1,x_1'=1/x,x_2'=x^2$ or $x_0'=1,x_1'=x,x_2'=x^2$ would be a
-solution here.
+\pause \item A\emph{change of the independent variable} into several
+\bfdef{factors} would be a
+solution here,
+e.g. $x_0'=1,x_1'=1/x,x_2'=x^2$ or $x_0'=1,x_1'=x,x_2'=x^2$.
 \ei
 }
 
-
 %###################################################
-\frame{\frametitle{Functional specification 2: linearity}
+\frame{\frametitle{Example: fuel consumption}
 %###################################################
-\vspace{0em}
-\fig{1.05\textwidth}{figsRegr/scatterplot5_eng.png}
+Assuming a constant efficiency chemical energy $\to$ mechanical
+energy, the required fuel per \unit[100]{km}, $y$, is proportional to the
+driving resistance with the contributions
 \bi
-\item Often, the model can be linearized by transforming the exogenous
-variables to linear factors, e.g., $x'=\sqrt{x}$.
-\pause \item Depending on the context, it is better to transform the whole equation, i.e., the
-endogenous variable, e.g., $y'=\ln(y)$.
+\item Friction tire-road: contributions independent of the speed
+  $\tilde{x}_1$ and proportional to the mass $\tilde{x}_2$.
+\pause \item Air drag: proportional to speed squared, $x^2$, and independent
+  from mass
+\pause \item Gradient: proportional to mass times gradient $\tilde{x}_3$
 \ei
+\pause In addition, there is a base consumption rate (about
+\unit[0.6]{liters/h}) when the car is idling/driving very slowly
+$\Rightarrow$ contribution proportional to 1/speed [liters/km=liters/h
+  * h/km] $\Rightarrow$ model
+\pause
+\bdm
+y(\vec{x})=\sum_{j=1}^4\beta_jx_j+\epsilon, \quad
+x_1=\tilde{x}_2, \quad x_2=\tilde{x}_1^2, \quad
+x_3=\tilde{x}_2\tilde{x}_3, \quad
+x_4=\frac{1}{\tilde{x}_1}
+\edm
+
 }
 
+
+%###################################################
+\frame{\frametitle{Transformation of the endogenous variable}
+%###################################################
+
+\visible<1>{\placebox{0.5}{0.55}{
+ \figSimple{0.8\textwidth}{figsAllg/dowJones_lin.png}}}
+\visible<1>{\placebox{0.5}{0.15}{
+ \parbox{0.9\textwidth}{
+  Transformation of time $\tilde{x}$ to a factor $x=\exp(\tilde{x})$
+  linearizes but fluctuations are not i.i.d (see statistical
+  specification below)}}}
+
+\visible<2->{\placebox{0.5}{0.55}{
+ \figSimple{0.8\textwidth}{figsAllg/dowJones_log.png}}}
+\visible<2>{\placebox{0.5}{0.15}{
+ \parbox{0.9\textwidth}{
+  Transformation of the endogenous variable $y \to u=\ln(y)$ and
+  $x=\tilde{x}$ gives a
+  properly specified linear model $u(x)=\beta_0+\beta_1x+\epsilon$,
+  $\epsilon \sim \text{i.i.d.}$}}}
+
+
+}
 
 %###################################################
 \frame{\frametitle{Functional specification 3: homogeneity}
 %###################################################
 %\vspace{2em}
-\fig{1.0\textwidth}{figsRegr/scatterplot6_eng.png}
+\fig{0.8\textwidth}{figsRegr/scatterplot6_eng.png}
 %\vspace{2em}
+{\small
 \bi
 \item If untreated, a discontinuity (``structural break'') in the space of the
 exogenous variables leads to a serious bias (``junk ...'')
 \pause \item Solution: a dummy
 variable with values 0 before, 1 after the break. 
+\pause \itemAsk \colAsk{What could possibly cause a structural break?}
+\pause \itemAnswer \tiny{\colAnswer{1. new data basis (GDR+West
+    Germany $\to$ Germany); 2. Redefinition of a variable (e.g.,
+    seriously injured from visit to hospital to overnight visit)}}
 \ei
 }
 
+
+}
+
+
+\subsection{2.2.2 Statistical specification}
+
 %###################################################
-\frame{\frametitle{Statistical specification 1:\\the residual
+\frame{\frametitle{2.2.2 Statistical Specification\\1. the residual
     $\epsilon$ has zero expectation}
 %###################################################
 \vspace{0em}
@@ -188,8 +309,9 @@ such as a periodicity.
 %###################################################
 \frame{\frametitle{Statistical specification 4: Gaussian distribution}
 %###################################################
-\vspace{0em}
+
 \fig{1.0\textwidth}{figsRegr/scatterplot10_eng.png}
+{\small
 \bi
 \item The residual $\epsilon$ should be Gaussian distributed (right),
 not, e.g., bimodally distributed (left).
@@ -197,10 +319,15 @@ not, e.g., bimodally distributed (left).
 unbiased and efficient but the error estimates are wrong).
 \pause \item All four statistical specifications can be summarized by
 requiring
- \maindm{\epsilon \sim \text{i.i.d.} N(\mu,\sigma^2).}
+ \maindm{\epsilon \sim \text{i.i.d.} N(\mu,\sigma^2) \quad 
+\text{i.i.d.: \textbf{i}dentical \textbf{i}ndependent 
+ \textbf{d}istributions}}
 \ei
 }
 
+}
+
+\subsubsection{2.2.3 Data specification}
 %###################################################
 \frame{\frametitle{Data specification 1: enough data}
 %###################################################
@@ -259,12 +386,11 @@ fulfilled, the econometric problem satisfies the
 \ei
 }
 
-\end{document}
 
-\subsection{2.3. Ordinary least squares estimation}
+\subsection{2.3. Ordinary Least Squares Estimation}
 
 %###################################################
-\frame{\frametitle{2.2. Ordinary least squares estimation}
+\frame{\frametitle{2.3. Ordinary  Least Squares Estimation}
 %###################################################
 \bi
 \pause \item Given is a linear model of the form
@@ -461,941 +587,6 @@ linear regression}
 
 }
 
-
-
-\subsection{2.4. Inductive statistics}
-
-%###################################################
-\frame{\frametitle{2.3. Classic inferential  statistics}
-%###################################################
-\bi
-\item Confidence intervals
-\item Type I and II errors
-\item Significance tests
-\item Example: Demand for hotel rooms
-\item Model selection strategies
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Confidence intervals and origin of the 
-Student´s distribution}
-%###################################################
-
-\fig{1.0\textwidth}{figsRegr/KI_veranschaulichung_eng.png}
-}
-
-%###################################################
-\frame{\frametitle{Densities of standard normal 
-\textit{vs.} Student-t distribution}
-%###################################################
-\vspace{-0.5em}
-\fig{0.95\textwidth}{figsRegr/f_gaussStudent_eng.png}
-}
-
-
-%###################################################
-\frame{\frametitle{Distributions of standard normal 
-\textit{vs.} Student-t-distribution}
-%###################################################
-\vspace{-0.5em}
-
-\fig{0.95\textwidth}{figsRegr/F_gaussStudent_eng.png}
-}
-
-%###################################################
-\frame{\frametitle{Confidence intervals (CI)}
-%###################################################
-
-\placebox[center]{0.26}{0.60}
-{\figSimple{0.6\textwidth}{figsRegr/f_student_KI_eng.png}}
-
-\placebox[center]{0.74}{0.60}
-{\figSimple{0.6\textwidth}{figsRegr/F_student_KI_eng.png}}
-
-\placebox[center]{0.50}{0.20}
-{\parbox{\textwidth}{
- \bi
-  \item CI for error probability 
-	$\alpha=\unit[5]{\%}$ for df=3 degrees of freedom.
-  \item CI ``uncertainty principle'': Higher selectivity implies
-  higher $\alpha$ error.
-  \ei
-}}
-
-}
-
-
-
-
-%###################################################
-\frame{\frametitle{Significance tests: General four-step procedure}
-%###################################################
-\benum
-\item Formulate a \bfblue{null hypothesis} $H_0$ such that their rejection
-  gives insight, e.g. $\beta_j=\beta_{j0}$ (point hypothesis) or
-  $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{\red{One cannot confirm $H_0$}}
-\pause \item Select a \bfblue{test function} or \bfblue{statistics} $T$
-\bi
-\item whose distribution is known provided $H^*_0$, i.e., the
-  parameters lie at the margin of $H_0$ (of course, $H^*_0=H_0$ for a point null hypothesis)
-\item which has distinct \bfblue{rejection regions} $R(\alpha)$ which
-  are reached rarely 
-  (with a probability $\le \alpha$) if $H_0$ but more often if
-  $H_1=\overline{H_0}$ 
-\ei
-
-\pause \item Evaluate a realisation $t\sub{data}$ of $T$ from the data
-
-\pause \item Check if $t\sub{data} \in R(\alpha)$. If yes, $H_0$ can be
-  rejected at an error probability or \bfblue{significance level}
-  $\alpha$. Otherwise, nothing can be said.
-\pause \item[4a] Alternatively, calculate the \bfblue{$p$-value} as
-the minimum $\alpha$ for which $H_0$ can be rejected.
-\eenum
-}
-
-%###################################################
-\frame{\frametitle{Examples for test statistics I}
-%###################################################
-
-\bi
-\item Testing $H_0$: $\beta_j=\beta_{j0}$ or
-  $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$ for a \red{parameter}: The test
-  function is the estimated deviation from the boundary of $H_0$ in
-  units of the estimated error standard deviation:
-\bdm 
-T =\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
-\edm
-\item Testing simple \red{functions of parameters} such as
-  $\beta_1/\beta_2=2$, $\le 2$ or $\ge 2$: Transform into a linear
-  combination. Then, the normalized estimated deviation is student-t
-  distributed under $H_0^*$. Here, the linear combination is
-  $b=\beta_1-2\beta_2=0$: 
-\bdma
-\hat{b} &=& \hatbeta_1-2\hatbeta_1, \\
-\hat{V}(\hat{b}) &=& \hat{V}_{11}+4\hat{V}_{22}-4\hat{V}_{12}, \\
-T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
-\edma
-\ei
-
-}
-
-%###################################################
-\frame{\frametitle{Examples for test statistics II}
-%###################################################
-
-\bi
-\item Testing the \red{correlation coefficient} in an $xy$ scatter plot:
-\bdm
-\hat{\rho}=\frac{s_{xy}}{s_xs_y}, \quad H_0: \rho=0, \quad
-T=\frac{\hat{\rho}}{\sqrt{1-\hat{\rho}^2}}\sqrt{n-2} \sim T(n-2)
-\edm
-
-{\footnotesize
-\emph{Derivation:} $\rho \neq 0$ if, and only if, 
-in a simple linear regression
-$y=\beta_0+\beta_1x+\epsilon$, the slope parameter $\beta_1=0$, so
-test for $\beta_1=0$: Under $H_0$, the test statistics
-\bdm
-T=\hatbeta_1/\sqrt{\hat{V}_{11}}=\frac{s_{xy}}{\hat{\sigma}s_x}\sqrt{n}
- \sim T(n-2)
-\edm
-Now insert $\hat{\sigma}$ which can, in the simple-regression case, be
-explicitely calculated:
- $\hat{\sigma}^2=n (s_y^2 -s_{xy}^2/s_x^2)/(n-2)$
-}
-
-\vspace{1em}
-
-\item Test for the \red{residual variance}, $H_0$: $\sigma^2=\sigma_0^2$, 
-$\sigma^2 \ge \sigma_0^2$, and $\sigma^2 \le \sigma_0^2$:
-\bdm
-T=\frac{\hatsig^2}{\sigma_0^2} \ (n-1-J) \sim \chi^2(n-1-J)
-\edm
-\emph{Notice:} The one-parameter $\chi^2(m)=\sum_{i=1}^mZ_i^2$ is the
-sum of squares of i.i.d. Gaussians; its density is not symmetric. 
-
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Examples for test statistics III}
-%###################################################
-
-{\small
-\bi
-
-\item Tests of \red{simultaneous point null hypotheses}, e.g., $H_0$: 
-$\beta_1=0$ AND $\beta_2=2$ using the
-\red{Fisher-F test}:
-\bdm
-T=\frac{ (S_0-S)/(M-M_0)}{S/(n-M)} \sim F(M-M_0,n-M)
-\edm
-\bi
-\item $S$: SSE of the estimated full model with $M=J+1$ parameters
-\item $S_0$: SSE of the estimated restrained model under $H_0$ with
-  $M_0$ free parameters
-\ei
-
-\item The \bfdef{Fisher-F} distribution essentially is the ratio of two
-  independent $\chi^2$ distributed random variables,
-\bdm 
-F(n,d)=\frac{\chi_n^2/n}{\chi_d^2/d},
-\edm
-with $n$ numerator and $d$ denominator degrees of freedom
-
-\itemAsk  Argue that always $S_0\ge S$ 
-\itemAsk  Justify that there is only a left-sided rejection region:
-  $H_0$ is rejected if $t\sub{data}>f^{(n,d)}_{1-\alpha}$
-
-\ei
-}
-}
-
-%###################################################
-\frame{\frametitle{Equivalence of the F and T-tests for one parameter}
-%###################################################
-\vspace{1em}
-
-{\small
-With $M-M_0=1$, the F-test is equivalent to a parameter test for the
-  parameter $j$ in question:
-\bi
-\item Parameter test:
-$
-T=\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}(\hatbeta_j)}}\sim T(n-1-J)
-$
-
-\item F-test:
-$
-T=(n-J-1)\frac{S_0-S}{S} \sim F(1,n-1-J)
-$
-\item There is a general relation (\bfAsk{prove!}) between the
-  student-t and the F(1,d) distribution: 
-\bdm
-F\sim F(1,d) \ \text{and} \ T \sim T(d) \Rightarrow F=T^2
-\edm
-so we have
-$\left( (\hatbeta_j-\beta_{j0})/\sqrt{\hat{V}(\hatbeta_j)}\right)^2 \sim
-F(1, n-1-J)$
-\item
-{\scriptsize
-In fact, using $\hat{\m{V}}=S/(n-1-J)(\m{X}\tr\m{X})^{-1}$ and 
-expanding $S_0-S=(\hatvecbeta_r-\hatvecbeta)\tr
-(\m{X}\tr\m{X}) (\hatvecbeta_r-\hatvecbeta)$ to second order, one can
-show that, in fact
-\bdm
-(n-J-1)\frac{S_0-S}{S}=\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}(\hatbeta_j)}
-\edm
-}
-\ei
-}
-
-}
-
-
-
-%###################################################
-\frame{\frametitle{Definition of type I and type II errors for significance tests}
-%###################################################
-\vspace{-1em}
-
-\fig{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt_eng.png}
-{\small
-\bi
-\item We can control the Type I ($\alpha$) error probability
-  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}.
-\pause \item Since the Type II ($\beta$) error probability 
-  $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
-error type should be formulated as the $\alpha$ error.
-\pause \item Fundamental problem: I want $P(H_0|\text{rejected})$ and
-$P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
-\bfblue{Bayesian statistics}
-\ei
-}
-}
-
-
-%###################################################
-%\frame{\frametitle{Annahme und Ablehnungsbereiche}
-\frame{\frametitle{Rejection\\regions}
-%###################################################
-\vspace{-2em}
-
-\hspace{0.18\textwidth}
-\includegraphics[width=0.8\textwidth]
- {figsRegr/annahmeAblehn_einZweiseit_eng.png}
-\vspace{0.5em}
-
-\bi
-\item Shown is the density of the test function \emph{if $H^*_0$}
-\item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
-  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain $H^*_0$
-\item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfblue{rejection region}
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Significance tests: the $p$-value}
-%###################################################
-\bi
-\item Obviously, it is not very efficient to test $H_0$ for a fixed
-significance level $\alpha$ (one does not know \emph{how significant}
-the result really is)
-\pause \item Instead, one would like to know the \emph{minimum}
-$\alpha$ for rejection, or the \bfblue{$p$-value}. 
-\pause \item The most general definition is:
-\maindm{p=\text{Prob}(T\in E\sub{data}|H_0^*))} 
-where the \emph{extreme region} $E\sub{data}$ contains all
-realisations of $T$ that are
-further away from $H^*_0$ than $t\sub{data}$.
-\vspace{1em}
-
-\bi
-\item $p\ge\unit[5]{\%}$: not significant (no star at the parameter
-  $\beta$)
-\item $p<\unit[5]{\%}$: significant (one star, $\beta^*$)
-\item $p<\unit[1]{\%}$: very significant (two star, $\beta^{**}$)
-\item $p<0.001$: highly significant (three stars, $\beta^{***}$)
-\ei
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Calculating $p$ for some basic tests}
-%###################################################
-
-\bi
-\item Interval test $H_0: \beta \le \beta_0$ or $\beta < \beta_0$
-\bdm
-p=P(T>t\sub{data}|\beta=\beta_0)
-=1-F_T(t\sub{data})
-\edm
-
-
-
-\pause \item Interval test $H_0: \beta \ge \beta_0$ or $\beta > \beta_0$
-\bdm
-p=P(T<t\sub{data}|\beta=\beta_0)=F_T(t\sub{data})
-\edm
-
-\pause \item Point test $H_0: \beta=\beta_0$ (symmetry of $f_T$ assumed)
-\bdma
-p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
- &=& 1-F_T(|t\sub{data}|)+F_T(-|t\sub{data}|)\\
- &=& 1-F_T(|t\sub{data}|)+1-F_T(|t\sub{data}|)\\
- &=& 2(1-F_T(|t\sub{data}|))
-\edma
-\ei
-}
-
-
-%###################################################
-\frame{\frametitle{Type I and II errors for ``$<$'' or
-	``$\le$''-tests as a function\\of the true value relative to
-    $H_0$, known variance} 
-%###################################################
-\vspace{0em}
-\fig{0.90\textwidth}{figsRegr/fehler12art_leGauss_eng.png}
-\vspace{-1.5em}
-{\small
-\bi
-\item The maximum type-I error probability of $\alpha$ 
-occurs if $\beta=\beta_0$, i.e., at the boundary of $H_0$.
-\pause \item The maximum type-II error probability of $1-\alpha$
-occurs if $\beta$ is just outside of $H_0$.
-\ei
-}
-}
-
-%###################################################
-\frame{\frametitle{The same for unknown variance, 
-df=2 degrees of freedom}
-%###################################################
-\vspace{0.0em}
-\fig{0.90\textwidth}{figsRegr/fehler12art_leStudent_2FG_eng.png}
-\bi
-\item The \bfblue{power function} is defined as the rejection
-  probability of $H_0$ as a function of the true value relative to $H_0$
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Type I and II errors for ``$>$'' or
-	``$\ge$''-tests, known variance}
-%###################################################
-\vspace{0em}
-\fig{0.9\textwidth}{figsRegr/fehler12art_geGauss_eng.png}
-\vspace{-1em}
-\bi
-\item Again, the maximum type I and II error probabilities of
-  $\alpha$ and $1-\alpha$, respectively, are obtained if
-  the true parameter(s) are at the boundary / very near outside of $H_0$.
-\pause \item The maximum type-I error probability is also known as
-significance level.
-\ei
-}
-
-%###################################################
-\frame{\frametitle{The same for unknown variance, 
-df=2 degrees of freedom}
-%###################################################
-\vspace{-4em}
-\fig{0.9\textwidth}{figsRegr/fehler12art_geStudent_2FG_eng.png}
-}
-
-
-%###################################################
-\frame{\frametitle{Type I and II errors for two-sided (point-)tests \\
-	(unkown variance, df=2)}
-%###################################################
-\vspace{0em}
-\fig{0.9\textwidth}{figsRegr/fehler12art_eqStudent_2FG_eng.png}
-\vspace{-1em}
-\bi
-\item Since $H_0$ is a point set here, the type-I error probability is always
-  given by $\alpha$ (``significance level'')
-\ei
-}
-
-
-
-%###################################################
-\frame{\frametitle{Example: modeling the demand for hotel rooms}
-%###################################################
-
-\placebox[center]{0.26}{0.67}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
-
-
-\placebox[center]{0.26}{0.25}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
-
-\placebox[center]{0.74}{0.25}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
-
-\placebox[center]{0.74}{0.67}
-{\parbox{0.53\textwidth}{\scriptsize
-\bi
-\item Exogenous variables $x_1$: quality [\# stars]; $x_2$: price
-  [\euro{}/night].
-\item Endogenous variable: booking rate [\%]
-\item The exogenous variables are non-perfectly correlated: \OK
-\item The demand is positively correlated with both the quality and
-  the price (!)
-\ei
-}}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Visualization of the fit quality}
-%###################################################
-
-
-\hspace{-0.02\textwidth}
-\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_1_eng.png}
-\hspace{-0.02\textwidth}
-\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_2_eng.png}
-
-\bi
-\item Surface: model
-$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[0ex]
-
-\pause \item Black bullets: data (right graphics: rotated clockwise by
-90 degrees)
-
-\pause \item OLS estimate: $\hatbeta_0=25.5$, $\hatbeta_1=38.2$, $\hatbeta_2=-0.953$.
-
-\pause \item Blue or pink bars: residuals
-$\epsilon_i$ ($\le 0$ if below the model plane)
-\ei
-}
-
-
-%###################################################
-\frame{\frametitle{Effect of the correlations between the exogenous
-    variables} 
-%###################################################
-
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_eng.png}
-}
-
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters I}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal1_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters II}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal2_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters III}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal3_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters IV}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal4_eng.png}
-}
-
-
-
-
-
-%###################################################
-\frame{\frametitle{Confidence interval for the appraisal for ``stars''
-    $\beta_1$\\ \hspace*{0.65\textwidth}(full model)}
- %###################################################
-\vspace{-2em}
-\begin{tabular}{cc}
-\parbox{0.5\textwidth}{
-  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta1_eng.png}
-  \vspace{-2em}
-  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta1_eng.png}
-}
-&
-\hspace{1em}
-\parbox{0.48\textwidth}{Confidence interval (CI):
-\vspace{1em}
-
-{\small 
-$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
- \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
-
-$\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
-\sqrt{\hat{V}(\hat{\beta}_1)}$
-
-$\hat{V}(\hat{\beta}_1)
-  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
-
-$\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
- \left(\hat{y}_i-y_i\right)^2$
-}
-}
-\end{tabular}
-}
-
-
-%###################################################
-\frame{\frametitle{Confidence interval for the price sensitivity  $\beta_2$
- \\ \hspace*{0.65\textwidth}(full model)}
-%###################################################
-\vspace{-2em}
-\begin{tabular}{cc}
-\parbox{0.5\textwidth}{
-  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta2_eng.png}
-  \vspace{-2em}
-  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta2_eng.png}
-}
-\end{tabular}
-
-
-}
-
-
-%###################################################
-\frame{\frametitle{Linked tests and 2d regions of confidence for
-    $\beta_1$ and $\beta_2$}
-%###################################################
-\fig{0.76\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2_eng.png}
-\vspace{-1em}
-
-{\scriptsize
-\bi
-\item The estimation errors are significantly correlated.
-
-\pause \item Simple null hypotheses ($t$-test):
-$H_{01}: \beta_1=\beta_{10}=27$,
-$H_{02}: \beta_2=\beta_{20}=-1.4$
-
-\pause \item Correlated null hypotheses ($t$-test), e.g.,
-$\gamma_3=\beta_1+30\beta_2<0$
-
-\pause \item Compound null hypotheses ($F$-test), e.g.,
-% $\bullet=H_{01}: \beta_{10}=30 \cap \beta_{20}=-1$.
-$\triangle=H_{03}: \beta_{10}=30 \cap \beta_{20}=-0.6$.
-\ei
-}
-}
-
-%###################################################
-\frame{\frametitle{Model selection strategies: problem statement}
-%###################################################
-
-\placebox[center]{0.50}{0.45}
-{\figSimple{0.60\textwidth}{figsRegr/elephantRaisedTrunkPale.jpg}}
-
-\placebox[center]{0.50}{0.45}
-{\parbox{0.80\textwidth}{
-\bi
-\item With every additional parameter, the fit quality in terms of a
-  reduced SSE or $\hat{\sigma}^2=\text{SSE}/(n-J-1)$ becomes better
-\item However, the risk of overfitting increases. In the words of John
-  Neumann: \textit{With four parameters I can fit an elephant, and
-    with five I can make him wiggle [its] trunk.}
-\item Overfitted models do not validate and can make neither
-  statements nor predictions.
-\item \red{$\Rightarrow$ we need selection criteria taking care of
-  overfitting!}
-\ei
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Model selection: Some standard criteria}
-%###################################################
-\bi
-\item \bfdef{(1) Adjusted $R^2$:}
-\bdm
-\bar R^2 = 1 - \, \frac{n-1}{n-J-1}\,\left(1-R^2\right), \quad
-R^2=1-\frac{S}{S_0}, 
-\edm
-\vspace{-1em}
-\bdm
-S =\text{SSE(full model)}, \quad S_0=\text{SSE(constant-only model)}.
-\edm
-\vspace{0.1em}
-
-\item \bfdef{(2) Akaike information criterion AIC:}
-\begin{equation*}
-  \text{AIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{2}{n}, 
-\end{equation*}
-
-\item \bfdef{(3) Bayes' Information criterion BIC:}
-\begin{equation*}
-   \text{BIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{\ln n}{n} \,.
-\end{equation*}
-\ei
-Notice that the descriptive $\hat{\sigma}\sub{descr}^2=S/n$ instead of
-  the unbiased 
-$\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
-}
-
-%###################################################
-\frame{\frametitle{Model selection: Strategy {\`a} la ``Occam's Razor''}
-\begin{itemize}
-\item Identify $P$ possibly relevant exogenous factors (the constant
-  is always included) and calculate
-  $\bar{R}^2$, AIC, or BIC for all $2^P$ combinations of these
-      factors.
-\item The best model is that maximizing $\bar{R}^2$ or minimizing AIC
-  or BIC. 
-\item Since AIC and also $\bar{R}^2$ penalize complex models (with
-  many parameters) too little, the BIC is usually the best bet.
-\item Besides the mentioned \emph{brute-force} approach testing all $2^P$
-  combinations, there are two standard strategies:
-\bi
-\item \bfdef{Top-down approach}: Start with all the $P$
-  factors. In each round, eliminate a single factor such that the
-  reduced model has the highest increase in $\bar{R}^2$ / decrease in
-  AIC or BIC. Stop if there is no further improvement.
-\item \bfdef{Bottom-up approach}: Start with the constant-only model
-  $y=\beta_0$ and successively add factors until there is no further
-  improvement.
-\ei
-\item Standard statistics packages contain all of these strategies. 
-\end{itemize}
-}
-
-
-%###################################################
-
-
-\subsection{2.5. Frequentist vs. Bayesian inference}
-
-%###################################################
-\frame{\frametitle{2.4. 
-Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference}
-%###################################################
-\bi
-\item The classic \bfblue{frequentist's} approach calculates the
-  probability that the test function is further away from $H_0$ (in
-  the extreme range $E\sub{data}$)  than the data realisation
-  provided $H_0$ is marginally true: 
-\bdm
-p=P(E\sub{data}|H^*_0) \ge P(E\sub{data}|H_0)
-\edm
-
-\item The \bfblue{Bayesian inference} tries to caculate what is
-  actually interesting: The probability of $H_0$ given the data. If
-  the unconditional or \emph{a-priori probabilities} were known, this
-  is easy using 
-  \bfblue{Bayes' theorem}
-
-\maindm{
-P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
-\le p \, \frac{P(H_0)}{P(E\sub{data})}
-}
-
-\item Obviously, this only makes sense for interval null hypotheses
-  since, for a point hypothesis $\beta_0$ for a real-valued parameter
-  $\beta$, we have exactly $P(H_0|E\sub{data})=P(H_0)=0$.
-\ei
-}
-
-%###################################################
-\frame{\frametitle{Calculation for a Gaussian prior distriution of a parameter $\beta$}
-%###################################################
-{\small
-\bi
-\item Assume a parameter $\beta$
-  with Gaussian prior distribution of variance $\sigma_{\beta}^2$
-  and an OLS (or other unbiased)
-  estimator $\hatbeta$ with an error variance $\sigma^2_{\hatbeta}$.
-\item Assume further a null hypothesis with known a-priori probability
-  $P(H_0)$ (can be calculated from the prior distribution) and data
-  resulting in a certain frequentist's $p$-value for 
-  the estimator.
-\item Then, the Bayesian inference for $H_0$ reads
-\maindm{P(H_0|\hatbeta) = \Phi\left(\frac{\beta_0-\mu}{\sigma}\right),
-  \quad 
- \mu=b \frac{\sigma_{\beta}^2}{\sigma_{\beta}^2+\sigma_{\hatbeta}^2}, \quad
-\sigma=\frac{\sigma_{\beta}
-  \sigma_{\hatbeta}}{\sqrt{\sigma_{\beta}^2+\sigma_{\hatbeta}^2}}
-}
-where $b=\beta_0+\sigma_{\hatbeta}\Phi^{-1}(1-p)$ and
-$\beta_0 = \sigma_{\beta}\Phi^{-1}(P(H_0))$.
-
-\item This result is valid for any hypothesis for a
-  single parameter $\beta$, any a-priori expectation $E(\beta)$ and
-  any $H_0$ boundary value $\beta_0$ 
-
-\item If $\sigma_{\hatbeta}^2 \ll \sigma_{\beta}^2$ and $H_0$ is an
-  interval, we have $P(H_0|\hatbeta)\to p$ \\ 
-  \green{$\Rightarrow$ ressurrection of the $p$-value!}
-\ei
-}
-}
-
-%###################################################
-\frame{\frametitle{Bayesian inference for a Gaussian prior
-    distribution 1: \\ $P(H_0)=0.5$}
-%###################################################
-\placebox[center]{0.35}{0.45}
-{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq0.png}}
-
-\placebox[center]{0.83}{0.45}
-{\parbox{0.39\textwidth}{\footnotesize 
-Example: Bike modal split $\beta$
-\bi
-\item Past investigation: $\beta=\unit[(20 \pm 3)]{\%}$
-\item New investigation: $\beta=\unit[(26 \pm 3)]{\%}$
-\ei
-\pause Has biking increased?
-\bi
-\item Frequentist:\\
-$H_0: \beta<\unit[20]{\%}$,
-$p=\Phi(-2)=0.0227$ \OK
-\item Bayesian:\\
-$\sigma_{\beta}=\sigma_{\hatbeta}=\unit[3]{\%}$,\\
- $p=0.0227$, $P(H_0)=0.5$\\
-read from graphics:\\
-$P(H_0|\hatbeta)=\unit[8]{\%}$ $\Rightarrow$ \red{no!}
-(a difference test would give the same)
-\ei
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Bayesian inference for a Gaussian prior
-    distribution 2: \\ $P(H_0)=0.9987$}
-%###################################################
-\placebox[center]{0.35}{0.45}
-{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq3sigbeta.png}}
-
-\placebox[center]{0.83}{0.45}
-{\parbox{0.39\textwidth}{\small
-\bi
-\item $\sigma_{\hatbeta} \ll \sigma_{\beta}$\\
-$\Rightarrow P(H_0|\hatbeta) \approx p$\\
-$\Rightarrow$ \green{precise a-posteri information changes much.}
-\pause \item $\sigma_{\hatbeta} \gg \sigma_{\beta}$
-$\Rightarrow P(H_0|\hatbeta) \approx P(H_0)$\\
-$\Rightarrow$ \red{fuzzy a-posteri data essentially give no information
-  $\Rightarrow$ a-priori
-  probability nearly unchanged.}
-\ei
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Bayesian inference for a Gaussian prior
-    distribution 3: \\ $P(H_0)=0.16$}
-%###################################################
-\placebox[center]{0.35}{0.45}
-{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eqm1sigbeta.png}}
-
-\placebox[center]{0.84}{0.45}
-{\parbox{0.31\textwidth}{\small
-Again, new data with 
-$\sigma_{\hatbeta} \ll \sigma_{\beta}$ gives \green{much a-posteriori
-information (at least if $p$ is significantly different from
-$P(H_0)$)},\\[1em]
-\pause new data with $\sigma_{\hatbeta} \gg \sigma_{\beta}$ are
-\red{tantamount to essentially no new information.}
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Bayesian inference for a binary-valued parameter:\\
-    Map matching for $P(H_0)=P(\text{freeway})=0.8$}
-%###################################################
-\placebox[center]{0.35}{0.45}
-{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
-
-%}\end{document}
-
-\placebox[center]{0.84}{0.45}
-{\parbox{0.35\textwidth}{\footnotesize
-True vehicle position:\\
-$\beta=\twoCases{0}{\text{freeway}}{d}{\text{parallel road}}$
-\\[1em]
-Lateral GPS measurement:\\[0.5em]
-$\hatbeta \sim 
-\twoCases{N(0,\sigma_b^2)}{\text{freeway}}{N(d,\sigma_b^2)}{\text{road}}$
-\\[1em]
-\pause Measured:\\
- $\hatbeta=\unit[30]{m}$, $\sigma_b=\unit[10]{m}$,\\ 
- at a distance $d=\unit[50]{m}$
-\\[1em]
-\pause Read from graphics:\\
-$\frac{\sigma_b}{d}=0.2$, $\frac{\hatbeta}{d}=0.6$ \\
-$\Rightarrow P(H_0|\hatbeta)=0.23$\\[0.5em]
-\red{$\Rightarrow$ 
-you are on the parallel road with a probability of \unit[77]{\%}}
-}}
-
-}
-
-\subsection{2.6. Logistic regression}
-
-%###################################################
-\frame{\frametitle{2.5. Logistic regression}
-%###################################################
-
-{\small
-\bi
-\item Normal linear models of the form $Y=\vecbeta\tr\vec{x}+\epsilon$
-require the endogenous variable to be continuous (discuss!)
-\pause \item Using 
-model chaining with an unobservable intermediate continuous 
-  variable $Y^*$ allows one to model binary outcomes:
- \maindm{
-  Y(\vec{x})= \twoCases{1}{Y^*(\vec{x})> 0}{0}{\text{otherwise,}}
-  Y^*(\vec{x})= \hat{y}^*(\vec{x})+\epsilon=\vec{\beta}\tr \vec{x}+\epsilon
-}
-where $\epsilon$ obeys the \bfblue{logistic distribution} with
-$F_{\epsilon}(x)=e^x/(e^x+1)$
-
-\pause \item Probability $P_1$ for the outcome $Y=1$ for symmetric
-distributions:
-\bdm
- P_1 = P(Y^*(\vec{x})> 0)=F_{\epsilon}(\vecbeta\tr \vec{x})
-= \frac{e^{\vecbeta\tr \vec{x}}}{e^{\vecbeta\tr \vec{x}}+1}\text{ (logistic)}
-\edm
-
-\pause \item Formally, this is a normal linear regression model for
-the log of the \bfblue{odds ratio} $P_1/P_0=P1/(1-P_1)$:
-\bdm
-\hat{y}^*(\vec{x})=\vec{\beta}\tr \vec{x} = \ln\left(\frac{P_1}{P_0}\right)
-\edm
-\ei
-}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Example: naive OLS-estimation (RP student interviews)}
-%###################################################
-\placebox[center]{0.25}{0.60}
-{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_f_eng.png}}
-
-\placebox[center]{0.75}{0.60}
-{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_eng.png}}
-
-\placebox[center]{0.50}{0.20}
-{\parbox{\textwidth}{
-\bi
-\item Alternatives: $i=1$: motorized and $i=2$ (not)
-\item Intermediate variable estimated by percentaged choices: $y^*=\ln(f_1/(1-f_1))$
-\item Model: Log. regression, 
-$\hat{y}^*(x_1)=\beta_0  + \beta_1 x_1 $
-\item OLS Estimation: $\beta_0=-0.58, \quad \beta_1=0.79 $
-\ei
-}}
-}
-
-
-
-%###################################################
-\frame{\frametitle{Method consistent? added
-    5$\sup{th}$ data point with f=0.9999}
-%###################################################
-
-\placebox[center]{0.25}{0.60}
-{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_f_eng.png}}
-
-\placebox[center]{0.75}{0.60}
-{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_eng.png}}
-
-\placebox[center]{0.50}{0.20}
-{\parbox{\textwidth}{
-\bi
-\item Same model:
- $\hat{y}^*(x_1)=\beta_0 + \beta_1 x_1$
-\item New estimation: $\beta_0=-3.12, \quad \beta_1=2.03 $
-\item Estimation would fail if $f_1=0$ or =1 $\Rightarrow$ real
-  discrete-choice model necessary!
-\ei
-}}
-}
-
-
-%###################################################
-\frame{\frametitle{Comparison: real Maximum-Likelihood (ML) estimation}
-%###################################################
-
-% png File von von ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/*.eng.gnu
-% setze beta1_levmar=-beta1_LogR_OLS
-% setze beta2_levmar=-beta0_LogR_OLS
-% Vorzeichen: Da delta_{i1}->delta_{i0} statt delta_{i2}->delta_{i2} 
-% Reihenfolge/Bezeichnung: inkonsistent historisch
-% Im latex File Bez. wie bei OLS-logist Regr in ../skripts/figsRegr/
-
-
-\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_4dataPoints_fProb_r.png}
-\bi
-\item Model: Logit, $V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
-$V_2=0$.
-\item Estimation: $\beta_0=-0.50\pm 0.65, \ \beta_1=+0.71\pm 0.30$
-\ei
-
-}
-
-%###################################################
-\frame{\frametitle{Comparison: real ML estimation
-	with added 5$\sup{th}$ data point}
-%###################################################
-
-\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_fProb_r.png}
-\bi
-\item Same logit model, 
-$V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
-$V_2=0$.
-\item New estimation: $\beta_0=-0.55\pm 0.63, \ \beta_1=+0.75\pm 0.27$
-\ei
-}
-
 \end{document}
+
+

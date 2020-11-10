@@ -1,0 +1,317 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}
+\input{$HOME/tex/inputs/styleVorl}
+%\input{../style/defs}
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+
+
+
+%###################################################
+
+
+\subsection{2.5. Frequentist vs. Bayesian inference}
+
+%###################################################
+\frame{\frametitle{2.5. 
+Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference}
+%###################################################
+\bi
+\item The classic \bfblue{frequentist's} approach calculates the
+  probability that the test function is further away from $H_0$ (in
+  the extreme range $E\sub{data}$)  than the data realisation
+  provided $H_0$ is marginally true: 
+\bdm
+p=P(E\sub{data}|H^*_0) \ge P(E\sub{data}|H_0)
+\edm
+
+\item The \bfblue{Bayesian inference} tries to caculate what is
+  actually interesting: The probability of $H_0$ given the data. If
+  the unconditional or \emph{a-priori probabilities} were known, this
+  is easy using 
+  \bfblue{Bayes' theorem}
+
+\maindm{
+P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
+\le p \, \frac{P(H_0)}{P(E\sub{data})}
+}
+
+\item Obviously, this only makes sense for interval null hypotheses
+  since, for a point hypothesis $\beta_0$ for a real-valued parameter
+  $\beta$, we have exactly $P(H_0|E\sub{data})=P(H_0)=0$.
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Calculation for a Gaussian prior distriution of a parameter $\beta$}
+%###################################################
+{\small
+\bi
+\item Assume a parameter $\beta$
+  with Gaussian prior distribution of variance $\sigma_{\beta}^2$
+  and an OLS (or other unbiased)
+  estimator $\hatbeta$ with an error variance $\sigma^2_{\hatbeta}$.
+\item Assume further a null hypothesis with known a-priori probability
+  $P(H_0)$ (can be calculated from the prior distribution) and data
+  resulting in a certain frequentist's $p$-value for 
+  the estimator.
+\item Then, the Bayesian inference for $H_0$ reads
+\maindm{P(H_0|\hatbeta) = \Phi\left(\frac{\beta_0-\mu}{\sigma}\right),
+  \quad 
+ \mu=b \frac{\sigma_{\beta}^2}{\sigma_{\beta}^2+\sigma_{\hatbeta}^2}, \quad
+\sigma=\frac{\sigma_{\beta}
+  \sigma_{\hatbeta}}{\sqrt{\sigma_{\beta}^2+\sigma_{\hatbeta}^2}}
+}
+where $b=\beta_0+\sigma_{\hatbeta}\Phi^{-1}(1-p)$ and
+$\beta_0 = \sigma_{\beta}\Phi^{-1}(P(H_0))$.
+
+\item This result is valid for any hypothesis for a
+  single parameter $\beta$, any a-priori expectation $E(\beta)$ and
+  any $H_0$ boundary value $\beta_0$ 
+
+\item If $\sigma_{\hatbeta}^2 \ll \sigma_{\beta}^2$ and $H_0$ is an
+  interval, we have $P(H_0|\hatbeta)\to p$ \\ 
+  \green{$\Rightarrow$ ressurrection of the $p$-value!}
+\ei
+}
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 1: \\ $P(H_0)=0.5$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq0.png}}
+
+\placebox[center]{0.83}{0.45}
+{\parbox{0.39\textwidth}{\footnotesize 
+Example: Bike modal split $\beta$
+\bi
+\item Past investigation: $\beta=\unit[(20 \pm 3)]{\%}$
+\item New investigation: $\beta=\unit[(26 \pm 3)]{\%}$
+\ei
+\pause Has biking increased?
+\bi
+\item Frequentist:\\
+$H_0: \beta<\unit[20]{\%}$,
+$p=\Phi(-2)=0.0227$ \OK
+\item Bayesian:\\
+$\sigma_{\beta}=\sigma_{\hatbeta}=\unit[3]{\%}$,\\
+ $p=0.0227$, $P(H_0)=0.5$\\
+read from graphics:\\
+$P(H_0|\hatbeta)=\unit[8]{\%}$ $\Rightarrow$ \red{no!}
+(a difference test would give the same)
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 2: \\ $P(H_0)=0.9987$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq3sigbeta.png}}
+
+\placebox[center]{0.83}{0.45}
+{\parbox{0.39\textwidth}{\small
+\bi
+\item $\sigma_{\hatbeta} \ll \sigma_{\beta}$\\
+$\Rightarrow P(H_0|\hatbeta) \approx p$\\
+$\Rightarrow$ \green{precise a-posteri information changes much.}
+\pause \item $\sigma_{\hatbeta} \gg \sigma_{\beta}$
+$\Rightarrow P(H_0|\hatbeta) \approx P(H_0)$\\
+$\Rightarrow$ \red{fuzzy a-posteri data essentially give no information
+  $\Rightarrow$ a-priori
+  probability nearly unchanged.}
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 3: \\ $P(H_0)=0.16$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eqm1sigbeta.png}}
+
+\placebox[center]{0.84}{0.45}
+{\parbox{0.31\textwidth}{\small
+Again, new data with 
+$\sigma_{\hatbeta} \ll \sigma_{\beta}$ gives \green{much a-posteriori
+information (at least if $p$ is significantly different from
+$P(H_0)$)},\\[1em]
+\pause new data with $\sigma_{\hatbeta} \gg \sigma_{\beta}$ are
+\red{tantamount to essentially no new information.}
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a binary-valued parameter:\\
+    Map matching for $P(H_0)=P(\text{freeway})=0.8$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
+
+%}\end{document}
+
+\placebox[center]{0.84}{0.45}
+{\parbox{0.35\textwidth}{\footnotesize
+True vehicle position:\\
+$\beta=\twoCases{0}{\text{freeway}}{d}{\text{parallel road}}$
+\\[1em]
+Lateral GPS measurement:\\[0.5em]
+$\hatbeta \sim 
+\twoCases{N(0,\sigma_b^2)}{\text{freeway}}{N(d,\sigma_b^2)}{\text{road}}$
+\\[1em]
+\pause Measured:\\
+ $\hatbeta=\unit[30]{m}$, $\sigma_b=\unit[10]{m}$,\\ 
+ at a distance $d=\unit[50]{m}$
+\\[1em]
+\pause Read from graphics:\\
+$\frac{\sigma_b}{d}=0.2$, $\frac{\hatbeta}{d}=0.6$ \\
+$\Rightarrow P(H_0|\hatbeta)=0.23$\\[0.5em]
+\red{$\Rightarrow$ 
+you are on the parallel road with a probability of \unit[77]{\%}}
+}}
+
+}
+
+\subsection{2.6. Logistic regression}
+
+%###################################################
+\frame{\frametitle{2.5. Logistic regression}
+%###################################################
+
+{\small
+\bi
+\item Normal linear models of the form $Y=\vecbeta\tr\vec{x}+\epsilon$
+require the endogenous variable to be continuous (discuss!)
+\pause \item Using 
+model chaining with an unobservable intermediate continuous 
+  variable $Y^*$ allows one to model binary outcomes:
+ \maindm{
+  Y(\vec{x})= \twoCases{1}{Y^*(\vec{x})> 0}{0}{\text{otherwise,}}
+  Y^*(\vec{x})= \hat{y}^*(\vec{x})+\epsilon=\vec{\beta}\tr \vec{x}+\epsilon
+}
+where $\epsilon$ obeys the \bfblue{logistic distribution} with
+$F_{\epsilon}(x)=e^x/(e^x+1)$
+
+\pause \item Probability $P_1$ for the outcome $Y=1$ for symmetric
+distributions:
+\bdm
+ P_1 = P(Y^*(\vec{x})> 0)=F_{\epsilon}(\vecbeta\tr \vec{x})
+= \frac{e^{\vecbeta\tr \vec{x}}}{e^{\vecbeta\tr \vec{x}}+1}\text{ (logistic)}
+\edm
+
+\pause \item Formally, this is a normal linear regression model for
+the log of the \bfblue{odds ratio} $P_1/P_0=P1/(1-P_1)$:
+\bdm
+\hat{y}^*(\vec{x})=\vec{\beta}\tr \vec{x} = \ln\left(\frac{P_1}{P_0}\right)
+\edm
+\ei
+}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Example: naive OLS-estimation (RP student interviews)}
+%###################################################
+\placebox[center]{0.25}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_f_eng.png}}
+
+\placebox[center]{0.75}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_eng.png}}
+
+\placebox[center]{0.50}{0.20}
+{\parbox{\textwidth}{
+\bi
+\item Alternatives: $i=1$: motorized and $i=2$ (not)
+\item Intermediate variable estimated by percentaged choices: $y^*=\ln(f_1/(1-f_1))$
+\item Model: Log. regression, 
+$\hat{y}^*(x_1)=\beta_0  + \beta_1 x_1 $
+\item OLS Estimation: $\beta_0=-0.58, \quad \beta_1=0.79 $
+\ei
+}}
+}
+
+
+
+%###################################################
+\frame{\frametitle{Method consistent? added
+    5$\sup{th}$ data point with f=0.9999}
+%###################################################
+
+\placebox[center]{0.25}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_f_eng.png}}
+
+\placebox[center]{0.75}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_eng.png}}
+
+\placebox[center]{0.50}{0.20}
+{\parbox{\textwidth}{
+\bi
+\item Same model:
+ $\hat{y}^*(x_1)=\beta_0 + \beta_1 x_1$
+\item New estimation: $\beta_0=-3.12, \quad \beta_1=2.03 $
+\item Estimation would fail if $f_1=0$ or =1 $\Rightarrow$ real
+  discrete-choice model necessary!
+\ei
+}}
+}
+
+
+%###################################################
+\frame{\frametitle{Comparison: real Maximum-Likelihood (ML) estimation}
+%###################################################
+
+% png File von von ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/*.eng.gnu
+% setze beta1_levmar=-beta1_LogR_OLS
+% setze beta2_levmar=-beta0_LogR_OLS
+% Vorzeichen: Da delta_{i1}->delta_{i0} statt delta_{i2}->delta_{i2} 
+% Reihenfolge/Bezeichnung: inkonsistent historisch
+% Im latex File Bez. wie bei OLS-logist Regr in ../skripts/figsRegr/
+
+
+\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_4dataPoints_fProb_r.png}
+\bi
+\item Model: Logit, $V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
+$V_2=0$.
+\item Estimation: $\beta_0=-0.50\pm 0.65, \ \beta_1=+0.71\pm 0.30$
+\ei
+
+}
+
+%###################################################
+\frame{\frametitle{Comparison: real ML estimation
+	with added 5$\sup{th}$ data point}
+%###################################################
+
+\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_fProb_r.png}
+\bi
+\item Same logit model, 
+$V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
+$V_2=0$.
+\item New estimation: $\beta_0=-0.55\pm 0.63, \ \beta_1=+0.75\pm 0.27$
+\ei
+}
+
+\end{document}

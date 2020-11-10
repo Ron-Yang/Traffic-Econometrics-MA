@@ -1,0 +1,666 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}
+\input{$HOME/tex/inputs/styleVorl}
+%\input{../style/defs}
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+\section{3. Classic Inferential Statistics of the Linear (Regression) Models}
+
+
+%###################################################
+\frame{\frametitle{3. Classic inferential  statistics}
+%###################################################
+\bi
+\item[3.1] Confidence intervals
+\item[3.2] Type I and II errors
+\item[3.3] Significance tests
+\item[3.4] Example: Demand for hotel rooms
+\item[3.5] Model selection strategies
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Confidence intervals and origin of the 
+Student´s distribution}
+%###################################################
+
+\fig{1.0\textwidth}{figsRegr/KI_veranschaulichung_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Densities of standard normal 
+\textit{vs.} Student-t distribution}
+%###################################################
+\vspace{-0.5em}
+\fig{0.95\textwidth}{figsRegr/f_gaussStudent_eng.png}
+}
+
+
+%###################################################
+\frame{\frametitle{Distributions of standard normal 
+\textit{vs.} Student-t-distribution}
+%###################################################
+\vspace{-0.5em}
+
+\fig{0.95\textwidth}{figsRegr/F_gaussStudent_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Confidence intervals (CI)}
+%###################################################
+
+\placebox[center]{0.26}{0.60}
+{\figSimple{0.6\textwidth}{figsRegr/f_student_KI_eng.png}}
+
+\placebox[center]{0.74}{0.60}
+{\figSimple{0.6\textwidth}{figsRegr/F_student_KI_eng.png}}
+
+\placebox[center]{0.50}{0.20}
+{\parbox{\textwidth}{
+ \bi
+  \item CI for error probability 
+	$\alpha=\unit[5]{\%}$ for df=3 degrees of freedom.
+  \item CI ``uncertainty principle'': Higher selectivity implies
+  higher $\alpha$ error.
+  \ei
+}}
+
+}
+
+
+
+
+%###################################################
+\frame{\frametitle{Significance tests: General four-step procedure}
+%###################################################
+\benum
+\item Formulate a \bfblue{null hypothesis} $H_0$ such that their rejection
+  gives insight, e.g. $\beta_j=\beta_{j0}$ (point hypothesis) or
+  $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{\red{One cannot confirm $H_0$}}
+\pause \item Select a \bfblue{test function} or \bfblue{statistics} $T$
+\bi
+\item whose distribution is known provided $H^*_0$, i.e., the
+  parameters lie at the margin of $H_0$ (of course, $H^*_0=H_0$ for a point null hypothesis)
+\item which has distinct \bfblue{rejection regions} $R(\alpha)$ which
+  are reached rarely 
+  (with a probability $\le \alpha$) if $H_0$ but more often if
+  $H_1=\overline{H_0}$ 
+\ei
+
+\pause \item Evaluate a realisation $t\sub{data}$ of $T$ from the data
+
+\pause \item Check if $t\sub{data} \in R(\alpha)$. If yes, $H_0$ can be
+  rejected at an error probability or \bfblue{significance level}
+  $\alpha$. Otherwise, nothing can be said.
+\pause \item[4a] Alternatively, calculate the \bfblue{$p$-value} as
+the minimum $\alpha$ for which $H_0$ can be rejected.
+\eenum
+}
+
+%###################################################
+\frame{\frametitle{Examples for test statistics I}
+%###################################################
+
+\bi
+\item Testing $H_0$: $\beta_j=\beta_{j0}$ or
+  $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$ for a \red{parameter}: The test
+  function is the estimated deviation from the boundary of $H_0$ in
+  units of the estimated error standard deviation:
+\bdm 
+T =\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
+\edm
+\item Testing simple \red{functions of parameters} such as
+  $\beta_1/\beta_2=2$, $\le 2$ or $\ge 2$: Transform into a linear
+  combination. Then, the normalized estimated deviation is student-t
+  distributed under $H_0^*$. Here, the linear combination is
+  $b=\beta_1-2\beta_2=0$: 
+\bdma
+\hat{b} &=& \hatbeta_1-2\hatbeta_1, \\
+\hat{V}(\hat{b}) &=& \hat{V}_{11}+4\hat{V}_{22}-4\hat{V}_{12}, \\
+T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
+\edma
+\ei
+
+}
+
+%###################################################
+\frame{\frametitle{Examples for test statistics II}
+%###################################################
+
+\bi
+\item Testing the \red{correlation coefficient} in an $xy$ scatter plot:
+\bdm
+\hat{\rho}=\frac{s_{xy}}{s_xs_y}, \quad H_0: \rho=0, \quad
+T=\frac{\hat{\rho}}{\sqrt{1-\hat{\rho}^2}}\sqrt{n-2} \sim T(n-2)
+\edm
+
+{\footnotesize
+\emph{Derivation:} $\rho \neq 0$ if, and only if, 
+in a simple linear regression
+$y=\beta_0+\beta_1x+\epsilon$, the slope parameter $\beta_1=0$, so
+test for $\beta_1=0$: Under $H_0$, the test statistics
+\bdm
+T=\hatbeta_1/\sqrt{\hat{V}_{11}}=\frac{s_{xy}}{\hat{\sigma}s_x}\sqrt{n}
+ \sim T(n-2)
+\edm
+Now insert $\hat{\sigma}$ which can, in the simple-regression case, be
+explicitely calculated:
+ $\hat{\sigma}^2=n (s_y^2 -s_{xy}^2/s_x^2)/(n-2)$
+}
+
+\vspace{1em}
+
+\item Test for the \red{residual variance}, $H_0$: $\sigma^2=\sigma_0^2$, 
+$\sigma^2 \ge \sigma_0^2$, and $\sigma^2 \le \sigma_0^2$:
+\bdm
+T=\frac{\hatsig^2}{\sigma_0^2} \ (n-1-J) \sim \chi^2(n-1-J)
+\edm
+\emph{Notice:} The one-parameter $\chi^2(m)=\sum_{i=1}^mZ_i^2$ is the
+sum of squares of i.i.d. Gaussians; its density is not symmetric. 
+
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Examples for test statistics III}
+%###################################################
+
+{\small
+\bi
+
+\item Tests of \red{simultaneous point null hypotheses}, e.g., $H_0$: 
+$\beta_1=0$ AND $\beta_2=2$ using the
+\red{Fisher-F test}:
+\bdm
+T=\frac{ (S_0-S)/(M-M_0)}{S/(n-M)} \sim F(M-M_0,n-M)
+\edm
+\bi
+\item $S$: SSE of the estimated full model with $M=J+1$ parameters
+\item $S_0$: SSE of the estimated restrained model under $H_0$ with
+  $M_0$ free parameters
+\ei
+
+\item The \bfdef{Fisher-F} distribution essentially is the ratio of two
+  independent $\chi^2$ distributed random variables,
+\bdm 
+F(n,d)=\frac{\chi_n^2/n}{\chi_d^2/d},
+\edm
+with $n$ numerator and $d$ denominator degrees of freedom
+
+\itemAsk  Argue that always $S_0\ge S$ 
+\itemAsk  Justify that there is only a left-sided rejection region:
+  $H_0$ is rejected if $t\sub{data}>f^{(n,d)}_{1-\alpha}$
+
+\ei
+}
+}
+
+%###################################################
+\frame{\frametitle{Equivalence of the F and T-tests for one parameter}
+%###################################################
+\vspace{1em}
+
+{\small
+With $M-M_0=1$, the F-test is equivalent to a parameter test for the
+  parameter $j$ in question:
+\bi
+\item Parameter test:
+$
+T=\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}(\hatbeta_j)}}\sim T(n-1-J)
+$
+
+\item F-test:
+$
+T=(n-J-1)\frac{S_0-S}{S} \sim F(1,n-1-J)
+$
+\item There is a general relation (\bfAsk{prove!}) between the
+  student-t and the F(1,d) distribution: 
+\bdm
+F\sim F(1,d) \ \text{and} \ T \sim T(d) \Rightarrow F=T^2
+\edm
+so we have
+$\left( (\hatbeta_j-\beta_{j0})/\sqrt{\hat{V}(\hatbeta_j)}\right)^2 \sim
+F(1, n-1-J)$
+\item
+{\scriptsize
+In fact, using $\hat{\m{V}}=S/(n-1-J)(\m{X}\tr\m{X})^{-1}$ and 
+expanding $S_0-S=(\hatvecbeta_r-\hatvecbeta)\tr
+(\m{X}\tr\m{X}) (\hatvecbeta_r-\hatvecbeta)$ to second order, one can
+show that, in fact
+\bdm
+(n-J-1)\frac{S_0-S}{S}=\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}(\hatbeta_j)}
+\edm
+}
+\ei
+}
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Definition of type I and type II errors for significance tests}
+%###################################################
+\vspace{-1em}
+
+\fig{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt_eng.png}
+{\small
+\bi
+\item We can control the Type I ($\alpha$) error probability
+  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}.
+\pause \item Since the Type II ($\beta$) error probability 
+  $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
+error type should be formulated as the $\alpha$ error.
+\pause \item Fundamental problem: I want $P(H_0|\text{rejected})$ and
+$P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
+\bfblue{Bayesian statistics}
+\ei
+}
+}
+
+
+%###################################################
+%\frame{\frametitle{Annahme und Ablehnungsbereiche}
+\frame{\frametitle{Rejection\\regions}
+%###################################################
+\vspace{-2em}
+
+\hspace{0.18\textwidth}
+\includegraphics[width=0.8\textwidth]
+ {figsRegr/annahmeAblehn_einZweiseit_eng.png}
+\vspace{0.5em}
+
+\bi
+\item Shown is the density of the test function \emph{if $H^*_0$}
+\item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
+  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain $H^*_0$
+\item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
+  \emph{extreme region} or \bfblue{rejection region}
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Significance tests: the $p$-value}
+%###################################################
+\bi
+\item Obviously, it is not very efficient to test $H_0$ for a fixed
+significance level $\alpha$ (one does not know \emph{how significant}
+the result really is)
+\pause \item Instead, one would like to know the \emph{minimum}
+$\alpha$ for rejection, or the \bfblue{$p$-value}. 
+\pause \item The most general definition is:
+\maindm{p=\text{Prob}(T\in E\sub{data}|H_0^*))} 
+where the \emph{extreme region} $E\sub{data}$ contains all
+realisations of $T$ that are
+further away from $H^*_0$ than $t\sub{data}$.
+\vspace{1em}
+
+\bi
+\item $p\ge\unit[5]{\%}$: not significant (no star at the parameter
+  $\beta$)
+\item $p<\unit[5]{\%}$: significant (one star, $\beta^*$)
+\item $p<\unit[1]{\%}$: very significant (two star, $\beta^{**}$)
+\item $p<0.001$: highly significant (three stars, $\beta^{***}$)
+\ei
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Calculating $p$ for some basic tests}
+%###################################################
+
+\bi
+\item Interval test $H_0: \beta \le \beta_0$ or $\beta < \beta_0$
+\bdm
+p=P(T>t\sub{data}|\beta=\beta_0)
+=1-F_T(t\sub{data})
+\edm
+
+
+
+\pause \item Interval test $H_0: \beta \ge \beta_0$ or $\beta > \beta_0$
+\bdm
+p=P(T<t\sub{data}|\beta=\beta_0)=F_T(t\sub{data})
+\edm
+
+\pause \item Point test $H_0: \beta=\beta_0$ (symmetry of $f_T$ assumed)
+\bdma
+p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
+ &=& 1-F_T(|t\sub{data}|)+F_T(-|t\sub{data}|)\\
+ &=& 1-F_T(|t\sub{data}|)+1-F_T(|t\sub{data}|)\\
+ &=& 2(1-F_T(|t\sub{data}|))
+\edma
+\ei
+}
+
+
+%###################################################
+\frame{\frametitle{Type I and II errors for ``$<$'' or
+	``$\le$''-tests as a function\\of the true value relative to
+    $H_0$, known variance} 
+%###################################################
+\vspace{0em}
+\fig{0.90\textwidth}{figsRegr/fehler12art_leGauss_eng.png}
+\vspace{-1.5em}
+{\small
+\bi
+\item The maximum type-I error probability of $\alpha$ 
+occurs if $\beta=\beta_0$, i.e., at the boundary of $H_0$.
+\pause \item The maximum type-II error probability of $1-\alpha$
+occurs if $\beta$ is just outside of $H_0$.
+\ei
+}
+}
+
+%###################################################
+\frame{\frametitle{The same for unknown variance, 
+df=2 degrees of freedom}
+%###################################################
+\vspace{0.0em}
+\fig{0.90\textwidth}{figsRegr/fehler12art_leStudent_2FG_eng.png}
+\bi
+\item The \bfblue{power function} is defined as the rejection
+  probability of $H_0$ as a function of the true value relative to $H_0$
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Type I and II errors for ``$>$'' or
+	``$\ge$''-tests, known variance}
+%###################################################
+\vspace{0em}
+\fig{0.9\textwidth}{figsRegr/fehler12art_geGauss_eng.png}
+\vspace{-1em}
+\bi
+\item Again, the maximum type I and II error probabilities of
+  $\alpha$ and $1-\alpha$, respectively, are obtained if
+  the true parameter(s) are at the boundary / very near outside of $H_0$.
+\pause \item The maximum type-I error probability is also known as
+significance level.
+\ei
+}
+
+%###################################################
+\frame{\frametitle{The same for unknown variance, 
+df=2 degrees of freedom}
+%###################################################
+\vspace{-4em}
+\fig{0.9\textwidth}{figsRegr/fehler12art_geStudent_2FG_eng.png}
+}
+
+
+%###################################################
+\frame{\frametitle{Type I and II errors for two-sided (point-)tests \\
+	(unkown variance, df=2)}
+%###################################################
+\vspace{0em}
+\fig{0.9\textwidth}{figsRegr/fehler12art_eqStudent_2FG_eng.png}
+\vspace{-1em}
+\bi
+\item Since $H_0$ is a point set here, the type-I error probability is always
+  given by $\alpha$ (``significance level'')
+\ei
+}
+
+
+
+%###################################################
+\frame{\frametitle{Example: modeling the demand for hotel rooms}
+%###################################################
+
+\placebox[center]{0.26}{0.67}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
+
+
+\placebox[center]{0.26}{0.25}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
+
+\placebox[center]{0.74}{0.25}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
+
+\placebox[center]{0.74}{0.67}
+{\parbox{0.53\textwidth}{\scriptsize
+\bi
+\item Exogenous variables $x_1$: quality [\# stars]; $x_2$: price
+  [\euro{}/night].
+\item Endogenous variable: booking rate [\%]
+\item The exogenous variables are non-perfectly correlated: \OK
+\item The demand is positively correlated with both the quality and
+  the price (!)
+\ei
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Visualization of the fit quality}
+%###################################################
+
+
+\hspace{-0.02\textwidth}
+\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_1_eng.png}
+\hspace{-0.02\textwidth}
+\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_2_eng.png}
+
+\bi
+\item Surface: model
+$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[0ex]
+
+\pause \item Black bullets: data (right graphics: rotated clockwise by
+90 degrees)
+
+\pause \item OLS estimate: $\hatbeta_0=25.5$, $\hatbeta_1=38.2$, $\hatbeta_2=-0.953$.
+
+\pause \item Blue or pink bars: residuals
+$\epsilon_i$ ($\le 0$ if below the model plane)
+\ei
+}
+
+
+%###################################################
+\frame{\frametitle{Effect of the correlations between the exogenous
+    variables} 
+%###################################################
+
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters I}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal1_eng.png}
+}
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters II}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal2_eng.png}
+}
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters III}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal3_eng.png}
+}
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters IV}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal4_eng.png}
+}
+
+
+
+
+
+%###################################################
+\frame{\frametitle{Confidence interval for the appraisal for ``stars''
+    $\beta_1$\\ \hspace*{0.65\textwidth}(full model)}
+ %###################################################
+\vspace{-2em}
+\begin{tabular}{cc}
+\parbox{0.5\textwidth}{
+  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta1_eng.png}
+  \vspace{-2em}
+  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta1_eng.png}
+}
+&
+\hspace{1em}
+\parbox{0.48\textwidth}{Confidence interval (CI):
+\vspace{1em}
+
+{\small 
+$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
+ \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
+
+$\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
+\sqrt{\hat{V}(\hat{\beta}_1)}$
+
+$\hat{V}(\hat{\beta}_1)
+  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
+
+$\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
+ \left(\hat{y}_i-y_i\right)^2$
+}
+}
+\end{tabular}
+}
+
+
+%###################################################
+\frame{\frametitle{Confidence interval for the price sensitivity  $\beta_2$
+ \\ \hspace*{0.65\textwidth}(full model)}
+%###################################################
+\vspace{-2em}
+\begin{tabular}{cc}
+\parbox{0.5\textwidth}{
+  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta2_eng.png}
+  \vspace{-2em}
+  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta2_eng.png}
+}
+\end{tabular}
+
+
+}
+
+
+%###################################################
+\frame{\frametitle{Linked tests and 2d regions of confidence for
+    $\beta_1$ and $\beta_2$}
+%###################################################
+\fig{0.76\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2_eng.png}
+\vspace{-1em}
+
+{\scriptsize
+\bi
+\item The estimation errors are significantly correlated.
+
+\pause \item Simple null hypotheses ($t$-test):
+$H_{01}: \beta_1=\beta_{10}=27$,
+$H_{02}: \beta_2=\beta_{20}=-1.4$
+
+\pause \item Correlated null hypotheses ($t$-test), e.g.,
+$\gamma_3=\beta_1+30\beta_2<0$
+
+\pause \item Compound null hypotheses ($F$-test), e.g.,
+% $\bullet=H_{01}: \beta_{10}=30 \cap \beta_{20}=-1$.
+$\triangle=H_{03}: \beta_{10}=30 \cap \beta_{20}=-0.6$.
+\ei
+}
+}
+
+%###################################################
+\frame{\frametitle{Model selection strategies: problem statement}
+%###################################################
+
+\placebox[center]{0.50}{0.45}
+{\figSimple{0.60\textwidth}{figsRegr/elephantRaisedTrunkPale.jpg}}
+
+\placebox[center]{0.50}{0.45}
+{\parbox{0.80\textwidth}{
+\bi
+\item With every additional parameter, the fit quality in terms of a
+  reduced SSE or $\hat{\sigma}^2=\text{SSE}/(n-J-1)$ becomes better
+\item However, the risk of overfitting increases. In the words of John
+  Neumann: \textit{With four parameters I can fit an elephant, and
+    with five I can make him wiggle [its] trunk.}
+\item Overfitted models do not validate and can make neither
+  statements nor predictions.
+\item \red{$\Rightarrow$ we need selection criteria taking care of
+  overfitting!}
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Model selection: Some standard criteria}
+%###################################################
+\bi
+\item \bfdef{(1) Adjusted $R^2$:}
+\bdm
+\bar R^2 = 1 - \, \frac{n-1}{n-J-1}\,\left(1-R^2\right), \quad
+R^2=1-\frac{S}{S_0}, 
+\edm
+\vspace{-1em}
+\bdm
+S =\text{SSE(full model)}, \quad S_0=\text{SSE(constant-only model)}.
+\edm
+\vspace{0.1em}
+
+\item \bfdef{(2) Akaike information criterion AIC:}
+\begin{equation*}
+  \text{AIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{2}{n}, 
+\end{equation*}
+
+\item \bfdef{(3) Bayes' Information criterion BIC:}
+\begin{equation*}
+   \text{BIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{\ln n}{n} \,.
+\end{equation*}
+\ei
+Notice that the descriptive $\hat{\sigma}\sub{descr}^2=S/n$ instead of
+  the unbiased 
+$\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
+}
+
+%###################################################
+\frame{\frametitle{Model selection: Strategy {\`a} la ``Occam's Razor''}
+\begin{itemize}
+\item Identify $P$ possibly relevant exogenous factors (the constant
+  is always included) and calculate
+  $\bar{R}^2$, AIC, or BIC for all $2^P$ combinations of these
+      factors.
+\item The best model is that maximizing $\bar{R}^2$ or minimizing AIC
+  or BIC. 
+\item Since AIC and also $\bar{R}^2$ penalize complex models (with
+  many parameters) too little, the BIC is usually the best bet.
+\item Besides the mentioned \emph{brute-force} approach testing all $2^P$
+  combinations, there are two standard strategies:
+\bi
+\item \bfdef{Top-down approach}: Start with all the $P$
+  factors. In each round, eliminate a single factor such that the
+  reduced model has the highest increase in $\bar{R}^2$ / decrease in
+  AIC or BIC. Stop if there is no further improvement.
+\item \bfdef{Bottom-up approach}: Start with the constant-only model
+  $y=\beta_0$ and successively add factors until there is no further
+  improvement.
+\ei
+\item Standard statistics packages contain all of these strategies. 
+\end{itemize}
+}
+
+\end{document}
+
