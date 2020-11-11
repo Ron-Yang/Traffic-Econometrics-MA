@@ -116,22 +116,27 @@ by fixed, generally nonlinear functions $g_j(.)$
 \frame{\frametitle{WARNING}
 %##############################################################
 
-\placebox{0.50}{0.55}{\parbox{0.70\textwidth}{
-\maintextbox{0.70\textwidth}{If the
+\placebox{0.50}{0.53}{\parbox{0.90\textwidth}{
+\maintextbox{0.90\textwidth}{If the
  econometric model is not specified
   correctly, all sorts of problems occur, from mild to nasty:
 \bi
-\pause \item \green{mild:} the errors are higher than necessary but the results are 
-  unbiased and the inferential conclusions correct
+\pause \item \blue{irrelevant:} some mis-specification are
+detected automatically during model estimation producing ``zero/zero''
+errors and the like
+ \pause \item \green{mild:} a mis-specification is not detected
+ automatically but there is no bias and the estimation method is even
+ efficient. However, inferential conclusions may be incorrect
 \pause \item \orange{medium:} the results are still 
-  unbiased but the inferential analysis gives erroneous conclusions
+  unbiased but the inferential analysis is not efficient and generally
+  gives erroneous conclusions
   (higher significance than in reality)
 \pause \item \red{nasty:} the results are biased in an unpredictable way
 \ei
 }}}
 
-\pause \placebox{0.25}{0.15}{\bfred{Junk in, junk out!}}
-\pause \placebox{0.75}{0.15}{\parbox{0.25\textwidth}{
+\pause \placebox{0.25}{0.10}{\bfred{Junk in, junk out!}}
+\pause \placebox{0.75}{0.10}{\parbox{0.25\textwidth}{
 \red{There are lies, damned lies, and \bfred{statistics!}}}}
 
 
@@ -175,7 +180,6 @@ no one missed (bottom).
 \fig{0.6\textwidth}{figsRegr/scatterplot2_eng.png}
 \bi
 \item The model should be linear which is not fulfilled here.
-\pause \item Serious consequences: ``junk in, junk out''.
 \pause \item \textbf{Consequences of violation:} \bfred{``junk in,
   junk out''}  
 \pause \item \textbf{Solution:} A change of the independent variable
@@ -275,7 +279,7 @@ variable} with values 0 before, 1 after the break.
 \bi
 \item The expectation value of the residual deviation should be
   $E(\epsilon)=0$.
-\pause\item \textbf{Consequences:} \bfgreen{None}: The Ordinary Least
+\pause\item \textbf{Consequences:} \bfblue{None}: The Ordinary Least
 Squares (OLS) method takes care for you. If only differences matter
 (discrete-choice theory), this 
 is even not relevant at all.
@@ -294,7 +298,7 @@ is even not relevant at all.
   not heteroscedastic (left). 
 \pause \item \textbf{Consequences:} if violated, OLS estimation
 remains \bforange{unbiased 
-but is no longer efficient} (a ``mild'' error).
+but is no longer efficient} (a relatively ``mild'' error).
 \pause \item \textbf{Solution:} Advanced methods, e.g. weighted OLS;
 sometimes automatically resolved when transforming $y$ as in the
 Dow-Jones example 
@@ -328,12 +332,12 @@ such as a periodicity.
 \bi
 \item The residual $\epsilon$ should be Gaussian distributed (right),
 not, e.g., bimodally distributed (left).
-\pause \item \textbf{Consequences:} a violation has \bfyellow{very
+\pause \item \textbf{Consequences:} a violation has \bfgreen{very
   mild}  consequences: OLS remains
 unbiased \emph{and} efficient but the error estimates are wrong).
 \pause \item All four statistical specifications can be summarized by
 requiring
- \maindm{\epsilon \sim \text{i.i.d.} N(\mu,\sigma^2) \quad 
+ \maindm{\epsilon \sim \text{i.i.d.} N(0,\sigma^2) \quad 
 \text{i.i.d.: \textbf{i}dentical \textbf{i}ndependent 
  \textbf{d}istributions}}
 \ei
@@ -356,10 +360,12 @@ requiring
 model exactly, i.e., 
 it can be calibrated to zero residuals 
   $\epsilon_i=0$: \emph{overfitting}. This is still \bfgreen{harmless}
-since OLS will detect it for you returning a ``0/0 error''
+since OLS will detect it for you (zero residuals) and the inferential
+analysis will retur a ``0/0 error''
 
 \pause \item If there are only a few more data points than parameters, the
-  data specification is OK but the \bfyellow{estimation errors are big}
+  data specification is OK, the estimation unbiased and efficient but
+  the \bforange{estimation errors are big} 
 
 \pause \item \textbf{Solution:} Get more data ...
 \ei
@@ -379,7 +385,7 @@ combination of other exogenous variables.
 correlations $\neq \pm 1$ are allowed.
 \pause \item Nonperfect correlations appear regularly, e.g., price vs
 quality
-\pause\item \textbf{Consequences:} OLS \bfgreen{detects a perfect
+\pause\item \textbf{Consequences:} OLS \bfblue{detects a perfect
   multicollinearity for you} by a ``division by zero'' error. A nearly
 perfect multicollinearity will lead to \bforange{large estimation errors}
 \ei
@@ -495,11 +501,11 @@ S(\vecbeta)=\veceps\tr \veceps=(\vec{y}-\m{X}\vecbeta)\tr
 \bdma
 S &=&  \left(\vec{y}-\m{X} \vec{\beta}\right)\tr 
     \left(\vec{y}-\m{X} \vec{\beta}\right) \\
- \visible<2->{\remark{distributivity \& associativity}
+ \visible<2->{\remark{distributivity}
 % \visible<2->{\text{\scriptsize{\blue{[distributivity $\to$]}}}
-      &=& \vec{y}\tr  \vec{y} - \m{X} \vec{\beta}\tr  \vec{y}
+      &=& \vec{y}\tr  \vec{y} - (\m{X} \vec{\beta})\tr  \vec{y}
        - \vec{y}\tr \m{X} \vec{\beta}
-       + \m{X} \vec{\beta}\tr   \m{X} \vec{\beta} \\}
+       + (\m{X} \vec{\beta})\tr   \m{X} \vec{\beta} \\}
  \visible<3->{\remark{transpose rule}
       &=& \vec{y}\tr \vec{y} - \vec{\beta}\tr \m{X}\tr \vec{y}
        - \vec{y}\tr \m{X} \vec{\beta}
