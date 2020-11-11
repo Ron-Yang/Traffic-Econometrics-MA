@@ -6,8 +6,8 @@
 %#############################################
 
 
-\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout]{beamer}
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript} %$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa} %$
@@ -219,25 +219,33 @@ x_4=\frac{1}{\tilde{x}_1}
 
 
 %###################################################
-\frame{\frametitle{Transformation of the endogenous variable}
+\frame{\frametitle{Transformation of the endogenous variable I}
 %###################################################
 
-\visible<1>{\placebox{0.5}{0.55}{
- \figSimple{0.8\textwidth}{figsAllg/dowJones_lin.png}}}
-\visible<1>{\placebox{0.5}{0.15}{
+\placebox{0.5}{0.55}{
+ \figSimple{0.8\textwidth}{figsAllg/dowJones_lin.png}}
+
+\placebox{0.5}{0.15}{
  \parbox{0.9\textwidth}{
   Transformation of time $\tilde{x}$ to a factor $x=\exp(\tilde{x})$
-  linearizes but fluctuations are not i.i.d (see statistical
-  specification below)}}}
+  would lineariz but the fluctuations are not i.i.d (see statistical
+  specification below)}}
 
-\visible<2->{\placebox{0.5}{0.55}{
- \figSimple{0.8\textwidth}{figsAllg/dowJones_log.png}}}
-\visible<2>{\placebox{0.5}{0.15}{
+}
+
+%###################################################
+\frame{\frametitle{Transformation of the endogenous variable II}
+%###################################################
+
+\placebox{0.5}{0.55}{
+ \figSimple{0.8\textwidth}{figsAllg/dowJones_log.png}}
+
+\placebox{0.5}{0.15}{
  \parbox{0.9\textwidth}{
   Transformation of the endogenous variable $y \to u=\ln(y)$ and
   $x=\tilde{x}$ gives a
   properly specified linear model $u(x)=\beta_0+\beta_1x+\epsilon$,
-  $\epsilon \sim \text{i.i.d.}$}}}
+  $\epsilon \sim \text{i.i.d.}$}}
 
 
 }
