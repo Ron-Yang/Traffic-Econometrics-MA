@@ -9,9 +9,8 @@
 \documentclass[mathserif]{beamer}
 %\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
-\input{$HOME/tex/inputs/defsSkript}
-\input{$HOME/tex/inputs/styleVorl}
-%\input{../style/defs}
+\input{$HOME/tex/inputs/defsSkript} %$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa} %$
 \usepackage{graphicx}
 
 
@@ -22,14 +21,15 @@
 \section{2. Linear (Regression) Models}
 
 %##############################################################
-\frame{
+\frame{ %title other layout
 %##############################################################
-\placebox{0.50}{0.50}{
-  \figSimple{1.70\textwidth}{figsRegr/regression3dFig.png}}
+\placebox{0.50}{0.47}{
+  \figSimple{1.40\textwidth}{figsRegr/scatterplot10title_eng.png}}
 
 \makePale{0.85}{0.50}{0.55}{1.20}{1.50}
 
-\placebox{0.50}{0.55} {\parbox{0.6\textwidth}{\bi
+\placebox{0.50}{0.50}{\parbox{0.6\textwidth}{
+\bi
   \item[2.1] Flow Chart of the Econometric Method\\[1em]
   \item[2.2] Model Specification
   \bi
@@ -150,15 +150,19 @@ by fixed, generally nonlinear functions $g_j(.)$
 \vspace{-0.0em}
 \fig{0.5\textwidth}{figsRegr/linRegBivar_eng.png}
 \vspace{-1.0em}
-\fig{0.8\textwidth}{figsRegr/linRegBivar_xz_yz_eng.png}
+\fig{0.7\textwidth}{figsRegr/linRegBivar_xz_yz_eng.png}
 \vspace{-1em}
 
 {\small
 \bi
 \item All relevant influencing factors should be taken into account (top),
-not one missed (bottom).
-\pause \item A violation leads to a bias, i.e., to serious errors:
-``junk in, junk out'' 
+no one missed (bottom).
+\pause \item \textbf{Consequences of missing factors:} a 
+\bfred{bias}, i.e., \bfred{``junk in, junk out''} 
+\pause \item \textbf{\hspace{1.5em} ``\hspace{1.5em} of superfluous factors:} 
+\bforange{no bias, higher estimation errors}
+\pause \item \textbf{Solution:} check for superfluous factors:
+\emph{F-test}; finding missing factors: \emph{your expertise!}
 \ei
 }
 
@@ -168,11 +172,14 @@ not one missed (bottom).
 \frame{\frametitle{Functional specification 2: linearity}
 %###################################################
 
-\fig{0.7\textwidth}{figsRegr/scatterplot2_eng.png}
+\fig{0.6\textwidth}{figsRegr/scatterplot2_eng.png}
 \bi
 \item The model should be linear which is not fulfilled here.
 \pause \item Serious consequences: ``junk in, junk out''.
-\pause \item A\emph{change of the independent variable} into several
+\pause \item \textbf{Consequences of violation:} \bfred{``junk in,
+  junk out''}  
+\pause \item \textbf{Solution:} A change of the independent variable
+into several 
 \bfdef{factors} would be a
 solution here,
 e.g. $x_0'=1,x_1'=1/x,x_2'=x^2$ or $x_0'=1,x_1'=x,x_2'=x^2$.
@@ -239,10 +246,12 @@ x_4=\frac{1}{\tilde{x}_1}
 %\vspace{2em}
 {\small
 \bi
-\item If untreated, a discontinuity (``structural break'') in the space of the
-exogenous variables leads to a serious bias (``junk ...'')
-\pause \item Solution: a dummy
-variable with values 0 before, 1 after the break. 
+\item \textbf{Consequences:} an untreated discontinuity (``structural
+  break'') in the space of the 
+exogenous variables leads to a \bfred{bias}, i.e., \bfred{junk in,
+  junk out}
+\pause \item \textbf{Solution:} a \emph{dummy
+variable} with values 0 before, 1 after the break. 
 \pause \itemAsk \colAsk{What could possibly cause a structural break?}
 \pause \itemAnswer \tiny{\colAnswer{1. new data basis (GDR+West
     Germany $\to$ Germany); 2. Redefinition of a variable (e.g.,
@@ -266,10 +275,10 @@ variable with values 0 before, 1 after the break.
 \bi
 \item The expectation value of the residual deviation should be
   $E(\epsilon)=0$.
-\pause\item Least-squared errors (OLS) calibration takes care of this
-automatically.  
-\pause \item If only differences matter (discrete-choice theory), this
-is not relevant.
+\pause\item \textbf{Consequences:} \bfgreen{None}: The Ordinary Least
+Squares (OLS) method takes care for you. If only differences matter
+(discrete-choice theory), this 
+is even not relevant at all.
 \ei
 }
 
@@ -283,9 +292,12 @@ is not relevant.
 \bi
 \item The residual $\epsilon$ should be homoscedastic (on the right),
   not heteroscedastic (left). 
-\pause \item If this is not satisfied, OLS estimation remains unbiased
-but is not efficient (a ``mild'' error).
-\pause \item Advanced methods, e.g. weighted OLS, tackle this problem.
+\pause \item \textbf{Consequences:} if violated, OLS estimation
+remains \bforange{unbiased 
+but is no longer efficient} (a ``mild'' error).
+\pause \item \textbf{Solution:} Advanced methods, e.g. weighted OLS;
+sometimes automatically resolved when transforming $y$ as in the
+Dow-Jones example 
 \ei
 }
 
@@ -298,9 +310,10 @@ but is not efficient (a ``mild'' error).
 \bi
 \item There should be no correlation of $\epsilon$ relative to $x_i$ or $y$
 (on the right). The model on the left is mis-specified.
-\pause \item Relatively mild consequences 
-(model not efficient; underestimation of model errors).
-\pause \item Possible solution: identify a missing systematic factor
+\pause \item \textbf{Consequences:} relatively \bforange{mild:}
+(OLS estimator not efficient; underestimation of model errors;
+possibly a small bias).
+\pause \item \textbf{Solution:} try identify a missing systematic factor
 such as a periodicity.
 \ei
 }
@@ -315,8 +328,9 @@ such as a periodicity.
 \bi
 \item The residual $\epsilon$ should be Gaussian distributed (right),
 not, e.g., bimodally distributed (left).
-\pause \item A violation has very mild consequences (OLS remains
-unbiased and efficient but the error estimates are wrong).
+\pause \item \textbf{Consequences:} a violation has \bfyellow{very
+  mild}  consequences: OLS remains
+unbiased \emph{and} efficient but the error estimates are wrong).
 \pause \item All four statistical specifications can be summarized by
 requiring
  \maindm{\epsilon \sim \text{i.i.d.} N(\mu,\sigma^2) \quad 
@@ -338,22 +352,26 @@ requiring
 \pause
 \item This means, the data should overdetermine the model which is the
   basis for fitting.
-\pause
-\item If $n=J+1$, the data determine the model exactly, i.e., it can be calibrated to zero residuals
-  $\epsilon_i=0$: \emph{overfitting}
+\pause \item \textbf{Consequences:} If $n=J+1$, the data determine the
+model exactly, i.e., 
+it can be calibrated to zero residuals 
+  $\epsilon_i=0$: \emph{overfitting}. This is still \bfgreen{harmless}
+since OLS will detect it for you returning a ``0/0 error''
 
 \pause \item If there are only a few more data points than parameters, the
-  data specification is OK but the estimation errors are big
+  data specification is OK but the \bfyellow{estimation errors are big}
 
+\pause \item \textbf{Solution:} Get more data ...
 \ei
 }
 
 %###################################################
-\frame{\frametitle{Data specification 2: no multi-collinearity}
+\frame{\frametitle{Data specification 2: no multicollinearity}
 %###################################################
 
 \fig{0.80\textwidth}{figsRegr/scatterplot4_eng.png}
 \vspace{-1em}
+{\small
 \bi
 \item A given  exogenous variable  must not be represented as a linear
 combination of other exogenous variables. 
@@ -361,10 +379,52 @@ combination of other exogenous variables.
 correlations $\neq \pm 1$ are allowed.
 \pause \item Nonperfect correlations appear regularly, e.g., price vs
 quality
-\pause \item If all items of all three specification categories are
-fulfilled, the econometric problem satisfies the 
-\bfred{Gau\3-Markov assumptions}
+\pause\item \textbf{Consequences:} OLS \bfgreen{detects a perfect
+  multicollinearity for you} by a ``division by zero'' error. A nearly
+perfect multicollinearity will lead to \bforange{large estimation errors}
 \ei
+}
+
+\pause \maintextbox{0.8\textwidth}{If all items of all three specification
+  categories are 
+fulfilled, the econometric problem satisfies the 
+\bfred{Gau\3-Markov assumptions}}
+
+}
+
+%###################################################
+\frame{\frametitle{How to detect multicollinearity}
+%###################################################
+
+{\small
+\bi
+\item Assume $n$ data sets $\{x_{i0}, ..., x_{ij}, ..., x_{iJ}\}$,
+  $i=1,..., n$ (the data sets also contain the endogenous variable but
+  it is not relevant here)
+\item $x_{ij}$ is the $j\sup{th}$ exogenous factor in the
+  $i\sup{th}$ data set
+\pause \item
+Multicollinearity exists if there is one exogenous factor $x_k$ that can be
+expressed as a linear combination of all other factors $j\neq k$ in
+\emph{all} data sets:
+\bdm
+x_{ik}=\sum_{j\neq k} c_j x_{ij} \quad \forall i=1, ..., n, \quad
+\text{constant $c_j$}
+\edm
+
+\pause \item A linear relation $x_2=c_0 x_1$ is easy to detect but this is
+  not the case for more
+  complex relationships
+\pause \item Solution: Check whether the \bfdef{descriptive
+  variance-covariance matrix} 
+\bdm
+S_{jk}=\frac{1}{n}\sum_{i=1}^n(x_{ij}-\bar{x}_j)(
+x_{ik}-\bar{x}_k)
+\edm
+has the full rank $J+1$ or if $\text{det}\,\m{S}\neq 0$
+\ei
+}
+
 }
 
 
@@ -390,7 +450,7 @@ fulfilled, the econometric problem satisfies the
 \subsection{2.3. Ordinary Least Squares Estimation}
 
 %###################################################
-\frame{\frametitle{2.3. Ordinary  Least Squares Estimation}
+\frame{\frametitle{2.3. Ordinary  Least Squares (OLS) Estimation}
 %###################################################
 \bi
 \pause \item Given is a linear model of the form
@@ -424,168 +484,57 @@ S(\vecbeta)=\veceps\tr \veceps=(\vec{y}-\m{X}\vecbeta)\tr
 
 }
 
-%###################################################
-\frame{\frametitle{Results}
-%###################################################
 
-\bi
-\item Ordinary least squares (OLS) estimator:
-\maindm{\hatvecbeta =\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y}}
-
-\pause \item Variance-Covariance matrix of the estimation errors
-(provided all the Gau\3-Markow assumptions are satisfied!):
-
-\maindm{\m{V}_{\hatvecbeta}
- = E\left( (\hatvecbeta-\vecbeta)(\hatvecbeta-\vecbeta)\tr\right)
- = 2\sigma^2 \m{H}^{-1}=\hatsig^2 \left(\m{X}\tr\m{X}\right)^{-1}}
-where the Hesse matrix $H$ is defined by the second derivatives of the
-objective function at the calibration point:
-\bdm
-H_{jk}=\left. \ablpartmix{S}{\beta_j}{\beta_k}\right|_{\vecbeta=\hatvecbeta}
-=2\m{X}\tr\m{X}
-\edm
-
-\pause \item Distribution of the normalized estimation errors:
-\bdm
-\frac{\hatbeta_j-\beta_j}{\sqrt{V_{jj}}} \sim N(0,1)
-\edm
-\ei
-}
- 
-%###################################################
-\frame{\frametitle{Estimation of the residual variance}
-%###################################################
-The above cannot be applied directly since the residual variance $\sigma^2$ is
-unknown and must be estimated by the minimum $S\sub{min}$ of the sum
-of squared 
-errors: 
-\bdm
-\hatsig^2=\frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
- = \frac{S\sub{min}}{n-J-1}
-\edm
-
-This results in following \emph{estimated} error statistics:
-
-\bi
-\pause \item Estimated variance-covariance matrix:
-
-\maindm{\hat{\m{V}}_{\hatvecbeta}= 2\hatsig^2 \m{H}^{-1}
-=\hatsig^2 \left(\m{X}\tr\m{X}\right)^{-1}
-}
-
-\pause \item The normalized 
-approximate estimation errors are student-t distributed:
-\bdm
-\frac{\hatbeta_j-\beta_j}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
-\edm
-\ei
-}
- 
-%###################################################
-\frame{\frametitle{Special case 1: No exogenous variables}
-%###################################################
-\bi
-\item Model: $y=\beta_0+\epsilon$
-\pause \item System matrix: $\m{X}=(1,1, ..., 1)\tr$
-\pause \item OLS estimator: 
-\bdma 
-\left(\m{X}\tr\m{X}\right)^{-1}=\frac{1}{n}, \quad 
-\m{X}\tr \vec{y}=\sum_iy_i=n\bar{y}, &&\\
-\hatbeta_0=\hat{\mu}=\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr \vec{y}=\bar{y}
-\edma
-\pause \item Variance:
-  $V_{00}=V(\hat{\mu})=\sigma^2\left(\m{X}\tr\m{X}\right)^{-1}
-=\frac{\sigma^2}{n}$, \quad
-$\hat{V}_{00}=\frac{\hatsig^2}{n}$
-\vspace{1em}
-
-\pause \item Distribution of the estimator
- \red{(if $\epsilon \sim i.i.d N(\mu,\sigma^2)$)}
-\bdm
-\frac{\hatbeta_0-\beta_0}{\sqrt{V_{00}}}
-=\frac{\bar{x}-\mu}{\sigma}\ \sqrt{n} \sim N(0,1), \quad
-\frac{\bar{x}-\mu}{\hatsig}\ \sqrt{n} \sim T(n-1)
-\edm
-\ei
-}
 
 %###################################################
-\frame{\frametitle{Special case 2: Simple linear regression}
+\frame{\frametitle{Determining the OLS estimator}
 %###################################################
-\bi
-\item Model (with $x_1=x$): $y=\beta_0+\beta_1x+\epsilon$
 
-\pause \item System matrix: 
-\bdm \m{X}=\myMatrixTwo{1 & x_1 \\ \vdots & \vdots \\ 1 & x_n},\quad
-\m{X}\tr\m{X}=\myMatrixTwo{n & n\bar{x}\\n\bar{x} & \sum x_i^2}
-\edm
+\vspace{-1em}
 
-\pause \item OLS estimator (with $s_x^2=1/n(\sum x_i^2-n\bar{x})$): 
-\bdm
-\left(\m{X}\tr\m{X}\right)^{-1}
- =\frac{1}{ns_x^2}
-\myMatrixTwo{\frac{\sum x_i^2}{n} & -\bar{x} \\ -\bar{x} & 1}, \quad
-\m{X}\tr \vec{y}=\myVector{n\bar{y}\\ \sum x_iy_i} 
-\edm
 \bdma
-\hatbeta_1 &=& \left(-\frac{\bar{x}}{ns_x^2}, \frac{1}{ns_x^2}\right)
-\myVector{n\bar{y}\\ \sum x_iy_i}
-=\frac{\sum_ix_iy_i-n\bar{x}\bar{y}}{\sum x_i^2-n\bar{x}}
-=\frac{s_{xy}}{s_x^2}, \\
-\hatbeta_0 &=& \bar{y}-\hatbeta_1 \bar{x}
+S &=&  \left(\vec{y}-\m{X} \vec{\beta}\right)\tr 
+    \left(\vec{y}-\m{X} \vec{\beta}\right) \\
+ \visible<2->{\remark{distributivity \& associativity}
+% \visible<2->{\text{\scriptsize{\blue{[distributivity $\to$]}}}
+      &=& \vec{y}\tr  \vec{y} - \m{X} \vec{\beta}\tr  \vec{y}
+       - \vec{y}\tr \m{X} \vec{\beta}
+       + \m{X} \vec{\beta}\tr   \m{X} \vec{\beta} \\}
+ \visible<3->{\remark{transpose rule}
+      &=& \vec{y}\tr \vec{y} - \vec{\beta}\tr \m{X}\tr \vec{y}
+       - \vec{y}\tr \m{X} \vec{\beta}
+       +  \vec{\beta}\tr \m{X}\tr\m{X} \vec{\beta} \\}
+ \visible<4->{\remark{transpose rule}
+      &=& \vec{y}\tr \vec{y} - 2 \vec{\beta}\tr (\m{X}\tr \vec{y})
+       +  \vec{\beta}\tr \left(\m{X}\tr\m{X}\right) \vec{\beta} \\}
 \edma
-\ei
-}
 
-%###################################################
-\frame{\frametitle{Simple linear regression (ctnd)}
-%###################################################
+\visible<5->{Taking the derivative $\ablpart{}{\vecbeta}$ respecting 
+$\ablpart{}{\vecbeta}(\beta\tr \vec{a})=\vec{a}$ and
+$\ablpart{}{\vecbeta}(\beta\tr
+\m{A}\vecbeta)=(\m{A}+\m{A}\tr)\vecbeta$ with $\m{A}=\m{X}\tr\m{X}$
+symmetric:} 
 
-\bi
-\item Variance-covariance matrix (assuming w/o loss of generality
-$\bar{x}=0$): 
+\visible<6->{
 \bdm
-\m{V}(\hatvecbeta)=\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}
-=\sigma^2 \myMatrixTwo{\frac{1}{n} & 0 \\ 0 & \frac{1}{ns_x^2}}
-\edm
+\ablpart{S(\vecbeta)}{\vecbeta}=0-2\m{X}\tr\vec{y}
++2\m{X}\tr\m{X}\vecbeta \stackrel{!}{=}0
+\edm}
 
-\pause \item Variance of the estimator $\hat{y}(x)$ ($x$ is deterministic):
-\bdm
-V(\hat{y}(x))=V(\hatbeta_0+\hatbeta_1x)
- = V_{00}+x^2  V_{11} +2xV_{01}
- = \frac{\sigma^2}{n}\left(1+\frac{x^2}{s_x^2}\right)
-\edm
+\vspace{-1.5em}
 
-\pause \item Distribution of the estimator for $y(x)$:
-\bdm
-\hat{y}(x)\sim N\big(y(x), V(\hat{y}(x))\big)
-\edm
-If $\sigma^2$ has to be estimated by $\hatsig^2$, the normalized
-estimators for $\beta_0$, $\beta_1$ and $y(x)$ are $\sim T(n-2)$.
+\bdma
+\visible<7->{\m{X}\tr\m{X}\vecbeta &=& \m{X}\tr\vec{y}}
+\visible<8->{ \red{\hspace{1em} | \cdot (\m{X}\tr\m{X})^{-1}}}
+\edma
 
-\ei
+\visible<9->{\maindm{\hatvecbeta =\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y}}}
+
+%\visible<9->{\hatvecbeta &=& (\m{X}\tr\m{X})^{-1} \m{X}\tr\vec{y}} 
+%\edma
 }
 
 
-
-%###################################################
-\frame{\frametitle{Probability density for $\hat{y}(x)$ for simple 
-linear regression}
-%###################################################
-
-\vspace{-0.5em}
-\fig{0.8\textwidth}{figsRegr/regression3dFig.png}
-\vspace{-2em}
-
-\bi
-\item If the Gau\3-Markov assumptions apply, the model
-  estimation errors $\hat{y}(x)-y(x)$ are
-  Gaussian distributed
-\item The expectation and variance depends on $x$; the standard error
-  is hyperbola-shaped.
-\ei
-
-}
 
 \end{document}
 

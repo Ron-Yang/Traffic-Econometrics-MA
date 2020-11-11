@@ -9,9 +9,8 @@
 \documentclass[mathserif]{beamer}
 %\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
-\input{$HOME/tex/inputs/defsSkript}
-\input{$HOME/tex/inputs/styleVorl}
-%\input{../style/defs}
+\input{$HOME/tex/inputs/defsSkript}%$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
 \usepackage{graphicx}
 
 
@@ -19,23 +18,275 @@
 
 \begin{document}
 
-\section{3. Classic Inferential Statistics of the Linear (Regression) Models}
-
+\section{3. Classical Inferential Statistics}
 
 %###################################################
-\frame{\frametitle{3. Classic inferential  statistics}
+\frame{  %title other layout
+%###################################################
+\placebox{0.50}{0.50}{
+  \figSimple{1.70\textwidth}{figsRegr/regression3dFig.png}}
+
+\makePale{0.85}{0.50}{0.55}{1.20}{1.50}
+
+\placebox{0.50}{0.55}{\parbox{0.6\textwidth}{
+\bi
+\item[3.1] Expectation and Covariance Matrix of the OLS Estimator
+\item[3.2] Confidence Intervals
+\item[3.3] Type I and II Errors
+\item[3.4] Significance Tests
+\item[3.5] Model Selection Strategies
+\ei
+}}
+
+\placebox{0.50}{0.90}{\myheading{
+ Lecture 03: Classical Inferential Statistics}}
+}
+
+
+\subsection{3.1. OLS Expectation and Covariance}
+
+%###################################################
+\frame{\frametitle{3.1. OLS Expectation and Covariance}
+%###################################################
+
+\bi
+\item Only stochasticity: residual errors
+  $\veceps$ according to  $\vec{y}=\m{X}\vec{\beta}+\veceps$
+\pause \item The OLS estimator is linear in $\vec{y}$:
+\bdma
+\hatvecbeta 
+  &=&
+    \left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y} \\ 
+ \visible<3->{ &=&
+  \left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr(\m{X}\vec{\beta}+\veceps)\\}
+ \visible<4->{ &=&
+  \vec{\beta}+\left(\m{X}\tr\m{X}\right)^{-1} \m{X}\tr\veceps}
+\edma
+\ei
+
+\visible<5->{\mysubheading{Expectation value}
+
+\bdm
+E(\hatvecbeta)=E(\vecbeta)
+ +\left(\m{X}\tr\m{X}\right)^{-1} \m{X}\tr E(\veceps)=\vecbeta
+\edm
+}
+
+
+\visible<6->{\maintextbox{0.8\textwidth}{
+The OLS estimator of parameter-linear models is \bfdef{unbiased} under
+the mild condition $E(\veceps)=\vec{0}$ for all the data points}}
+
+}
+
+ %###################################################
+\frame{\frametitle{OLS estimation error II: variances and covariances}
+%###################################################
+
+\bi
+\item Gau\3-Markow conditions $\to \epsilon \sim
+  \text{i.i.d} N(0,\sigma^2) \to \hatvecbeta $ is normal distributed
+\pause \item In this case, the complete errors are specified by the
+  expectation value and the \bfdef{variance-covariance matrix}
+$\m{V}_{\hatvecbeta}$
+
+\ei
+
+\pause
+\bdma
+\m{V}_{\hatvecbeta} &\stackrel{\text{def}}{=}&
+ E\left( (\hatvecbeta-\vecbeta) (\hatvecbeta-\vecbeta)\tr\right)\\
+  \visible<4->{\remark{insert
+      $\hatvecbeta=\vec{\beta}
++\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\veceps$} 
+     &=& 
+    E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps
+     \left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps\right)\tr\right) \\}
+  \visible<5->{\remark{transpose rule} &=& 
+     E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr \veceps\veceps\tr
+     \m{X}(\m{X}\tr\m{X})^{-1}\right)\\}
+  \visible<6->{\remark{$E(.)$ acts only on $\veceps$} &=& 
+     (\m{X}\tr\m{X})^{-1}\m{X}\tr E(\veceps\veceps\tr)
+     \m{X}(\m{X}\tr\m{X})^{-1}\\}
+  \visible<7->{\remark{Gau\3-Markow} &=& 
+     (\m{X}\tr\m{X})^{-1}\m{X}\tr\sigeps^2\m{X}(\m{X}\tr\m{X})^{-1}\\}
+  \visible<8->{\remark{def inverse matrix} &=& 
+     \sigeps^2(\m{X}\tr\m{X})^{-1} }
+\edma
+\visible<9->{The variance-covariance matrix depends only on the values of the
+exogenous factors!}
+
+
+}
+
+%###################################################
+\frame{\frametitle{Results summary}
+%###################################################
+
+\bi
+\item Ordinary least squares (OLS) estimator:
+\maindm{\hatvecbeta =\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y}}
+
+\pause \item Variance-Covariance matrix of the estimation errors
+(provided all the Gau\3-Markow assumptions are satisfied!):
+
+\maindm{\m{V}_{\hatvecbeta}
+ = E\left( (\hatvecbeta-\vecbeta)(\hatvecbeta-\vecbeta)\tr\right)
+ =\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}= 2\sigma^2 \m{H}^{-1}
+}
+where the Hesse matrix $H$ is defined by the second derivatives of the
+objective function at the calibration point:
+\bdm
+H_{jk}=\left. \ablpartmix{S}{\beta_j}{\beta_k}\right|_{\vecbeta=\hatvecbeta}
+=2\m{X}\tr\m{X}
+\edm
+
+\pause \item Distribution of the normalized estimation errors:
+\bdm
+\frac{\hatbeta_j-\beta_j}{\sqrt{V_{jj}}} \sim N(0,1)
+\edm
+\ei
+}
+ 
+%###################################################
+\frame{\frametitle{Estimation of the residual variance}
+%###################################################
+The above cannot be applied directly since the residual variance $\sigma^2$ is
+unknown and must be estimated by the minimum $S\sub{min}$ of the sum
+of squared 
+errors: 
+\bdm
+\hatsig^2=\frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
+ = \frac{S\sub{min}}{n-J-1}
+\edm
+
+This results in following \emph{estimated} error statistics:
+
+\bi
+\pause \item Estimated variance-covariance matrix:
+
+\maindm{\hat{\m{V}}_{\hatvecbeta}= 2\hatsig^2 \m{H}^{-1}
+=\hatsig^2 \left(\m{X}\tr\m{X}\right)^{-1}
+}
+
+\pause \item The normalized 
+approximate estimation errors are student-t distributed:
+\bdm
+\frac{\hatbeta_j-\beta_j}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
+\edm
+\ei
+}
+ 
+%###################################################
+\frame{\frametitle{Special case 1: No exogenous variables}
 %###################################################
 \bi
-\item[3.1] Confidence intervals
-\item[3.2] Type I and II errors
-\item[3.3] Significance tests
-\item[3.4] Example: Demand for hotel rooms
-\item[3.5] Model selection strategies
+\item Model: $y=\beta_0+\epsilon$
+\pause \item System matrix: $\m{X}=(1,1, ..., 1)\tr$
+\pause \item OLS estimator: 
+\bdma 
+\left(\m{X}\tr\m{X}\right)^{-1}=\frac{1}{n}, \quad 
+\m{X}\tr \vec{y}=\sum_iy_i=n\bar{y}, &&\\
+\hatbeta_0=\hat{\mu}=\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr \vec{y}=\bar{y}
+\edma
+\pause \item Variance:
+  $V_{00}=V(\hat{\mu})=\sigma^2\left(\m{X}\tr\m{X}\right)^{-1}
+=\frac{\sigma^2}{n}$, \quad
+$\hat{V}_{00}=\frac{\hatsig^2}{n}$
+\vspace{1em}
+
+\pause \item Distribution of the estimator
+ \red{(if $\epsilon \sim i.i.d N(\mu,\sigma^2)$)}
+\bdm
+\frac{\hatbeta_0-\beta_0}{\sqrt{V_{00}}}
+=\frac{\bar{x}-\mu}{\sigma}\ \sqrt{n} \sim N(0,1), \quad
+\frac{\bar{x}-\mu}{\hatsig}\ \sqrt{n} \sim T(n-1)
+\edm
 \ei
 }
 
 %###################################################
-\frame{\frametitle{Confidence intervals and origin of the 
+\frame{\frametitle{Special case 2: Simple linear regression}
+%###################################################
+\bi
+\item Model (with $x_1=x$): $y=\beta_0+\beta_1x+\epsilon$
+
+\pause \item System matrix: 
+\bdm \m{X}=\myMatrixTwo{1 & x_1 \\ \vdots & \vdots \\ 1 & x_n},\quad
+\m{X}\tr\m{X}=\myMatrixTwo{n & n\bar{x}\\n\bar{x} & \sum x_i^2}
+\edm
+
+\pause \item OLS estimator (with $s_x^2=1/n(\sum x_i^2-n\bar{x})$): 
+\bdm
+\left(\m{X}\tr\m{X}\right)^{-1}
+ =\frac{1}{ns_x^2}
+\myMatrixTwo{\frac{\sum x_i^2}{n} & -\bar{x} \\ -\bar{x} & 1}, \quad
+\m{X}\tr \vec{y}=\myVector{n\bar{y}\\ \sum x_iy_i} 
+\edm
+\bdma
+\hatbeta_1 &=& \left(-\frac{\bar{x}}{ns_x^2}, \frac{1}{ns_x^2}\right)
+\myVector{n\bar{y}\\ \sum x_iy_i}
+=\frac{\sum_ix_iy_i-n\bar{x}\bar{y}}{\sum x_i^2-n\bar{x}}
+=\frac{s_{xy}}{s_x^2}, \\
+\hatbeta_0 &=& \bar{y}-\hatbeta_1 \bar{x}
+\edma
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Simple linear regression (ctnd)}
+%###################################################
+
+\bi
+\item Variance-covariance matrix (assuming w/o loss of generality
+$\bar{x}=0$): 
+\bdm
+\m{V}(\hatvecbeta)=\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}
+=\sigma^2 \myMatrixTwo{\frac{1}{n} & 0 \\ 0 & \frac{1}{ns_x^2}}
+\edm
+
+\pause \item Variance of the estimator $\hat{y}(x)$ ($x$ is deterministic):
+\bdm
+V(\hat{y}(x))=V(\hatbeta_0+\hatbeta_1x)
+ = V_{00}+x^2  V_{11} +2xV_{01}
+ = \frac{\sigma^2}{n}\left(1+\frac{x^2}{s_x^2}\right)
+\edm
+
+\pause \item Distribution of the estimator for $y(x)$:
+\bdm
+\hat{y}(x)\sim N\big(y(x), V(\hat{y}(x))\big)
+\edm
+If $\sigma^2$ has to be estimated by $\hatsig^2$, the normalized
+estimators for $\beta_0$, $\beta_1$ and $y(x)$ are $\sim T(n-2)$.
+
+\ei
+}
+
+
+
+%###################################################
+\frame{\frametitle{Probability density for $\hat{y}(x)$ for simple 
+linear regression}
+%###################################################
+
+\vspace{-0.5em}
+\fig{0.8\textwidth}{figsRegr/regression3dFig.png}
+\vspace{-2em}
+
+\bi
+\item If the Gau\3-Markov assumptions apply, the model
+  estimation errors $\hat{y}(x)-y(x)$ are
+  Gaussian distributed
+\item The expectation and variance depends on $x$; the standard error
+  is hyperbola-shaped.
+\ei
+
+}
+
+\subsection{3.2 Confidence Intervals}
+
+%###################################################
+\frame{\frametitle{3.2. Confidence intervals and origin of the 
 Student´s distribution}
 %###################################################
 
@@ -251,10 +502,10 @@ show that, in fact
 
 }
 
-
+\subsection{Type I and II Errors}
 
 %###################################################
-\frame{\frametitle{Definition of type I and type II errors for significance tests}
+\frame{\frametitle{3.3 Type I and II Errors}
 %###################################################
 \vspace{-1em}
 
@@ -295,7 +546,7 @@ $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
 }
 
 %###################################################
-\frame{\frametitle{Significance tests: the $p$-value}
+\frame{\frametitle{3.4 Significance tests: the $p$-value}
 %###################################################
 \bi
 \item Obviously, it is not very efficient to test $H_0$ for a fixed
@@ -418,9 +669,10 @@ df=2 degrees of freedom}
 }
 
 
+\subsubsection{3.4.1 Example}
 
 %###################################################
-\frame{\frametitle{Example: modeling the demand for hotel rooms}
+\frame{\frametitle{3.4.1 Example: modeling the demand for hotel rooms}
 %###################################################
 
 \placebox[center]{0.26}{0.67}
@@ -582,8 +834,10 @@ $\triangle=H_{03}: \beta_{10}=30 \cap \beta_{20}=-0.6$.
 }
 }
 
+\subsection{3.5 Model Selection Strategies}
+
 %###################################################
-\frame{\frametitle{Model selection strategies: problem statement}
+\frame{\frametitle{3.5 Model Selection Strategies I: Problem Statement}
 %###################################################
 
 \placebox[center]{0.50}{0.45}

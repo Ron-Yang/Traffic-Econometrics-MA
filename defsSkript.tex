@@ -195,6 +195,10 @@
 \providecommand{\bfblack}[1]{\hspace*{0.01em}{\boldmath \textbf{\black{ #1}}}}
 \providecommand{\bfgreen}[1]{\hspace*{0.01em}{\boldmath \textbf{\green{#1}}}}
 \providecommand{\bfred}  [1]{\hspace*{0.01em}{\boldmath \textbf{\red{#1}}}}
+\providecommand{\bforange}[1]{\hspace*{0.01em}{\boldmath
+    \textbf{\orange{#1}}}}
+\providecommand{\bfyellow}[1]{\hspace*{0.01em}{\boldmath 
+    \textbf{\yellow{#1}}}} 
 
 
 
@@ -231,7 +235,10 @@
 \providecommand{\itemAsk}{\item[\bfAsk{?}]}
 \providecommand{\itemAnswer}{\item[\bfAnswer{!}]}
 
-% answers
+% comments before '=' signs in calculation steps
+% example: 
+% \bdma S &=& (AB)C \\ \remark{associativity} &=& ABC \edma
+\providecommand{\remark}[1]{\text{\scriptsize{\red{[#1 $\to$]}}}}
 
 %#################################################################
 

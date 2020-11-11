@@ -729,14 +729,14 @@ Anstiegsparameter automatisch auch in $y$ ber\"ucksichtigt ist.
 \item \textbf{Keine Multikolinearit\"at:}
 Jede exogene Variable $x_j$ muss eingest\"andige Information
 liefern, darf also nicht f\"ur alle Datens\"atze als Linearkombination
-anderer exogener Variablen darstellbar sein. $x_1$ w\"are
-beispielsweise dann \bfblue{multikolinear} zu $x_2 ... x_J$, wenn sich ihre
-Werte $x_{i1}$ f\"ur \emph{alle} Datens\"atze $i$ als
+anderer exogener Variablen darstellbar sein. $x_k$ w\"are
+beispielsweise dann \bfblue{multikolinear} zu allen $x_j, j\neq k$, wenn sich ihre
+Werte $x_{ik}$ f\"ur \emph{alle} Datens\"atze $i$ als
 Linearkombination der anderen exogenen Variablen schreiben lie\3en,
 also
 \be
 \label{multikoll}
-x_{i1}=c_0+\sum_{j=2}^J c_j x_{ij}, \quad \forall i=1, ..., n
+x_{ik}=\sum_{j\neq k} c_j x_{ij}, \quad \forall i=1, ..., n
 \ee
 mit von $i$ unabh\"angigen Konstanten $c_j$. 
 Mathematisch zeigt sich dies
@@ -747,7 +747,7 @@ daran, dass die deskriptive Varianz-Kovarianz-Matrix
 x_{ik}-\bar{x}_k)
 \ee
 einen Rang kleiner
-$J$ hat bzw. $\text{Det}\,\m{S}=0$ ist. Nichtperfekte Korrelationen
+$J+1$ hat bzw. $\text{Det}\,\m{S}=0$ ist. Nichtperfekte Korrelationen
 (Abb.~\ref{fig:spezData} unten) sind
 aber ausdr\"ucklich zugelassen! 
 
@@ -1387,18 +1387,18 @@ von zwei Matrizen beschreiben, weggelassen.}
 \bdma
 S &=&  \left(\vec{Y}-\m{X} \vec{\beta}\right)\tr 
     \left(\vec{Y}-\m{X} \vec{\beta}\right) \\
-  &=& \vec{Y}^{T} \vec{Y} - (\m{X} \vec{\beta})\tr  \vec{Y}
-       - \vec{Y}^{T} \m{X} \vec{\beta}
+  &=& \vec{Y}\tr \vec{Y} - (\m{X} \vec{\beta})\tr  \vec{Y}
+       - \vec{Y}\tr \m{X} \vec{\beta}
        + (\m{X} \vec{\beta})\tr   (\m{X} \vec{\beta}) \\
-  &=& \vec{Y}^{T} \vec{Y} - \vec{\beta}\tr (\m{X}\tr \vec{Y})
-       - (\vec{Y}^{T} \m{X}) \vec{\beta}
+  &=& \vec{Y}\tr \vec{Y} - \vec{\beta}\tr (\m{X}\tr \vec{Y})
+       - (\vec{Y}\tr \m{X}) \vec{\beta}
        +  \vec{\beta}\tr \left(\m{X}\tr\m{X}\right) \vec{\beta} 
 \edma
 und mit der Skalarproduktregel $\vec{a}\tr\vec{b}=\vec{b}\tr\vec{a}$
 die Fehlerquadratsumme (\emph{sum of squared errors, SSE})
 \be
 \label{SSE}
-  S(\vecbeta)=\vec{Y}^{T} \vec{Y} - 2 \vec{\beta}\tr (\m{X}\tr \vec{Y})
+  S(\vecbeta)=\vec{Y}\tr \vec{Y} - 2 \vec{\beta}\tr (\m{X}\tr \vec{Y})
        +  \vec{\beta}\tr \left(\m{X}\tr\m{X}\right) \vec{\beta} \\
 \ee
 %
@@ -1758,27 +1758,27 @@ als \bfblue{Tensorprodukt} bzw \bfblue{dyadisches Produkt} der Abweichungen der 
 Wert schreiben kann:
 \be
 \label{VbetaTensor}
-\m{V}=\m{V}_{\hatvecbeta}=E\left[ (\hatvecbeta-\vecbeta) (\hatvecbeta-\vecbeta)\tr\right].
+\m{V}=\m{V}_{\hatvecbeta}=E\left( (\hatvecbeta-\vecbeta) (\hatvecbeta-\vecbeta)\tr\right).
 \ee
 
 Einsetzen von~\refkl{betaeps} unter Verwendung der Matrixregeln von
 Abschnitt~\ref{sec:matrix} liefert 
 \bdma
-\m{V} &=& E\left[ (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps
-\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps\right)\tr\right] \\
- &=& E\left[ (\m{X}\tr\m{X})^{-1}\m{X}\tr \veceps\veceps\tr
-\m{X}(\m{X}\tr\m{X})^{-1}\right]
+\m{V} &=& E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps
+\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps\right)\tr\right) \\
+ &=& E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr \veceps\veceps\tr
+\m{X}(\m{X}\tr\m{X})^{-1}\right)
 \edma
 (beachten Sie, dass
 $[(\m{X}\tr\m{X})^{-1}]\tr=(\m{X}\tr\m{X})^{-1}$). Aus den Gau\3-Markow-Annahmen folgt, dass $\m{X}$ deterministisch ist,
-so dass man den Erwartungswert $E[...]$ allein auf $\veceps\veceps\tr$
+so dass man den Erwartungswert $E(...)$ allein auf $\veceps\veceps\tr$
 anwenden kann. Au\3erdem folgt wegen der i.i.d-Eigenschaft der
 Elemente von $\veceps$, dass sich der Erwartungswert auf eine
 Einheitsmatrix reduziert:\footnote{Um Verwechslungen mit dem
 Erwartungswertoperator zu vermeiden, wird die Einheitsmatrix hier mit
 $\m{1}$ bezeichnet.}
 \be
-E[\veceps\veceps\tr]=\sigeps^2\m{1}
+E(\veceps\veceps\tr)=\sigeps^2\m{1}
 \ee
 Damit ergibt sich
 $
