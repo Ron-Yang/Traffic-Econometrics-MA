@@ -1942,7 +1942,7 @@ Varianz-Kovarianz-Matrix $\vec{\Sigma}$ definiert durch
 \be
 \label{defDensityGaussMulti}
 f(\vec{x})=\sqrt{\frac{1}{(2\pi)^{J+1} \text{Det}\vec{\Sigma}}}
-\exp\left[\frac{1}{2} \vec{x}\tr\vec{\Sigma}\, \vec{x}\right].
+\exp\left[-\frac{1}{2} \vec{x}\tr\vec{\Sigma}^{-1}\, \vec{x}\right].
 \ee
 Vergleicht man die Varianz-Kovarianz-Matrix~\refkl{Vbeta} mit
 der Dichte der allgemeinen multivariaten Gau\3verteilung (vgl. 
@@ -2495,7 +2495,7 @@ K_{\beta_j}^{(\alpha)}: \beta_j \in \left[
  \, \hatbeta_j-\Delta \hatbeta_j,  
 \hatbeta_j+\Delta \hatbeta_j \,
 \right], \quad
-\Delta \hatbeta_j =t_{(1-\alpha)/2}^{(n-J-1)}\hatsig_{\hatbeta_j}.
+\Delta \hatbeta_j =t_{1-\alpha/2}^{(n-J-1)}\hatsig_{\hatbeta_j}.
 }
 
 %#############################

@@ -162,12 +162,14 @@ The above cannot be applied directly since the residual variance $\sigma^2$ is
 unknown and must be estimated by the minimum $S(\hatbeta)$ of the sum
 of squared 
 errors: 
-\bdma
-\hatsig^2 &=& \frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
- = \frac{S(\hatbeta)}{n-J-1} \\
- &=&\frac{\vec{y}\tr
+\maindm{
+\hatsig^2 = \frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
+ = \frac{S(\hatbeta)}{n-J-1}
+}
+\bdm
+\hatsig^2 =\frac{\vec{y}\tr
   \left(\m{1}-\m{X}(\m{X}\tr\m{X})^{-1}\m{X}\tr\right)\vec{y}} {n-J-1}
-\edma
+\edm
 
 This results in following \emph{estimated} error statistics:
 
@@ -186,6 +188,51 @@ approximate estimation errors are student-t distributed:
 \ei
 }
  
+%###################################################
+\frame{\frametitle{Multivariate distribution function of $\hatvecbeta$}
+%###################################################
+
+{\small
+The distribution of the errors $\Delta
+\hatvecbeta=\hatvecbeta-\vecbeta$ obeys a multivariate normal
+distribution: 
+\bdm
+f_{\hatvecbeta}(\Delta \hatvecbeta)
+ \propto \exp\left[-\frac{1}{2} 
+ \Delta \hatvecbeta\tr \m{V}^{-1}\, \Delta \hatvecbeta\right]
+   = \exp\left[-\frac{\Delta \hatvecbeta\tr \m{X}\tr\m{X}\Delta \hatvecbeta}
+  {2\sigeps^2}\right].
+\edm
+
+\mysubsubheading{Relation to the maximum-likelihood-method ($\to$
+  Lecture 06:)}
+
+Expand the SSE $S(\vecbeta)$ around $\hatvecbeta$ to second order:
+\bdm
+S(\vecbeta)-S(\hatvecbeta)
+\approx \frac{1}{2}\Delta \hatvecbeta\tr \m{H} \Delta \hatvecbeta
+= \Delta \hatvecbeta\tr \m{X}\tr\m{X} \Delta \hatvecbeta
+\edm
+\vspace{1em}
+
+\hspace{5em} $\Rightarrow \quad$ 
+\vspace{-3em}
+
+\maindm{f_{\hatvecbeta}(\Delta \hatvecbeta)
+ \propto \exp\left[-\frac{S(\vecbeta)-S(\hatvecbeta)}{2\sigeps^2}\right] 
+}
+
+and with estimated residual variance $\hatsigeps^2=S(\hatvecbeta)/(n-J-1)$ 
+\bdm
+\hat{f}_{\hatvecbeta}(\vecbeta) \propto \exp \left[
+-\frac{(n-J-1)}{2}\left(\frac{S(\vecbeta)}{S(\hatvecbeta)}-1\right)
+\right]
+\edm
+}
+
+}
+
+
 %###################################################
 \frame{\frametitle{Special case 1: No exogenous variables}
 %###################################################
@@ -295,11 +342,23 @@ linear regression}
 \subsection{3.2 Confidence Intervals}
 
 %###################################################
-\frame{\frametitle{3.2. Confidence intervals and origin of the 
-Student´s distribution}
+\frame{\frametitle{3.2. Confidence intervals and the
+Student-t distribution}
 %###################################################
 
-\fig{1.0\textwidth}{figsRegr/KI_veranschaulichung_eng.png}
+\visible<1>{\placebox{0.489}{0.518}{
+  \figSimple{1.02\textwidth}{figsRegr/KI_veranschaulichung_eng1.png}}}
+
+\visible<2>{\placebox{0.48}{0.5}{
+  \figSimple{1.0\textwidth}{figsRegr/KI_veranschaulichung_eng2.png}}}
+
+\visible<3>{\placebox{0.502}{0.503}{
+  \figSimple{1.05\textwidth}{figsRegr/KI_veranschaulichung_eng3.png}}}
+
+\visible<4>{\placebox{0.502}{0.503}{
+  \figSimple{1.05\textwidth}{figsRegr/KI_veranschaulichung_eng4.png}}}
+
+
 }
 
 %###################################################
@@ -324,21 +383,31 @@ Student´s distribution}
 \frame{\frametitle{Confidence intervals (CI)}
 %###################################################
 
-\placebox[center]{0.26}{0.60}
-{\figSimple{0.6\textwidth}{figsRegr/f_student_KI_eng.png}}
+\placebox{0.50}{0.81}{\parbox{1.0\textwidth}{
+\maindm{\text{CI}_{\beta_j}^{(\alpha)}: \beta_j \in \left[
+ \, \hatbeta_j-\Delta \hatbeta_j,  \hatbeta_j+\Delta \hatbeta_j \,
+\right], \quad
+\Delta \hatbeta_j =t_{1-\alpha/2}^{(n-J-1)}\hatsig_{\hatbeta_j}.
+}}}
 
-\placebox[center]{0.74}{0.60}
-{\figSimple{0.6\textwidth}{figsRegr/F_student_KI_eng.png}}
-
-\placebox[center]{0.50}{0.20}
-{\parbox{\textwidth}{
+\placebox{0.50}{0.70}{\parbox{1.0\textwidth}{
+ {\small
  \bi
-  \item CI for error probability 
-	$\alpha=\unit[5]{\%}$ for df=3 degrees of freedom.
-  \item CI ``uncertainty principle'': Higher selectivity implies
-  higher $\alpha$ error.
+  \pause \item $t_{1-\alpha/2}$: Quantile (inverse of) the distribution
+    function\\[-1ex]
+  \pause \item CI ``uncertainty principle'': Higher sensitivity implies
+    higher $\alpha$ error.
   \ei
+}
 }}
+
+\visible<4>{\placebox{0.50}{0.31}
+{\figSimple{0.70\textwidth}{figsRegr/f_student_KI_eng.png}}}
+
+\visible<5>{\placebox{0.50}{0.31}
+{\figSimple{0.70\textwidth}{figsRegr/F_student_KI_eng.png}}}
+
+
 
 }
 
@@ -376,16 +445,19 @@ the minimum $\alpha$ for which $H_0$ can be rejected.
 \frame{\frametitle{Examples for test statistics I}
 %###################################################
 
+{\small
 \bi
-\item Testing $H_0$: $\beta_j=\beta_{j0}$ or
-  $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$ for a \red{parameter}: The test
+\item Testing  \red{parameters} such as $H_0$: $\beta_j=\beta_{j0}$ or
+  $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$:
+
+  The test
   function is the estimated deviation from the boundary of $H_0$ in
   units of the estimated error standard deviation:
 \bdm 
 T =\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
 \edm
-\item Testing simple \red{functions of parameters} such as
-  $\beta_1/\beta_2=2$, $\le 2$ or $\ge 2$: Transform into a linear
+\pause \item Testing \red{functions of parameters} such as
+  $H_0$: $\beta_1/\beta_2=2$, $\le 2$ or $\ge 2$: Transform into a linear
   combination. Then, the normalized estimated deviation is student-t
   distributed under $H_0^*$. Here, the linear combination is
   $b=\beta_1-2\beta_2=0$: 
@@ -395,6 +467,7 @@ T =\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
 T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
 \edma
 \ei
+}
 
 }
 
@@ -684,17 +757,17 @@ df=2 degrees of freedom}
 \frame{\frametitle{3.4.1 Example: modeling the demand for hotel rooms}
 %###################################################
 
-\placebox[center]{0.26}{0.67}
+\placebox{0.26}{0.67}
 {\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
 
 
-\placebox[center]{0.26}{0.25}
+\placebox{0.26}{0.25}
 {\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
 
-\placebox[center]{0.74}{0.25}
+\placebox{0.74}{0.25}
 {\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
 
-\placebox[center]{0.74}{0.67}
+\placebox{0.74}{0.67}
 {\parbox{0.53\textwidth}{\scriptsize
 \bi
 \item Exogenous variables $x_1$: quality [\# stars]; $x_2$: price
@@ -849,10 +922,10 @@ $\triangle=H_{03}: \beta_{10}=30 \cap \beta_{20}=-0.6$.
 \frame{\frametitle{3.5 Model Selection Strategies I: Problem Statement}
 %###################################################
 
-\placebox[center]{0.50}{0.45}
+\placebox{0.50}{0.45}
 {\figSimple{0.60\textwidth}{figsRegr/elephantRaisedTrunkPale.jpg}}
 
-\placebox[center]{0.50}{0.45}
+\placebox{0.50}{0.45}
 {\parbox{0.80\textwidth}{
 \bi
 \item With every additional parameter, the fit quality in terms of a

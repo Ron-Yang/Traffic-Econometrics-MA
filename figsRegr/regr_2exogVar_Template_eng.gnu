@@ -52,8 +52,8 @@ set style line 19 lt 7 lw 4 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. D
 
 
 set style line 21 lt 1 lw 4 pt 7 ps 0.8  lc rgb "#000000" #schwarz,solid,bullet
-set style line 22 lt 1 lw 20 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
-set style line 29 lt 7 lw 20 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
+set style line 22 lt 1 lw 10 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
+set style line 29 lt 7 lw 10 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
 
 
 
@@ -635,23 +635,22 @@ plot [t=tmin0:tmax0]\
   t,norm(t) t "Gaussian(0,1)" w l ls 11,\
   t,0.975 t "F=0.975" w l ls 1
 
-
+ 
 #######################################
 print "plotting f_student_KI_eng.png  (general CI for df=3)"
 set out "f_student_KI_eng.png"
 #######################################
+set title "Confidence Interval for df=3 and {/Symbol a}=0.05" offset 0,-0.5
 
-set title "Confidence Interval for df=3 and {/Symbol a}=0.05"
 
-
-set xlabel "t"
+set xlabel "t" offset 0,0.5
 set xrange [tmin0:tmax0]
 set ylabel "Density Student (3)"
 set samples 500 # circumvent gnuplot's png bug at thick lines
 
 plot [t=tmin0:tmax0]\
   t,student(t,3) t "Density" w l ls 12,\
-  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI" w l ls 29
+  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI  " w l ls 29
 set samples 300 # circumvent gnuplot's png bug at thick lines
 
 
@@ -695,7 +694,7 @@ set ylabel "Distribution Function F"
 
 plot [t=tmin:tmax]\
   beta1+t*sigbeta1,studentCum(t,n-3) t "F" w l ls 12,\
-  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI" w l ls 29,\
+  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI  " w l ls 29,\
   beta1-dbeta1, (t-tmin)/(tmax-tmin) t "" w l ls 1,\
   beta1+dbeta1, (t-tmin)/(tmax-tmin) t "" w l ls 1,\
   beta1+t*sigbeta1,0.025 t "F=0.025" w l ls 16,\
@@ -722,16 +721,18 @@ print "plotting F_student_KI_eng.png  (general CI for df=3)"
 set out "F_student_KI_eng.png"
 #######################################
 
+set key at screen 0.76,0.30
+
 set title "Confidence Interval for df=3 and {/Symbol a}=0.05"
 
-set xlabel "t"
+set xlabel "t" offset 0,0.5
 set xrange [tmin0:tmax0]
 set ylabel "Distribution Student (3)"
 set samples 500 # circumvent gnuplot's png bug at thick lines
 
 plot [t=tmin0:tmax0]\
   t,studentCum(t,3) t "F" w l ls 12,\
-  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI" w l ls 29,\
+  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI  " w l ls 29,\
   -dbeta, (t-tmin0)/(tmax0-tmin0) t "" w l ls 1,\
   +dbeta, (t-tmin0)/(tmax0-tmin0) t "" w l ls 1,\
   t,0.025 t "F=0.025" w l ls 16,\
