@@ -6,8 +6,8 @@
 %#############################################
 
 
-\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout]{beamer}
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
@@ -123,42 +123,51 @@ exogenous factors!}
 \frame{\frametitle{Results summary}
 %###################################################
 
+{\small
 \bi
 \item Ordinary least squares (OLS) estimator:
 \maindm{\hatvecbeta =\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y}}
 
-\pause \item Variance-Covariance matrix of the estimation errors
-(provided all the Gau\3-Markow assumptions are satisfied!):
+\pause \item \bfdef{Variance-Covariance matrix} of the estimation errors
+(provided the errors are i.i.d.) in terms of the \bfdef{Hesse matrix} $\m{H}$ of the 
+objective function:
 
-\maindm{\m{V}_{\hatvecbeta}
- = E\left( (\hatvecbeta-\vecbeta)(\hatvecbeta-\vecbeta)\tr\right)
- =\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}= 2\sigma^2 \m{H}^{-1}
-}
-where the Hesse matrix $H$ is defined by the second derivatives of the
-objective function at the calibration point:
-\bdm
-H_{jk}=\left. \ablpartmix{S}{\beta_j}{\beta_k}\right|_{\vecbeta=\hatvecbeta}
+\maindm{
+\begin{array}{rcl}
+\m{V}_{\hatvecbeta}
+ &=&  E\left( (\hatvecbeta-\vecbeta)(\hatvecbeta-\vecbeta)\tr\right)
+ =\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}= 2\sigma^2 \m{H}^{-1},\\
+H_{jk} &=& \left. \ablpartmix{S}{\beta_j}{\beta_k}\right|_{\vecbeta=\hatvecbeta}
 =2\m{X}\tr\m{X}
-\edm
+\end{array}
+}
+
+\pause \item Variances of estimation errors: $V(\hatbeta_j)=V_{jj}$
+
+\pause \item Correlation of estimation errors: $\text{Corr}(\hatbeta_j, \hatbeta_k)=\frac{V_{jk}}{\sqrt{V_{jj}V_{kk}}}$
 
 \pause \item Distribution of the normalized estimation errors:
-\bdm
+$
 \frac{\hatbeta_j-\beta_j}{\sqrt{V_{jj}}} \sim N(0,1)
-\edm
+$
 \ei
+}
+
 }
  
 %###################################################
 \frame{\frametitle{Estimation of the residual variance}
 %###################################################
 The above cannot be applied directly since the residual variance $\sigma^2$ is
-unknown and must be estimated by the minimum $S\sub{min}$ of the sum
+unknown and must be estimated by the minimum $S(\hatbeta)$ of the sum
 of squared 
 errors: 
-\bdm
-\hatsig^2=\frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
- = \frac{S\sub{min}}{n-J-1}
-\edm
+\bdma
+\hatsig^2 &=& \frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
+ = \frac{S(\hatbeta)}{n-J-1} \\
+ &=&\frac{\vec{y}\tr
+  \left(\m{1}-\m{X}(\m{X}\tr\m{X})^{-1}\m{X}\tr\right)\vec{y}} {n-J-1}
+\edma
 
 This results in following \emph{estimated} error statistics:
 
