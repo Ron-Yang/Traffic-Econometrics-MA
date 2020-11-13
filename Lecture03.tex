@@ -561,24 +561,34 @@ $
 $
 T=(n-J-1)\frac{S_0-S}{S} \sim F(1,n-1-J)
 $
-\item There is a general relation (\bfAsk{prove!}) between the
-  student-t and the F(1,d) distribution: 
-\bdm
+\itemAsk \colAsk{\scriptsize{Show following general relation between the
+  student-t and the F(1,d) distributions: 
+$
 F\sim F(1,d) \ \text{and} \ T \sim T(d) \Rightarrow F=T^2
-\edm
-so we have
-$\left( (\hatbeta_j-\beta_{j0})/\sqrt{\hat{V}(\hatbeta_j)}\right)^2 \sim
-F(1, n-1-J)$
-\item
-{\scriptsize
-In fact, using $\hat{\m{V}}=S/(n-1-J)(\m{X}\tr\m{X})^{-1}$ and 
-expanding $S_0-S=(\hatvecbeta_r-\hatvecbeta)\tr
-(\m{X}\tr\m{X}) (\hatvecbeta_r-\hatvecbeta)$ to second order, one can
-show that, in fact
+$
+}}
+
+\itemAnswer \colAnswer{\tiny{By definition, Fisher's F is a
+    ratio of $\chi^2$ distributions and, by definition of $\chi^2$, a
+    ratio of sums of i.i.d. standardnormal distributed random variables:
 \bdm
-(n-J-1)\frac{S_0-S}{S}=\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}(\hatbeta_j)}
+F(1,d)=\chi_1^2/(\chi_d^2/d)=Z^2/(\chi_d^2/d)
 \edm
-}
+where $Z\sim N(0,1)$ and $\chi_d^2$ and $Z$ are independent from each
+other. 
+The definition of the student-t distribution is 
+$T(d)=Z/\sqrt{\chi_d^2/d}$, so $F(1,d)=T_d^2$.}}
+
+\item In fact, one can show (difficult!) that following is exactly valid:
+ \bdm
+ (n-J-1)\frac{S_0-S}{S}
+=\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}(\hatbeta_j)}
+=\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}_{jj}}
+\edm
+where $S_0$ is the (minimum) SSE for the
+calibrated restrained model
+
+
 \ei
 }
 
