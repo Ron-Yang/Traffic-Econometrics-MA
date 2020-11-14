@@ -561,7 +561,8 @@ $
 $
 T=(n-J-1)\frac{S_0-S}{S} \sim F(1,n-1-J)
 $
-\itemAsk \colAsk{\scriptsize{Show following general relation between the
+\itemAsk \colAsk{\scriptsize{Regarding the rhs., show following
+    general relation between the 
   student-t and the F(1,d) distributions: 
 $
 F\sim F(1,d) \ \text{and} \ T \sim T(d) \Rightarrow F=T^2
@@ -579,7 +580,8 @@ other.
 The definition of the student-t distribution is 
 $T(d)=Z/\sqrt{\chi_d^2/d}$, so $F(1,d)=T_d^2$.}}
 
-\item In fact, one can show (difficult!) that following is exactly valid:
+\item One can show (difficult!) that following is exactly valid for
+  the lhs.:
  \bdm
  (n-J-1)\frac{S_0-S}{S}
 =\frac{(\hatbeta_j-\beta_{j0})^2}{\hat{V}(\hatbeta_j)}
@@ -599,43 +601,104 @@ calibrated restrained model
 %###################################################
 \frame{\frametitle{3.3 Type I and II Errors}
 %###################################################
-\vspace{-1em}
 
-\fig{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt_eng.png}
+\visible<1>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
+
+\visible<2>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
+
+\visible<3>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
+
+\visible<4->{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
+
+\placebox{0.5}{0.25}{\parbox{\textwidth}{
 {\small
 \bi
-\item We can control the Type I ($\alpha$) error probability
-  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}.
-\pause \item Since the Type II ($\beta$) error probability 
+\visible<3->{\item We can control the Type I ($\alpha$) error probability
+  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}}
+\visible<4->{\item Since the Type II ($\beta$) error probability 
   $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
-error type should be formulated as the $\alpha$ error.
-\pause \item Fundamental problem: I want $P(H_0|\text{rejected})$ and
+error type should be formulated as the $\alpha$ error}
+\visible<5->{\item Fundamental problem: I want $P(H_0|\text{rejected})$ and
 $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
-\bfblue{Bayesian statistics}
+\bfblue{Bayesian statistics}}
 \ei
-}
+}}}
+
 }
 
 
 %###################################################
-%\frame{\frametitle{Annahme und Ablehnungsbereiche}
-\frame{\frametitle{Rejection\\regions}
+\frame{\frametitle{Rejection region for $\vec{H}_0$: ``$<$''
+or ``$\le$'' (interval hypothesis)}
 %###################################################
-\vspace{-2em}
 
-\hspace{0.18\textwidth}
-\includegraphics[width=0.8\textwidth]
- {figsRegr/annahmeAblehn_einZweiseit_eng.png}
-\vspace{0.5em}
+\placebox{0.5}{0.58}{
+ \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit1_eng.png}}
 
+\placebox{0.5}{0.16}{\parbox{\textwidth}{
+{\small
 \bi
-\item Shown is the density of the test function \emph{if $H^*_0$}
-\item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
-  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain $H^*_0$
-\item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
+ \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
+   (boundary of $H_0$)
+ \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
   \emph{extreme region} or \bfblue{rejection region}
+% \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
+%  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
+%  $H^*_0$ 
 \ei
+}}}
+
 }
+
+
+%###################################################
+\frame{\frametitle{Rejection region for $\vec{H}_0$: ``$>$''
+or ``$\ge$'' (interval hypothesis)}
+%###################################################
+
+\placebox{0.5}{0.58}{
+ \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit2_eng.png}}
+
+\placebox{0.5}{0.16}{\parbox{\textwidth}{
+{\small
+\bi
+ \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
+   (boundary of $H_0$)
+ \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
+  \emph{extreme region} or \bfblue{rejection region}
+% \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
+%  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
+%  $H^*_0$ 
+\ei
+}}}
+
+}
+
+%###################################################
+\frame{\frametitle{Rejection region for $\vec{H}_0$: ``='' (point hypothesis)
+or ``$\le$''}
+%###################################################
+
+\placebox{0.5}{0.58}{
+ \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit3_eng.png}}
+
+\placebox{0.5}{0.16}{\parbox{\textwidth}{
+{\small
+\bi
+ \item Shown is the density of the test function \emph{if $H^*_0$}
+   (boundary of $H_0$)
+ \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
+  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
+  $H^*_0$ 
+\ei
+}}}
+
+}
+
 
 %###################################################
 \frame{\frametitle{3.4 Significance tests: the $p$-value}
@@ -654,10 +717,10 @@ further away from $H^*_0$ than $t\sub{data}$.
 \vspace{1em}
 
 \bi
-\item $p\ge\unit[5]{\%}$: not significant (no star at the parameter
-  $\beta$)
-\item $p<\unit[5]{\%}$: significant (one star, $\beta^*$)
-\item $p<\unit[1]{\%}$: very significant (two star, $\beta^{**}$)
+\pause \item $p\ge\unit[5]{\%}$: not significant (no star at the parameter
+  $\beta$, sometimes a ``+'' if between \unit[5]{\%} and \unit[10]{\%})
+\pause \item $p<\unit[5]{\%}$: significant (one star, $\beta^*$)
+\pause \item $p<\unit[1]{\%}$: very significant (two star, $\beta^{**}$)
 \item $p<0.001$: highly significant (three stars, $\beta^{***}$)
 \ei
 \ei
@@ -667,21 +730,30 @@ further away from $H^*_0$ than $t\sub{data}$.
 \frame{\frametitle{Calculating $p$ for some basic tests}
 %###################################################
 
+\visible<1->{\placebox{0.84}{0.75}{
+ \figSimple{0.30\textwidth}{figsRegr/p_intervalLeft_eng.png}}}
+
+\visible<2->{\placebox{0.84}{0.47}{
+ \figSimple{0.30\textwidth}{figsRegr/p_intervalRight_eng.png}}}
+
+\visible<3->{\placebox{0.84}{0.12}{
+ \figSimple{0.30\textwidth}{figsRegr/p_point_eng.png}}}
+
+\placebox{0.34}{0.42}{\parbox{0.65\textwidth}{
 \bi
 \item Interval test $H_0: \beta \le \beta_0$ or $\beta < \beta_0$
-\bdm
+\vspace{-1em}
+ \bdm
 p=P(T>t\sub{data}|\beta=\beta_0)
 =1-F_T(t\sub{data})
-\edm
-
-
-
+\edm\\[2em]
 \pause \item Interval test $H_0: \beta \ge \beta_0$ or $\beta > \beta_0$
+\vspace{-1em}
 \bdm
 p=P(T<t\sub{data}|\beta=\beta_0)=F_T(t\sub{data})
-\edm
-
+\edm\\[2em]
 \pause \item Point test $H_0: \beta=\beta_0$ (symmetry of $f_T$ assumed)
+\vspace{-1em}
 \bdma
 p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
  &=& 1-F_T(|t\sub{data}|)+F_T(-|t\sub{data}|)\\
@@ -689,6 +761,8 @@ p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
  &=& 2(1-F_T(|t\sub{data}|))
 \edma
 \ei
+}}
+
 }
 
 
