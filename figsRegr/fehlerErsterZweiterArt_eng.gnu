@@ -182,7 +182,7 @@ GfunGeStudent(t,alpha,m)=studentCum(tQuantil(alpha,m)-t,m)
 set out "fehler12art_eqGauss_eng.eps"
 print "plotting fehler12art_eqGauss_eng.eps"
 set key center
-set xlabel "{/Symbol D}Z={/Symbol (b-b_0)/s_b}"
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"
 zmin=-5.
 zmax=5.
 set xrange [zmin:zmax]
@@ -208,7 +208,7 @@ print "plotting fehler12art_eqStudent_2FG_eng.eps"
 tmin=-5.
 tmax=5.
 set xrange [tmin:tmax]
-set xlabel "{/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
 
 plot[t=0:1]\
   0, GfunEqStudent(0,alpha,m) t "{/Symbol a}-Error" w p ls 5,\
@@ -230,7 +230,7 @@ print "plotting fehler12art_leGauss_eng.eps"
 set key left top
 
 
-set xlabel "{/Symbol (b-b_0)/s_b}"
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"
 set xrange [zmin:zmax]
 
 plot[t=0:1]\
@@ -247,7 +247,7 @@ print "plotting fehler12art_leStudent_2FG_eng.eps"
 #############################################
 
 set xrange [tmin:tmax]
-set xlabel "{/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
 
 plot[t=0:1]\
  tmin+t*(0.-tmin), GfunLeStudent(tmin+t*(0.-tmin),alpha,m)\
@@ -267,7 +267,7 @@ print "plotting fehler12art_geGauss_eng.eps"
 
 
 set xrange [zmin:zmax]
-set xlabel "{/Symbol D}Z={/Symbol (b-b_0)/s_b}"
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"
 
 plot[t=0:1]\
  0.02+t*(zmax-0.02), GfunGeGauss(0.02+t*(zmax-0.02),alpha)\
@@ -283,7 +283,7 @@ print "plotting fehler12art_geStudent_2FG_eng.eps"
 #############################################
 
 set xrange [tmin:tmax]
-set xlabel "{/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
+set xlabel "{/Symbol D}T={/Symbol (b-b_0)/s_b}"  # as bei bekannter Variance; sind ja WAHRE Valuee
 
 
 plot[t=0:1]\

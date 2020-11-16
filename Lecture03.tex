@@ -39,7 +39,7 @@
 \item[3.3.3] Specific test statistics
 \item[3.3.4] The $p$-value
 \ei
-\item[3.4] Dependence on the True Value: Power Function
+\item[3.4] Dependence on the True Parameter Value: Power Function
 \item[3.5] Model Selection Strategies
 \ei
 }}
@@ -1042,31 +1042,95 @@ $\triangle$: \ $H_0: (\beta_1=30) \cap (\beta_2=-0.6)$.
 }
 }
 
-\subsection{3.4 Dependence of the true parameter value}
+\subsection{3.4 Dependence on the True Parameter Value}
 
 %###################################################
-\frame{\frametitle{3.4 Dependence of the true parameter value}
+\frame{\frametitle{3.4 Dependence on the True Parameter Value}
 %###################################################
-
+All statistical tests, including the $p$-values, are based on some
+\emph{null hypothesis} which is supposed to be \emph{marginally}
+fulfilled, $\beta=\beta_0 \in H_0^*$.  What if the true parameter
+values take on other values? 
 \bi
-\item
+\item Since regression parameters are continuous, the probability
+  $P(H_0^*)=0$ exactly, so the tests and $p$-values \emph{do not
+  reflect reality}
+\item What happens for other values $\beta \notin H_0^*$? This is
+  quantified by following conditional probability called
+  \bfdef{statistical power
+    function}: 
+\maindm{\pi(\beta)=\text{Pr}(\text{test rejected} | \beta)}
+\item If $\beta\notin H_0$, then $\pi(\beta)$ indicates the
+  \bfdef{statistical power} or \bfdef{specificity} of a test and 
+ $1-\pi(\beta)$ its probability for a type-II error
+\item If $\beta\in H_0$, then $\pi(\beta)$ is the type-I ($\alpha$)
+  error and $1-\pi(\beta)$ the \bfdef{sensitivity} of a test
 \ei
 }
 
 %###################################################
-\frame{\frametitle{Power function}
+\frame{\frametitle{Calculating the statistical power function}
 %###################################################
+
+\bi
+\item If $\beta\neq \beta_0 \in H_0^*$, then the usual test function, e.g.,
+$(\hatbeta_j-\beta_{j0})/\sqrt{\hat{V}_{jj}}$ does \emph{no longer} obey
+a standard statistical distribution such as standardnormal or
+student-t \\[2em]
+\pause \item However, $T=(\hatbeta_j-\beta_j)/\sqrt{\hat{V}_{jj}}$ does:
+\bdm
+T=\frac{\hatbeta_j-\beta_j}{\sqrt{\hat{V}_{jj}}}
+ = \frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
+ +\frac{\beta_{j0}-\beta_j}{\sqrt{\hat{V}_{jj}}}
+ = \frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}-\Delta T
+\edm \\[2em]
+\pause \item The new independent variable is the standardized difference 
+$\Delta T=(\beta_j-\beta_{j0})/\sqrt{\hat{V}_{jj}}$
+
+
+\ei
+
 }
 
+%###################################################
+\frame{\frametitle{Example I: Interval test for $<$ and $\le$}
+%###################################################
+
+\bdma
+\pi^{\le}(\Delta T)
+ &=& P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
+    >t_{1-\alpha}\right)\\
+ &=& P(T+\Delta T>t_{1-\alpha}) \\
+ &=& P(T>-\Delta T+t_{1-\alpha}) \\
+ &=& 1-P(T<-\Delta T+t_{1-\alpha})\\
+ & \stackrel{\text{symm.}}{=} & P(T<\Delta T-t_{1-\alpha})\\
+ & \stackrel{\text{def distr.}}{=} & \uu{F_T(\Delta T-t_{1-\alpha})}
+\edma
+
+\bi
+\itemAsk \colAsk{\small{Test this expression by calculating
+    $\pi^{\le}(0)$ and $\pi'^{\le}(0)$}}
+\itemAnswer \colAnswer{\scriptsize{Just insert $\Delta T=0$:
+\bdma
+\pi^{\le}(0) &=& F_T(-t_{1-\alpha})\\
+  &=& F_T(t_{\alpha})\\
+  &\stackrel{\text{def quantile}}{=} & \alpha \ \OK \\
+\pi'^{\le}(0) &=& f_T(0)>0 \ \OK
+\edma
+}}
+
+\ei
+}
 
 %###################################################
 \frame{\frametitle{Type I and II errors for ``$<$'' or
 	``$\le$''-tests as a function\\of the true value relative to
     $H_0$, known variance} 
 %###################################################
-\vspace{0em}
-\fig{0.90\textwidth}{figsRegr/fehler12art_leGauss_eng.png}
-\vspace{-1.5em}
+\placebox{0.5}{0.55}{
+  \figSimple{0.90\textwidth}{figsRegr/fehler12art_leGauss_eng.png}}
+
+\placebox{0.5}{0.15}{\parbox{0.9\textwidth}{
 {\small
 \bi
 \item The maximum type-I error probability of $\alpha$ 
@@ -1074,18 +1138,52 @@ occurs if $\beta=\beta_0$, i.e., at the boundary of $H_0$.
 \pause \item The maximum type-II error probability of $1-\alpha$
 occurs if $\beta$ is just outside of $H_0$.
 \ei
-}
+}}}
+
 }
 
 %###################################################
 \frame{\frametitle{The same for unknown variance, 
 df=2 degrees of freedom}
 %###################################################
-\vspace{0.0em}
-\fig{0.90\textwidth}{figsRegr/fehler12art_leStudent_2FG_eng.png}
+
+\placebox{0.5}{0.55}{
+  \figSimple{0.90\textwidth}{figsRegr/fehler12art_leStudent_2FG_eng.png}}
+
+\placebox{0.5}{0.25}{\parbox{0.9\textwidth}{
+{\small
 \bi
-\item The \bfblue{power function} is defined as the rejection
-  probability of $H_0$ as a function of the true value relative to $H_0$
+\item The increase with $\Delta T$ is steeper but $\pi(0)=\alpha$ is
+  unchanged 
+\ei
+}}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Example II: Interval test for for $>$ and $\ge$}
+%###################################################
+
+\bdma
+\pi^{\ge}(\Delta T)
+ &=& P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
+    <t_{\alpha}\right)\\
+ &=& P(T+\Delta T<t_{\alpha}) \\
+ &=& P(T<-\Delta T+t_{\alpha}) \\
+ & \stackrel{\text{def distr.}}{=} & \uu{F_T(t_{\alpha})-\Delta T}
+\edma
+
+\bi
+\itemAsk \colAsk{\small{Test this expression by calculating
+    $\pi^{\ge}(0)$ and $\pi'^{\ge}(0)$}}
+\itemAnswer \colAnswer{\scriptsize{Just insert $\Delta T=0$:
+\bdma
+\pi^{\ge}(0) &\stackrel{\text{def quantile}}{=} & \alpha \ \OK \\
+\pi'^{\ge}(0) &=& -f_T(0)<0 \ \OK
+\edma
+}}
+
 \ei
 }
 
@@ -1113,6 +1211,35 @@ df=2 degrees of freedom}
 \fig{0.9\textwidth}{figsRegr/fehler12art_geStudent_2FG_eng.png}
 }
 
+
+%###################################################
+\frame{\frametitle{Example III: Point test for ``=''}
+%###################################################
+\bdma
+\pi\sup{\,eq}(\Delta T) 
+ &=& P\left(\left|\frac{\hatbeta_j-\beta_{j0}}{\hatsig_{\hatbeta_j}}\right|
+      > t_{1-\alpha/2}\right) \\
+&=& P(|T+\Delta T| > t_{1-\alpha/2}) \\
+&=& P(T+\Delta T > t_{1-\alpha/2}) + P(T+\Delta T <-t_{1-\alpha/2})\\
+&=& 1-P(T+\Delta T \le t_{1-\alpha/2})+P(T+\Delta T <-t_{1-\alpha/2})\\
+& \stackrel{\text{def distr.}}{=} & 
+ 1-F_T(t_{1-\alpha/2}-\Delta T) + F_T(-t_{1-\alpha/2}-\Delta T)\\
+& \stackrel{\text{symm.}}{=} & 
+ \uu{2-F_T(t_{1-\alpha/2}-\Delta T) - F_T(t_{1-\alpha/2}+\Delta T)} 
+\edma
+
+
+\bi
+\itemAsk \colAsk{\small{Test this expression by calculating
+    $\pi^{\le}(0)$}}
+\itemAnswer \colAnswer{\scriptsize{Just insert $\Delta T=0$:
+\bdm
+\pi\sup{\,eq}(0) = 2-(1-\alpha/2)-(1-\alpha/2)=\alpha \ \OK
+\edm
+}}
+
+\ei
+}
 
 %###################################################
 \frame{\frametitle{Type I and II errors for two-sided (point-)tests \\
