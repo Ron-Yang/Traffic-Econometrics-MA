@@ -34,27 +34,26 @@ set style line 1 lt 1 lw 1 pt 7 ps 2.3  lc rgb "#000000" #schwarz,solid,bullet
 set style line 2 lt 1 lw 1 pt 7 ps 1.5  lc rgb "#CC0022"
 set style line 3 lt 8 lw 1 pt 6 ps 1.6  lc rgb "#FF4400"
 set style line 4 lt 6 lw 1 pt 4 ps 1.5  lc rgb "#FFAA00"  #gelb, offenes Quadrat
-set style line 5 lt 1 lw 1 pt 5 ps 1.5  lc rgb "#00BB22"  #gruen,solid,ClosedBox
+set style line 5 lt 1 lw 1 pt 5 ps 1.5  lc rgb "#00DD22"  #gruen,solid,ClosedBox
 set style line 6 lt 5 lw 1 pt 4 ps 1.5  lc rgb "#00AAAA"
 set style line 7 lt 1 lw 1 pt 4 ps 2.0  lc rgb "#1100AA"  #blau,offenes Quadrat
 set style line 8 lt 4 lw 1 pt 8 ps 1.5 #lila, aufrechtes geschloss. Dreieck
 set style line 9 lt 7 lw 1 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
 
 set style line 11 lt 1 lw 4 pt 8 ps 1.9  lc rgb "#000000" #schwarz,dreieck
-set style line 12 lt 1 lw 2 pt 5 ps 0.5  lc rgb "#CC0022" #rot, dash, Kreuz
+set style line 12 lt 1 lw 2 pt 2 ps 0.5  lc rgb "#CC0022" #rot, dash, Kreuz
 set style line 13 lt 8 lw 2 pt 3 ps 1.2  lc rgb "#FF4400"
 set style line 14 lt 6 lw 2 pt 4 ps 1.5  lc rgb "#FFAA00"  #gelb, offenes Quadrat
-set style line 15 lt 1 lw 2 pt 5 ps 0.5  lc rgb "#008888"  #gruen,solid,ClosedBox
+set style line 15 lt 1 lw 4 pt 5 ps 0.8  lc rgb "#00DD22"  #gruen,solid,ClosedBox
 set style line 16 lt 5 lw 2 pt 7 ps 0.5  lc rgb "#00AAAA" #offener Kreis
 set style line 17 lt 1 lw 2 pt 7 ps 0.8  lc rgb "#1100AA"  #blau,solid,Bullet
 set style line 18 lt 4 lw 2 pt 8 ps 1.5  lc rgb "#6600AA"  #lila, aufrechtes geschloss. Dreieck
 set style line 19 lt 7 lw 4 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
 
-set style line 21 lt 1 lw 2 pt 5 ps 0.15  lc rgb "#000000" 
-set style line 22 lt 1 lw 2 pt 5 ps 0.1  lc rgb "#CC0022" 
-set style line 25 lt 1 lw 2 pt 5 ps 0.1  lc rgb "#008888" 
-set style line 29 lt 1 lw 10 pt 5 ps 0.1  lc rgb "#888888" 
 
+set style line 21 lt 1 lw 4 pt 7 ps 0.8  lc rgb "#000000" #schwarz,solid,bullet
+set style line 22 lt 1 lw 10 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
+set style line 29 lt 7 lw 10 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
 
 
 
@@ -683,7 +682,7 @@ set ylabel "Density f"
 plot [t=tmin:tmax]\
   beta1+t*sigbeta1,studentNoNorm(beta1+t*sigbeta1,beta1,sigbeta1,n-3)\
     t "Density" w l ls 12,\
-  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI  " w l ls 29
+  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI" w l ls 29
 
 
 #######################################
@@ -1071,8 +1070,7 @@ set isosamples 50,50  # otherwise, to coarse grid
 unset clabel          # all contours same predefined color/style
 
 set palette defined ( 0 "white", 5 "yellow", 50 "orange",\
-  80 "#FF2222",  99 "#AA0088", 100 "black") 
-
+  80 "#FF6666",  99 "#FF44BB", 100 "white") 
 set nokey
 set title str_title
 set label str_corr at screen 0.5,0.75 front
@@ -1094,6 +1092,7 @@ splot[x=xmin:xmax][y=ymin:ymax]\
 
 unset pm3d; unset surface # here unset surface necessary!
 
+#set key
 set key at screen -0.02,0.28
 
 
@@ -1118,14 +1117,13 @@ print "plotting hotel_f2_hatbeta1_hatbeta2_eng.png"
 set out "hotel_f2_hatbeta1_hatbeta2_eng.png"
 #######################################
 
-unset label
 set multiplot
 set param
 set contour surface
 
 set isosamples 30,30
-set palette defined ( 0 "white", 5 "yellow", 30 "orange",\
-  80 "#FF2222",  99 "#AA0088", 100 "black") 
+set palette defined ( 0 "white", 5 "yellow", 50 "orange",\
+  80 "#FF6666",  99 "#FF44BB", 100 "white") 
 
 xmin=20
 xminGamH0=0.
@@ -1137,7 +1135,7 @@ ymax=0
 set xlabel "{/Symbol b}_1 - Estimator"
 set xrange [xmin:xmax]
 
-set ylabel "{/Symbol b}_2 - Estimator" offset 0,0
+set ylabel "{/Symbol b}_2 - Estimator"
 set yrange [ymin:ymax]
 
 
@@ -1163,18 +1161,19 @@ print "CI(beta_2)=[",beta2-dbeta2,",",beta2+dbeta2,"]"
 
 unset pm3d; unset surface # here unset surface necessary!
 set cntrparam levels discrete densityAtAlpha5  # one contour
-
-set key at screen 0.02,0.28
-
+#set key
+set key at screen -0.12,0.96
 # BUG doppelt; workaround left label left unvisible
 
 splot[x=xmin:xmax][y=ymin:ymax]\
   x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_12,n-3)\
-   t "Confidence Region F-Test" w l ls 17
+   t "" w l ls 17
+#   t "Confidence Region F-Test" w l ls 17
 
 #(3) one-parameter confidence limits
 
 set surface; # here set surface necessary!
+#bug falls y-Value > 0.96
 set key at screen 0.88,0.96
 
 #BUGS in TUD gnuplot but not at home (aber Ubuntu 12 LTS!)
@@ -1183,19 +1182,28 @@ set key at screen 0.88,0.96
 #     lines produce unreproducible/illogical bugs => points OK (strange)
 # BUG surface necessary but produces huge files for reasonable sampling=>png
 # set isosamples 100  # because of points ("w l" <-> "w l" etc)
-# BUG: cannot control parametric lines/workaround with points
 
 set isosamples 80
 splot[t=0:1]\
- 45, ymin+t*(ymax-ymin),0\
-      t "H_0: {/Symbol b_1=45}" w p ls 21,\
- 20+30*1.2*t,-2./3. -1.2*t,0 \
-  t "H_0=H_{04}: {/Symbol g}={/Symbol b_1 + 30 b_2}<0" w p ls 17,\
  beta1-dbeta1, ymin+t*(ymax-ymin),10\
-      t "Confidence intervals for {/Symbol b_1, b_2}" w p ls 15,\
- beta1+dbeta1, ymin+t*(ymax-ymin),0 t "" w p ls 15,\
- xmin+t*(xmax-xmin), beta2-dbeta2,0 t "" w p ls 15,\
- xmin+t*(xmax-xmin), beta2+dbeta2,0 t "" w p ls 15
+      t "CI for {/Symbol b_1, b_2}" w p ls 16,\
+ beta1+dbeta1, ymin+t*(ymax-ymin),0 t "" w p ls 16,\
+ xmin+t*(xmax-xmin), beta2-dbeta2,0 t "" w p ls 16,\
+ xmin+t*(xmax-xmin), beta2+dbeta2,0 t "" w p ls 16,\
+ xminGamH0+t*(xmax-xminGamH0),\
+   erwGam1-c1*(xminGamH0+t*(xmax-xminGamH0))-dGam1,0\
+      t "CI for {/Symbol g}_1, {/Symbol g}_2" w p ls 12,\
+ xminGamH0+t*(xmax-xminGamH0),\
+   erwGam1-c1*(xminGamH0+t*(xmax-xminGamH0))+dGam1,0\
+      t "" w p ls 12,\
+ xminGamH0+t*(xmax-xminGamH0),\
+   erwGam2-c2*(xminGamH0+t*(xmax-xminGamH0))-dGam2,0\
+      t "" w p ls 12,\
+ xminGamH0+t*(xmax-xminGamH0),\
+   erwGam2-c2*(xminGamH0+t*(xmax-xminGamH0))+dGam2,0\
+      t "" w p ls 12,\
+ 20+30*1.2*t,-2./3. -1.2*t,0 \
+  t "t-test for {/Symbol g}_3={/Symbol b_1 + 30 b_2}<0" w p ls 17
 
 
 #(4) verbundene H0 (always w p, not w l !!)
@@ -1203,9 +1211,8 @@ splot[t=0:1]\
 set key at screen 0.46,0.96
 
 splot[t=0:1]\
-  beta101,beta201,0.01 t "Compound Null Hypothesis H_{05}" w p ls 1,\
-  beta103,beta203,0.01 t\
-  "Compound H_0: {/Symbol b}_1=30 AND {/Symbol b}_2=-0.6" w p ls 11
+  beta101,beta201,0.01 t "Compound Null Hypothesis H_{01}" w p ls 1,\
+  beta103,beta203,0.01 t "Compound Null Hypothesis H_{03}" w p ls 11
 
 
 set nomultiplot
@@ -1249,7 +1256,7 @@ splot[x=xmin:xmax][y=ymin:ymax]\
 
 set notitle
 set palette defined ( 0 "white", 5 "yellow", 50 "orange",\
-  80 "#FF2222",  99 "#AA0088", 100 "black") 
+  80 "#FF6666",  99 "#FF44BB", 100 "white") 
 
 
 

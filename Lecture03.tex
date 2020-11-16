@@ -28,12 +28,18 @@
 
 \makePale{0.85}{0.50}{0.55}{1.20}{1.50}
 
-\placebox{0.50}{0.55}{\parbox{0.6\textwidth}{
+\placebox{0.50}{0.50}{\parbox{0.6\textwidth}{
 \bi
 \item[3.1] Expectation and Covariance Matrix of the OLS Estimator
 \item[3.2] Confidence Intervals
-\item[3.3] Type I and II Errors
-\item[3.4] Significance Tests
+\item[3.3] Significance Tests
+\bi
+\item[3.3.1] General procedure
+\item[3.3.2] Type I and II errors
+\item[3.3.3] Specific test statistics
+\item[3.3.4] The $p$-value
+\ei
+\item[3.4] Dependence on the True Value: Power Function
 \item[3.5] Model Selection Strategies
 \ei
 }}
@@ -232,6 +238,84 @@ and with estimated residual variance $\hatsigeps^2=S(\hatvecbeta)/(n-J-1)$
 
 }
 
+%###################################################
+\frame{\frametitle{Example of correlated errors:
+modeling the demand for hotel rooms}
+%###################################################
+
+\placebox{0.26}{0.64}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
+
+
+\placebox{0.26}{0.22}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
+
+\placebox{0.74}{0.22}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
+
+\placebox{0.74}{0.64}
+{\parbox{0.53\textwidth}{\scriptsize
+\bi
+\item The example of Lecture 02:
+  $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$ with the factors: 
+  $x_0=1$, $x_1$: quality [\# stars]; $x_2$: price 
+  [\euro{}/night].
+\item The exogenous variables/factors are non-perfectly correlated: \OK
+\item Endogenous variable: booking rate [\%]
+\item The demand is positively correlated with both the quality and
+  the price (!)
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Residual errors for fitted parameters} 
+%###################################################
+
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_eng.png}
+}
+
+
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters I: small effect 
+   if $\bfbeta_1$ and $\bfbeta_2$ have opposite misfits}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal2_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters II: small effect 
+   if $\bfbeta_1$ and $\bfbeta_2$ have opposite misfits}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal4_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters III: large effect 
+   if $\bfbeta_1$ and $\bfbeta_2$ have both positive misfits}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal1_eng.png}
+}
+
+%###################################################
+\frame{\frametitle{Effect of mis-fit parameters IV: large effect 
+   if $\bfbeta_1$ and $\bfbeta_2$ have both negative misfits}
+%###################################################
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal3_eng.png}
+}
+
+
+%###################################################
+\frame{\frametitle{All this results in a negative correlation\\
+    between the estimation errors for $\bfbeta_1$ and $\bfbeta_2$}
+%###################################################
+
+\vspace{1em}
+
+\fig{0.90\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2_simple_eng.png}
+
+}
 
 %###################################################
 \frame{\frametitle{Special case 1: No exogenous variables}
@@ -342,20 +426,21 @@ linear regression}
 \subsection{3.2 Confidence Intervals}
 
 %###################################################
-\frame{\frametitle{3.2. Confidence intervals and the
-Student-t distribution}
+\frame{\frametitle{3.2. Confidence Intervals:\\
+ where the
+Student-t distribution comes from}
 %###################################################
 
-\visible<1>{\placebox{0.489}{0.518}{
+\visible<1>{\placebox{0.489}{0.468}{
   \figSimple{1.02\textwidth}{figsRegr/KI_veranschaulichung_eng1.png}}}
 
-\visible<2>{\placebox{0.48}{0.5}{
+\visible<2>{\placebox{0.48}{0.45}{
   \figSimple{1.0\textwidth}{figsRegr/KI_veranschaulichung_eng2.png}}}
 
-\visible<3>{\placebox{0.502}{0.503}{
+\visible<3>{\placebox{0.502}{0.453}{
   \figSimple{1.05\textwidth}{figsRegr/KI_veranschaulichung_eng3.png}}}
 
-\visible<4>{\placebox{0.502}{0.503}{
+\visible<4>{\placebox{0.502}{0.453}{
   \figSimple{1.05\textwidth}{figsRegr/KI_veranschaulichung_eng4.png}}}
 
 
@@ -380,7 +465,7 @@ Student-t distribution}
 }
 
 %###################################################
-\frame{\frametitle{Confidence intervals (CI)}
+\frame{\frametitle{Calculation of the confidence intervals (CI)}
 %###################################################
 
 \placebox{0.50}{0.81}{\parbox{1.0\textwidth}{
@@ -412,10 +497,56 @@ Student-t distribution}
 }
 
 
+%###################################################
+\frame{\frametitle{Hotel example: CI for the
+    appraisal for ``stars'' 
+    $\beta_1$\\ \hspace*{0.65\textwidth}(full model)}
+ %###################################################
+\vspace{-2em}
+\begin{tabular}{cc}
+\parbox{0.5\textwidth}{
+  \visible<1->{\fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta1_eng.png}}
+  \vspace{-2em}
+  \visible<2->{\fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta1_eng.png}}
+}
+&
+\hspace{1em}
+\parbox{0.48\textwidth}{
 
+Model: $y(\vec{x})=\sum_j\beta_jx_j+\epsilon$
+\vspace{1em}
+
+Factors:\\[-0.5ex]
+{\small $x_0=1$, $x_1$: \#stars, $x_2$: price}
+\vspace{1em}
+
+Confidence interval (CI):
+\vspace{0.5em}
+
+{\small 
+$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
+ \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
+
+\pause $\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
+\sqrt{\hat{V}(\hat{\beta}_1)}$
+
+\pause $\hat{V}(\hat{\beta}_1)
+  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
+
+\pause $\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
+ \left(\hat{y}_i-y_i\right)^2$
+}
+}
+\end{tabular}
+}
+
+
+
+\subsection{3.3 Significance tests}
+\subsubsection{3.3.1 General four-step procedure}
 
 %###################################################
-\frame{\frametitle{Significance tests: General four-step procedure}
+\frame{\frametitle{3.3 Significance Tests:\\1. General four-step procedure}
 %###################################################
 \benum
 \item Formulate a \bfblue{null hypothesis} $H_0$ such that their rejection
@@ -442,7 +573,41 @@ the minimum $\alpha$ for which $H_0$ can be rejected.
 }
 
 %###################################################
-\frame{\frametitle{Examples for test statistics I}
+\frame{\frametitle{3.3.2 Type I and II errors}
+%###################################################
+
+\visible<1>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
+
+\visible<2>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
+
+\visible<3>{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
+
+\visible<4->{\placebox{0.5}{0.68}{
+ \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
+
+\placebox{0.5}{0.25}{\parbox{\textwidth}{
+{\small
+\bi
+\visible<3->{\item We can control the Type I ($\alpha$) error probability
+  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}}
+\visible<4->{\item Since the Type II ($\beta$) error probability 
+  $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
+error type should be formulated as the $\alpha$ error}
+\visible<5->{\item Fundamental problem: I want $P(H_0|\text{rejected})$ and
+$P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
+\bfblue{Bayesian statistics}}
+\ei
+}}}
+
+}
+
+
+\subsubsection{3.3.3 Specific test statistics}
+%###################################################
+\frame{\frametitle{3.3.3 Specific test statistics I}
 %###################################################
 
 {\small
@@ -472,7 +637,7 @@ T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
 }
 
 %###################################################
-\frame{\frametitle{Examples for test statistics II}
+\frame{\frametitle{Specific test statistics II}
 %###################################################
 
 \bi
@@ -510,7 +675,7 @@ sum of squares of i.i.d. Gaussians; its density is not symmetric.
 }
 
 %###################################################
-\frame{\frametitle{Examples for test statistics III}
+\frame{\frametitle{Specific test statistics III}
 %###################################################
 
 {\small
@@ -542,6 +707,102 @@ with $n$ numerator and $d$ denominator degrees of freedom
 \ei
 }
 }
+
+
+%###################################################
+\frame{\frametitle{Example: modeling the demand for hotel rooms}
+%###################################################
+
+{\small 
+The already well-known example: 
+\bdm
+y=\beta_0x_0+\beta_1x_1+\beta_2x_2+\epsilon
+\edm
+where $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price
+  [\euro{}/night], 
+\bdm
+\hatbeta_0=25.5, \quad
+\hatbeta_1=38.2, \quad
+\hatbeta_2=-0.952
+\edm
+and
+\bdm
+\hat{\m{V}}=\myMatrixThree{
+28.0 &	-6.40 &	-0.119\\
+-6.40 & 26.0 & -0.941\\
+-0.119 & -0.941 & 0.0397}
+\edm
+
+\bi
+\itemAsk \colAsk{Formulate and test the null hypothesis at
+  $\alpha=\unit[5]{\%}$ that the stars
+  do not matter}
+\itemAnswer \scriptsize{\colAnswer{$H_{01}: \beta_1=0$, point t-test
+    with $T=\hatbeta_1/\sqrt{\hat{V}_{11}} \sim T(12-9)$, i.e. df=9
+    degrees of freedom, $t\sub{data}=7.49$,
+    $t^{(9)}_{0.975}=2.26<|t\sub{data}|$ $\Rightarrow$ $H_0$ rejected,
+    stars matter}}
+\itemAsk \colAsk{Do people favour more stars (at $\alpha=\unit[5]{\%}$)?}  
+\itemAnswer \scriptsize{\colAnswer{$H_{02}: \beta_1<=0$, interval
+     test with same $T$ and $t\sub{data}$ as above,
+     $t^{(9)}_{0.95}=1.83<t\sub{data} \Rightarrow H_{02}
+     \text{ rejected}$, more stars are better}}
+\ei
+}
+
+}
+
+%###################################################
+\frame{\frametitle{Example: modeling the demand for hotel rooms (ctned)}
+%###################################################
+
+\bi
+\itemAsk \colAsk{\small{Does each \euro{} more per night decrease the
+    occupancy 
+  by at most \unit[1]{\%}?}}
+
+\itemAnswer \scriptsize{\colAnswer{$H_{03}: \beta_2<-1$ ($H_{03}$ is the
+    complement event!),
+    $t\sub{data}=(\hat{\beta}_2+1)/\sqrt{\hat{V}_{22}}=0.24
+    \stackrel{!}{>} t^{(9)}_{0.95}=1.83$ $\Rightarrow$ $H_{03}$
+    not rejected\\[0.5ex]
+$\Rightarrow$ the hotel manager might risk losing more than one
+    percent point of customers
+}}
+
+
+\itemAsk {\small \colAsk{Is it worth renovating my hotel thereby gaining one
+  star so that\\[0.5ex] I can ask for \unit[30]{\euro{}} more per
+  night without  losing guests?}}
+
+\itemAnswer \scriptsize{\colAnswer{Again, define the complement event as 
+$H_{04}: \beta_1\le -30\beta_2$ or $\gamma=\beta_1+30\beta_2\le 0$
+\bdma
+\hat{\gamma} &=& \hatbeta_1+30\hatbeta_2=9.63,\\
+\hat{V}(\hat{\gamma}) &=&\hat{V}_{11}+900 \hat{V}_{22}+2*1*30\hat{V}_{12}=5.27
+\edma
+So, $t\sub{data}=\hat{\gamma}/\sqrt{\hat{V}(\hat{\gamma})}=4.20>
+t^{(9)}_{0.95}=1.83$
+$\Rightarrow \ H_{04}$ rejected at \unit[5]{\%}  
+$\Rightarrow$ 
+the risk of losing customers is less than \unit[5]{\%}}}
+
+\itemAsk {\small \colAsk{Can it be simultaneously true that
+    $\beta_1=30$ and $\beta_2=-1$?}}
+
+\itemAnswer \scriptsize{\colAnswer{Full model: $\hatbeta_0=25.5,$,
+$\hatbeta_1=38.2$, $\hatbeta_2=-0.952$, $S(\hatvecbeta)=498.2$; 
+Reduced model with fixed $\beta_1=30$, $\beta_2=1$: $\hatbeta_0=49.0$, 
+$S_0=S( (\hatbeta_0,30,1)')=1808$, $M-M_0=\unit[2]{dof}$,
+$n-M=\unit[9]{dof}$, $T\sim F(2,9)$,
+$t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}$ $\Rightarrow$
+$H_0$ rejected}} 
+
+\ei
+
+
+}
+
 
 %###################################################
 \frame{\frametitle{Equivalence of the F and T-tests for one parameter}
@@ -593,40 +854,6 @@ calibrated restrained model
 
 \ei
 }
-
-}
-
-\subsection{Type I and II Errors}
-
-%###################################################
-\frame{\frametitle{3.3 Type I and II Errors}
-%###################################################
-
-\visible<1>{\placebox{0.5}{0.68}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
-
-\visible<2>{\placebox{0.5}{0.68}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
-
-\visible<3>{\placebox{0.5}{0.68}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
-
-\visible<4->{\placebox{0.5}{0.68}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
-
-\placebox{0.5}{0.25}{\parbox{\textwidth}{
-{\small
-\bi
-\visible<3->{\item We can control the Type I ($\alpha$) error probability
-  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}}
-\visible<4->{\item Since the Type II ($\beta$) error probability 
-  $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
-error type should be formulated as the $\alpha$ error}
-\visible<5->{\item Fundamental problem: I want $P(H_0|\text{rejected})$ and
-$P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
-\bfblue{Bayesian statistics}}
-\ei
-}}}
 
 }
 
@@ -699,9 +926,10 @@ or ``$\le$''}
 
 }
 
+\subsubsection{3.3.4 The $p$-value}
 
 %###################################################
-\frame{\frametitle{3.4 Significance tests: the $p$-value}
+\frame{\frametitle{3.3.4 The $\bfmath{p}$-value}
 %###################################################
 \bi
 \item Obviously, it is not very efficient to test $H_0$ for a fixed
@@ -727,7 +955,7 @@ further away from $H^*_0$ than $t\sub{data}$.
 }
 
 %###################################################
-\frame{\frametitle{Calculating $p$ for some basic tests}
+\frame{\frametitle{Calculating $\bfmath{p}$ for some basic tests}
 %###################################################
 
 \visible<1->{\placebox{0.84}{0.75}{
@@ -763,6 +991,71 @@ p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
 \ei
 }}
 
+}
+
+%###################################################
+\frame{\frametitle{$\bfmath{p}$-values for the null hypotheses of the
+    hotel example}
+%###################################################
+
+\bdm
+y=\beta_0x_0+\beta_1x_1+\beta_2x_2+\epsilon
+\edm
+where $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price
+
+\bi
+\item $H_{01}:$ point hypothesis $\beta_1=0$ \\ $t\sub{data}=7.49, \ 
+ p= 2(1-F_T^{(9)})(|t\sub{data}|)=3.7E-5^{***}$
+\item $H_{02}:$ interval hypothesis $\beta_1<0$ \\ $t\sub{data}=7.49,\
+p= 1-F_T^{(9)}(t\sub{data})=1.9E-5^{***}$
+\item $H_{03}:$ interval hypothesis $\beta_2<-1$ \\ $t\sub{data}=0.24,\
+p=1-F_T^{(9)}(t\sub{data})=\unit[40]{\%} $
+\item $H_{04}:$ function interval hypothesis
+  $\gamma=\beta_1+30\beta_2<0$\\ $t\sub{data}=4.20,\ 
+p= 1-F_T^{(9)}(t\sub{data})=\unit[0.12]{\%}^{**}$
+\item $H_{05}:$ compound point hypothesis $(\beta_1=30) \cap
+  (\beta_2=-1)$\\ $t\sub{data}=11.8,\ 
+p=1-F_F^{(2,9)}(t\sub{data})=\unit[0.30]{\%}^{**}$
+\ei
+}
+
+
+%###################################################
+\frame{\frametitle{Visualization}
+%###################################################
+\fig{0.82\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2_eng.png}
+\vspace{-1em}
+
+{\scriptsize
+\bi
+\pause \item Simple null hypotheses ($t$-test):
+$H_0: \beta_1=45$
+
+\pause \item Correlated null hypotheses ($t$-test), e.g.,
+$H_0=H_{04}: \gamma=\beta_1+30\beta_2<0$
+
+\pause \item Compound null hypotheses ($F$-test), e.g.,
+$\bullet$: \ $H_0=H_{05}: (\beta_1=30) \cap \beta_2=-1)$,
+or
+$\triangle$: \ $H_0: (\beta_1=30) \cap (\beta_2=-0.6)$.
+\ei
+}
+}
+
+\subsection{3.4 Dependence of the true parameter value}
+
+%###################################################
+\frame{\frametitle{3.4 Dependence of the true parameter value}
+%###################################################
+
+\bi
+\item
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Power function}
+%###################################################
 }
 
 
@@ -835,170 +1128,8 @@ df=2 degrees of freedom}
 }
 
 
-\subsubsection{3.4.1 Example}
-
-%###################################################
-\frame{\frametitle{3.4.1 Example: modeling the demand for hotel rooms}
-%###################################################
-
-\placebox{0.26}{0.67}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
 
 
-\placebox{0.26}{0.25}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
-
-\placebox{0.74}{0.25}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
-
-\placebox{0.74}{0.67}
-{\parbox{0.53\textwidth}{\scriptsize
-\bi
-\item Exogenous variables $x_1$: quality [\# stars]; $x_2$: price
-  [\euro{}/night].
-\item Endogenous variable: booking rate [\%]
-\item The exogenous variables are non-perfectly correlated: \OK
-\item The demand is positively correlated with both the quality and
-  the price (!)
-\ei
-}}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Visualization of the fit quality}
-%###################################################
-
-
-\hspace{-0.02\textwidth}
-\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_1_eng.png}
-\hspace{-0.02\textwidth}
-\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_2_eng.png}
-
-\bi
-\item Surface: model
-$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[0ex]
-
-\pause \item Black bullets: data (right graphics: rotated clockwise by
-90 degrees)
-
-\pause \item OLS estimate: $\hatbeta_0=25.5$, $\hatbeta_1=38.2$, $\hatbeta_2=-0.953$.
-
-\pause \item Blue or pink bars: residuals
-$\epsilon_i$ ($\le 0$ if below the model plane)
-\ei
-}
-
-
-%###################################################
-\frame{\frametitle{Effect of the correlations between the exogenous
-    variables} 
-%###################################################
-
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_eng.png}
-}
-
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters I}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal1_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters II}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal2_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters III}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal3_eng.png}
-}
-%###################################################
-\frame{\frametitle{Effect of mis-fit parameters IV}
-%###################################################
-\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_notCal4_eng.png}
-}
-
-
-
-
-
-%###################################################
-\frame{\frametitle{Confidence interval for the appraisal for ``stars''
-    $\beta_1$\\ \hspace*{0.65\textwidth}(full model)}
- %###################################################
-\vspace{-2em}
-\begin{tabular}{cc}
-\parbox{0.5\textwidth}{
-  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta1_eng.png}
-  \vspace{-2em}
-  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta1_eng.png}
-}
-&
-\hspace{1em}
-\parbox{0.48\textwidth}{Confidence interval (CI):
-\vspace{1em}
-
-{\small 
-$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
- \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
-
-$\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
-\sqrt{\hat{V}(\hat{\beta}_1)}$
-
-$\hat{V}(\hat{\beta}_1)
-  =\hatsigeps^2\left[\left(\m{X}\tr\m{X}\right)^{-1}\right]_{11}$
-
-$\hatsigeps^2=\frac{1}{n-3}\sum\limits_{i=1}^n
- \left(\hat{y}_i-y_i\right)^2$
-}
-}
-\end{tabular}
-}
-
-
-%###################################################
-\frame{\frametitle{Confidence interval for the price sensitivity  $\beta_2$
- \\ \hspace*{0.65\textwidth}(full model)}
-%###################################################
-\vspace{-2em}
-\begin{tabular}{cc}
-\parbox{0.5\textwidth}{
-  \fig{0.48\textwidth}{figsRegr/hotel_f_hatbeta2_eng.png}
-  \vspace{-2em}
-  \fig{0.48\textwidth}{figsRegr/hotel_F_hatbeta2_eng.png}
-}
-\end{tabular}
-
-
-}
-
-
-%###################################################
-\frame{\frametitle{Linked tests and 2d regions of confidence for
-    $\beta_1$ and $\beta_2$}
-%###################################################
-\fig{0.76\textwidth}{figsRegr/hotel_f2_hatbeta1_hatbeta2_eng.png}
-\vspace{-1em}
-
-{\scriptsize
-\bi
-\item The estimation errors are significantly correlated.
-
-\pause \item Simple null hypotheses ($t$-test):
-$H_{01}: \beta_1=\beta_{10}=27$,
-$H_{02}: \beta_2=\beta_{20}=-1.4$
-
-\pause \item Correlated null hypotheses ($t$-test), e.g.,
-$\gamma_3=\beta_1+30\beta_2<0$
-
-\pause \item Compound null hypotheses ($F$-test), e.g.,
-% $\bullet=H_{01}: \beta_{10}=30 \cap \beta_{20}=-1$.
-$\triangle=H_{03}: \beta_{10}=30 \cap \beta_{20}=-0.6$.
-\ei
-}
-}
 
 \subsection{3.5 Model Selection Strategies}
 

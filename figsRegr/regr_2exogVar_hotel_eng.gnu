@@ -1,7 +1,7 @@
 
 ###########################
 # Template:
-# von ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/figsRegr/regr_2exogVarMatrix.gnu
+# von ~/vorlesungen/Verkehrsoekonometrie_Ma/skript/figsRegr/regr_2exogVar_Template_eng.gnu
 ############################
 
 set encoding iso_8859_1   # dann äöüßÄÖÜ durch woertl. Eingabe korrekt
@@ -31,11 +31,11 @@ set style line 99 lt 1 lw 4 linecolor rgb "#000000" # beliebige Farben:Schwarz
 
 
 set style line 1 lt 1 lw 1 pt 7 ps 2.3  lc rgb "#000000" #schwarz,solid,bullet
-set style line 2 lt 1 lw 1 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
-set style line 3 lt 8 lw 1 pt 4 ps 1.2  lc rgb "#FF4400"
+set style line 2 lt 1 lw 1 pt 7 ps 1.5  lc rgb "#CC0022"
+set style line 3 lt 8 lw 1 pt 6 ps 1.6  lc rgb "#FF4400"
 set style line 4 lt 6 lw 1 pt 4 ps 1.5  lc rgb "#FFAA00"  #gelb, offenes Quadrat
 set style line 5 lt 1 lw 1 pt 5 ps 1.5  lc rgb "#00DD22"  #gruen,solid,ClosedBox
-set style line 6 lt 5 lw 1 pt 4 ps 1.5  lc rgb "#00AAAA" #offenes Quadrat
+set style line 6 lt 5 lw 1 pt 4 ps 1.5  lc rgb "#00AAAA"
 set style line 7 lt 1 lw 1 pt 4 ps 2.0  lc rgb "#1100AA"  #blau,offenes Quadrat
 set style line 8 lt 4 lw 1 pt 8 ps 1.5 #lila, aufrechtes geschloss. Dreieck
 set style line 9 lt 7 lw 1 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
@@ -52,8 +52,8 @@ set style line 19 lt 7 lw 4 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. D
 
 
 set style line 21 lt 1 lw 4 pt 7 ps 0.8  lc rgb "#000000" #schwarz,solid,bullet
-set style line 22 lt 1 lw 20 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
-set style line 29 lt 7 lw 20 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
+set style line 22 lt 1 lw 10 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
+set style line 29 lt 7 lw 10 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gschl. Dreieck
 
 
 
@@ -193,7 +193,7 @@ SSE(beta0,beta1,beta2)\
  + SE(x110,x210,y10,beta0,beta1,beta2)\
  + SE(x111,x211,y11,beta0,beta1,beta2)\
  + SE(x112,x212,y12,beta0,beta1,beta2)
-print "SSE(0,0,0)=",SSE(0,0,0)
+
 
 ####################################################
 ####################################################
@@ -312,8 +312,6 @@ beta2=inv20*sum0y+inv21*sum1y+inv22*sum2y
 
 SSEmin=SSE(beta0,beta1,beta2)
 
-
-
 hatsig_yy=n/(n-1) *syy    # Induktive Gesamtvarianz
 
 s_hatyhaty=beta1*s1y+beta2*s2y       # Deskr. erkl. Var (OHNE beta0, da s0y=0!)
@@ -360,7 +358,6 @@ print "\nKorrelationen of the beta-Schaetzer"
 
 print "r_01=",r_01," r_02=",r_02
 print "r_12=",r_12
-
 
 
 #########################################################
@@ -638,23 +635,22 @@ plot [t=tmin0:tmax0]\
   t,norm(t) t "Gaussian(0,1)" w l ls 11,\
   t,0.975 t "F=0.975" w l ls 1
 
-
+ 
 #######################################
 print "plotting f_student_KI_eng.png  (general CI for df=3)"
 set out "f_student_KI_eng.png"
 #######################################
+set title "Confidence Interval for df=3 and {/Symbol a}=0.05" offset 0,-0.5
 
-set title "Confidence Interval for df=3 and {/Symbol a}=0.05"
 
-
-set xlabel "t"
+set xlabel "t" offset 0,0.5
 set xrange [tmin0:tmax0]
 set ylabel "Density Student (3)"
 set samples 500 # circumvent gnuplot's png bug at thick lines
 
 plot [t=tmin0:tmax0]\
   t,student(t,3) t "Density" w l ls 12,\
-  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI" w l ls 29
+  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI  " w l ls 29
 set samples 300 # circumvent gnuplot's png bug at thick lines
 
 
@@ -698,7 +694,7 @@ set ylabel "Distribution Function F"
 
 plot [t=tmin:tmax]\
   beta1+t*sigbeta1,studentCum(t,n-3) t "F" w l ls 12,\
-  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI" w l ls 29,\
+  beta1-dbeta1 + (t-tmin)/(tmax-tmin)*2*dbeta1,0 t "CI  " w l ls 29,\
   beta1-dbeta1, (t-tmin)/(tmax-tmin) t "" w l ls 1,\
   beta1+dbeta1, (t-tmin)/(tmax-tmin) t "" w l ls 1,\
   beta1+t*sigbeta1,0.025 t "F=0.025" w l ls 16,\
@@ -725,16 +721,18 @@ print "plotting F_student_KI_eng.png  (general CI for df=3)"
 set out "F_student_KI_eng.png"
 #######################################
 
+set key at screen 0.76,0.30
+
 set title "Confidence Interval for df=3 and {/Symbol a}=0.05"
 
-set xlabel "t"
+set xlabel "t" offset 0,0.5
 set xrange [tmin0:tmax0]
 set ylabel "Distribution Student (3)"
 set samples 500 # circumvent gnuplot's png bug at thick lines
 
 plot [t=tmin0:tmax0]\
   t,studentCum(t,3) t "F" w l ls 12,\
-  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI" w l ls 29,\
+  -dbeta + (t-tmin0)/(tmax0-tmin0)*2*dbeta,0 t "CI  " w l ls 29,\
   -dbeta, (t-tmin0)/(tmax0-tmin0) t "" w l ls 1,\
   +dbeta, (t-tmin0)/(tmax0-tmin0) t "" w l ls 1,\
   t,0.025 t "F=0.025" w l ls 16,\
@@ -789,9 +787,9 @@ set out "hotel_scatterplot_x1y_eng.png"
 #######################################
 
 set xlabel "Exogenous Variable x_1"
-set ylabel "Endogenous Variable y"
+set ylabel "Endogenous Variable y" offset 1,0
 unset key
-set key at screen 0.62,0.86
+set key at screen 0.42,0.86
 
 
 
@@ -882,37 +880,38 @@ max3=100
 min4=80
 max4=x2datamax
 unset key
-set key at screen 0.6,0.84
+set size 1,1
+set key at screen 0.50,0.84
 
+# w p ls 1 => black bullets; w p ls 2..5 => points according to starRating
 plot[t=0:1]\
-  x21,y1 t "" w p ls 1,\
-  x22,y2 t "" w p ls 1,\
-  x23,y3 t "" w p ls 1,\
-  x24,y4 t "" w p ls 1,\
-  x25,y5 t "" w p ls 1,\
-  x26,y6 t "" w p ls 1,\
-  x27,y7 t "" w p ls 1,\
-  x28,y8 t "" w p ls 1,\
-  x29,y9 t "" w p ls 1,\
-  x210,y10 t "" w p ls 1,\
-  x211,y11 t "" w p ls 1,\
-  x212,y12 t "" w p ls 1,\
+  x21,y1   t "" w p ls 2,\
+  x22,y2   t "" w p ls 2,\
+  x23,y3   t "" w p ls 2,\
+  x24,y4   t "" w p ls 3,\
+  x25,y5   t "" w p ls 3,\
+  x26,y6   t "" w p ls 3,\
+  x27,y7   t "" w p ls 4,\
+  x28,y8   t "" w p ls 4,\
+  x29,y9   t "" w p ls 4,\
+  x210,y10 t "" w p ls 5,\
+  x211,y11 t "" w p ls 5,\
+  x212,y12 t "" w p ls 5,\
   x2datamin+t*(x2datamax-x2datamin),\
     ybar+beta2_M2*(x2datamin+t*(x2datamax-x2datamin)-x2bar) \
     t "Simple Regression (x_2)" w l ls 11,\
-  min1+t*(max1-min1),haty(1, min1+t*(max1-min1) ) t "y_{est}(x_1=1 star, x_2)" w l ls 12,\
-  min2+t*(max2-min2),haty(2,min2+t*(max2-min2)) t "y_{est} (x_1=2 stars, x_2)" w l ls 13,\
-  min3+t*(max3-min3),haty(3,min3+t*(max3-min3)) t "y_{est} (x_1=3 stars, x_2)" w l ls 14,\
-  min4+t*(max4-min4),haty(4,min4+t*(max4-min4)) t "y_{est} (x_1=4 stars, x_2)" w l ls 15
+  min1+t*(max1-min1),haty(1, min1+t*(max1-min1) ) t "y_{est}(x_1=1 star,   x_2)" w l ls 12,\
+  min2+t*(max2-min2),haty(2,min2+t*(max2-min2)) t "y_{est}(x_1=2 stars, x_2)" w l ls 13,\
+  min3+t*(max3-min3),haty(3,min3+t*(max3-min3)) t "y_{est}(x_1=3 stars, x_2)" w l ls 14,\
+  min4+t*(max4-min4),haty(4,min4+t*(max4-min4)) t "y_{est}(x_1=4 stars, x_2)" w l ls 15
 
 #######################################
 print "plotting hotel_scatterplot_x2ycondx1_notCal1_eng.png"
 set out "hotel_scatterplot_x2ycondx1_notCal1_eng.png"
 #######################################
 
-set key at screen 0.93,0.75
-
-
+set size 1,1
+set key at screen 0.42,0.78
 beta1_notCal1=beta1+dbeta1
 beta2_notCal1=beta2+dbeta2
 haty_notCal1(x1,x2)=beta0+beta1_notCal1*x1+beta2_notCal1*x2
@@ -920,26 +919,26 @@ set title "{/Symbol b}_1 and {/Symbol b}_2 shifted by {/Symbol Db_1} and\
 {/Symbol Db_2}, respectively"
 
 plot[t=0:1]\
-  x21,y1 t "" w p ls 2,\
-  x22,y2 t "" w p ls 2,\
-  x23,y3 t "" w p ls 2,\
-  x24,y4 t "" w p ls 3,\
-  x25,y5 t "" w p ls 3,\
-  x26,y6 t "" w p ls 3,\
-  x27,y7 t "" w p ls 4,\
-  x28,y8 t "" w p ls 4,\
-  x29,y9 t "" w p ls 4,\
+  x21,y1   t "" w p ls 2,\
+  x22,y2   t "" w p ls 2,\
+  x23,y3   t "" w p ls 2,\
+  x24,y4   t "" w p ls 3,\
+  x25,y5   t "" w p ls 3,\
+  x26,y6   t "" w p ls 3,\
+  x27,y7   t "" w p ls 4,\
+  x28,y8   t "" w p ls 4,\
+  x29,y9   t "" w p ls 4,\
   x210,y10 t "" w p ls 5,\
   x211,y11 t "" w p ls 5,\
   x212,y12 t "" w p ls 5,\
   min1+t*(max1-min1),haty_notCal1(1, min1+t*(max1-min1) )\
-      t "y_{est}(x_1=1 star, x_2)" w l ls 12,\
+      t "y_{est}(x_1=1 star,   x_2)" w l ls 12,\
   min2+t*(max2-min2),haty_notCal1(2,min2+t*(max2-min2))\
-      t "y_{est} (x_1=2 stars, x_2)" w l ls 13,\
+      t "y_{est}(x_1=2 stars, x_2)" w l ls 13,\
   min3+t*(max3-min3),haty_notCal1(3,min3+t*(max3-min3))\
-      t "y_{est} (x_1=3 stars, x_2)" w l ls 14,\
+      t "y_{est}(x_1=3 stars, x_2)" w l ls 14,\
   min4+t*(max4-min4),haty_notCal1(4,min4+t*(max4-min4))\
-      t "y_{est} (x_1=4 stars, x_2)" w l ls 15
+      t "y_{est}(x_1=4 stars, x_2)" w l ls 15
 
 #######################################
 print "plotting hotel_scatterplot_x2ycondx1_notCal2_eng.png"
@@ -966,13 +965,13 @@ plot[t=0:1]\
   x211,y11 t "" w p ls 5,\
   x212,y12 t "" w p ls 5,\
   min1+t*(max1-min1),haty_notCal2(1, min1+t*(max1-min1) )\
-      t "y_{est}(x_1=1 star, x_2)" w l ls 12,\
+      t "y_{est}(x_1=1 star,   x_2)" w l ls 12,\
   min2+t*(max2-min2),haty_notCal2(2,min2+t*(max2-min2))\
-      t "y_{est} (x_1=2 stars, x_2)" w l ls 13,\
+      t "y_{est}(x_1=2 stars, x_2)" w l ls 13,\
   min3+t*(max3-min3),haty_notCal2(3,min3+t*(max3-min3))\
-      t "y_{est} (x_1=3 stars, x_2)" w l ls 14,\
+      t "y_{est}(x_1=3 stars, x_2)" w l ls 14,\
   min4+t*(max4-min4),haty_notCal2(4,min4+t*(max4-min4))\
-      t "y_{est} (x_1=4 stars, x_2)" w l ls 15
+      t "y_{est}(x_1=4 stars, x_2)" w l ls 15
 
 #######################################
 print "plotting hotel_scatterplot_x2ycondx1_notCal3_eng.png"
@@ -999,13 +998,13 @@ plot[t=0:1]\
   x211,y11 t "" w p ls 5,\
   x212,y12 t "" w p ls 5,\
   min1+t*(max1-min1),haty_notCal3(1, min1+t*(max1-min1) )\
-      t "y_{est}(x_1=1 star, x_2)" w l ls 12,\
+      t "y_{est}(x_1=1 star,   x_2)" w l ls 12,\
   min2+t*(max2-min2),haty_notCal3(2,min2+t*(max2-min2))\
-      t "y_{est} (x_1=2 stars, x_2)" w l ls 13,\
+      t "y_{est}(x_1=2 stars, x_2)" w l ls 13,\
   min3+t*(max3-min3),haty_notCal3(3,min3+t*(max3-min3))\
-      t "y_{est} (x_1=3 stars, x_2)" w l ls 14,\
+      t "y_{est}(x_1=3 stars, x_2)" w l ls 14,\
   min4+t*(max4-min4),haty_notCal3(4,min4+t*(max4-min4))\
-      t "y_{est} (x_1=4 stars, x_2)" w l ls 15
+      t "y_{est}(x_1=4 stars, x_2)" w l ls 15
 
 #######################################
 print "plotting hotel_scatterplot_x2ycondx1_notCal4_eng.png"
@@ -1033,13 +1032,13 @@ plot[t=0:1]\
   x211,y11 t "" w p ls 5,\
   x212,y12 t "" w p ls 5,\
   min1+t*(max1-min1),haty_notCal4(1, min1+t*(max1-min1) )\
-      t "y_{est}(x_1=1 star, x_2)" w l ls 12,\
+      t "y_{est}(x_1=1 star,   x_2)" w l ls 12,\
   min2+t*(max2-min2),haty_notCal4(2,min2+t*(max2-min2))\
-      t "y_{est} (x_1=2 stars, x_2)" w l ls 13,\
+      t "y_{est}(x_1=2 stars, x_2)" w l ls 13,\
   min3+t*(max3-min3),haty_notCal4(3,min3+t*(max3-min3))\
-      t "y_{est} (x_1=3 stars, x_2)" w l ls 14,\
+      t "y_{est}(x_1=3 stars, x_2)" w l ls 14,\
   min4+t*(max4-min4),haty_notCal4(4,min4+t*(max4-min4))\
-      t "y_{est} (x_1=4 stars, x_2)" w l ls 15
+      t "y_{est}(x_1=4 stars, x_2)" w l ls 15
 set notitle
 
 
@@ -1084,9 +1083,16 @@ splot[x=xmin:xmax][y=ymin:ymax]\
    t "f_2(hat({/Symbol b})_1, hat({/Symbol b})_2)" w l ls 98
 
 # (2) Ellipsoid-shaped confidence region
+# One contour at 2d density where max=1 normalized 2d student function
+# corresponds to alpha=5% KI/CI => approx 0.105
+
+densityAtAlpha5=0.105
+
+print "CI(beta_1)=[",beta1-dbeta1,",",beta1+dbeta1,"]"
+print "CI(beta_2)=[",beta2-dbeta2,",",beta2+dbeta2,"]"
 
 unset pm3d; unset surface # here unset surface necessary!
-set cntrparam levels discrete 0.05  # eine Contour!
+set cntrparam levels discrete densityAtAlpha5  # one contour
 #set key
 set key at screen -0.12,0.96
 # BUG doppelt; workaround left label left unvisible
@@ -1153,24 +1159,54 @@ print "plotting hotel_f2_hatbeta1_hatbeta2_simple_eng.png"
 set out "hotel_f2_hatbeta1_hatbeta2_simple_eng.png"
 #######################################
 
-# gauss2d, not student2d as the "not simple" plot!
-
+str_corr=sprintf("corr(hat({/Symbol b})_1, hat({/Symbol b})_2))=%1.2f",r_12)
+str_title=sprintf("Density f(hat({/Symbol b})_1, hat({/Symbol b})_2) | {/Symbol b}_1=%1.2f, {/Symbol b}_2=%1.2f",beta1, beta2)
+set multiplot
 set nokey
-set title "f(hat({/Symbol b})_1, hat({/Symbol b})_2)"
+set title str_title
+set label str_corr at screen 0.5,0.75 front
 unset cntrparam
 set cntrparam levels 10 
 set pm3d
-xmin=beta1-2.2*sigbeta1
-xmax=beta1+2.2*sigbeta1
-ymin=beta2-2.2*sigbeta2
-ymax=beta2+2.2*sigbeta2
+xmin=beta1-3.5*sigbeta1
+xmax=beta1+3.5*sigbeta1
+ymin=beta2-3.5*sigbeta2
+ymax=beta2+3.5*sigbeta2
+set xrange [xmin:xmax]
+set yrange [ymin:ymax]
 
-set auto x
-set auto y
+
+# (1) Main density plot w/ contour lines
+set pm3d
+unset clabel
+unset key
 splot[x=xmin:xmax][y=ymin:ymax]\
-  x,y,gauss2d(x-beta1,y-beta2,sigbeta1,sigbeta2,r_12)\
+  x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_12,n-3)\
   t "f_2(hat({/Symbol b})_1, hat({/Symbol b})_2)" w l ls 98
-unset title
+
+# (2) Ellipsoid-shaped confidence region
+# One contour at 2d density where max=1 normalized 2d student function
+# corresponds to alpha=5% KI/CI
+
+print "CI(beta_1)=[",beta1-dbeta1,",",beta1+dbeta1,"]"
+print "CI(beta_2)=[",beta2-dbeta2,",",beta2+dbeta2,"]"
+
+unset pm3d; unset surface # here unset surface necessary!
+set cntrparam levels discrete densityAtAlpha5  # one contour
+
+#set key
+set key at screen -0.12,0.96
+# BUG doppelt; workaround left label left unvisible
+
+splot[x=xmin:xmax][y=ymin:ymax]\
+  x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_12,n-3)\
+   t "" w l ls 17
+#   t "Confidence Region F-Test" w l ls 17
+
+set nomultiplot
+set notitle
+set isosamples 30,30
+
 
 #######################################
 print "plotting hotel_fisherCum_eng.png"
@@ -1428,6 +1464,3 @@ T_Ttest=(beta2-0)/sqrt(cov22)
 print "T_Ftest=",T_Ftest
 print "T_Ttest**2=",T_Ttest**2
 
-
-quit
-####################################################################

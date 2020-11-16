@@ -174,6 +174,70 @@ no one missed (bottom).
 }
 
 %###################################################
+\frame{\frametitle{Example: modeling the demand for hotel rooms}
+%###################################################
+
+\placebox{0.26}{0.67}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1x2_eng.png}}
+
+
+\placebox{0.26}{0.25}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
+
+\placebox{0.74}{0.25}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
+
+\placebox{0.74}{0.67}
+{\parbox{0.53\textwidth}{\scriptsize
+\bi
+\item $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$ with the factors:
+  $x_0=1$, $x_1$: quality [\# stars]; $x_2$: price 
+  [\euro{}/night].
+\item The exogenous variables/factors are non-perfectly correlated: \OK
+\item Endogenous variable: booking rate [\%]
+\item The demand is positively correlated with both the quality and
+  the price (!)
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Visualization of the fit quality}
+%###################################################
+
+
+\hspace{-0.02\textwidth}
+\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_1_eng.png}
+\hspace{-0.02\textwidth}
+\includegraphics[width=0.50\textwidth]{figsRegr/hotel_scatter3d_2_eng.png}
+
+\bi
+\item Surface: model
+$\hat{y}(\vec{x})=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$\\[0ex]
+
+\pause \item Black bullets: data (right graphics: rotated clockwise by
+90 degrees)
+
+\pause \item OLS estimate: $\hatbeta_0=25.5$, $\hatbeta_1=38.2$, $\hatbeta_2=-0.953$.
+
+\pause \item Blue or pink bars: residuals
+$\epsilon_i$ ($\le 0$ if below the model plane)
+\ei
+}
+
+
+%###################################################
+\frame{\frametitle{Effect of the correlations between the exogenous
+    variables} 
+%###################################################
+
+\fig{0.9\textwidth}{figsRegr/hotel_scatterplot_x2ycondx1_eng.png}
+}
+
+
+
+%###################################################
 \frame{\frametitle{Functional specification 2: linearity}
 %###################################################
 
