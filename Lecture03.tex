@@ -35,10 +35,11 @@
 \item[3.2] Confidence Intervals
 \item[3.3] Significance Tests
 \bi
-\item[3.3.1] General procedure
+\item[3.3.1] General four-step procedure
 \item[3.3.2] Type I and II errors
-\item[3.3.3] Specific test statistics
-\item[3.3.4] The $p$-value
+\item[3.3.3] Steps 2 and 3: Test statistics
+\item[3.3.4] Steps 4: Decision
+\item[3.3.5] Step 4a: The $p$-value
 \ei
 \item[3.4] Dependence on the True Parameter Value: Power Function
 \item[3.5] Model Selection Strategies
@@ -624,9 +625,9 @@ $P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
 }
 
 
-\subsubsection{3.3.3 Specific test statistics}
+\subsubsection{3.3.3 Test statistics}
 %###################################################
-\frame{\frametitle{3.3.3 Specific test statistics I}
+\frame{\frametitle{3.3.3 Steps 2 and 3: Test statistics I}
 %###################################################
 
 {\small
@@ -656,7 +657,7 @@ T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
 }
 
 %###################################################
-\frame{\frametitle{Specific test statistics II}
+\frame{\frametitle{Test statistics II}
 %###################################################
 
 \bi
@@ -695,7 +696,7 @@ sum of squares of i.i.d. Gaussians \emph{its density is not symmetric,
 }
 
 %###################################################
-\frame{\frametitle{Specific test statistics III}
+\frame{\frametitle{Test statistics III}
 %###################################################
 
 {\small
@@ -729,101 +730,6 @@ with $n$ numerator and $d$ denominator degrees of freedom
 }
 
 
-%###################################################
-\frame{\frametitle{Example: modeling the demand for hotel rooms}
-%###################################################
-
-{\small 
-The already well-known example: 
-\bdm
-y=\beta_0x_0+\beta_1x_1+\beta_2x_2+\epsilon
-\edm
-where $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price
-  [\euro{}/night], 
-\bdm
-\hatbeta_0=25.5, \quad
-\hatbeta_1=38.2, \quad
-\hatbeta_2=-0.952
-\edm
-and
-\bdm
-\hat{\m{V}}=\myMatrixThree{
-28.0 &	-6.40 &	-0.119\\
--6.40 & 26.0 & -0.941\\
--0.119 & -0.941 & 0.0397}
-\edm
-
-\bi
-\itemAsk \colAsk{Formulate and test the null hypothesis at
-  $\alpha=\unit[5]{\%}$ that the stars
-  do not matter}
-\itemAnswer \scriptsize{\colAnswer{$H_{01}: \beta_1=0$, point t-test
-    with $T=\hatbeta_1/\sqrt{\hat{V}_{11}} \sim T(12-9)$, i.e. df=9
-    degrees of freedom, $t\sub{data}=7.49$,
-    $t^{(9)}_{0.975}=2.26<|t\sub{data}|$ $\Rightarrow$ $H_0$ rejected,
-    stars matter}}
-\itemAsk \colAsk{Do people favour more stars (at $\alpha=\unit[5]{\%}$)?}  
-\itemAnswer \scriptsize{\colAnswer{$H_{02}: \beta_1<=0$ (use as $H_0$
-    what you want to reject!), interval
-     test with same $T$ and $t\sub{data}$ as above,
-     $t^{(9)}_{0.95}=1.83<t\sub{data} \Rightarrow H_{02}
-     \text{ rejected}$, more stars are better}}
-\ei
-}
-
-}
-
-%###################################################
-\frame{\frametitle{Example: modeling the demand for hotel rooms (ctned)}
-%###################################################
-
-\bi
-\itemAsk \colAsk{\small{Does each \euro{} more per night decrease the
-    occupancy 
-  by at most \unit[1]{\%}?}}
-
-\itemAnswer \scriptsize{\colAnswer{$H_{03}: \beta_2<-1$ ($H_{03}$ is the
-    complement event!),
-    $t\sub{data}=(\hat{\beta}_2+1)/\sqrt{\hat{V}_{22}}=0.24
-    \stackrel{!}{>} t^{(9)}_{0.95}=1.83$ $\Rightarrow$ $H_{03}$
-    not rejected\\[0.5ex]
-$\Rightarrow$ the hotel manager might risk losing more than one
-    percent point of customers
-}}
-
-
-\itemAsk {\small \colAsk{Is it worth renovating my hotel thereby gaining one
-  star so that\\[0.5ex] I can ask for \unit[30]{\euro{}} more per
-  night without  losing guests?}}
-
-\itemAnswer \scriptsize{\colAnswer{Again, define the complement event as 
-$H_{04}: \beta_1\le -30\beta_2$ or $\gamma=\beta_1+30\beta_2\le 0$
-\bdma
-\hat{\gamma} &=& \hatbeta_1+30\hatbeta_2=9.63,\\
-\hat{V}(\hat{\gamma}) &=&\hat{V}_{11}+900 \hat{V}_{22}+2*1*30\hat{V}_{12}=5.27
-\edma
-So, $t\sub{data}=\hat{\gamma}/\sqrt{\hat{V}(\hat{\gamma})}=4.20>
-t^{(9)}_{0.95}=1.83$
-$\Rightarrow \ H_{04}$ rejected at \unit[5]{\%}  
-$\Rightarrow$ 
-the risk of losing customers is less than \unit[5]{\%}}}
-
-\itemAsk {\small \colAsk{Can it be simultaneously true that
-    $\beta_1=30$ and $\beta_2=-1$?}}
-
-\itemAnswer \scriptsize{\colAnswer{Full model: $\hatbeta_0=25.5,$,
-$\hatbeta_1=38.2$, $\hatbeta_2=-0.952$, $S(\hatvecbeta)=498.2$; 
-Reduced model with fixed $\beta_1=30$, $\beta_2=1$: $\hatbeta_0=49.0$, 
-$S_0=S( (\hatbeta_0,30,1)')=1808$, $M-M_0=\unit[2]{df}$,
-$n-M=\unit[9]{df}$, $T\sim F(2,9)$,
-$t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}$ $\Rightarrow$
-$H_0$ rejected}} 
-
-\ei
-
-
-}
-
 
 %###################################################
 \frame{\frametitle{Equivalence of the F and T-tests for one parameter}
@@ -843,7 +749,7 @@ $
 $
 T=(n-J-1)\frac{S_0-S}{S} \sim F(1,n-1-J)
 $
-\itemAsk \colAsk{\scriptsize{Regarding the rhs., show following
+\pause \itemAsk \colAsk{\scriptsize{Regarding the rhs., show following
     general relation between the 
   student-t and the F(1,d) distributions: 
 $
@@ -851,9 +757,9 @@ F\sim F(1,d) \ \text{and} \ T \sim T(d) \Rightarrow F=T^2
 $
 }}
 
-\itemAnswer \colAnswer{\tiny{By definition, Fisher's F is a
-    ratio of $\chi^2$ distributions and, by definition of $\chi^2$, a
-    ratio of sums of i.i.d. standardnormal distributed random variables:
+\pause \itemAnswer \colAnswer{\tiny{By definition, Fisher's F is a
+    ratio of $\chi^2$ distributions. Furthermore, squares of
+    standardnormal random variables $Z$ are $\chi_1^2$ distributed:
 \bdm
 F(1,d)=\chi_1^2/(\chi_d^2/d)=Z^2/(\chi_d^2/d)
 \edm
@@ -862,7 +768,7 @@ other.
 The definition of the student-t distribution is 
 $T(d)=Z/\sqrt{\chi_d^2/d}$, so $F(1,d)=T_d^2$.}}
 
-\item One can show (difficult!) that following is exactly valid for
+\pause \item One can show (difficult!) that following is exactly valid for
   the lhs.:
  \bdm
  (n-J-1)\frac{S_0-S}{S}
@@ -878,6 +784,36 @@ calibrated restrained model
 
 }
 
+\subsubsection{3.3.4 Step 4: Decision}
+
+%###################################################
+\frame{\frametitle{3.3.4 Step 4: Decision}
+%###################################################
+\bi
+\item Once the test statistics $T$ with a certain conditional distribution
+  under $H_0^*$ is defined and the data realisation $t\sub{data}$ is
+  calculated, we can decide based on the \emph{rejection region}:
+\maintextbox{0.7\textwidth}{The \bfdef{rejection region
+    $R^{(H_0)}(\alpha)$} contains the fraction $\alpha$ of all
+  realisations $t$ of the test statistics $T$ which are most distant
+  from $H_0$}
+
+\item Decision: 
+\maintextbox{0.46\textwidth}{$H_0$ is rejected if  $t\sub{data}\in
+  R^{(H_0)}(\alpha)$} 
+
+\item A good test statistics allows for a clear definition of what is
+  meant by ``distance to $H_0$'' and brings, for a given $\alpha$, 
+ the boundary of the rejection
+  region as close to $H_0^*$ as possible
+
+\item In contrast to $T$ and the realisation $t\sub{data}$ which only depends
+  on $H_0^*$ and therefore is the same for point and interval
+  hypotheses of the same kind, the rejection region is different for
+  each null hypothesis
+\ei
+
+}
 
 %###################################################
 \frame{\frametitle{Rejection region for $\vec{H}_0$: ``$<$''
@@ -888,17 +824,13 @@ or ``$\le$'' (interval hypothesis)}
  \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit1_eng.png}}
 
 \placebox{0.5}{0.16}{\parbox{\textwidth}{
-{\small
 \bi
- \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
-   (boundary of $H_0$)
- \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfdef{rejection region}
-% \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
-%  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
-%  $H^*_0$ 
+ \item $H_0$ is rejected on the level $\alpha$ if
+\maindm{
+t\sub{data}>t_{1-\alpha}
+}
 \ei
-}}}
+}}
 
 }
 
@@ -912,17 +844,14 @@ or ``$\ge$'' (interval hypothesis)}
  \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit2_eng.png}}
 
 \placebox{0.5}{0.16}{\parbox{\textwidth}{
-{\small
 \bi
- \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
-   (boundary of $H_0$)
- \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfdef{rejection region}
-% \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
-%  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
-%  $H^*_0$ 
+ \item $H_0$ is rejected on the level $\alpha$ if
+\maindm{t\sub{data}<t_{\alpha}=1-t_{1-\alpha}}
+\pause \item The equality sign is only valid for symmetric test
+  statistics, e.g., not for the $\chi^2$ distributed statistics of the
+  variance test
 \ei
-}}}
+}}
 
 }
 
@@ -931,26 +860,129 @@ or ``$\ge$'' (interval hypothesis)}
 or ``$\le$''}
 %###################################################
 
-\placebox{0.5}{0.58}{
+\placebox{0.5}{0.61}{
  \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit3_eng.png}}
 
-\placebox{0.5}{0.16}{\parbox{\textwidth}{
-{\small
+\placebox{0.5}{0.12}{\parbox{\textwidth}{
 \bi
- \item Shown is the density of the test function \emph{if $H^*_0$}
-   (boundary of $H_0$)
- \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
-  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
-  $H^*_0$ 
+ \item For symmetric test statistics, 
+$H_0$ is rejected on the level $\alpha$ if
+\maindm{|t\sub{data}|>t_{1-\alpha/2}}
+\pause \item If the distribution is not symmetric (as the $\chi^2$
+  distribution for the variance test), the definition of what is
+  ``most distant'' is not unique. For simplicity, one assumes equal
+  statistical weights to both sides:
+\bdm
+\text{rejected} \quad \Leftrightarrow 
+(t\sub{data}<t_{\alpha/2}) \cup (t\sub{data}>t_{1-\alpha/2})
+\edm
 \ei
-}}}
+}}
 
 }
 
-\subsubsection{3.3.4 The $p$-value}
+%###################################################
+\frame{\frametitle{Example: modeling the demand for hotel rooms}
+%###################################################
+
+{\small 
+The already well-known example for $y(\vec{x})$: hotel room occupancy [\%] 
+\bdm
+y=\beta_0x_0+\beta_1x_1+\beta_2x_2+\epsilon
+\edm
+where $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price
+  [\euro{}/night], 
+\bdm
+\hatbeta_0=25.5, \quad
+\hatbeta_1=38.2, \quad
+\hatbeta_2=-0.952
+\edm
+and
+\bdm
+\hat{\m{V}}=\myMatrixThree{
+28.0 &	-6.40 &	-0.119\\
+-6.40 & 26.0 & -0.941\\
+-0.119 & -0.941 & 0.0397}
+\edm
+
+\bi
+\pause \itemAsk \colAsk{Formulate and test the null hypothesis at
+  $\alpha=\unit[5]{\%}$ that the stars
+  do not matter}
+\pause \itemAnswer \scriptsize{\colAnswer{$H_{01}: \beta_1=0$, point t-test
+    with $T=\hatbeta_1/\sqrt{\hat{V}_{11}} \sim T(12-9)$, i.e. df=9
+    degrees of freedom, $t\sub{data}=7.49$,
+    $t^{(9)}_{0.975}=2.26<|t\sub{data}|$ $\Rightarrow$ $H_0$ rejected,
+    stars matter}}
+\pause \itemAsk \colAsk{Do people favour more stars (at $\alpha=\unit[5]{\%}$)?}  
+\pause \itemAnswer \scriptsize{\colAnswer{$H_{02}: \beta_1<=0$ (use as $H_0$
+    what you want to reject!), interval
+     test with same $T$ and $t\sub{data}$ as above,
+     $t^{(9)}_{0.95}=1.83<t\sub{data} \Rightarrow H_{02}
+     \text{ rejected}$, more stars are better}}
+\ei
+}
+
+}
 
 %###################################################
-\frame{\frametitle{3.3.4 The $\bfmath{p}$-value}
+\frame{\frametitle{Example: modeling the demand for hotel rooms (ctned)}
+%###################################################
+
+\bi
+\itemAsk \colAsk{\small{Does each \euro{} more per night decrease the
+    occupancy 
+  by at most \unit[1]{\%}?}}
+
+\pause \itemAnswer \scriptsize{\colAnswer{$H_{03}: \beta_2<-1$ ($H_{03}$ is the
+    complement event!),
+    $t\sub{data}=(\hat{\beta}_2+1)/\sqrt{\hat{V}_{22}}=0.24
+    \stackrel{!}{>} t^{(9)}_{0.95}=1.83$ $\Rightarrow$ $H_{03}$
+    not rejected\\[0.5ex]
+$\Rightarrow$ the hotel manager might risk losing more than one
+    percent point of customers
+}}
+
+
+\pause \itemAsk {\small \colAsk{Is it worth renovating my hotel thereby gaining one
+  star so that\\[0.5ex] I can ask for \unit[30]{\euro{}} more per
+  night without  losing guests?}}
+
+\pause \itemAnswer \scriptsize{\colAnswer{Again, define the complement event as 
+$H_{04}: \beta_1\le -30\beta_2$ or $\gamma=\beta_1+30\beta_2\le 0$
+\bdma
+\hat{\gamma} &=& \hatbeta_1+30\hatbeta_2=9.63,\\
+\hat{V}(\hat{\gamma}) &=&\hat{V}_{11}+900 \hat{V}_{22}+2*1*30\hat{V}_{12}=5.27
+\edma
+\pause So, $t\sub{data}=\hat{\gamma}/\sqrt{\hat{V}(\hat{\gamma})}=4.20>
+t^{(9)}_{0.95}=1.83$
+$\Rightarrow \ H_{04}$ rejected at \unit[5]{\%}  
+$\Rightarrow$ 
+the risk of losing customers is less than \unit[5]{\%}}}
+
+\pause \itemAsk {\small \colAsk{Can it be simultaneously true that
+    $\beta_1=30$ and $\beta_2=-1$?}}
+
+\pause \itemAnswer \scriptsize{\colAnswer{Full model: 
+$\hatvecbeta=(25.5, 38.2, -0.952)\tr$, $S(\hatvecbeta)=498.2$; \\
+Reduced model with fixed $\beta_1=30$, $\beta_2=1$ and $\hatbeta_0=49.0$:
+$\hatvecbeta_r=(49.0, 30, -1)\tr$, $S_0=S(\hatvecbeta_r)=1808$;
+\pause
+$M-M_0=\unit[2]{df}$,
+$n-M=\unit[9]{df}$, $T\sim F(2,9)$,
+$t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}$ $\Rightarrow$
+$H_0$ rejected}} 
+
+\ei
+
+}
+
+
+
+\subsubsection{3.3.5 Step 4a: the $p$-value}
+
+%###################################################
+\frame{\frametitle{3.3.5 The $\bfmath{p}$-value}
 %###################################################
 \bi
 \item Obviously, it is not very efficient to test $H_0$ for a fixed
@@ -1116,29 +1148,33 @@ $\Delta T=(\beta_j-\beta_{j0})/\sqrt{\hat{V}_{jj}}$
 %###################################################
 \frame{\frametitle{Example I: Interval test for $<$ and $\le$}
 %###################################################
+\vspace{-1em}
 
 \bdma
 \pi^{\le}(\Delta T)
- &=& P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
+ & \stackrel{\text{def rejection}}{=} &
+   P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
     >t_{1-\alpha}\right)\\
- &=& P(T+\Delta T>t_{1-\alpha}) \\
- &=& P(T>-\Delta T+t_{1-\alpha}) \\
- &=& 1-P(T<-\Delta T+t_{1-\alpha})\\
- & \stackrel{\text{symm.}}{=} & P(T<\Delta T-t_{1-\alpha})\\
- & \stackrel{\text{def distr.}}{=} & \uu{F_T(\Delta T-t_{1-\alpha})}
+\visible<2->{& \stackrel{\text{def $\Delta T$}}{=} & P(T+\Delta
+  T>t_{1-\alpha}) \\} 
+\visible<3->{ &=& P(T>-\Delta T+t_{1-\alpha}) \\}
+\visible<4->{&=& 1-P(T<-\Delta T+t_{1-\alpha})\\}
+\visible<5->{ & \stackrel{\text{symm.}}{=} & P(T<\Delta T-t_{1-\alpha})\\}
+\visible<6->{ & \stackrel{\text{def distr.}}{=} & 
+\uu{F_T(\Delta T-t_{1-\alpha})}}
 \edma
 
 \bi
-\itemAsk \colAsk{\small{Test this expression by calculating
-    $\pi^{\le}(0)$ and $\pi'^{\le}(0)$}}
-\itemAnswer \colAnswer{\scriptsize{Just insert $\Delta T=0$:
+\visible<7->{ \itemAsk \colAsk{\small{Test this expression by calculating
+    $\pi^{\le}(0)$ and $\pi'^{\le}(0)$}}}
+\visible<8->{\itemAnswer \colAnswer{\scriptsize{Just insert $\Delta T=0$:
 \bdma
 \pi^{\le}(0) &=& F_T(-t_{1-\alpha})\\
   &=& F_T(t_{\alpha})\\
   &\stackrel{\text{def quantile}}{=} & \alpha \ \OK \\
-\pi'^{\le}(0) &=& f_T(0)>0 \ \OK
+\pi'^{\le}(0) &=& f_T(-t_{1-\alpha})>0 \ \OK
 \edma
-}}
+}}}
 
 \ei
 }
@@ -1188,9 +1224,10 @@ df=2 degrees of freedom}
 
 \bdma
 \pi^{\ge}(\Delta T)
- &=& P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
+ & \stackrel{\text{def rejection}}{=} &
+  P\left(\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}
     <t_{\alpha}\right)\\
- &=& P(T+\Delta T<t_{\alpha}) \\
+ & \stackrel{\text{def $\Delta T$}}{=} & P(T+\Delta T<t_{\alpha}) \\
  &=& P(T<-\Delta T+t_{\alpha}) \\
  & \stackrel{\text{def distr.}}{=} & \uu{F_T(t_{\alpha})-\Delta T}
 \edma
@@ -1238,9 +1275,10 @@ df=2 degrees of freedom}
 %###################################################
 \bdma
 \pi\sup{\,eq}(\Delta T) 
- &=& P\left(\left|\frac{\hatbeta_j-\beta_{j0}}{\hatsig_{\hatbeta_j}}\right|
+ & \stackrel{\text{def rejection}}{=} & 
+ P\left(\left|\frac{\hatbeta_j-\beta_{j0}}{\hatsig_{\hatbeta_j}}\right|
       > t_{1-\alpha/2}\right) \\
-&=& P(|T+\Delta T| > t_{1-\alpha/2}) \\
+& \stackrel{\text{def $\Delta T$}}{=} & P(|T+\Delta T| > t_{1-\alpha/2}) \\
 &=& P(T+\Delta T > t_{1-\alpha/2}) + P(T+\Delta T <-t_{1-\alpha/2})\\
 &=& 1-P(T+\Delta T \le t_{1-\alpha/2})+P(T+\Delta T <-t_{1-\alpha/2})\\
 & \stackrel{\text{def distr.}}{=} & 
