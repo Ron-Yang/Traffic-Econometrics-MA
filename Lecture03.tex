@@ -6,8 +6,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
@@ -28,9 +28,10 @@
 
 \makePale{0.85}{0.50}{0.55}{1.20}{1.50}
 
-\placebox{0.50}{0.50}{\parbox{0.6\textwidth}{
+\placebox{0.50}{0.46}{\parbox{0.6\textwidth}{
 \bi
-\item[3.1] Expectation and Covariance Matrix of the OLS Estimator
+\item[3.1] Expectation and Covariance Matrix of the Ordinary Least
+  Squares (OLS) Estimator
 \item[3.2] Confidence Intervals
 \item[3.3] Significance Tests
 \bi
@@ -52,7 +53,8 @@
 \subsection{3.1. OLS Expectation and Covariance}
 
 %###################################################
-\frame{\frametitle{3.1. OLS Expectation and Covariance}
+\frame{\frametitle{3.1. Ordinary Least Squares (OLS) Estimator:\\
+ Expectation and Covariance}
 %###################################################
 
 \bi
@@ -86,47 +88,47 @@ the mild condition $E(\veceps)=\vec{0}$ for all the data points}}
 }
 
  %###################################################
-\frame{\frametitle{OLS estimation error II: variances and covariances}
+\frame{\frametitle{OLS estimator: variances and covariances}
 %###################################################
 
 \bi
 \item Gau\3-Markow conditions $\to \epsilon \sim
   \text{i.i.d} N(0,\sigma^2) \to \hatvecbeta $ is normal distributed
-\pause \item In this case, the complete errors are specified by the
+\pause \item In this case, the complete error characteristics are
+specified by the 
   expectation value and the \bfdef{variance-covariance matrix}
 $\m{V}_{\hatvecbeta}$
 
 \ei
 
-\pause
 \bdma
-\m{V}_{\hatvecbeta} &\stackrel{\text{def}}{=}&
- E\left( (\hatvecbeta-\vecbeta) (\hatvecbeta-\vecbeta)\tr\right)\\
-  \visible<4->{\remark{insert
+  \visible<2->{\m{V}_{\hatvecbeta} &\stackrel{\text{def}}{=}&
+    E\left( (\hatvecbeta-\vecbeta) (\hatvecbeta-\vecbeta)\tr\right)\\}
+  \visible<3->{\remark{insert
       $\hatvecbeta=\vec{\beta}
 +\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\veceps$} 
      &=& 
     E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps
      \left( (\m{X}\tr\m{X})^{-1}\m{X}\tr\veceps\right)\tr\right) \\}
-  \visible<5->{\remark{transpose rule} &=& 
+  \visible<4->{\remark{transpose and inversion rules} &=& 
      E\left( (\m{X}\tr\m{X})^{-1}\m{X}\tr \veceps\veceps\tr
      \m{X}(\m{X}\tr\m{X})^{-1}\right)\\}
-  \visible<6->{\remark{$E(.)$ acts only on $\veceps$} &=& 
+  \visible<5->{\remark{$E(.)$ acts only on $\veceps$} &=& 
      (\m{X}\tr\m{X})^{-1}\m{X}\tr E(\veceps\veceps\tr)
      \m{X}(\m{X}\tr\m{X})^{-1}\\}
-  \visible<7->{\remark{Gau\3-Markow} &=& 
+  \visible<6->{\remark{Gau\3-Markow} &=& 
      (\m{X}\tr\m{X})^{-1}\m{X}\tr\sigeps^2\m{X}(\m{X}\tr\m{X})^{-1}\\}
-  \visible<8->{\remark{def inverse matrix} &=& 
+  \visible<7->{\remark{def inverse matrix} &=& 
      \sigeps^2(\m{X}\tr\m{X})^{-1} }
 \edma
-\visible<9->{The variance-covariance matrix depends only on the values of the
+\visible<8->{The variance-covariance matrix depends only on the values of the
 exogenous factors!}
 
 
 }
 
 %###################################################
-\frame{\frametitle{Results summary}
+\frame{\frametitle{Results}
 %###################################################
 
 {\small
@@ -135,8 +137,9 @@ exogenous factors!}
 \maindm{\hatvecbeta =\left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr\vec{y}}
 
 \pause \item \bfdef{Variance-Covariance matrix} of the estimation errors
-(provided the errors are i.i.d.) in terms of the \bfdef{Hesse matrix} $\m{H}$ of the 
-objective function:
+(provided the errors are i.i.d.) can be written in terms of the
+\bfdef{Hesse matrix $\m{H}$} of the  
+objective function SSE:
 
 \maindm{
 \begin{array}{rcl}
@@ -144,7 +147,7 @@ objective function:
  &=&  E\left( (\hatvecbeta-\vecbeta)(\hatvecbeta-\vecbeta)\tr\right)
  =\sigma^2 \left(\m{X}\tr\m{X}\right)^{-1}= 2\sigma^2 \m{H}^{-1},\\
 H_{jk} &=& \left. \ablpartmix{S}{\beta_j}{\beta_k}\right|_{\vecbeta=\hatvecbeta}
-=2\m{X}\tr\m{X}
+=2(\m{X}\tr\m{X})_{jk}
 \end{array}
 }
 
@@ -165,22 +168,24 @@ $
 \frame{\frametitle{Estimation of the residual variance}
 %###################################################
 The above cannot be applied directly since the residual variance $\sigma^2$ is
-unknown and must be estimated by the minimum $S(\hatbeta)$ of the sum
-of squared 
-errors: 
+unknown and must be estimated by the minimum SSE $S(\hatbeta)$: 
 \maindm{
 \hatsig^2 = \frac{1}{n-J-1}\sum_i \left(y_i-\hat{y}(\vec{x}_i)\right)^2
  = \frac{S(\hatbeta)}{n-J-1}
 }
+\pause
 \bdm
-\hatsig^2 =\frac{\vec{y}\tr
+\text{Alternative formulation:} \quad \hatsig^2 =\frac{\vec{y}\tr
   \left(\m{1}-\m{X}(\m{X}\tr\m{X})^{-1}\m{X}\tr\right)\vec{y}} {n-J-1}
+\Rightarrow \text{\parbox{0.15\textwidth}{\scriptsize{ sum of\\squared Gaussians}}}
 \edm
+\vspace{0.2ex}
 
-This results in following \emph{estimated} error statistics:
+{\small
+\pause This results in following \emph{estimated} error statistics:
 
 \bi
-\pause \item Estimated variance-covariance matrix:
+\item Estimated variance-covariance matrix:
 
 \maindm{\hat{\m{V}}_{\hatvecbeta}= 2\hatsig^2 \m{H}^{-1}
 =\hatsig^2 \left(\m{X}\tr\m{X}\right)^{-1}
@@ -192,6 +197,8 @@ approximate estimation errors are student-t distributed:
 \frac{\hatbeta_j-\beta_j}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
 \edm
 \ei
+}
+
 }
  
 %###################################################
@@ -205,8 +212,9 @@ distribution:
 \bdm
 f_{\hatvecbeta}(\Delta \hatvecbeta)
  \propto \exp\left[-\frac{1}{2} 
- \Delta \hatvecbeta\tr \m{V}^{-1}\, \Delta \hatvecbeta\right]
-   = \exp\left[-\frac{\Delta \hatvecbeta\tr \m{X}\tr\m{X}\Delta \hatvecbeta}
+ \Delta \hatvecbeta\tr \ \m{V}^{-1}\ \Delta \hatvecbeta\right]
+   = \exp\left[-\frac{\Delta \hatvecbeta\tr \ \m{X}\tr\m{X}\ 
+ \Delta \hatvecbeta}
   {2\sigeps^2}\right].
 \edm
 
@@ -216,8 +224,8 @@ f_{\hatvecbeta}(\Delta \hatvecbeta)
 Expand the SSE $S(\vecbeta)$ around $\hatvecbeta$ to second order:
 \bdm
 S(\vecbeta)-S(\hatvecbeta)
-\approx \frac{1}{2}\Delta \hatvecbeta\tr \m{H} \Delta \hatvecbeta
-= \Delta \hatvecbeta\tr \m{X}\tr\m{X} \Delta \hatvecbeta
+\approx \frac{1}{2}\Delta \hatvecbeta\tr \ \m{H} \ \Delta \hatvecbeta
+= \Delta \hatvecbeta\tr \ \m{X}\tr\m{X} \ \Delta \hatvecbeta
 \edm
 \vspace{1em}
 
@@ -248,22 +256,24 @@ modeling the demand for hotel rooms}
 
 
 \placebox{0.26}{0.22}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_eng.png}}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x1y_simple_eng.png}}
 
 \placebox{0.74}{0.22}
-{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_eng.png}}
+{\figSimple{0.46\textwidth}{figsRegr/hotel_scatterplot_x2y_simple_eng.png}}
 
-\placebox{0.74}{0.64}
+\placebox{0.74}{0.61}
 {\parbox{0.53\textwidth}{\scriptsize
 \bi
-\item The example of Lecture 02:
-  $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$ with the factors: 
-  $x_0=1$, $x_1$: quality [\# stars]; $x_2$: price 
+\item The example of Lecture 02: \\[-1ex]
+  \bdm
+  y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon
+\edm \\[-1ex]
+\pause \item Exogenous factors: 
+  $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price 
   [\euro{}/night].
-\item The exogenous variables/factors are non-perfectly correlated: \OK
-\item Endogenous variable: booking rate [\%]
-\item The demand is positively correlated with both the quality and
-  the price (!)
+\pause \item Endogenous variable: booking rate [\%]
+\pause \item The demand is positively correlated with both the quality and
+  the price
 \ei
 }}
 
@@ -320,8 +330,9 @@ modeling the demand for hotel rooms}
 %###################################################
 \frame{\frametitle{Special case 1: No exogenous variables}
 %###################################################
+{\small
 \bi
-\item Model: $y=\beta_0+\epsilon$
+\item Model: $y=\beta_0+\epsilon := \mu+\epsilon$
 \pause \item System matrix: $\m{X}=(1,1, ..., 1)\tr$
 \pause \item OLS estimator: 
 \bdma 
@@ -337,12 +348,16 @@ $\hat{V}_{00}=\frac{\hatsig^2}{n}$
 
 \pause \item Distribution of the estimator
  \red{(if $\epsilon \sim i.i.d N(\mu,\sigma^2)$)}
-\bdm
+
+\bdma
 \frac{\hatbeta_0-\beta_0}{\sqrt{V_{00}}}
-=\frac{\bar{x}-\mu}{\sigma}\ \sqrt{n} \sim N(0,1), \quad
-\frac{\bar{x}-\mu}{\hatsig}\ \sqrt{n} \sim T(n-1)
-\edm
+&=& \frac{\bar{y}-\mu}{\sigma}\ \sqrt{n} \sim N(0,1), \\
+\frac{\hatbeta_0-\beta_0}{\sqrt{\hat{V}_{00}}}
+&=& \frac{\bar{y}-\mu}{\hatsig}\ \sqrt{n} \sim T(n-1)
+\edma
 \ei
+}
+
 }
 
 %###################################################
@@ -450,8 +465,8 @@ Student-t distribution comes from}
 \frame{\frametitle{Densities of standard normal 
 \textit{vs.} Student-t distribution}
 %###################################################
-\vspace{-0.5em}
-\fig{0.95\textwidth}{figsRegr/f_gaussStudent_eng.png}
+
+\fig{0.90\textwidth}{figsRegr/f_gaussStudent_eng.png}
 }
 
 
@@ -459,9 +474,8 @@ Student-t distribution comes from}
 \frame{\frametitle{Distributions of standard normal 
 \textit{vs.} Student-t-distribution}
 %###################################################
-\vspace{-0.5em}
 
-\fig{0.95\textwidth}{figsRegr/F_gaussStudent_eng.png}
+\fig{0.90\textwidth}{figsRegr/F_gaussStudent_eng.png}
 }
 
 %###################################################
@@ -486,10 +500,10 @@ Student-t distribution comes from}
 }
 }}
 
-\visible<4>{\placebox{0.50}{0.31}
+\visible<3>{\placebox{0.50}{0.31}
 {\figSimple{0.70\textwidth}{figsRegr/f_student_KI_eng.png}}}
 
-\visible<5>{\placebox{0.50}{0.31}
+\visible<2>{\placebox{0.50}{0.31}
 {\figSimple{0.70\textwidth}{figsRegr/F_student_KI_eng.png}}}
 
 
@@ -524,8 +538,8 @@ Confidence interval (CI):
 \vspace{0.5em}
 
 {\small 
-$\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
- \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}]$
+$\beta_1\in \left[\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
+ \hat{\beta}_1+\Delta \hat{\beta}_1^{(\alpha)}\right]$
 
 \pause $\Delta \hat{\beta}_1^{(\alpha)}=t_{1-\alpha/2}^{(n-3)}
 \sqrt{\hat{V}(\hat{\beta}_1)}$
@@ -549,14 +563,15 @@ $\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
 \frame{\frametitle{3.3 Significance Tests:\\1. General four-step procedure}
 %###################################################
 \benum
-\item Formulate a \bfblue{null hypothesis} $H_0$ such that their rejection
+\item Formulate a \bfdef{null hypothesis $H_0$} such that their rejection
   gives insight, e.g. $\beta_j=\beta_{j0}$ (point hypothesis) or
   $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{\red{One cannot confirm $H_0$}}
-\pause \item Select a \bfblue{test function} or \bfblue{statistics} $T$
+\pause \item Select a \bfdef{test function} or \bfdef{statistics $T$}
 \bi
-\item whose distribution is known provided $H^*_0$, i.e., the
-  parameters lie at the margin of $H_0$ (of course, $H^*_0=H_0$ for a point null hypothesis)
-\item which has distinct \bfblue{rejection regions} $R(\alpha)$ which
+\item whose distribution is known provided the parameters are at the 
+\bfdef{margin $H^*_0$ of the null hypothesis} (of course, $H^*_0=H_0$ for a point
+null hypothesis) 
+\item which has distinct \bfdef{rejection regions $R(\alpha)$} which
   are reached rarely 
   (with a probability $\le \alpha$) if $H_0$ but more often if
   $H_1=\overline{H_0}$ 
@@ -565,10 +580,10 @@ $\beta_1\in [\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
 \pause \item Evaluate a realisation $t\sub{data}$ of $T$ from the data
 
 \pause \item Check if $t\sub{data} \in R(\alpha)$. If yes, $H_0$ can be
-  rejected at an error probability or \bfblue{significance level}
-  $\alpha$. Otherwise, nothing can be said.
-\pause \item[4a] Alternatively, calculate the \bfblue{$p$-value} as
-the minimum $\alpha$ for which $H_0$ can be rejected.
+  rejected at an error probability or \bfdef{significance level
+  $\alpha$}. Otherwise, \emph{nothing can be said}.
+\pause \item[4a] Alternatively, calculate the \bfdef{$p$-value} as
+the minimum $\alpha$ at which $H_0$ can be rejected.
 \eenum
 }
 
@@ -576,29 +591,33 @@ the minimum $\alpha$ for which $H_0$ can be rejected.
 \frame{\frametitle{3.3.2 Type I and II errors}
 %###################################################
 
-\visible<1>{\placebox{0.5}{0.68}{
+\visible<1>{\placebox{0.5}{0.69}{
  \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
 
-\visible<2>{\placebox{0.5}{0.68}{
+\visible<2>{\placebox{0.5}{0.69}{
  \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
 
-\visible<3>{\placebox{0.5}{0.68}{
+\visible<3>{\placebox{0.5}{0.69}{
  \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
 
-\visible<4->{\placebox{0.5}{0.68}{
+\visible<4->{\placebox{0.5}{0.69}{
  \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
 
 \placebox{0.5}{0.25}{\parbox{\textwidth}{
 {\small
 \bi
-\visible<3->{\item We can control the Type I ($\alpha$) error probability
-  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}}
-\visible<4->{\item Since the Type II ($\beta$) error probability 
+\visible<2->{\item There are two combinations corresponding to a
+  correct test result}
+\visible<3->{\item We can control the \bfdef{type I or $\alpha$-error}
+  probability 
+  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfdef{significance tests}}
+\visible<4->{\item Since the \bfdef{type II or $\beta$-error} probability 
   $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
 error type should be formulated as the $\alpha$ error}
-\visible<5->{\item Fundamental problem: I want $P(H_0|\text{rejected})$ and
-$P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
-\bfblue{Bayesian statistics}}
+\visible<5->{\item \maintextbox{0.85\textwidth}{Fundamental problem: I want $P(H_0|\text{rejected})$ and
+$P(H_0|\overline{\text{rejected}})$ while I get control over 
+$P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
+\bfdef{Bayesian statistics}} }
 \ei
 }}}
 
@@ -615,7 +634,7 @@ $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
 \item Testing  \red{parameters} such as $H_0$: $\beta_j=\beta_{j0}$ or
   $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$:
 
-  The test
+  The student-t distributed test
   function is the estimated deviation from the boundary of $H_0$ in
   units of the estimated error standard deviation:
 \bdm 
@@ -647,7 +666,7 @@ T &=& \frac{\hat{b}}{\sqrt{\hat{V}(\hat{b})}} \sim T(n-1-J)
 T=\frac{\hat{\rho}}{\sqrt{1-\hat{\rho}^2}}\sqrt{n-2} \sim T(n-2)
 \edm
 
-{\footnotesize
+\pause \footnotesize{\colAnswer{
 \emph{Derivation:} $\rho \neq 0$ if, and only if, 
 in a simple linear regression
 $y=\beta_0+\beta_1x+\epsilon$, the slope parameter $\beta_1=0$, so
@@ -659,17 +678,18 @@ T=\hatbeta_1/\sqrt{\hat{V}_{11}}=\frac{s_{xy}}{\hat{\sigma}s_x}\sqrt{n}
 Now insert $\hat{\sigma}$ which can, in the simple-regression case, be
 explicitely calculated:
  $\hat{\sigma}^2=n (s_y^2 -s_{xy}^2/s_x^2)/(n-2)$
-}
+}}
 
 \vspace{1em}
 
-\item Test for the \red{residual variance}, $H_0$: $\sigma^2=\sigma_0^2$, 
+\pause \item Test for the \red{residual variance}, $H_0$: $\sigma^2=\sigma_0^2$, 
 $\sigma^2 \ge \sigma_0^2$, and $\sigma^2 \le \sigma_0^2$:
 \bdm
 T=\frac{\hatsig^2}{\sigma_0^2} \ (n-1-J) \sim \chi^2(n-1-J)
 \edm
 \emph{Notice:} The one-parameter $\chi^2(m)=\sum_{i=1}^mZ_i^2$ is the
-sum of squares of i.i.d. Gaussians; its density is not symmetric. 
+sum of squares of i.i.d. Gaussians \emph{its density is not symmetric,
+  so we need to calculate both the $\alpha$ and $1-\alpha$ quantiles} 
 
 \ei
 }
@@ -682,26 +702,26 @@ sum of squares of i.i.d. Gaussians; its density is not symmetric.
 \bi
 
 \item Tests of \red{simultaneous point null hypotheses}, e.g., $H_0$: 
-$\beta_1=0$ AND $\beta_2=2$ using the
+$(\beta_1=0)$ AND $(\beta_2=2)$ using the
 \red{Fisher-F test}:
 \bdm
 T=\frac{ (S_0-S)/(M-M_0)}{S/(n-M)} \sim F(M-M_0,n-M)
 \edm
 \bi
-\item $S$: SSE of the estimated full model with $M=J+1$ parameters
-\item $S_0$: SSE of the estimated restrained model under $H_0$ with
+\pause \item $S$: SSE of the estimated full model with $M=J+1$ parameters
+\pause \item $S_0$: SSE of the estimated restrained model under $H_0$ with
   $M_0$ free parameters
 \ei
 
-\item The \bfdef{Fisher-F} distribution essentially is the ratio of two
+\pause \item The \bfdef{Fisher-F} distribution is essentially the ratio of two
   independent $\chi^2$ distributed random variables,
 \bdm 
 F(n,d)=\frac{\chi_n^2/n}{\chi_d^2/d},
 \edm
 with $n$ numerator and $d$ denominator degrees of freedom
 
-\itemAsk  Argue that always $S_0\ge S$ 
-\itemAsk  Justify that there is only a left-sided rejection region:
+\pause \itemAsk  Argue that always $S_0\ge S$ 
+\pause \itemAsk  Justify that there is only a left-sided rejection region:
   $H_0$ is rejected if $t\sub{data}>f^{(n,d)}_{1-\alpha}$
 
 \ei
@@ -743,7 +763,8 @@ and
     $t^{(9)}_{0.975}=2.26<|t\sub{data}|$ $\Rightarrow$ $H_0$ rejected,
     stars matter}}
 \itemAsk \colAsk{Do people favour more stars (at $\alpha=\unit[5]{\%}$)?}  
-\itemAnswer \scriptsize{\colAnswer{$H_{02}: \beta_1<=0$, interval
+\itemAnswer \scriptsize{\colAnswer{$H_{02}: \beta_1<=0$ (use as $H_0$
+    what you want to reject!), interval
      test with same $T$ and $t\sub{data}$ as above,
      $t^{(9)}_{0.95}=1.83<t\sub{data} \Rightarrow H_{02}
      \text{ rejected}$, more stars are better}}
@@ -793,8 +814,8 @@ the risk of losing customers is less than \unit[5]{\%}}}
 \itemAnswer \scriptsize{\colAnswer{Full model: $\hatbeta_0=25.5,$,
 $\hatbeta_1=38.2$, $\hatbeta_2=-0.952$, $S(\hatvecbeta)=498.2$; 
 Reduced model with fixed $\beta_1=30$, $\beta_2=1$: $\hatbeta_0=49.0$, 
-$S_0=S( (\hatbeta_0,30,1)')=1808$, $M-M_0=\unit[2]{dof}$,
-$n-M=\unit[9]{dof}$, $T\sim F(2,9)$,
+$S_0=S( (\hatbeta_0,30,1)')=1808$, $M-M_0=\unit[2]{df}$,
+$n-M=\unit[9]{df}$, $T\sim F(2,9)$,
 $t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}$ $\Rightarrow$
 $H_0$ rejected}} 
 
@@ -872,7 +893,7 @@ or ``$\le$'' (interval hypothesis)}
  \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
    (boundary of $H_0$)
  \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfblue{rejection region}
+  \emph{extreme region} or \bfdef{rejection region}
 % \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
 %  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
 %  $H^*_0$ 
@@ -896,7 +917,7 @@ or ``$\ge$'' (interval hypothesis)}
  \item Shown is the density of the test function \emph{if $H^*_0$: ``=''}
    (boundary of $H_0$)
  \pause \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfblue{rejection region}
+  \emph{extreme region} or \bfdef{rejection region}
 % \pause \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
 %  replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain
 %  $H^*_0$ 
@@ -936,7 +957,7 @@ or ``$\le$''}
 significance level $\alpha$ (one does not know \emph{how significant}
 the result really is)
 \pause \item Instead, one would like to know the \emph{minimum}
-$\alpha$ for rejection, or the \bfblue{$p$-value}. 
+$\alpha$ for rejection, or the \bfdef{$p$-value}. 
 \pause \item The most general definition is:
 \maindm{p=\text{Prob}(T\in E\sub{data}|H_0^*))} 
 where the \emph{extreme region} $E\sub{data}$ contains all
@@ -1285,7 +1306,7 @@ df=2 degrees of freedom}
 }
 
 %###################################################
-\frame{\frametitle{Model selection: Some standard criteria}
+\frame{\frametitle{Model selection: some standard criteria}
 %###################################################
 \bi
 \item \bfdef{(1) Adjusted $R^2$:}
@@ -1294,9 +1315,11 @@ df=2 degrees of freedom}
 R^2=1-\frac{S}{S_0}, 
 \edm
 \vspace{-1em}
+{\small
 \bdm
-S =\text{SSE(full model)}, \quad S_0=\text{SSE(constant-only model)}.
+S =\text{SSE(calibr. full model)}, \quad S_0=\text{SSE(calibr. constant-only model)}.
 \edm
+}
 \vspace{0.1em}
 
 \item \bfdef{(2) Akaike information criterion AIC:}
@@ -1316,19 +1339,21 @@ $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
 
 %###################################################
 \frame{\frametitle{Model selection: Strategy {\`a} la ``Occam's Razor''}
+{\small
 \begin{itemize}
-\item Identify $P$ possibly relevant exogenous factors (the constant
+\item Identify $J$ possibly relevant exogenous factors (the constant
   is always included) and calculate
-  $\bar{R}^2$, AIC, or BIC for all $2^P$ combinations of these
-      factors.
+  $\bar{R}^2$, AIC, or BIC for all $2^J$ combinations of these
+      factors (\emph{brute force}).
 \item The best model is that maximizing $\bar{R}^2$ or minimizing AIC
   or BIC. 
 \item Since AIC and also $\bar{R}^2$ penalize complex models (with
   many parameters) too little, the BIC is usually the best bet.
-\item Besides the mentioned \emph{brute-force} approach testing all $2^P$
-  combinations, there are two standard strategies:
+\item Besides the \emph{brute-force} approach, there are two
+  faster strategies that may not find the
+  ``best'' model, however:  
 \bi
-\item \bfdef{Top-down approach}: Start with all the $P$
+\item \bfdef{Top-down approach}: Start with all the $J$
   factors. In each round, eliminate a single factor such that the
   reduced model has the highest increase in $\bar{R}^2$ / decrease in
   AIC or BIC. Stop if there is no further improvement.
@@ -1338,6 +1363,7 @@ $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
 \ei
 \item Standard statistics packages contain all of these strategies. 
 \end{itemize}
+}
 }
 
 \end{document}
