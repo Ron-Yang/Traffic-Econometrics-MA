@@ -10,7 +10,7 @@ In diesem Kapitel werden Sachverhalte bzw. entsprechende
 \"okonometrische Modelle betrachtet, in denen die \emph{endogene} 
  bzw. erkl\"arte
 Variable $Y$ \textit{stetiger} Natur ist. Solche Modelle
-auch als \bfblue{Regressionsmodelle} bezeichnet.\footnote{Den Nahme
+auch als \bfdef{Regressionsmodelle} bezeichnet.\footnote{Den Nahme
  ``Regression'', d.h. R\"uckkehr (zum Mittelwert), 
    hat im 19. Jahrhundert
   Francis Galton, ein Cousin Charles Darwins, gepr\"agt, um das
@@ -21,7 +21,7 @@ auch als \bfblue{Regressionsmodelle} bezeichnet.\footnote{Den Nahme
 Diskrete endogene
 Variable, welche im Verkehrskontext typischerweise die Ergebnisse von
 Wahlentscheidungen darstellen, werden im Kap.~\ref{sec:choice},
-\bfblue{diskrete Wahlmodelle},
+\bfdef{diskrete Wahlmodelle},
 beschrieben. Aus prinzipiellen Gr\"unden sind Modelle mit
 diskretwertigen endogenen Variablen immer nichtlinearer Natur,
 h\"aufig sind auch mehrere endogene Variable als Mehrgleichungsmodell
@@ -37,13 +37,13 @@ g\"ultigen Betrachtungen in den Abschnitten~\ref{sec:stetigStruktur} -
 \ref{sec:spez} werden deshalb nur lineare bzw. quasilineare
 Modelle betrachtet, welche mathematisch \"aquivalent behandelt
 werden k\"onnen (vgl. Abschnitt~\ref{sec:quasilin}). Einen Sonderfall
-stellt die \bfblue{logistischenq Regression} (Kap.~\ref{sec:logRegr})
+stellt die \bfdef{logistischenq Regression} (Kap.~\ref{sec:logRegr})
 dar, die Problemstellungen mit nominalskalierten endogenen Variablen,
 die eigentlich der Regression nicht zug\"anglich sind, in eine
 Regressionsstruktur bringt. Diese Modelle sind \"aquivalent zu den
 bereits erw\"ahnten Modellen der  diskreten Wahltheorie
 (Kap.~\ref{sec:choice}), was bedeutet, dass insbesondere die
-Parametersch\"atzung eine andere als die hier angewandte \bfblue{Least-Squared
+Parametersch\"atzung eine andere als die hier angewandte \bfdef{Least-Squared
 Errors}-Sch\"atzung ist. Da die Formulierung als diskretes Wahlmodell
 anschaulicher und besser verallgemeinerbar ist, wird die logistische
 Regression nur kurz erw\"ahnt.
@@ -60,7 +60,7 @@ exogenen bzw. unabh\"angigen bzw. erkl\"arenden Variablen $x_m$, $m=1,
 beschrieben wird. 
 Wir schlie\3en eine R\"uckkopplung aus, so dass die Beschr\"ankung
 auf eine abh\"angige Variable, also auf sogenannte
- \bfblue{Eingleichungsmodelle}, 
+ \bfdef{Eingleichungsmodelle}, 
 keine Einschr\"ankung der
 Allgemeinheit darstellt.\footnote{Gegebenenfalls definiert man
  f\"ur jede abh\"angige Variable ein
@@ -78,7 +78,7 @@ erl\"autert, bei diskretwertigen und nominalskalierten
 exogenen Variablen eine Nichtlinearit\"at zwingend. Durch geeignete
 parameterfreie nichtlineare Transformationen, \emph{die sich aus dem Sachverhalt
   ergeben m\"ussen}, kann man eine nichtlinear wirkende oder
-nicht-metrische exogene Variable in eine oder mehrere \bfblue{lineare
+nicht-metrische exogene Variable in eine oder mehrere \bfdef{lineare
   Faktoren} transformieren. Beispiele dazu finden sich in den
 Abschnitten~\ref{sec:quasilin}, \ref{sec:spezFun} und \ref{sec:regrQualit}. Bei der
 \emph{linearen} Regression werden also aus den $M$ urspr\"unglichen exogenen
@@ -121,11 +121,11 @@ Modellparameter. Auch diese werden oft kompakt als
 ``Parametervektor'' geschrieben. Im linearen Fall ist $J=M$, d.h. die
 Zahl $(J+1)$ der Parameter ist um eines gr\"o\3er als die Zahl der
 exogenen Variablen. Die 
-\bfblue{Sch\"atzung} der Parameter bzw. \bfblue{Kalibrierung} des
+\bfdef{Sch\"atzung} der Parameter bzw. \bfdef{Kalibrierung} des
 Modells ist ein wesentliches Thema
  dieses Kapitels.
-\item Schlie\3lich beschreibt der \bfblue{Residualanteil}
-bzw. \bfblue{nichterkl\"arte Anteil}  alle Anteile
+\item Schlie\3lich beschreibt der \bfdef{Residualanteil}
+bzw. \bfdef{nichterkl\"arte Anteil}  alle Anteile
 bzw. Zufallseinfl\"usse, welche nicht durch $\hat{y}(...)$ erkl\"art
 werden k\"onnen.
 
@@ -139,7 +139,7 @@ folgenden Gr\"unden:
 \item Die zu beschreibenden statistischen Einheiten sind heterogener
 Natur, m\"ussten also eigentlich durch individuelle Parameters\"atze
 beschrieben werden. Dabei darf allerdings kein Strukturbruch
-auftreten, da das Problem sonst \bfblue{fehlspezifiziert} w\"are
+auftreten, da das Problem sonst \bfdef{fehlspezifiziert} w\"are
 (vgl. Abschnitt~\ref{sec:spezStat}). 
 
 \item Nicht alle exogenen (bzw. unabh\"angigen bzw. erkl\"arenden) 
@@ -185,7 +185,7 @@ Untersuchung gem\"a\3 dem in Abb.~\ref{fig:flussdiagRegr} gezeigten
 Schema ab:
 
 \benum
-\item \bfblue{Spezifikation} (Abschnitt~\ref{sec:spez}): Gem\"a\3 dem
+\item \bfdef{Spezifikation} (Abschnitt~\ref{sec:spez}): Gem\"a\3 dem
 Sachverhalt w\"ahlt man den 
 Modelltyp aus (z.B. linear oder nichtlinear) und bestimmt die Anzahl
 und Bedeutung der exogenen und endogenen Variablen. Wird der
@@ -194,7 +194,7 @@ bekannte mathematische Beziehung beschrieben (z.B. quadratische
 Abh\"angigkeit des Bremsweges von der Geschwindigkeit, exponentielles
 Verhalten bei Wachstumsprozessen ohne S\"attigung, die logistische
 Funktion bei Wachstumsprozessen mit S\"attigung) oder will man auf ein
-\bfblue{\"okonomisches Modell} (z.B. das nachfragebasierte Keynes'sche
+\bfdef{\"okonomisches Modell} (z.B. das nachfragebasierte Keynes'sche
 Modell) zur\"uckgreifen, ist das Modell
 dadurch vorgegeben. H\"aufig wird man aber auch \emph{ph\"anomenologisch}
 vorgehen und dann meist das einfachstm\"ogliche Modell, also ein lineares
@@ -202,9 +202,9 @@ Eingleichungsmodell, w\"ahlen.
 Ferner geh\"ort zur Spezifikation, gewisse Bedingungen an die exogenen
 und endogenen Variablen und ihrer Messwerte, sowie am nichterkl\"arten
 Anteil zu \"uberpr\"ufen. Erst das korrekt spezifizierte mathematische bzw.
-\"okonomische Modell wird als \bfblue{\"okonometrisches Modell} bezeichnet.
+\"okonomische Modell wird als \bfdef{\"okonometrisches Modell} bezeichnet.
 
-\item \bfblue{Parametersch\"atzung} bzw. \bfblue{Modellkalibrierung}
+\item \bfdef{Parametersch\"atzung} bzw. \bfdef{Modellkalibrierung}
 (Abschnitt~\ref{sec:kalib}):
 Zun\"achst werden Datens\"atze des  zu untersuchenden Sachverhalts (Werte f\"ur
 alle exogenen und endogenen Variablen) erhoben, 
@@ -214,18 +214,18 @@ werden die Modellparameter
 so angepasst, dass das Modell die Daten so gut wie m\"oglich
 beschreibt, also die nichterkl\"arten Anteile nach bestimmten
 Kriterien minimiert werden.  Das Ergebnis wird als
-\bfblue{gesch\"atztes \"okonometrisches Modell} bezeichnet.
+\bfdef{gesch\"atztes \"okonometrisches Modell} bezeichnet.
 
-\item \bfblue{Statistische Eigenschaften der Sch\"atzung}
+\item \bfdef{Statistische Eigenschaften der Sch\"atzung}
 (Abschnitt~\ref{sec:linStat}): Hierbei wird mit
 statistischen Mitteln (Konfidenzintervalle der Parameterwerte sowie
 Signifikanztests) untersucht, ob die im Wesentlichen in den 
 Betr\"agen und Vorzeichen der gesch\"atzten 
 Modellparameter enthaltenen Aussagen
-\bfblue{signifikant} sind, also nicht durch den Zufall enstanden sein
+\bfdef{signifikant} sind, also nicht durch den Zufall enstanden sein
 k\"onnen.
 
-\item \bfblue{Modellaussagen} (Abschnitt~\ref{sec:KI-tests}):
+\item \bfdef{Modellaussagen} (Abschnitt~\ref{sec:KI-tests}):
 Das Ergebnis einer \"okonometrischen Untersuchung besteht zum Einen in
 den vom Modell im Anwendungs- bzw. Prognosefall vorausgesagten
 endogenen Variablenwerten. Zum Anderen k\"onnen auch 
@@ -239,7 +239,7 @@ zwischen \unit[6]{\euro{}/h} und \unit[10]{\euro{}/h}, im
 Berufsverkehr aber bei mindestens \unit[15]{\euro{}/h}'' oder ``man
 kann die Annahme eines konstanten Reisezeitbudgets nicht verwerfen''.
 
-\item \bfblue{Prognosen} (Abschnitt~\ref{sec:prog}): Schlie\3lich
+\item \bfdef{Prognosen} (Abschnitt~\ref{sec:prog}): Schlie\3lich
 kann man mit dem gesch\"atzte Modell
 \emph{mit unver\"anderten Parameterwerten} 
 Prognosen durchf\"uhren, insbesondere 
@@ -272,7 +272,7 @@ muss man die Untersuchung mit einer \textit{Modellentwicklung} koppeln
 und die Modelle  \textit{selbst} (also die Modell\emph{struktur}, 
 nicht nur die Modellspezifikationen
 und  die aus den Modellen  gewonnenen
-Aussagen) testen. Dies wird auch als \bfblue{Modellvalidierung} bezeichnet.
+Aussagen) testen. Dies wird auch als \bfdef{Modellvalidierung} bezeichnet.
 
 Hierbei wird eine Aussage bzw. Prognose \textit{simuliert}, also das
 kalibrierte Modell mit 
@@ -283,14 +283,14 @@ eigentlichen Anwendung/Prognose sind im Zielsystem allerdings alle
 Daten bekannt, insbesondere die der endogenen Variablen. Man
 unterscheidet zwei Vorgehensweisen:
 \bi
-\item \bfblue{Holdout-Validation}. Der verf\"ugbare Datensatz wird
+\item \bfdef{Holdout-Validation}. Der verf\"ugbare Datensatz wird
   segmentiert und dem Modell ein Segment bei
   der Sch\"atzung vorenthalten. Anschlie\3end wird die Aussage- und
   Prognosef\"ahigkeit dieses gesch\"atzten Modells durch das
   ``Test-Segment'' \"uber\-pr\"uft. Hat man beispielsweise
  f\"ur $n$ St\"adte Datens\"atze, werden $n-1$ St\"adte zum
  Kalibrieren und  die Daten einer ``Test-Stadt'' zur Validierung verwendet.
-\item \bfblue{Cross-Validation}. Hier wird der Reihe nach eine
+\item \bfdef{Cross-Validation}. Hier wird der Reihe nach eine
   Holdout-Validierung mit jeweils einem Daten-Segment als
   Test-Datensatz durchgef\"uhrt. Im St\"adtebeispiel dient also reihum
   jeweils eine Stadt als ``Test-Stadt''.
@@ -300,7 +300,7 @@ Validierung werden die vorausgesagten und tats\"achlichen Werte
 verglichen und getestet, ob
 sich die Abweichungen in vertretbaren Grenzen h\"alt bzw. ob sie sich
 gegen\"uber der Kalibrierung stark erh\"oht haben. Ein wichtiges
-Kriterium f\"ur gute Modelle ist au\3erdem ihre \bfblue{Robustheit}: Hierbei
+Kriterium f\"ur gute Modelle ist au\3erdem ihre \bfdef{Robustheit}: Hierbei
 wird das Modell auf die neuen Daten kalibriert und die
 gesch\"atzten Modellparameter mit denen der ``alten'' Kalibrierung
 verglichen. Je weniger Abweichungen man findet, desto robuster und
@@ -311,7 +311,7 @@ Modell entsprechend modifiziert werden, worauf sich ein neuer Zyklus aus
 Kalibrierung/Validierung und ggf. neuer Datenbeschaffung anschlie\3t.
 
 Ein Spezialfall der Validierung stellt der
-sogenannte \bfblue{Back-Test} dar, bei welchem zum selben Sachverhalt
+sogenannte \bfdef{Back-Test} dar, bei welchem zum selben Sachverhalt
 Test-Daten (Stichproben) f\"ur mehrere Zeitpunkte bzw. Zeitr\"aume
 vorliegen. Nur ein Teil dieser Daten wird zur Kalibrierung verwendet,
 der andere zur Validierung. 
@@ -331,12 +331,12 @@ verwenden.
 \section{\label{sec:spez}Modellspezifikation}
 %######################################
 
-Hier und im Rest dieses Kapitels werden \bfblue{lineare
+Hier und im Rest dieses Kapitels werden \bfdef{lineare
 Eingleichungsmodelle} mit einer oder mehreren exogenen Variablen
 bzw. quasilineare Modelle betrachtet. Zwar sind viele Aussagen auch auf nichtlineare Modelle
 anwendbar, diese werden aber hier nicht explizit betrachtet. 
 
-Als \bfblue{Modellspezifikation} bezeichnet man die Gesamtheit aller
+Als \bfdef{Modellspezifikation} bezeichnet man die Gesamtheit aller
 Bedingungen, welche das lineare Modell~\refkl{oekonLin}, also
 \bdm
 Y\left(\vec{x}, \vec{\beta}\right)
@@ -386,8 +386,8 @@ In diesem Modell ist die Farbe eine irrelevante Variable, w\"ahrend
 das Herstellungsjahr als relevante Variable fehlt: Neuere  Autos
 verbrauchen unter \emph{ceteris paribus} - Bedingungen, also bei
 gleicher Leistung, gleichem Gewicht und gleicher Kraftstoffart,  tendenziell 
-weniger. Die Tatsache, dass eine \bfblue{nominalskalierte} bzw. 
-\bfblue{qualitative} Variable (die
+weniger. Die Tatsache, dass eine \bfdef{nominalskalierte} bzw. 
+\bfdef{qualitative} Variable (die
 Kraftstoffart mit den Auspr\"agungen Benzin und Diesel)
 auftritt, hat hingegen auf die Spezifikation keine negative
 Auswirkung, da man sie durch eine Pseudo-Kardinalskalierung (0=Benzin,
@@ -678,7 +678,7 @@ St\"orgr\"o\3en (links)
 Sind die Spezifikationsbedingungen 2 und 3 erf\"ullt, so haben die
 unbestimmten Anteile die sogenannte \textit{i.i.d-Eigenschaft}:
 
-\maintext{Zufallsgr\"o\3en haben die \bfblue{i.i.d-Eigenschaft}, wenn
+\maintext{Zufallsgr\"o\3en haben die \bfdef{i.i.d-Eigenschaft}, wenn
 sie unabh\"angig voneinander sind (\textit{\underline{i}ndependent})
 und eine identische Verteilung aufweisen
 (\textit{\underline{i}dentically \underline{d}istributed}).
@@ -730,7 +730,7 @@ Anstiegsparameter automatisch auch in $y$ ber\"ucksichtigt ist.
 Jede exogene Variable $x_j$ muss eingest\"andige Information
 liefern, darf also nicht f\"ur alle Datens\"atze als Linearkombination
 anderer exogener Variablen darstellbar sein. $x_k$ w\"are
-beispielsweise dann \bfblue{multikolinear} zu allen $x_j, j\neq k$, wenn sich ihre
+beispielsweise dann \bfdef{multikolinear} zu allen $x_j, j\neq k$, wenn sich ihre
 Werte $x_{ik}$ f\"ur \emph{alle} Datens\"atze $i$ als
 Linearkombination der anderen exogenen Variablen schreiben lie\3en,
 also
@@ -810,7 +810,7 @@ schematisch herausfinden?}
 %######################################
 Alle drei Kategorien von Spezifikationen (Modellspezifikation,
 statistische Spezifikation und Datenspezifikation) bezeichnet man
-zusammen als \bfblue{Gau\3-Markow-Annahmen}. Wenn im Folgenden nichts
+zusammen als \bfdef{Gau\3-Markow-Annahmen}. Wenn im Folgenden nichts
 weiter gesagt wird, wird angenommen, dass alle Gau\3-Markow-Annahmen
 erf\"ullt sind.
 
@@ -863,17 +863,17 @@ letztere nur minimiert werden. Darauf begr\"unden die zwei
 wichtigsten Methoden zur Modellkalibrierung:
 \bi
 \item
-Bei der \bfblue{Methode der
+Bei der \bfdef{Methode der
 kleinsten Fehlerquadrate},
 englisch auch als \textit{Least Squares} (LQ)-Methode
- bzw. \bfblue{Least Squared Errors (OLS)}-Methode
-bzw. \bfblue{Regressionsmethode} bezeichnet, werden, wie der Name
+ bzw. \bfdef{Least Squared Errors (OLS)}-Methode
+bzw. \bfdef{Regressionsmethode} bezeichnet, werden, wie der Name
 schon sagt, die Fehlerquadratsummen bez\"uglich der Modellparameter
 minimiert. 
-\item Bei der \bfblue{Maximum-Likelihood (ML-) Methode} wird 
+\item Bei der \bfdef{Maximum-Likelihood (ML-) Methode} wird 
 in Abh\"angigkeit der Parameter die Wahrscheinlichkeit daf\"ur
 bestimmt, dass das Modell alle Beobachtungen voraussagt und diese
-Wahrscheinlichkeitsfunktion, auch \bfblue{Likelihoodfunktion} genannt,
+Wahrscheinlichkeitsfunktion, auch \bfdef{Likelihoodfunktion} genannt,
 bez\"uglich der Parameter maximiert.
 \ei
 Beide Methoden stehen zueinander in Beziehung.\footnote{Sind die vier
@@ -968,17 +968,17 @@ ist nur in Ausnahmef\"allen m\"oglich. Da die quadratische Form aber
 meist zu ``gutm\"utigen'' Nichtlinearit\"aten f\"uhrt, ist  eine
 numerische Nullstellensuche, beispielsweise  durch das
 sp\"ater im Abschnitt~\ref{sec:discrAusw} vorgestellte 
-\bfblue{Newton-Raphson-Verfahren}, meist problemlos m\"oglich.
+\bfdef{Newton-Raphson-Verfahren}, meist problemlos m\"oglich.
 
  Mit Hilfe der dadurch minimierten Fehlerquadratsumme $S\sub{min}$ 
  l\"asst sich anschlie\3end auch die St\"arke des
-stochastischen Beitrags, d.h. die \bfblue{Residualvarianz} $\sigma^2_{\epsilon}$ absch\"atzen:
+stochastischen Beitrags, d.h. die \bfdef{Residualvarianz} $\sigma^2_{\epsilon}$ absch\"atzen:
 \be
 \label{sigmaR}
 \hatsigeps^2=\frac{S(\hatvecbeta)}{n-J}=\frac{S\sub{min}}{n-J}
 \ee
 und damit auch ein Ma\3 f\"ur die G\"ute des Modells gewinnen: 
- Je n\"aher das (deskriptive) \bfblue{Bestimmtheitsma\3} 
+ Je n\"aher das (deskriptive) \bfdef{Bestimmtheitsma\3} 
 \be
 \label{Bmass}
 B=R^2=\frac{s_{\hat{y}}^2}{s_{y}^2}
@@ -986,7 +986,7 @@ B=R^2=\frac{s_{\hat{y}}^2}{s_{y}^2}
 s_{\epsilon}^2=\frac{1}{n}\sum\limits_{i=1}^n (\hat{y}_i-\bar{y})^2,\quad
 s_y^2=\frac{1}{n}\sum\limits_{i=1}^n (y_i-\bar{y})^2
 \ee
-bzw. das \bfblue{Korrigierte Bestimmtheitsma\3}\footnote{Eigentlich
+bzw. das \bfdef{Korrigierte Bestimmtheitsma\3}\footnote{Eigentlich
 ist dies die relevante Definition, da es, im gegensatz zu $B$, auf
 erwartungstreuen Sch\"atzern beruht. H\"aufig
 wird jedoch das einfache  deskriptive Bestimmtheitsma\3 $B$ verwendet.}
@@ -1336,7 +1336,7 @@ bei der $i$-ten Messung an.
 \item $\vec{\beta}$ ist ein Spaltenvektor mit $J+1$ Elementen;
 $\beta_j$ mit $j=0,1, ..., J$ gibt
 den Wert des $j$-ten Parameters an.
-\item Die \bfblue{Datenmatrix} $\m{X}$ ist eine $n\times (J+1)$-Matrix.
+\item Die \bfdef{Datenmatrix} $\m{X}$ ist eine $n\times (J+1)$-Matrix.
  Das Element $x_{ij}$
 gibt den Wert der $j$-ten exogenen Variablen bei der $i$-ten Messung
 an. Da die Pseudovariable $x_0=1$, haben automatisch auch deren
@@ -1626,7 +1626,7 @@ wichtigen Feststellung (vgl. auch Abschnitt~\ref{sec:spez}):
 
 \maintext{Vernachl\"assigt man in einem linearen 
 \"okonometrischen Modell  relevante erkl\"arende Variable, ist das
-Modell \bfblue{fehlspezifiziert} und
+Modell \bfdef{fehlspezifiziert} und
 die Modellkalibrierung durch lineare Regression oder der
 Maximum-Likelihood-Methode f\"uhrt zu systematischen Fehlern. Dies
 resultiert in falschen Schlussfolgerungen
@@ -1638,7 +1638,7 @@ Variable hingegen verschlechtert zwar die Aussagesch\"arfe,
 verf\"alscht das Ergebnis aber wenigstens nicht.}
 
 Dieser scheinbare Widerspruch entspricht einer der beiden Varianten des
-\bfblue{Simpson'schen Paradoxes}:
+\bfdef{Simpson'schen Paradoxes}:
 \bi
 \item eine zus\"atzliche
 Variable im Modell kann den Effekt einer bereits vorhandenen Variablen umdrehen oder
@@ -1728,15 +1728,15 @@ also korrekt spezifiziert ist). Damit erf\"ullt der OLS-Sch\"atzer das
 wichtige Kriterium der \emph{Unverzerrtheit}:
 
 \maintext{Eine notwendige Bedingung an alle sinnvoll verwendbaren
-Sch\"atzer ist deren Unverzerrtheit. Ein \bfblue{unverzerrter}
-bzw. \bfblue{erwartungstreuer}  Sch\"atzer
+Sch\"atzer ist deren Unverzerrtheit. Ein \bfdef{unverzerrter}
+bzw. \bfdef{erwartungstreuer}  Sch\"atzer
 liefert ``im Mittel'' den wahren Wert. Der OLS-Sch\"atzer linearer
 oder quasilinearer Modelle ist erwartungstreu.}
 
 %#############################
 \subsection{\label{sec:linVar}Varianzen und Kovarianzen der OLS-Sch\"atzer}
 %#############################
-Es soll nun die allgemeine \bfblue{Varianz-Kovarianz-Matrix}
+Es soll nun die allgemeine \bfdef{Varianz-Kovarianz-Matrix}
 $\m{V}=\m{V}_{\hatvecbeta}$ der Parametersch\"atzer
 mit den Elementen
 \be
@@ -1754,7 +1754,7 @@ Koeffizienten $k\neq j$.
 \ei
 Anhand der in Abschnitt~\ref{sec:matrixMult} zusammengefassten
 Definitionen sieht man, dass man die Varianz-Kovarianz-Matrix kompakt
-als \bfblue{Tensorprodukt} bzw \bfblue{dyadisches Produkt} der Abweichungen der Sch\"atzer vom wahren
+als \bfdef{Tensorprodukt} bzw \bfdef{dyadisches Produkt} der Abweichungen der Sch\"atzer vom wahren
 Wert schreiben kann:
 \be
 \label{VbetaTensor}
@@ -1821,7 +1821,7 @@ exogenen Variablen ab, hingegen \emph{nicht} von den gemessenen Werten
 der endogenen Variable. Da die Residualvarianz ihrerseits aber gesch\"atzt
 werden muss (N\"aheres siehe bei der Diskussion von
 Formel~\refkl{hatsigeps2}), kennt man die wahre Varianz-Kovarianz-Matrix nicht, sondern nur
-die \bfblue{gesch\"atzte} Varianz-Kovarianz-Matrix\footnote{Man beachte, dass
+die \bfdef{gesch\"atzte} Varianz-Kovarianz-Matrix\footnote{Man beachte, dass
   sowohl der Parameter gesch\"atzt 
   wird (Dach \"uber $\beta_j$), als auch dessen Varianz (Dach \"uber
   $V$).}
@@ -1833,31 +1833,31 @@ Hier ist $S\sub{min}=S(\hatvecbeta)$ die bei der Parametersch\"atzung
 minimierte Fehlerquadratsumme (vgl. auch Formel~\refkl{Smin}).
 Offensichtlich ist ein erwartungstreuer Sch\"atzer umso besser, je
 geringer seine Varianz ist. Der ``beste'' Sch\"atzer, also der mit der
-kleinsten Varianz, wird als \bfblue{effizient} bezeichnet. Im
+kleinsten Varianz, wird als \bfdef{effizient} bezeichnet. Im
 Allgemeinen h\"angt die Form des effizienten Sch\"atzers sowohl vom
 deterministischen Modell als auch von den statistischen Eigenschaften
 der Zufallsanteile ab. F\"ur die OLS-Sch\"atzer kann man (schwierig)
-folgendes \bfblue{Gau\3-Markow-Theorem} zeigen:
+folgendes \bfdef{Gau\3-Markow-Theorem} zeigen:
 
 \maintext{F\"ur quasilineare Modelle mit i.i.d. normalverteilten
 additiven Zufallsvariablen ist der OLS-Sch\"atzer
-\bfblue{effektiv}, also unter allen \emph{erwartungstreuen}
+\bfdef{effektiv}, also unter allen \emph{erwartungstreuen}
 Sch\"atzern der mit der kleinsten Varianz. Dies wird auch als
-\bfblue{BUE-Eigenschaft} (\emph{best unbiased estimator}) bezeichnet. 
+\bfdef{BUE-Eigenschaft} (\emph{best unbiased estimator}) bezeichnet. 
 Ferner ist bei additiven
 i.i.d. Zufallsanteilen mit beliebiger Verteilung der OLS-Sch\"atzer
 effektiv unter allen \emph{linearen Sch\"atzern}.  Dies wird auch als 
-\bfblue{BLUE-Eigenschaft} (\emph{best linear unbiased estimator}) bezeichnet. 
+\bfdef{BLUE-Eigenschaft} (\emph{best linear unbiased estimator}) bezeichnet. 
 }
 Ein linearer Sch\"atzer ist dabei, wie der OLS-Sch\"atzer, in den
 Zufallsanteilen linear.
 
 Die bei der Sch\"atzung der Kovarianzmatrix zu
  invertierende Matrix $\m{X}\tr\m{X}/\hatsigeps^2$ bezeichnet man auch als 
-\bfblue{Fisher'sche Informationsmatrix}. Dass der OLS-Sch\"atzer die
+\bfdef{Fisher'sche Informationsmatrix}. Dass der OLS-Sch\"atzer die
 BLUE-Eigenschaft hat, folgt aus dem allgemeinen mathematischen Satz,
 dass die minimale Streuung der Sch\"atzer durch die
-\bfblue{Kram{\'e}r-Rhao-Schranke} $\hatsigeps^2(\m{X}\tr\m{X})^{-1}$,
+\bfdef{Kram{\'e}r-Rhao-Schranke} $\hatsigeps^2(\m{X}\tr\m{X})^{-1}$,
 also genau durch~\refkl{VbetaEst}, nach
 unten beschr\"ankt ist.
 
@@ -1961,7 +1961,7 @@ f_{\hatvecbeta}(\Delta \hatvecbeta)
 Sind, wie in der Praxis, die wahren Werte von $\vec{\beta}$ nicht
 bekannt, aber (entgegen der Praxis) die wahre Varianz $\sigeps^2$ der
 St\"orvariablen, so stellt \refkl{betaDensity}, nun in Abh\"angigkeit
-von $\beta$ anstelle $\hat{\beta}$, die \bfblue{Likelihoodfunktion}
+von $\beta$ anstelle $\hat{\beta}$, die \bfdef{Likelihoodfunktion}
 der wahren Werte von $\vec{\beta}$ dar.\footnote{Man w\"urde diese
 Verteilung mit Hilfe der im n\"achsten Kapitel behandelten 
 \emph{Maximum-Likelihood-Methode} bekommen.} 
@@ -2030,7 +2030,7 @@ parameterlinearen Modellen keine h\"oheren Ordnungen gibt):
 \label{SSEtaylor}
 S(\vecbeta)=S\sub{min}+\frac{1}{2}(\Delta \hatvecbeta)\tr \m{H} \Delta \hatvecbeta
 \ee
-mit der symmetrischen Matrix der zweiten Ableitungen (\bfblue{Hessematrix}) 
+mit der symmetrischen Matrix der zweiten Ableitungen (\bfdef{Hessematrix}) 
 \be
 \label{HesseS}
 \left(\m{H}\right)_{ij}=\left[\ablpartmix{S(\vecbeta)}{\beta_i}{\beta_j}\right]_{\vecbeta=\hatvecbeta}.
@@ -2170,7 +2170,7 @@ bzw. vollst\"andig kolinear sind. Andernfalls ist ihre Korrelation $r_{12}=1$ od
 und ihre Varianzen 
  sind wegen der Nenner $(1-r^2_{12})$ nicht definiert. H\"angen die
 unabh\"angigen Variablen $x_1$ und $x_2$ nicht exakt aber doch
-weitgehend voneinander ab, was auch als \bfblue{partielle Kolinearit\"at}
+weitgehend voneinander ab, was auch als \bfdef{partielle Kolinearit\"at}
 bezeochnet wird, wird die Varianz 
 $V (\hat{\beta}_j)$ f\"ur $j=1$ oder 2 wegen des Nenners $(1-r^2_{12})$ 
 sehr gro\3, was zu gro\3en
@@ -2207,22 +2207,22 @@ zu kommen, sind die bereits aus  der
 Statistik II} bekannten Konfidenzintervalle und statistischen Tests:
 
 \bi
-\item Bei der \bfblue{Intervallsch\"atzung} eines Parameters wird um einen gesch\"atzten
-Parameterwert $\hat{\beta}_j$ ein \bfblue{Konfidenzintervall} bestimmt, 
+\item Bei der \bfdef{Intervallsch\"atzung} eines Parameters wird um einen gesch\"atzten
+Parameterwert $\hat{\beta}_j$ ein \bfdef{Konfidenzintervall} bestimmt, 
 in dem sich der wahre Wert $\beta_j$
 mit einer gewissen Sicherheit $1-\alpha$ befindet
 (Abschnitt~\ref{sec:KI-single}). Hierbei wird die 
-\bfblue{Fehlerwahrscheinlichkeit} $\alpha$ meist mit $\alpha=5\%$ oder
+\bfdef{Fehlerwahrscheinlichkeit} $\alpha$ meist mit $\alpha=5\%$ oder
 1\% angenommen. Je kleiner $\alpha$, desto sicherer, aber auch desto
 unsch\"arfer werden die Aussagen. Das Konzept kann man auch auf das
 Sch\"atzen von Parameterkombinationen sowie auf simultanes (verbundenes)
  Sch\"atzen mehrerer Parameter bzw. Parameterkombinationen 
-durch  \bfblue{Konfidenzregionen}
+durch  \bfdef{Konfidenzregionen}
 erweitern (Abschnitt~\ref{sec:KI-multi}).
 
-\item Beim \bfblue{statistischen Test} 
+\item Beim \bfdef{statistischen Test} 
  wird eine gewisse
-\bfblue{Nullhypothese} \"uber Parameter (z.B. $\beta_1=\beta_{10}$
+\bfdef{Nullhypothese} \"uber Parameter (z.B. $\beta_1=\beta_{10}$
 oder  $\beta_2<0$) oder auch Parameterkombinationen
 (z.B. $\beta_1/\beta_2<1$)  
 getroffen und getestet, ob man diese bei einer
@@ -2237,7 +2237,7 @@ h\"oher $\alpha$, desto h\"aufiger erreicht man die Ablehnung, desto
 unsicherer ist jedoch die damit verbundene Aussage. Eine direkte
 quantitative Formulierung  \"uber die St\"arke der Aussage ist
 m\"oglich, indem man die Argumentation umkehrt und den
-\bfblue{$p$-Wert} als die minimakle Fehlerwahrsacheinlichkeit
+\bfdef{$p$-Wert} als die minimakle Fehlerwahrsacheinlichkeit
 bestimmt, bei der $H_0$ gerade noch abgelehnt werden
 kann. Schlie\3lich  ist eine
 Erweiterung auf kompliziertere Nullhypothesen sowie auf simultane
@@ -2372,13 +2372,13 @@ Datenpunkten ist der wahrscheinlichste Wert von
 $\hat{\sigma}_{\hat{\beta}}$ sogar gleich null). Durch die
 resultierenden kleinen Nenner sind in der Gr\"o\3e
 $T$ sehr gro\3e oder sehr kleinen Werte weitaus wahrscheinlicher als
-bei der Gau\3verteilung, was man auch als \bfblue{fat tails}
+bei der Gau\3verteilung, was man auch als \bfdef{fat tails}
 bezeichnet
  (siehe die gr\"une Dichtefunktion auf
 der rechten Seite der Grafik). Insbesondere gehorcht $T$ damit, 
 im Gegensatz zu $\hat{\beta}$, keiner Gau\3verteilung, sondern
 vielmehr einer
-\bfblue{Student-t-Verteilung}.
+\bfdef{Student-t-Verteilung}.
 }
 \end{figure}
 %#############################
@@ -2409,14 +2409,14 @@ Varianzsch\"atzers in Abschnitt~\ref{sec:hatsigeps} folgt, dass
 $\hatsigeps^2$ effektiv eine Summe aus $n-J-1$ Quadraten von
 unabh\"angigen standardnormalverteilten Zufallsvariablen 
 ist. Eine solche Summe ist, geeignet skaliert,
-\bfblue{Chi-Quadrat-verteilt} mit $n-J-1$
+\bfdef{Chi-Quadrat-verteilt} mit $n-J-1$
 Freiheitsgraden.\footnote{Die $\chi^2$ Verteilung mit $m$
 Freiheitsgraden ist die Verteilung der Summe von $m$ unabh\"angigen
 standardnormalverteilten Zufallsvariablen.}
 Des Weiteren ist der Quotient einer standardnormalverteilten Zufallsgr\"o\3e 
  und der Wurzel aus  einer unabh\"angigen $\chi^2(m)$ verteilten Zufallsgr\"o\3e
 (nach Skalierung der Chi-quadrat verteilten Gr\"o\3e auf den
-Erwartungswert 1) per Definition \bfblue{Student-t-verteilt} mit $m$
+Erwartungswert 1) per Definition \bfdef{Student-t-verteilt} mit $m$
 ``Freiheitsgraden''. Die Skalierungen der Z\"ahler und Nenner (auf
 eine Standardnormalverteilung bzw. auf den Erwartungswert eins) heben sich
 hier gerade weg, so dass die Gr\"o\3e $T$ direkt student-t - verteilt mit
@@ -2455,7 +2455,7 @@ wahren Wert $\beta_j$ vom Sch\"atzwert in Einheiten der gesch\"atzten
 Standardabweichung bei gegebenen
 Messdaten angibt. Da $T$ symmetrisch ist, ist die
 \emph{Wahrscheinlichkeits-Dichte} des Abstandes des Sch\"atzers vom
-wahren Wert gleich der \bfblue{Likelihood-Dichte} (bedingte
+wahren Wert gleich der \bfdef{Likelihood-Dichte} (bedingte
 Wahrscheinlichkeitsdichte) des Abstandes des
 unbekannten wahren Wertes bei gegebenem Sch\"atzer.
 %#############################
@@ -2473,7 +2473,7 @@ und $t^{(2)}_{0.95}$ begrenzt.
 %#############################
 
 Dies begr\"undet die Konfidenzintervalle: Ein
-\bfblue{Konfidenzintervall} f\"ur den
+\bfdef{Konfidenzintervall} f\"ur den
 wahren Parameter $\beta_j$ zur
 Fehlerwahrscheinlichkeit $\alpha$ ist gleich dem um $\hatbeta_j$ symmetrischen
 Intervall, in welchem der wahre Wert $\beta_j$  mit der
@@ -2484,8 +2484,8 @@ Likelihood-Dichte eine Wahrscheinlichkeit (also Fl\"ache unter der
 Kurve) von $\alpha/2$ f\"ur
 ``Ausrei\3er'' zur Verf\"ugung (Abb.~\ref{fig:test-einZweiseitig}). 
 Das Konfidenzintervall wird also durch
-die entsprechenden \bfblue{Quantile} der Student-t Verteilung mit
-$n-J-1$ Freiheitsgraden bestimmt. Die \bfblue{Quantilsfunktion} einer
+die entsprechenden \bfdef{Quantile} der Student-t Verteilung mit
+$n-J-1$ Freiheitsgraden bestimmt. Die \bfdef{Quantilsfunktion} einer
 Verteilungsfunktion gibt das Argument zu einer gegebenen kumulierten 
 Wahrscheinlichkeit an, ist also die \emph{Umkehrfunktion} der
 Verteilungsfunktion (Abb.~\ref{fig:student}). Damit ist das
@@ -2584,8 +2584,8 @@ V\left(\hat{Y}(x)\right) =
 \subsection{\label{sec:test-single}Statistische Tests eines Parameters}
 %#############################
 
-Bei den hier betrachteten \bfblue{Signifikanztests} wird eine
-bestimmte Annahme, die sogenannte \bfblue{Nullhypothese} $H_0$, daraufhin
+Bei den hier betrachteten \bfdef{Signifikanztests} wird eine
+bestimmte Annahme, die sogenannte \bfdef{Nullhypothese} $H_0$, daraufhin
 untersucht, ob sie mit den Messdaten in \"Ubereinklang sein kann oder
 nicht. 
 
@@ -2631,12 +2631,12 @@ erster und zweiter Art bei Signifikanztests.
 \item $H_0$ trifft zu und der Test wird nicht abgelehnt: Richtige Schlussfolgerung
 \item $H_0$ trifft nicht zu und der Test wird abgelehnt: Richtige Schlussfolgerung
 \item $H_0$ trifft zu und der Test wird abgelehnt. Dann hat man einen
-\bfblue{Fehler erster Art} bzw. einen \bfblue{$\alpha$-Fehler}
+\bfdef{Fehler erster Art} bzw. einen \bfdef{$\alpha$-Fehler}
 begangen. Dieser l\"asst sich mit der Fehlerwahrscheinlichkeit
 $\alpha$ (z.B. $\alpha=\unit[5]{\%}$) kontrollieren.
 \item $H_0$ trifft nicht zu und der Test wird nicht abgelehnt. 
 Dann hat man einen
-\bfblue{Fehler zweiter Art} bzw. einen \bfblue{$\beta$-Fehler}
+\bfdef{Fehler zweiter Art} bzw. einen \bfdef{$\beta$-Fehler}
 begangen. Dieser l\"asst sich im Allgemeinen \emph{nicht}
 kontrollieren. Dessen  Wahrscheinlichkeit kann durchaus $1-\alpha$
 erreichen, also z.B. \unit[95]{\%},
@@ -2650,11 +2650,11 @@ demselben Schema:
 \benum
 \item \textbf{Formulierung der Nullhypothese $H_0$:} Dies kann erfolgen als 
 \bi
-\item \bfblue{Punkthypothese bzw. zweiseitiger Test:} $\beta_j=\beta_{j0}$, z.B. $\beta_j=0$, und als
-\item \bfblue{Intervallhypothese bzw. einseitiger Test:} 
+\item \bfdef{Punkthypothese bzw. zweiseitiger Test:} $\beta_j=\beta_{j0}$, z.B. $\beta_j=0$, und als
+\item \bfdef{Intervallhypothese bzw. einseitiger Test:} 
 $\beta_j<\beta_{j0}$, $\beta_j \le \beta_{j0}$, 
 $\beta_j>\beta_{j0}$, $\beta_j \ge \beta_{j0}$,
-\item \bfblue{gekoppelte Nullhypothesen}, z.B. $\beta_1/\beta_2<1$. 
+\item \bfdef{gekoppelte Nullhypothesen}, z.B. $\beta_1/\beta_2<1$. 
 \ei
 Die Nullhypothese wird in Hinblick auf die gew\"unschte Aussage
 getroffen.  Da man $H_0$ nicht ablehnen kann, behauptet man in $H_0$
@@ -2888,7 +2888,7 @@ Interessant ist deshalb eigentlich der \emph{Grenzwert} der
 Fehlerwahrscheinlichkeit, bei dem man einen Test \emph{gerade noch}
 ablehnen kann:
 
-\maintext{Der \bfblue{$p$-Wert} (engl.: \textit{p-value}) ist die
+\maintext{Der \bfdef{$p$-Wert} (engl.: \textit{p-value}) ist die
   Grenz-Fehlerwahrscheinlichkeit, bei der $H_0$ gerade noch abgelehnt
   werden kann:
   \be
@@ -3013,7 +3013,7 @@ Hier wird kurz erl\"autert, warum man den Fehler zweiter Art nicht
 bzw. nicht gleichzeitig mit dem Fehler erster Art kontrollieren
 kann. Dazu definieren wir zun\"achst die G\"utefunktion:
 
-\maintext{Die \bfblue{G\"utefunktion} ist definiert als die 
+\maintext{Die \bfdef{G\"utefunktion} ist definiert als die 
 Ablehnwahrscheinlichkeit des Tests in Abh\"angigkeit des \emph{wahren}
 Parameterwertes $\beta_j$.
 }
@@ -3698,17 +3698,17 @@ Es gibt, von Feinheiten abgesehen, drei Skalierungsarten von
 Merkmalen bzw. Variablen:
 \bi
 \item 
-\bfblue{Metrische} bzw. \bfblue{kardinalskalierte} Variable haben 
+\bfdef{Metrische} bzw. \bfdef{kardinalskalierte} Variable haben 
  Auspr\"agungen (Werte), welche 
 sich addieren und multiplizieren lassen. Dies ist der \"ubliche
 Variablentyp bei Regressionsmodellen. Die Operatoren $+, *, >$ und '='
 (sowie Varianten wie $-, /, \le$ und $\neq$) sind definiert.
-\item \bfblue{Ordinale} oder \bfblue{ordinalskalierten}
+\item \bfdef{Ordinale} oder \bfdef{ordinalskalierten}
 Variablen haben Werte, welche  sich in eine Rangfolge anordnen lassen
  (z.B. Schulnoten): Die Operatoren $>$ und =  sind definiert
 \item 
-Bei \bfblue{Qualitativen} bzw. \bfblue{nominalskalierten} bzw
-\bfblue{kategorial skalierten} Variablen
+Bei \bfdef{Qualitativen} bzw. \bfdef{nominalskalierten} bzw
+\bfdef{kategorial skalierten} Variablen
 hingegen kann man nur sagen, ob sie denselben  oder unterschiedliche
 Wert haben wie eine andere qualitative Variable: Nur der Operator '='
 ist definiert. Aus der Definition folgt, dass nichtmetrische` Variable immer
@@ -3719,14 +3719,14 @@ metrisch (und kontinuierlich bzw. quasikontinuierlich) sein muss,
 k\"onnen die exogenen Variablen auch einem anderen Wertetyp
 angeh\"oren. Da in diesen Modellen jedoch auch exogene Variable multipliziert und
 addiert werden, m\"ussen solche Variable durch \emph{Platzhalter-} bzw
-\bfblue{Dummyvariablen}  ersetzt werden. 
+\bfdef{Dummyvariablen}  ersetzt werden. 
 
 Damit der Charakter der Werte solcher
 Variablen (nur '=' bzw. $\neq$ ist definiert) nicht verf\"alscht wird,
 kommen ausschlie\3lich bin\"arwertige (\emph{dichotome}) Dummyvariable zum
 Einsatz, die typischerweise die Werte 1 (``trifft zu'') und 0 (``trifft
 nicht zu'') annehmen k\"onnen. Ferner sollte das Merkmal nicht
-\bfblue{h\"aufbar} sein, also immer genau einen Wert annehmen: Das
+\bfdef{h\"aufbar} sein, also immer genau einen Wert annehmen: Das
 Merkmal ``Schulabschluss'' ist beispielsweise h\"aufbar (und ordinalskaliert),
 w\"ahrend das Merkmal ``h\"ochster Schulabschluss'' 
 nichth\"aufbar ist. 
@@ -3740,7 +3740,7 @@ dichotome exogene Dummyvariable modelliert.
 }
 
 \maintext{Hat man ausschlie\3lich nichtmetrische exogene Variable, bezeichnet
-man die Regressionsanalyse auch als \bfblue{Varianzanalyse}. Die
+man die Regressionsanalyse auch als \bfdef{Varianzanalyse}. Die
 exogenen Variablen werden dann auch als \emph{Faktoren} und deren
 Auspr\"agungen als \emph{Faktorstufen} bezeichnet.} 
 
@@ -3827,7 +3827,7 @@ Y^*(\vec{x})= \hat{y}^*(\vec{x}) +\epsilon = \vec{\beta}\tr \vec{x}+\epsilon,
 }
 Au\3erdem
 wird nun der Zufallsanteil der Zwischenvariable, die sogenannte
-\bfblue{latente Variable}, als logistisch
+\bfdef{latente Variable}, als logistisch
 verteilt statt standardnormalverteilt angenommen. Die logistische
 Verteilung ist dabei durch die Verteilungsfunktion
 \be
@@ -3879,7 +3879,7 @@ Also:
   Anteil $\hat{y}^*=\vec{\beta}\tr\vec{x}$ der unbeobachtbaren
   Zwischengr\"o\3e das logarithmierte Wahrscheinlichkeitsverh\"altnis
   $ln(P_1/(1-P_1))=\ln(P(Y=1)/P(Y=0))$, oder auf englisch die
-  \bfblue{Log-Odds-Ratio}, an.
+  \bfdef{Log-Odds-Ratio}, an.
 }
 Ordnet man alle Stichprobenelemente mit denselben Werten der exogenen
 Variablen (Klasse $k$) einer Klasse $k$ zu, oder hat man a priori
@@ -3899,7 +3899,7 @@ nicht anwendbar, wenn eine beobachtete relative H\"aufigkeit
 $f_{1k}=0$ oder $f_{1k}=1$ ist, da dann $y_k \to -\infty$ bzw. $y_k
 \to +\infty$ geht. Die korrekte und auch in den Statistikprogrammen
 angewandte Sch\"atzung wird mit der
-\bfblue{Maximum-Likelihood-Methode}
+\bfdef{Maximum-Likelihood-Methode}
 (Abschnitt~\ref{sec:maxlikelihood}) durchgef\"uhrt.  Die Unterschiede
 der beiden Sch\"atz\-me\-tho\-den und die Unzul\"anglichkeit der ``naiven''
 OLS-Methode werden in Gegenbeispiel auf Seite~\pageref{sec:logOLS} gezeigt.
@@ -3932,18 +3932,18 @@ In Kapitel~\ref{sec:choice} zeigen wir sogar \"Aquivalenzen zu
 Modellen der diskreten Wahltheorie:
 
 \maintext{Die mit der Maximum-Likelihood-Methode gesch\"atzte logistische Regression ist
-  \"aquivalent zum \bfblue{binomialen Logitmodell}, denn die Differenz
+  \"aquivalent zum \bfdef{binomialen Logitmodell}, denn die Differenz
   der unabh\"angigen
   gumbelverteilten Zufallsnutzen dieses Modells ist logistisch
   verteilt. Ist der latente Anteil $\epsilon$ der Zwischenvariablen 
   wie in der linearen Regression normalverteilt, ist die logistische
-  Regression identisch zum \bfblue{binomialen Probitmodell}, denn
+  Regression identisch zum \bfdef{binomialen Probitmodell}, denn
   Differenzen gau\3verteilter Zufallsvariablen sind gau\3verteilt.
 }
 
 \subsubsection{Mehr als zwei Alternativen und Kalibrierung}
 
-Unter den Namen \bfblue{multinomiale logistische Regression} wird das
+Unter den Namen \bfdef{multinomiale logistische Regression} wird das
 logistische Regressionsmodell auf mehr als zwei Auspr\"agungen der
 nominalskalierten bzw kategorialen exogenen endogenen Variablen $Y$
 verallgemeinert. Bei $I$ Auspr\"agungen bekommt man $I-1$
@@ -4125,7 +4125,7 @@ Nullhypothese gilt
 \label{pb}
 p_b=P(E_b|H_0^*) =P(E_b|\beta=\beta_0).
 \ee
-Die normale bzw.  \bfblue{frequentistische} induktive Statistik macht also aus einer
+Die normale bzw.  \bfdef{frequentistische} induktive Statistik macht also aus einer
 bedingten Wahr\-schein\-lich\-keit der Art 
 \bdm
 \text{Prob(Messergebnis$|H_0^*$)}
@@ -4139,7 +4139,7 @@ es werden also bei den
 Bedingungen vertauscht}. Aussagen \"uber die Wahr\-schein\-lich\-keiten bei
 derartiger Vertauschung macht der Satz von Bayes,
 den es also eigentlich anzuwenden gilt. Dies ist die
-Grundlage der \bfblue{Bayes'schen Statistik}. 
+Grundlage der \bfdef{Bayes'schen Statistik}. 
 
 
 \subsubsection*{Das grundlegende Vorgehen der Bayes'schen Inferenz}
@@ -4147,11 +4147,11 @@ Grundlage der \bfblue{Bayes'schen Statistik}.
 Warum wendet man dann den Satz von Bayes nicht immer in der induktiven
 Statistik an? Der Knackpunkt seiner Anwendung ist, dass man zur
 Berechnung der  eigentlich gesuchten bedingten
-\bfblue{A-Posteriori\--Wahr\-schein\-lich\-keit} f\"ur $H_0$, also die
+\bfdef{A-Posteriori\--Wahr\-schein\-lich\-keit} f\"ur $H_0$, also die
 Wahr\-schein\-lich\-keit nach Ber\"ucksichtigung der Information durch die
 Messung,\footnote{\emph{A-posteriori} (lat.) bedeutet ``im
   Nachhinein''.} die
-\bfblue{A-Priori-Wahr\-schein\-lich\-keit} $P(H_0)$, also die unbedingte
+\bfdef{A-Priori-Wahr\-schein\-lich\-keit} $P(H_0)$, also die unbedingte
 Wahr\-schein\-lich\-keit vor der Messung,\footnote{\emph{A-priori} (lat.)
   bedeutet ``von vorneherein'' oder ``davor''.} kennen muss, was im
 Allgemeinen zus\"atzliche Annahmen impliziert und die ganze
@@ -4197,7 +4197,7 @@ $P(B)$ wie folgt ab:
 P(H_0|B)=\frac{P(B \cap H_0)}{P(B)}=\frac{P(H_0)P(B|H_0)}{P(B)}.
 }
 %
-Dies ist die grundlegende Gleichung der \bfblue{Bayes'schen Inferenz},
+Dies ist die grundlegende Gleichung der \bfdef{Bayes'schen Inferenz},
 also der auf den Satz von Bayes beruhenden induktiven Statistik. Es
 sei daran erinnert, dass~\refkl{BayesAllg} nur ausgerechnet werden kann,
 wenn die A-Priori-Verteilung der zu sch\"atzenden Gr\"o\3e bekannt
@@ -4220,7 +4220,7 @@ sowie $P(B)$ endlich sind.
 
 Im weiten Netz gibt es von
 ``Bayes-Revolution\"aren'' oft sehr drastisch geschriebene Artikel,
-welche den Untergang der klassischen \bfblue{frequentistischen
+welche den Untergang der klassischen \bfdef{frequentistischen
   Statistik}, d.h. den Inhalt aller bisherigen Abschnitte dieses
 Kapitels und insbesondere des $p$-Wertes proklamieren. Typischerweise
 werden hier sehr spezielle A-Priori-Verteilungen angenommen, welche in
@@ -5056,7 +5056,7 @@ Multiplikation quadratischer Matrizen:
 \edm
 
 \item
-Die Matrixinverse $\m{A}^{-1}$ einer \bfblue{regul\"aren}, also 
+Die Matrixinverse $\m{A}^{-1}$ einer \bfdef{regul\"aren}, also 
 quadratischen und invertierbaren Matrix $\m{A}$ ist
 definiert durch die Matrixmultiplikation:
 \bdm

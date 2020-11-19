@@ -6,8 +6,8 @@
 %#############################################
 
 
-\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout]{beamer}
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}
@@ -20,45 +20,107 @@
 \begin{document}
 
 
+\section{5. Bayesian Statistics}
+
+%###################################################
+\frame{  %title layout
+%###################################################
+\placebox{0.57}{0.36}{
+  \figSimple{1.20\textwidth}{figsRegr/mapMatching.png}}
+
+\makePale{0.50}{0.50}{0.55}{1.20}{1.50}
+
+\placebox{0.31}{0.80}{\parbox{0.6\textwidth}{\mysubheading{
+Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference
+}}}
+
+\placebox{0.35}{0.46}{\parbox{0.6\textwidth}{
+\bi
+\item[5.1] Introduction: Frequentist vs. Bayesian inference
+\item[5.2] General Methodics
+\bi
+\item[5.2.1] Continuous parameter
+\item[5.2.2] Discrete parameter
+\ei
+\item[5.3] Example I: Bayesian Inference\\for a Parameter
+    with Gaussian Prior Distribution
+\item[5.4] Example II: Map matching
+\ei
+}}
+
+\placebox{0.50}{0.90}{\myheading{
+ Lectures 03 and 04: Classical Inferential Statistics}}
+}
+
 
 
 %###################################################
 
 
-\subsection{2.5. Frequentist vs. Bayesian inference}
+\subsection*{5.1 Introduction}
 
 %###################################################
-\frame{\frametitle{2.5. 
-Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference}
+\frame{\frametitle{5.1 Introduction: Frequentist vs. Bayesian inference}
 %###################################################
 \bi
-\item The classic \bfblue{frequentist's} approach calculates the
-  probability that the test function is further away from $H_0$ (in
+\item The classic \bfdef{frequentist's} approach calculates the
+  probability that the test function $T$ is further away from $H_0$,
+  (in
   the extreme range $E\sub{data}$)  than the data realisation
   provided $H_0$ is marginally true: 
 \bdm
-p=P(E\sub{data}|H^*_0) \ge P(E\sub{data}|H_0)
+p=P(T\in E\sub{data}|H^*_0) \ge P(T\in E\sub{data}|H_0)
 \edm
 
-\item The \bfblue{Bayesian inference} tries to caculate what is
-  actually interesting: The probability of $H_0$ given the data. If
-  the unconditional or \emph{a-priori probabilities} were known, this
+\item The \bfdef{Bayesian inference} tries to caculate what is
+  actually interesting: The probability of $H_0$ given the data. 
+
+\item If
+  the unconditional or \bfdef{a-priori probabilities} were known, this
   is easy using 
-  \bfblue{Bayes' theorem}
+  \bfdef{Bayes' theorem} (abbreviating $T\in E\sub{data}$ as $E\sub{data}$)
 
 \maindm{
 P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
 \le p \, \frac{P(H_0)}{P(E\sub{data})}
 }
 
-\item Obviously, this only makes sense for interval null hypotheses
-  since, for a point hypothesis $\beta_0$ for a real-valued parameter
-  $\beta$, we have exactly $P(H_0|E\sub{data})=P(H_0)=0$.
+\item For real-valued parameters, this obviously makes only sense for
+  interval null hypotheses 
+  since, for a point null hypothesis, we have exactly
+  $P(H_0|E\sub{data})=P(H_0)=0$. 
 \ei
 }
 
+\subsection*{5.2 General Methodology}
+
 %###################################################
-\frame{\frametitle{Calculation for a Gaussian prior distriution of a parameter $\beta$}
+\frame{\frametitle{5.2 General Methodology}
+%###################################################
+}
+
+
+\subsection*{5.2.1 Continuous parameter}
+
+%###################################################
+\frame{\frametitle{5.2.1 Continuous parameter}
+%###################################################
+}
+
+\subsection*{5.2.2 Discrete parameter}
+
+%###################################################
+\frame{\frametitle{5.2.2 Discrete parameter}
+%###################################################
+}
+
+
+
+\subsection*{5.3 Gaussian Prior Distribution}
+
+%###################################################
+\frame{\frametitle{5.3 Example I: Bayesian Analysis for a Parameter
+    with Gaussian Prior Distribution} 
 %###################################################
 {\small
 \bi
@@ -163,9 +225,14 @@ $P(H_0)$)},\\[1em]
 
 }
 
+
+\subsection*{5.4 Bayesian Inference for a Binary-Valued Parameter}
+
+
 %###################################################
-\frame{\frametitle{Bayesian inference for a binary-valued parameter:\\
-    Map matching for $P(H_0)=P(\text{freeway})=0.8$}
+\frame{\frametitle{5.4 Example II: Bayesian Inference
+for a Binary-Valued Parameter:\\
+    Map matching}% for $P(H_0)=P(\text{freeway})=0.8$}
 %###################################################
 \placebox[center]{0.35}{0.45}
 {\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
@@ -211,7 +278,7 @@ model chaining with an unobservable intermediate continuous
   Y(\vec{x})= \twoCases{1}{Y^*(\vec{x})> 0}{0}{\text{otherwise,}}
   Y^*(\vec{x})= \hat{y}^*(\vec{x})+\epsilon=\vec{\beta}\tr \vec{x}+\epsilon
 }
-where $\epsilon$ obeys the \bfblue{logistic distribution} with
+where $\epsilon$ obeys the \bfdef{logistic distribution} with
 $F_{\epsilon}(x)=e^x/(e^x+1)$
 
 \pause \item Probability $P_1$ for the outcome $Y=1$ for symmetric
@@ -222,7 +289,7 @@ distributions:
 \edm
 
 \pause \item Formally, this is a normal linear regression model for
-the log of the \bfblue{odds ratio} $P_1/P_0=P1/(1-P_1)$:
+the log of the \bfdef{odds ratio} $P_1/P_0=P1/(1-P_1)$:
 \bdm
 \hat{y}^*(\vec{x})=\vec{\beta}\tr \vec{x} = \ln\left(\frac{P_1}{P_0}\right)
 \edm

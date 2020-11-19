@@ -503,14 +503,14 @@ Student´s distribution}
 \frame{\frametitle{Significance tests: General four-step procedure}
 %###################################################
 \benum
-\item Formulate a \bfblue{null hypothesis} $H_0$ such that their rejection
+\item Formulate a \bfdef{null hypothesis} $H_0$ such that their rejection
   gives insight, e.g. $\beta_j=\beta_{j0}$ (point hypothesis) or
   $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{\red{One cannot confirm $H_0$}}
-\pause \item Select a \bfblue{test function} or \bfblue{statistics} $T$
+\pause \item Select a \bfdef{test function} or \bfdef{statistics} $T$
 \bi
 \item whose distribution is known provided $H^*_0$, i.e., the
   parameters lie at the margin of $H_0$ (of course, $H^*_0=H_0$ for a point null hypothesis)
-\item which has distinct \bfblue{rejection regions} $R(\alpha)$ which
+\item which has distinct \bfdef{rejection regions} $R(\alpha)$ which
   are reached rarely 
   (with a probability $\le \alpha$) if $H_0$ but more often if
   $H_1=\overline{H_0}$ 
@@ -519,9 +519,9 @@ Student´s distribution}
 \pause \item Evaluate a realisation $t\sub{data}$ of $T$ from the data
 
 \pause \item Check if $t\sub{data} \in R(\alpha)$. If yes, $H_0$ can be
-  rejected at an error probability or \bfblue{significance level}
+  rejected at an error probability or \bfdef{significance level}
   $\alpha$. Otherwise, nothing can be said.
-\pause \item[4a] Alternatively, calculate the \bfblue{$p$-value} as
+\pause \item[4a] Alternatively, calculate the \bfdef{$p$-value} as
 the minimum $\alpha$ for which $H_0$ can be rejected.
 \eenum
 }
@@ -676,13 +676,13 @@ show that, in fact
 {\small
 \bi
 \item We can control the Type I ($\alpha$) error probability
-  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfblue{significance tests}.
+  $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfdef{significance tests}.
 \pause \item Since the Type II ($\beta$) error probability 
   $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
 error type should be formulated as the $\alpha$ error.
 \pause \item Fundamental problem: I want $P(H_0|\text{rejected})$ and
 $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
-\bfblue{Bayesian statistics}
+\bfdef{Bayesian statistics}
 \ei
 }
 }
@@ -704,7 +704,7 @@ $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
 \item If $H_0$ is a point set, $H^*_0=H_0$. If it is an interval,
   replace the unequality operators $<, \le, >, \ge$ by ``='' to obtain $H^*_0$
 \item $H_0$ is rejected if the realisation $t\sub{data}$ is in the red
-  \emph{extreme region} or \bfblue{rejection region}
+  \emph{extreme region} or \bfdef{rejection region}
 \ei
 }
 
@@ -716,7 +716,7 @@ $P(H_0|\overline{\text{rejected}})$, not vice versa $\Rightarrow$
 significance level $\alpha$ (one does not know \emph{how significant}
 the result really is)
 \pause \item Instead, one would like to know the \emph{minimum}
-$\alpha$ for rejection, or the \bfblue{$p$-value}. 
+$\alpha$ for rejection, or the \bfdef{$p$-value}. 
 \pause \item The most general definition is:
 \maindm{p=\text{Prob}(T\in E\sub{data}|H_0^*))} 
 where the \emph{extreme region} $E\sub{data}$ contains all
@@ -788,7 +788,7 @@ df=2 degrees of freedom}
 \vspace{0.0em}
 \fig{0.90\textwidth}{figsRegr/fehler12art_leStudent_2FG_eng.png}
 \bi
-\item The \bfblue{power function} is defined as the rejection
+\item The \bfdef{power function} is defined as the rejection
   probability of $H_0$ as a function of the true value relative to $H_0$
 \ei
 }
@@ -1087,7 +1087,7 @@ $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
 Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference}
 %###################################################
 \bi
-\item The classic \bfblue{frequentist's} approach calculates the
+\item The classic \bfdef{frequentist's} approach calculates the
   probability that the test function is further away from $H_0$ (in
   the extreme range $E\sub{data}$)  than the data realisation
   provided $H_0$ is marginally true: 
@@ -1095,11 +1095,11 @@ Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference}
 p=P(E\sub{data}|H^*_0) \ge P(E\sub{data}|H_0)
 \edm
 
-\item The \bfblue{Bayesian inference} tries to caculate what is
+\item The \bfdef{Bayesian inference} tries to caculate what is
   actually interesting: The probability of $H_0$ given the data. If
   the unconditional or \emph{a-priori probabilities} were known, this
   is easy using 
-  \bfblue{Bayes' theorem}
+  \bfdef{Bayes' theorem}
 
 \maindm{
 P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
@@ -1266,7 +1266,7 @@ model chaining with an unobservable intermediate continuous
   Y(\vec{x})= \twoCases{1}{Y^*(\vec{x})> 0}{0}{\text{otherwise,}}
   Y^*(\vec{x})= \hat{y}^*(\vec{x})+\epsilon=\vec{\beta}\tr \vec{x}+\epsilon
 }
-where $\epsilon$ obeys the \bfblue{logistic distribution} with
+where $\epsilon$ obeys the \bfdef{logistic distribution} with
 $F_{\epsilon}(x)=e^x/(e^x+1)$
 
 \pause \item Probability $P_1$ for the outcome $Y=1$ for symmetric
@@ -1277,7 +1277,7 @@ distributions:
 \edm
 
 \pause \item Formally, this is a normal linear regression model for
-the log of the \bfblue{odds ratio} $P_1/P_0=P1/(1-P_1)$:
+the log of the \bfdef{odds ratio} $P_1/P_0=P1/(1-P_1)$:
 \bdm
 \hat{y}^*(\vec{x})=\vec{\beta}\tr \vec{x} = \ln\left(\frac{P_1}{P_0}\right)
 \edm
