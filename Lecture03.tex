@@ -33,21 +33,21 @@
 \item[3.1] Expectation and Covariance Matrix of the Ordinary Least
   Squares (OLS) Estimator
 \item[3.2] Confidence Intervals
-\item[3.3] Significance Tests
+\item[4.1] Significance Tests
 \bi
-\item[3.3.1] General four-step procedure
-\item[3.3.2] Type I and II errors
-\item[3.3.3] Steps 2 and 3: Test statistics
-\item[3.3.4] Steps 4: Decision
-\item[3.3.5] Step 4a: The $p$-value
+\item[4.1.1] General four-step procedure
+\item[4.1.2] Type I and II errors
+\item[4.1.3] Steps 2 and 3: Test statistics
+\item[4.1.4] Steps 4: Decision
+\item[4.1.5] Step 4a: The $p$-value
 \ei
-\item[3.4] Dependence on the True Parameter Value: Power Function
-\item[3.5] Model Selection Strategies
+\item[4.2] Dependence on the True Parameter Value: Power Function
+\item[4.3] Model Selection Strategies
 \ei
 }}
 
 \placebox{0.50}{0.90}{\myheading{
- Lecture 03: Classical Inferential Statistics}}
+ Lectures 03 and 04: Classical Inferential Statistics}}
 }
 
 
@@ -69,7 +69,7 @@
  \visible<3->{ &=&
   \left(\m{X}\tr\m{X}\right)^{-1}\m{X}\tr(\m{X}\vec{\beta}+\veceps)\\}
  \visible<4->{ &=&
-  \vec{\beta}+\left(\m{X}\tr\m{X}\right)^{-1} \m{X}\tr\veceps}
+  \uu{\vec{\beta}+\left(\m{X}\tr\m{X}\right)^{-1} \m{X}\tr\veceps}}
 \edma
 \ei
 
@@ -219,8 +219,9 @@ f_{\hatvecbeta}(\Delta \hatvecbeta)
   {2\sigeps^2}\right].
 \edm
 
+\pause
 \mysubsubheading{Relation to the maximum-likelihood-method ($\to$
-  Lecture 06:)}
+  Lecture 07:)}
 
 Expand the SSE $S(\vecbeta)$ around $\hatvecbeta$ to second order:
 \bdm
@@ -230,6 +231,7 @@ S(\vecbeta)-S(\hatvecbeta)
 \edm
 \vspace{1em}
 
+\pause
 \hspace{5em} $\Rightarrow \quad$ 
 \vspace{-3em}
 
@@ -237,7 +239,8 @@ S(\vecbeta)-S(\hatvecbeta)
  \propto \exp\left[-\frac{S(\vecbeta)-S(\hatvecbeta)}{2\sigeps^2}\right] 
 }
 
-and with estimated residual variance $\hatsigeps^2=S(\hatvecbeta)/(n-J-1)$ 
+\pause and with the estimated residual variance
+$\hatsigeps^2=S(\hatvecbeta)/(n-J-1)$  
 \bdm
 \hat{f}_{\hatvecbeta}(\vecbeta) \propto \exp \left[
 -\frac{(n-J-1)}{2}\left(\frac{S(\vecbeta)}{S(\hatvecbeta)}-1\right)
@@ -557,11 +560,11 @@ $\beta_1\in \left[\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
 
 
 
-\subsection{3.3 Significance tests}
-\subsubsection{3.3.1 General four-step procedure}
+\subsection{4.1 Significance tests}
+\subsubsection{4.1.1 General four-step procedure}
 
 %###################################################
-\frame{\frametitle{3.3 Significance Tests:\\1. General four-step procedure}
+\frame{\frametitle{4.1 Significance Tests:\\1. General four-step procedure}
 %###################################################
 \benum
 \item Formulate a \bfdef{null hypothesis $H_0$} such that their rejection
@@ -589,7 +592,7 @@ the minimum $\alpha$ at which $H_0$ can be rejected.
 }
 
 %###################################################
-\frame{\frametitle{3.3.2 Type I and II errors}
+\frame{\frametitle{4.1.2 Type I and II errors}
 %###################################################
 
 \visible<1>{\placebox{0.5}{0.69}{
@@ -625,9 +628,9 @@ $P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
 }
 
 
-\subsubsection{3.3.3 Test statistics}
+\subsubsection{4.1.3 Test statistics}
 %###################################################
-\frame{\frametitle{3.3.3 Steps 2 and 3: Test statistics I}
+\frame{\frametitle{4.1.3 Steps 2 and 3: Test statistics I}
 %###################################################
 
 {\small
@@ -784,10 +787,10 @@ calibrated restrained model
 
 }
 
-\subsubsection{3.3.4 Step 4: Decision}
+\subsubsection{4.1.4 Step 4: Decision}
 
 %###################################################
-\frame{\frametitle{3.3.4 Step 4: Decision}
+\frame{\frametitle{4.1.4 Step 4: Decision}
 %###################################################
 \bi
 \item Once the test statistics $T$ with a certain conditional distribution
@@ -979,10 +982,10 @@ $H_0$ rejected}}
 
 
 
-\subsubsection{3.3.5 Step 4a: the $p$-value}
+\subsubsection{4.1.5 Step 4a: the $p$-value}
 
 %###################################################
-\frame{\frametitle{3.3.5 The $\bfmath{p}$-value}
+\frame{\frametitle{4.1.5 The $\bfmath{p}$-value}
 %###################################################
 \bi
 \item Obviously, it is not very efficient to test $H_0$ for a fixed
@@ -1095,10 +1098,10 @@ $\triangle$: \ $H_0: (\beta_1=30) \cap (\beta_2=-0.6)$.
 }
 }
 
-\subsection{3.4 Dependence on the True Parameter Value}
+\subsection{4.2 Dependence on the True Parameter Value}
 
 %###################################################
-\frame{\frametitle{3.4 Dependence on the True Parameter Value}
+\frame{\frametitle{4.2 Dependence on the True Parameter Value}
 %###################################################
 All statistical tests, including the $p$-values, are based on some
 \emph{null hypothesis} which is supposed to be \emph{marginally}
@@ -1317,10 +1320,10 @@ df=2 degrees of freedom}
 
 
 
-\subsection{3.5 Model Selection Strategies}
+\subsection{4.3 Model Selection Strategies}
 
 %###################################################
-\frame{\frametitle{3.5 Model Selection Strategies I: Problem Statement}
+\frame{\frametitle{4.3 Model Selection Strategies I: Problem Statement}
 %###################################################
 
 \placebox{0.50}{0.45}
