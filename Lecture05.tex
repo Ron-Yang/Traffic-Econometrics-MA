@@ -97,14 +97,58 @@ P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
 %###################################################
 \frame{\frametitle{5.2 General Methodology}
 %###################################################
+Something general
 }
 
 
 \subsection*{5.2.1 Continuous parameter}
 
 %###################################################
-\frame{\frametitle{5.2.1 Continuous parameter}
+\frame{\frametitle{5.2.1 Continuous parameter I}
 %###################################################
+
+Probability for $H_0$ based on measurements lying in the extreme
+region of a given measurement:
+\bdma
+P(H_0) &=& \frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}\\
+ & \stackrel{P(H_0)\to \int_{\beta\in H_0} g(\beta)\diff(\beta)}{=} &
+   \frac{\int_{\beta\in H_0}P(E\sub{data}|\beta)g(\beta)\diff{\beta}}
+        {\int_{\beta\in \IR}P(E\sub{data}|\beta)g(\beta)\diff{\beta}}\\
+ & \stackrel{\text{def power function $\pi$}}{=} &
+   \frac{\int_{\beta\in H_0}\pi(\beta)g(\beta)\diff{\beta}}
+        {\int_{\beta\in \IR}\pi(\beta)g(\beta)\diff{\beta}}
+\edma
+}
+
+%###################################################
+\frame{\frametitle{5.2.1 Continuous parameter II}
+%###################################################
+Probability for $H_0$ based on a given realisation (measurement) $b$
+of $\hatbeta$ itself:
+
+\bi
+\item To obtain finite probabilities, define the event 
+$B: \hatbeta \in [b-\delta/2, b+\delta/2]$ with arbitrarily small
+  $\delta$
+
+\item Assume a fixed distribution of the estimation error $\hatbeta-\beta$ 
+independent from the true value (as in the OLS estimator under
+Gau\3-Markow conditions) with density
+$f(\hatbeta|\beta)=h(\hatbeta-\beta)$
+\ei
+
+\bdma
+P(H_0) &=& \frac{P(B|H_0)P(H_0)}{P(B)}\\
+ & \stackrel{P(H_0)\to \int g(\beta)\diff(\beta)}{=} &
+  \frac{\int_{\beta\in H_0}\delta\ f(\hatbeta|\beta)g(\beta)\diff{\beta}}
+       {\int_{\beta\in \IR}\delta\ f(\hatbeta|\beta)g(\beta)\diff{\beta}}
+\edma
+so
+\maindm{P(H_0)=
+  \frac{\int_{\beta\in H_0}h(\hatbeta-\beta)g(\beta)\diff{\beta}}
+       {\int_{\beta\in \IR}h(\hatbeta-\beta)g(\beta)\diff{\beta}}
+}
+Notice that the denominator is just the convolution $[h*g](\hatbeta)$
 }
 
 \subsection*{5.2.2 Discrete parameter}
