@@ -20,39 +20,41 @@
 \begin{document}
 
 
-\section{5. Bayesian Statistics}
+\section{5. Bayesian Inference}
 
 %###################################################
 \frame{  %title layout
 %###################################################
-\placebox{0.57}{0.36}{
-  \figSimple{1.20\textwidth}{figsRegr/mapMatching.png}}
+\placebox{0.57}{0.32}{
+  \figSimple{1.20\textwidth}{figsRegr/mapMatchingTitle.png}}
 
 \makePale{0.50}{0.50}{0.55}{1.20}{1.50}
 
-\placebox{0.31}{0.80}{\parbox{0.6\textwidth}{\mysubheading{
-Is the $p$ value dead? Frequentist \emph{vs.} Bayesian inference
+\placebox{0.50}{0.90}{\parbox{1.0\textwidth}{\mysubheading{
+Is the $\bfmath{p}$ value dead? Frequentist \emph{vs.} Bayesian inference
 }}}
 
-\placebox{0.35}{0.46}{\parbox{0.6\textwidth}{
+\placebox{0.35}{0.49}{\parbox{0.6\textwidth}{
 \bi
 \item[5.1] Introduction: Frequentist vs. Bayesian inference
 \item[5.2] General Methodics
+\item[5.3] Discrete Quantities and Observations\\[-0.8ex]
 \bi
-\item[5.2.1] Continuous parameter
-\item[5.2.2] Discrete parameter
+\item[5.3.1] Example: Covid-19 Tests
 \ei
-\item[5.3] Example I: Bayesian Inference\\for a Parameter
-    with Gaussian Prior Distribution
-\item[5.4] Example II: Map matching
+\item[5.4] Binary-Valued Quantities and Continuous Observations\\[-0.8ex]
+\bi
+\item[5.4.1] Example: Map Matching
+\ei
+\item[5.5] Continuous Quantities and Observations\\[-0.8ex]
+\bi
+\item[5.5.1] Example: Gausian Priors and Observations
+\ei
+\item[5.6] Conclusion
 \ei
 }}
 
-\placebox{0.50}{0.90}{\myheading{
- Lectures 03 and 04: Classical Inferential Statistics}}
 }
-
-
 
 %###################################################
 
@@ -95,16 +97,190 @@ P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
 \subsection*{5.2 General Methodology}
 
 %###################################################
-\frame{\frametitle{5.2 General Methodology}
+\frame{\frametitle{5.2 General Idea}
 %###################################################
-Something general
+\bi
+\item Principle: Update the a-priori probability $P(H_0)$ of some
+  event $H_0$ (in particular, a null hypothesis) based on an
+  observation $B$, e.g.,  
+$B:  \hatbeta=b$ or 
+  $B: \hatbeta \in [b-\delta/2, b+\delta/2]$ with some small $\delta$
+\item Example: $H_0$: ``tomorrow is nice weather'' 
+\bi
+\item $P(H_0)$: a-priori probability before hearing the
+  weather forecast (or the general probability 
+  based on climate tables)
+\item $B$: tomorrow's weather forecast 
+$B\in \text{will be nice}, \text{not nice}\}$
+\item $P(H_0|B)$: a-posteriori probability 
+  after hearing the forecast
+\ei
+\item Relation to classical frequentist's statistics: Known are some
+  observation $B$ and conditional probability $P(B|H_0)$ that can be
+  expressed in terms of $p$. Want $P(H_0|B)$
+\item Four scaling possibilities
+\bi
+\item[(i)] discrete $\beta$ and $\hatbeta$ (e.g., Covid-19 test)
+\item[(ii)] discrete $\beta$ and continuous $\hatbeta$ (e.g., map-matching)
+\item[(iii)] continuous $\beta$, discrete observation ($H_0$ rejected
+  or not) 
+\item[(iv)] continuous sought-after quantity
+  $\beta$ (continuous $H_0$) and continuous observation $\hatbeta$
+  (e.g., regression models) 
+\ei
+\ei
+}
+
+\subsection*{5.3 Discrete Quantities and Observations}
+
+%###################################################
+\frame{\frametitle{5.3 Bayesian Inference\\ for
+Discrete Quantities and Observations}
+%###################################################
+\vspace{1em}
+
+{\small
+The classical textbook case are binary variables (values
+  ``true'', ``false'', each set has one element; generalisations easy):
+\bdm
+H_0: \beta=\text{true}, \quad \bar{H_0}: \beta=\text{false}, \quad
+B: \hatbeta=\text{true}; \quad \bar{B}: \hatbeta=\text{false}
+\edm
+\maindm{
+P(H_0|B)=\frac{P(B|H_0)P(H_0)}{P(B)}
+}
+
+\mysubsubheading{Example: Covid-19 tests}
+\bi
+\item $H_0$: person is infected; $B$: person is
+  tested positive
+\item Known: 
+\bi
+\item[$\bullet$] Sensitivity $P(B|H_0)=\unit[95]{\%}$
+\quad $P(\bar{B}|H_0)=\unit[5]{\%}$
+\item[$\bullet$] Specificity $P(\bar{B}|\bar{H_0})=\unit[99]{\%}$,
+\quad $P(B|\bar{H_0})=\unit[1]{\%}$
+\item[$\bullet$] Incidence $P(H_0)=\unit[5]{\%}$
+\ei
+\ei
+}
+\vspace{-1em}
+
+
+{\small
+\begin{align*}
+\text{Bayes: pos. rate: \ }P(B) \!&= P(B|H_0)P(H_0)+P(B|\bar{H_0})P(\bar{H_0})
+%=0.99 * 0.05 + 0.05*0.95
+=\unit[9.7]{\%},\\
+\text{$H_0$ after pos. test: }
+P(H_0|B)      \! &=P(B|H_0)P(H_0)\, /\, P(B)
+%=\frac{0.99 * 0.05}{0.097}
+=\unit[51.0]{\%}\\
+\text{$H_0$ after neg. test: } 
+P(H_0|\bar{B}) \! &=P(\bar{B}|H_0)P(H_0)\, /\, P(\bar{B})
+%=\frac{0.01 * 0.05}{1-0.097}
+=\unit[0.055]{\%}
+\end{align*}
 }
 
 
-\subsection*{5.2.1 Continuous parameter}
+
+}
+
+
+\subsection*{5.4 Discrete Quantities, Continuous Observations}
 
 %###################################################
-\frame{\frametitle{5.2.1 Continuous parameter I}
+\frame{\frametitle{5.4 Bayesian Inference\\
+ for Discrete Quantities and Continuous Observations}
+%###################################################
+
+\bi
+\item Discrete quantity/parameter  $\beta$ with the
+prior distribution
+$
+P(\beta=\beta_j)=p_j, \quad \sum_jp_j=1
+$
+\item Continuous measurement $\hatbeta$  with a given 
+  distribution of density 
+$g(\hatbeta \ | \ \beta=\beta_j)=f(\hatbeta-\beta_j)$
+\bi
+\itemAsk \colAsk{What is the meaning of $f(.)$?}
+\ei
+
+\item Assume $H_0: \beta=\beta_{j_0}$ with $\beta_{j_0}\in \{\beta_j\}$
+and the observation $B$: $\hatbeta\in [b-\delta/2, b+\delta/2]$ with
+arbitraruly small $\delta$:
+
+\item \text{Bayes: } 
+$P(H_0)=p_{j_0}$, $P(B|H_0)=\delta f(b-\beta_{j_0})$, and 
+$P(B)=\delta \sum_jp_jf(b-\beta_j)$
+\ei
+
+\vspace{2.5em}
+
+\hspace{1em} $\Rightarrow$
+\vspace{-2.5em}
+\maindm{P(H_0|\hatbeta=b) =  \frac{P(H_0)P(B|H_0)}{P(B)}
+=\frac{p_{j_0}f(b-\beta_{j_0})} {\sum_jp_jf(b-\beta_j)}
+}
+
+}
+
+%###################################################
+\frame{\frametitle{Example:  Map matching}
+%###################################################
+
+\placebox{0.50}{0.48}{\figSimple{1.15\textwidth}{figsRegr/mapMatching.png}}
+
+\placebox{0.5}{0.05}{$p(H_0)=\frac{\text{flow freeway}}
+{\text{flow freeway}+\text{flow road}}=0.8$}
+
+\placebox{0.925}{0.56}{\footnotesize{\red{$\hat{y}\sim N(y,\sigma^2)$}}}
+
+
+
+}
+
+
+%###################################################
+\frame{\frametitle{Map matching II}
+% for $P(H_0)=P(\text{freeway})=0.8$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
+
+%}\end{document}
+
+\placebox[center]{0.84}{0.45}
+{\parbox{0.35\textwidth}{\footnotesize
+True vehicle position:\\
+$y=\twoCases{0}{\text{freeway}}{d}{\text{parallel road}}$
+\\[1em]
+Lateral GPS measurement:\\[0.5em]
+$\hat{y} \sim 
+\twoCases{N(0,\sigma^2)}{\text{freeway}}{N(d,\sigma^2)}{\text{road}}$
+\\[1em]
+\pause Measured:\\
+ $\hat{y}=\unit[30]{m}$, $\sigma=\unit[10]{m}$,\\ 
+ at a distance $d=\unit[50]{m}$
+\\[1em]
+\pause Read from graphics:\\
+$\frac{\sigma}{d}=0.2$, $\frac{\hat{y}}{d}=0.6$ \\
+$\Rightarrow P(H_0|\hat{y})=0.23$\\[0.5em]
+\red{$\Rightarrow$ 
+you are on the parallel road with a probability of \unit[77]{\%}}
+}}
+
+}
+
+
+
+\subsection*{5.5 Continuous Quantities and Measurements }
+
+%###################################################
+\frame{\frametitle{5.5 Bayesian Inference\\ for Continuous Quantities and
+  Measurements }
 %###################################################
 
 Probability for $H_0$ based on measurements lying in the extreme
@@ -121,7 +297,7 @@ P(H_0) &=& \frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}\\
 }
 
 %###################################################
-\frame{\frametitle{5.2.1 Continuous parameter II}
+\frame{\frametitle{Continuous parameter II}
 %###################################################
 Probability for $H_0$ based on a given realisation (measurement) $b$
 of $\hatbeta$ itself:
@@ -151,20 +327,11 @@ so
 Notice that the denominator is just the convolution $[h*g](\hatbeta)$
 }
 
-\subsection*{5.2.2 Discrete parameter}
+
+\subsection*{Example: Gaussian Prior Distribution and Observations}
 
 %###################################################
-\frame{\frametitle{5.2.2 Discrete parameter}
-%###################################################
-}
-
-
-
-\subsection*{5.3 Gaussian Prior Distribution}
-
-%###################################################
-\frame{\frametitle{5.3 Example I: Bayesian Analysis for a Parameter
-    with Gaussian Prior Distribution} 
+\frame{\frametitle{Example: Gaussian Prior Distribution and Observations} 
 %###################################################
 {\small
 \bi
@@ -270,46 +437,25 @@ $P(H_0)$)},\\[1em]
 }
 
 
-\subsection*{5.4 Bayesian Inference for a Binary-Valued Parameter}
+
+
+\subsection*{5.6 Conclusion}
 
 
 %###################################################
-\frame{\frametitle{5.4 Example II: Bayesian Inference
-for a Binary-Valued Parameter:\\
-    Map matching}% for $P(H_0)=P(\text{freeway})=0.8$}
+\frame{\frametitle{5.6 Conclusion}
 %###################################################
-\placebox[center]{0.35}{0.45}
-{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
-
-%}\end{document}
-
-\placebox[center]{0.84}{0.45}
-{\parbox{0.35\textwidth}{\footnotesize
-True vehicle position:\\
-$\beta=\twoCases{0}{\text{freeway}}{d}{\text{parallel road}}$
-\\[1em]
-Lateral GPS measurement:\\[0.5em]
-$\hatbeta \sim 
-\twoCases{N(0,\sigma_b^2)}{\text{freeway}}{N(d,\sigma_b^2)}{\text{road}}$
-\\[1em]
-\pause Measured:\\
- $\hatbeta=\unit[30]{m}$, $\sigma_b=\unit[10]{m}$,\\ 
- at a distance $d=\unit[50]{m}$
-\\[1em]
-\pause Read from graphics:\\
-$\frac{\sigma_b}{d}=0.2$, $\frac{\hatbeta}{d}=0.6$ \\
-$\Rightarrow P(H_0|\hatbeta)=0.23$\\[0.5em]
-\red{$\Rightarrow$ 
-you are on the parallel road with a probability of \unit[77]{\%}}
-}}
 
 }
 
-\subsection{2.6. Logistic regression}
+
+
+\subsection{x.x. Logistic regression}
 
 %###################################################
-\frame{\frametitle{2.5. Logistic regression}
+\frame{\frametitle{x.x. Logistic regression}
 %###################################################
+
 
 {\small
 \bi
