@@ -43,6 +43,7 @@
 \ei
 \item[4.2] Dependence on the True Parameter Value: Power Function
 \item[4.3] Model Selection Strategies
+\item[4.4] Logistic Regression
 \ei
 }}
 
@@ -1323,7 +1324,8 @@ df=2 degrees of freedom}
 \subsection{4.3 Model Selection Strategies}
 
 %###################################################
-\frame{\frametitle{4.3 Model Selection Strategies I: Problem Statement}
+\frame{\frametitle{4.3 Model Selection Strategies\\
+Problem Statement}
 %###################################################
 
 \placebox{0.50}{0.45}
@@ -1407,5 +1409,127 @@ $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
 }
 }
 
+\subsection{4.4. Logistic regression}
+
+%###################################################
+\frame{\frametitle{4.4. Logistic regression}
+%###################################################
+
+
+{\small
+\bi
+\item Normal linear models of the form $Y=\vecbeta\tr\vec{x}+\epsilon$
+require the endogenous variable to be continuous (discuss!)
+\pause \item Using 
+model chaining with an unobservable intermediate continuous 
+  variable $Y^*$ allows one to model binary outcomes:
+ \maindm{
+  Y(\vec{x})= \twoCases{1}{Y^*(\vec{x})> 0}{0}{\text{otherwise,}}
+  Y^*(\vec{x})= \hat{y}^*(\vec{x})+\epsilon=\vec{\beta}\tr \vec{x}+\epsilon
+}
+where $\epsilon$ obeys the \bfdef{logistic distribution} with
+$F_{\epsilon}(x)=e^x/(e^x+1)$
+
+\pause \item Probability $P_1$ for the outcome $Y=1$ for symmetric
+distributions:
+\bdm
+ P_1 = P(Y^*(\vec{x})> 0)=F_{\epsilon}(\vecbeta\tr \vec{x})
+= \frac{e^{\vecbeta\tr \vec{x}}}{e^{\vecbeta\tr \vec{x}}+1}\text{ (logistic)}
+\edm
+
+\pause \item Formally, this is a normal linear regression model for
+the log of the \bfdef{odds ratio} $P_1/P_0=P1/(1-P_1)$:
+\bdm
+\hat{y}^*(\vec{x})=\vec{\beta}\tr \vec{x} = \ln\left(\frac{P_1}{P_0}\right)
+\edm
+\ei
+}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Example: naive OLS-estimation (RP student interviews)}
+%###################################################
+\placebox[center]{0.25}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_f_eng.png}}
+
+\placebox[center]{0.75}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_eng.png}}
+
+\placebox[center]{0.50}{0.20}
+{\parbox{\textwidth}{
+\bi
+\item Alternatives: $i=1$: motorized and $i=2$ (not)
+\item Intermediate variable estimated by percentaged choices: $y^*=\ln(f_1/(1-f_1))$
+\item Model: Log. regression, 
+$\hat{y}^*(x_1)=\beta_0  + \beta_1 x_1 $
+\item OLS Estimation: $\beta_0=-0.58, \quad \beta_1=0.79 $
+\ei
+}}
+}
+
+
+
+%###################################################
+\frame{\frametitle{Method consistent? added
+    5$\sup{th}$ data point with f=0.9999}
+%###################################################
+
+\placebox[center]{0.25}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_f_eng.png}}
+
+\placebox[center]{0.75}{0.60}
+{\figSimple{0.55\textwidth}{figsRegr/regr_logistic_WS1516cum_alt_eng.png}}
+
+\placebox[center]{0.50}{0.20}
+{\parbox{\textwidth}{
+\bi
+\item Same model:
+ $\hat{y}^*(x_1)=\beta_0 + \beta_1 x_1$
+\item New estimation: $\beta_0=-3.12, \quad \beta_1=2.03 $
+\item Estimation would fail if $f_1=0$ or =1 $\Rightarrow$ real
+  discrete-choice model necessary!
+\ei
+}}
+}
+
+
+%###################################################
+\frame{\frametitle{Comparison: real Maximum-Likelihood (ML) estimation}
+%###################################################
+
+% png File von von ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/*.eng.gnu
+% setze beta1_levmar=-beta1_LogR_OLS
+% setze beta2_levmar=-beta0_LogR_OLS
+% Vorzeichen: Da delta_{i1}->delta_{i0} statt delta_{i2}->delta_{i2} 
+% Reihenfolge/Bezeichnung: inkonsistent historisch
+% Im latex File Bez. wie bei OLS-logist Regr in ../skripts/figsRegr/
+
+
+\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_4dataPoints_fProb_r.png}
+\bi
+\item Model: Logit, $V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
+$V_2=0$.
+\item Estimation: $\beta_0=-0.50\pm 0.65, \ \beta_1=+0.71\pm 0.30$
+\ei
+
+}
+
+%###################################################
+\frame{\frametitle{Comparison: real ML estimation
+	with added 5$\sup{th}$ data point}
+%###################################################
+
+\fig{0.7\textwidth}{figsRegr/revealedChoiceWS1516cum_2al_fProb_r.png}
+\bi
+\item Same logit model, 
+$V_i(x_1)=\beta_0 \delta_{i1} + \beta_1 x_1 \delta_{i1}$, 
+$V_2=0$.
+\item New estimation: $\beta_0=-0.55\pm 0.63, \ \beta_1=+0.75\pm 0.27$
+\ei
+}
+
 \end{document}
+
 
