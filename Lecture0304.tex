@@ -579,8 +579,8 @@ $\beta_1\in \left[\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
 null hypothesis) 
 
 \pause
-\colAsk{\scriptsize{What if variance unknown but estimator has known
-    distribution?}}
+\colAsk{\scriptsize{What if the estimator has a known
+    distribution but the variance is unknown?}}
 \\[-0.5ex]
 \pause
 \colAnswer{\scriptsize{Test function in units of the estimated standard deviation}}
@@ -932,7 +932,7 @@ and
   $\alpha=\unit[5]{\%}$ that the stars
   do not matter}
 \pause \itemAnswer \scriptsize{\colAnswer{$H_{01}: \beta_1=0$, point t-test
-    with $T=\hatbeta_1/\sqrt{\hat{V}_{11}} \sim T(12-9)$, i.e. df=9
+    with $T=\hatbeta_1/\sqrt{\hat{V}_{11}} \sim T(12-3)$, i.e. df=9
     degrees of freedom, $t\sub{data}=7.49$,
     $t^{(9)}_{0.975}=2.26<|t\sub{data}|$ $\Rightarrow$ $H_0$ rejected,
     stars matter}}
@@ -1067,7 +1067,7 @@ assumed at the 3$^{\text{rd}}$ equality sign)
 \vspace{-1em}
 \bdma
 p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
- &=& 1-F_T(|t\sub{data}|)+F_T(-|t\sub{data}|)\\
+ &=& \left(1-F_T(|t\sub{data}|)\right)+F_T(-|t\sub{data}|)\\
  &=& 1-F_T(|t\sub{data}|)+1-F_T(|t\sub{data}|)\\
  &=& 2(1-F_T(|t\sub{data}|))
 \edma
@@ -1159,6 +1159,7 @@ values take on other values?
  $1-\pi(\beta)$ its probability for a type-II error
 \pause\item If $\beta\in H_0$, then $\pi(\beta)$ is the type-I ($\alpha$)
   error and $1-\pi(\beta)$ the \bfdef{sensitivity} of a test
+\pause\item By definition, $\pi(\beta_0)=\alpha$
 \ei
 }
 
@@ -1271,7 +1272,7 @@ df=2 degrees of freedom}
     <t_{\alpha}\right)\\
  & \stackrel{\text{def $\Delta T$}}{=} & P(T+\Delta T<t_{\alpha}) \\
  &=& P(T<-\Delta T+t_{\alpha}) \\
- & \stackrel{\text{def distr.}}{=} & \uu{F_T(t_{\alpha})-\Delta T}
+ & \stackrel{\text{def distr.}}{=} & \uu{F_T(t_{\alpha}-\Delta T)}
 \edma
 
 \bi
