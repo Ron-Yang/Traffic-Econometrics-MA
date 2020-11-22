@@ -6,8 +6,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
@@ -33,13 +33,13 @@
 \item[3.1] Expectation and Covariance Matrix of the Ordinary Least
   Squares (OLS) Estimator
 \item[3.2] Confidence Intervals
-\item[4.1] Significance Tests
+\item[4] Significance Tests
+\item[4.1] General Four-Step Procedure
 \bi
-\item[4.1.1] General four-step procedure
-\item[4.1.2] Type I and II errors
-\item[4.1.3] Steps 2 and 3: Test statistics
-\item[4.1.4] Steps 4: Decision
-\item[4.1.5] Step 4a: The $p$-value
+\item[4.1.1] Step 1: Chosing $H_0$: Type I and II errors
+\item[4.1.2] Steps 2 and 3: Test statistics
+\item[4.1.3] Steps 4: Decision
+\item[4.1.4] Step 4a: The $p$-value
 \ei
 \item[4.2] Dependence on the True Parameter Value: Power Function
 \item[4.3] Model Selection Strategies
@@ -561,22 +561,30 @@ $\beta_1\in \left[\hat{\beta}_1-\Delta \hat{\beta}_1^{(\alpha)},
 
 
 
-\subsection{4.1 Significance tests}
-\subsubsection{4.1.1 General four-step procedure}
+\section{4. Significance tests}
+\subsection{4.1 General Four-Step Procedure}
 
 %###################################################
-\frame{\frametitle{4.1 Significance Tests:\\1. General four-step procedure}
+\frame{\frametitle{4. Significance Tests\\
+4.1 General Four-Step Procedure}
 %###################################################
 \benum
 \item Formulate a \bfdef{null hypothesis $H_0$} such that their rejection
   gives insight, e.g. $\beta_j=\beta_{j0}$ (point hypothesis) or
-  $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{\red{One cannot confirm $H_0$}}
+  $\beta_j \le \beta_0$ (interval hypothesis): Notice: \emph{One cannot confirm $H_0$}
 \pause \item Select a \bfdef{test function} or \bfdef{statistics $T$}
 \bi
 \item whose distribution is known provided the parameters are at the 
 \bfdef{margin $H^*_0$ of the null hypothesis} (of course, $H^*_0=H_0$ for a point
 null hypothesis) 
-\item which has distinct \bfdef{rejection regions $R(\alpha)$} which
+
+\pause
+\colAsk{\scriptsize{What if variance unknown but estimator has known
+    distribution?}}
+\\[-0.5ex]
+\pause
+\colAnswer{\scriptsize{Test function in units of the estimated standard deviation}}
+\pause \item which has distinct \bfdef{rejection regions $R(\alpha)$} which
   are reached rarely 
   (with a probability $\le \alpha$) if $H_0$ but more often if
   $H_1=\overline{H_0}$ 
@@ -586,39 +594,43 @@ null hypothesis)
 
 \pause \item Check if $t\sub{data} \in R(\alpha)$. If yes, $H_0$ can be
   rejected at an error probability or \bfdef{significance level
-  $\alpha$}. Otherwise, \emph{nothing can be said}.
+  $\alpha$}. Otherwise, \emph{nothing can be said} \colAsk{(mask
+    example with $H_0$: ``mask useless'')}.
 \pause \item[4a] Alternatively, calculate the \bfdef{$p$-value} as
 the minimum $\alpha$ at which $H_0$ can be rejected.
 \eenum
 }
 
 %###################################################
-\frame{\frametitle{4.1.2 Type I and II errors}
+\frame{\frametitle{4.1.1 Step 1: Choosing $\mathbf{H_0}$: 
+Type I and II errors}
 %###################################################
 
 \visible<1>{\placebox{0.5}{0.69}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
+ \figSimple{0.59\textwidth}{figsRegr/fehlerErsterZweiterArt1_eng.png}}}
 
 \visible<2>{\placebox{0.5}{0.69}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
+ \figSimple{0.59\textwidth}{figsRegr/fehlerErsterZweiterArt2_eng.png}}}
 
 \visible<3>{\placebox{0.5}{0.69}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
+ \figSimple{0.59\textwidth}{figsRegr/fehlerErsterZweiterArt3_eng.png}}}
 
 \visible<4->{\placebox{0.5}{0.69}{
- \figSimple{0.6\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
+ \figSimple{0.59\textwidth}{figsRegr/fehlerErsterZweiterArt4_eng.png}}}
 
 \placebox{0.5}{0.25}{\parbox{\textwidth}{
 {\small
 \bi
-\visible<2->{\item There are two combinations corresponding to a
+\visible<1->{\item A significance test reduces reality to a ``binary
+  in-binary out'' setting.}
+\visible<2->{There are two combinations corresponding to a
   correct test result}
 \visible<3->{\item We can control the \bfdef{type I or $\alpha$-error}
   probability 
   $P(\text{$H_0$ rejected}|H_0) \le \alpha$ in \bfdef{significance tests}}
 \visible<4->{\item Since the \bfdef{type II or $\beta$-error} probability 
   $P(\text{$H_0$ not rejected}|\overline{H_0})$ is unknown, the more serious
-error type should be formulated as the $\alpha$ error}
+error type should be the $\alpha$ error}
 \visible<5->{\item \maintextbox{0.85\textwidth}{Fundamental problem: I want $P(H_0|\text{rejected})$ and
 $P(H_0|\overline{\text{rejected}})$ while I get control over 
 $P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
@@ -629,9 +641,9 @@ $P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
 }
 
 
-\subsubsection{4.1.3 Test statistics}
+\subsubsection{4.1.2 Test statistics}
 %###################################################
-\frame{\frametitle{4.1.3 Steps 2 and 3: Test statistics I}
+\frame{\frametitle{4.1.2 Steps 2 and 3: Test statistics I}
 %###################################################
 
 {\small
@@ -639,9 +651,12 @@ $P(\text{rejected}|H_0)\le P(\text{rejected}|H_0^*)$  $\Rightarrow$
 \item Testing  \red{parameters} such as $H_0$: $\beta_j=\beta_{j0}$ or
   $\beta_j\ge \beta_{j0}$ or  $\beta_j\le \beta_{j0}$:
 
-  The student-t distributed test
+  The test
   function is the estimated deviation from the boundary of $H_0$ in
-  units of the estimated error standard deviation:
+  units of the estimated error standard deviation. It is
+  \bfdef{student-t} distributed with \#dataPoints- \#parameters
+  \bfdef{degrees of 
+  freedom (df)}:  
 \bdm 
 T =\frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}} \sim T(n-1-J)
 \edm
@@ -677,7 +692,7 @@ in a simple linear regression
 $y=\beta_0+\beta_1x+\epsilon$, the slope parameter $\beta_1=0$, so
 test for $\beta_1=0$: Under $H_0$, the test statistics
 \bdm
-T=\hatbeta_1/\sqrt{\hat{V}_{11}}=\frac{s_{xy}}{\hat{\sigma}s_x}\sqrt{n}
+T=\hatbeta_1/\sqrt{\hat{V}_{11}}=\frac{s_{xy}}{\hat{\sigma} \ s_x}\sqrt{n}
  \sim T(n-2)
 \edm
 Now insert $\hat{\sigma}$ which can, in the simple-regression case, be
@@ -692,8 +707,9 @@ $\sigma^2 \ge \sigma_0^2$, and $\sigma^2 \le \sigma_0^2$:
 \bdm
 T=\frac{\hatsig^2}{\sigma_0^2} \ (n-1-J) \sim \chi^2(n-1-J)
 \edm
-\emph{Notice:} The one-parameter $\chi^2(m)=\sum_{i=1}^mZ_i^2$ is the
-sum of squares of i.i.d. Gaussians \emph{its density is not symmetric,
+The one-parameter \bfdef{chi-squared distribution with $\bfmath{m}$ degrees of
+  freedom} $\chi^2(m)=\sum_{i=1}^mZ_i^2$ is the
+sum of squares of i.i.d. Gaussians. \emph{Its density is not symmetric,
   so we need to calculate both the $\alpha$ and $1-\alpha$ quantiles} 
 
 \ei
@@ -708,7 +724,7 @@ sum of squares of i.i.d. Gaussians \emph{its density is not symmetric,
 
 \item Tests of \red{simultaneous point null hypotheses}, e.g., $H_0$: 
 $(\beta_1=0)$ AND $(\beta_2=2)$ using the
-\red{Fisher-F test}:
+\bfdef{Fisher-F test}:
 \bdm
 T=\frac{ (S_0-S)/(M-M_0)}{S/(n-M)} \sim F(M-M_0,n-M)
 \edm
@@ -788,10 +804,10 @@ calibrated restrained model
 
 }
 
-\subsubsection{4.1.4 Step 4: Decision}
+\subsubsection{4.1.3 Step 4: Decision}
 
 %###################################################
-\frame{\frametitle{4.1.4 Step 4: Decision}
+\frame{\frametitle{4.1.3 Step 4: Decision}
 %###################################################
 \bi
 \item Once the test statistics $T$ with a certain conditional distribution
@@ -802,16 +818,17 @@ calibrated restrained model
   realisations $t$ of the test statistics $T$ which are most distant
   from $H_0$}
 
-\item Decision: 
-\maintextbox{0.46\textwidth}{$H_0$ is rejected if  $t\sub{data}\in
+\pause \item Decision: 
+\maintextbox{0.80\textwidth}{$H_0$ is rejected at significance level
+  $\alpha$ if  $t\sub{data}\in
   R^{(H_0)}(\alpha)$} 
 
-\item A good test statistics allows for a clear definition of what is
+\pause \item A good test statistics allows for a clear definition of what is
   meant by ``distance to $H_0$'' and brings, for a given $\alpha$, 
  the boundary of the rejection
   region as close to $H_0^*$ as possible
 
-\item In contrast to $T$ and the realisation $t\sub{data}$ which only depends
+\pause \item In contrast to $T$ and the realisation $t\sub{data}$ which only depends
   on $H_0^*$ and therefore is the same for point and interval
   hypotheses of the same kind, the rejection region is different for
   each null hypothesis
@@ -820,13 +837,14 @@ calibrated restrained model
 }
 
 %###################################################
-\frame{\frametitle{Rejection region for $\vec{H}_0$: ``$<$''
+\frame{\frametitle{1. Rejection region for $\vec{H}_0$: ``$<$''
 or ``$\le$'' (interval hypothesis)}
 %###################################################
 
 \placebox{0.5}{0.58}{
  \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit1_eng.png}}
 
+\pause
 \placebox{0.5}{0.16}{\parbox{\textwidth}{
 \bi
  \item $H_0$ is rejected on the level $\alpha$ if
@@ -840,14 +858,14 @@ t\sub{data}>t_{1-\alpha}
 
 
 %###################################################
-\frame{\frametitle{Rejection region for $\vec{H}_0$: ``$>$''
+\frame{\frametitle{2. Rejection region for $\vec{H}_0$: ``$>$''
 or ``$\ge$'' (interval hypothesis)}
 %###################################################
 
 \placebox{0.5}{0.58}{
  \figSimple{0.7\textwidth}{figsRegr/annahmeAblehn_einZweiseit2_eng.png}}
 
-\placebox{0.5}{0.16}{\parbox{\textwidth}{
+\pause \placebox{0.5}{0.16}{\parbox{\textwidth}{
 \bi
  \item $H_0$ is rejected on the level $\alpha$ if
 \maindm{t\sub{data}<t_{\alpha}=1-t_{1-\alpha}}
@@ -860,7 +878,7 @@ or ``$\ge$'' (interval hypothesis)}
 }
 
 %###################################################
-\frame{\frametitle{Rejection region for $\vec{H}_0$: ``='' (point hypothesis)
+\frame{\frametitle{3. Rejection region for $\vec{H}_0$: ``='' (point hypothesis)
 or ``$\le$''}
 %###################################################
 
@@ -974,7 +992,7 @@ $\hatvecbeta_r=(49.0, 30, -1)\tr$, $S_0=S(\hatvecbeta_r)=1808$;
 \pause
 $M-M_0=\unit[2]{df}$,
 $n-M=\unit[9]{df}$, $T\sim F(2,9)$,
-$t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}$ $\Rightarrow$
+$t\sub{data}=9/2 \ (S_0-S)/S = 11.8>f^{(2.9)}_{0.95}=4.26$ $\Rightarrow$
 $H_0$ rejected}} 
 
 \ei
@@ -983,30 +1001,37 @@ $H_0$ rejected}}
 
 
 
-\subsubsection{4.1.5 Step 4a: the $p$-value}
+\subsubsection{4.1.4 Step 4a: the $p$-value}
 
 %###################################################
-\frame{\frametitle{4.1.5 The $\bfmath{p}$-value}
+\frame{\frametitle{4.1.4 The $\bfmath{p}$-value}
 %###################################################
 \bi
 \item Obviously, it is not very efficient to test $H_0$ for a fixed
 significance level $\alpha$ (one does not know \emph{how significant}
 the result really is)
 \pause \item Instead, one would like to know the \emph{minimum}
-$\alpha$ for rejection, or the \bfdef{$p$-value}. 
+$\alpha$ for rejection (notice the \emph{statistical
+  reliability-sensitivity uncertainty 
+  relation)}  or the \bfdef{$p$-value}. 
 \pause \item The most general definition is:
 \maindm{p=\text{Prob}(T\in E\sub{data}|H_0^*))} 
 where the \emph{extreme region} $E\sub{data}$ contains all
 realisations of $T$ that are
 further away from $H^*_0$ than $t\sub{data}$.
-\vspace{1em}
+\pause \colAsk{\small{Rejection region?}}
+\pause \colAnswer{\small{$p$ is defined such that the rejection region
+just touches $t\sub{data}$: $E\sub{data}=R(p)$}}
+
+\vspace{1ex}
 
 \bi
-\pause \item $p\ge\unit[5]{\%}$: not significant (no star at the parameter
-  $\beta$, sometimes a ``+'' if between \unit[5]{\%} and \unit[10]{\%})
-\pause \item $p<\unit[5]{\%}$: significant (one star, $\beta^*$)
-\pause \item $p<\unit[1]{\%}$: very significant (two star, $\beta^{**}$)
-\item $p<0.001$: highly significant (three stars, $\beta^{***}$)
+\pause \item $p\ge\unit[5]{\%}$: not significant (no star at the value for
+  $\beta$, sometimes a ``+'' if between \unit[5]{\%} and
+\unit[10]{\%}, e.g., $\beta_1=4.2^+$)
+\pause \item $p<\unit[5]{\%}$: significant (one star, e.g., $\beta_1=4.2^*$)
+\pause \item $p<\unit[1]{\%}$: very significant (two star, $\beta_1=4.2^{**}$)
+\item $p<0.001$: highly significant (three stars, $\beta_1=4.2^{***}$)
 \ei
 \ei
 }
@@ -1037,7 +1062,8 @@ p=P(T>t\sub{data}|\beta=\beta_0)
 \bdm
 p=P(T<t\sub{data}|\beta=\beta_0)=F_T(t\sub{data})
 \edm\\[2em]
-\pause \item Point test $H_0: \beta=\beta_0$ (symmetry of $f_T$ assumed)
+\pause \item Point test $H_0: \beta=\beta_0$ (symmetry of $f_T$
+assumed at the 3$^{\text{rd}}$ equality sign)
 \vspace{-1em}
 \bdma
 p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
@@ -1055,25 +1081,36 @@ p &=& P\big( (T>|t\sub{data}|) \cup (T<-|t\sub{data}|)\big)\\
     hotel example}
 %###################################################
 
+\vspace{-0.5em}
+{\small
 \bdm
 y=\beta_0x_0+\beta_1x_1+\beta_2x_2+\epsilon
 \edm
 where $x_0=1$, $x_1$: proxy for quality [\# stars]; $x_2$: price
 
 \bi
-\item $H_{01}:$ point hypothesis $\beta_1=0$ \\ $t\sub{data}=7.49, \ 
+\item $H_{01}$ ``stars do not matter'': 
+point hypothesis $\beta_1=0$
+  \\ $t\sub{data}=7.49, \  
  p= 2(1-F_T^{(9)})(|t\sub{data}|)=3.7E-5^{***}$
-\item $H_{02}:$ interval hypothesis $\beta_1<0$ \\ $t\sub{data}=7.49,\
+\pause \item $H_{02}$ ``more stars are better'':
+interval hypothesis $\beta_1<0$ \\ $t\sub{data}=7.49,\
 p= 1-F_T^{(9)}(t\sub{data})=1.9E-5^{***}$
-\item $H_{03}:$ interval hypothesis $\beta_2<-1$ \\ $t\sub{data}=0.24,\
+\pause \item $H_{03}$ ``$\Delta$ occupancy $\le \unit[-1]{\%}$ 
+per addtl \euro{}'':
+interval hypothesis $\beta_2<-1$ \\ $t\sub{data}=0.24,\
 p=1-F_T^{(9)}(t\sub{data})=\unit[40]{\%} $
-\item $H_{04}:$ function interval hypothesis
+\pause \item $H_{04}$ One star more is worth $\ge$ \unit[30]{\euro{}}'':\\
+ function interval hypothesis
   $\gamma=\beta_1+30\beta_2<0$\\ $t\sub{data}=4.20,\ 
 p= 1-F_T^{(9)}(t\sub{data})=\unit[0.12]{\%}^{**}$
-\item $H_{05}:$ compound point hypothesis $(\beta_1=30) \cap
+\pause \item $H_{05}$ ``star and price sensitivity simultaneously given'':\\
+compound point hypothesis $(\beta_1=30) \cap
   (\beta_2=-1)$\\ $t\sub{data}=11.8,\ 
 p=1-F_F^{(2,9)}(t\sub{data})=\unit[0.30]{\%}^{**}$
 \ei
+}
+
 }
 
 
@@ -1099,7 +1136,7 @@ $\triangle$: \ $H_0: (\beta_1=30) \cap (\beta_2=-0.6)$.
 }
 }
 
-\subsection{4.2 Dependence on the True Parameter Value}
+\subsection{4.1 Dependence on the True Parameter Value}
 
 %###################################################
 \frame{\frametitle{4.2 Dependence on the True Parameter Value}
@@ -1109,18 +1146,18 @@ All statistical tests, including the $p$-values, are based on some
 fulfilled, $\beta=\beta_0 \in H_0^*$.  What if the true parameter
 values take on other values? 
 \bi
-\item Since regression parameters are continuous, the probability
+\pause\item Since regression parameters are continuous, the probability
   $P(H_0^*)=0$ exactly, so the tests and $p$-values \emph{do not
   reflect reality}
-\item What happens for other values $\beta \notin H_0^*$? This is
+\pause\item What happens for other values $\beta \notin H_0^*$? This is
   quantified by following conditional probability called
   \bfdef{statistical power
     function}: 
 \maindm{\pi(\beta)=\text{Pr}(\text{test rejected} | \beta)}
-\item If $\beta\notin H_0$, then $\pi(\beta)$ indicates the
+\pause\item If $\beta\notin H_0$, then $\pi(\beta)$ indicates the
   \bfdef{statistical power} or \bfdef{specificity} of a test and 
  $1-\pi(\beta)$ its probability for a type-II error
-\item If $\beta\in H_0$, then $\pi(\beta)$ is the type-I ($\alpha$)
+\pause\item If $\beta\in H_0$, then $\pi(\beta)$ is the type-I ($\alpha$)
   error and $1-\pi(\beta)$ the \bfdef{sensitivity} of a test
 \ei
 }
@@ -1141,7 +1178,8 @@ T=\frac{\hatbeta_j-\beta_j}{\sqrt{\hat{V}_{jj}}}
  +\frac{\beta_{j0}-\beta_j}{\sqrt{\hat{V}_{jj}}}
  = \frac{\hatbeta_j-\beta_{j0}}{\sqrt{\hat{V}_{jj}}}-\Delta T
 \edm \\[2em]
-\pause \item The new independent variable is the standardized difference 
+\pause \item $\Rightarrow$ The independent variable of the power
+function is the standardized difference 
 $\Delta T=(\beta_j-\beta_{j0})/\sqrt{\hat{V}_{jj}}$
 
 
@@ -1282,16 +1320,22 @@ df=2 degrees of freedom}
  & \stackrel{\text{def rejection}}{=} & 
  P\left(\left|\frac{\hatbeta_j-\beta_{j0}}{\hatsig_{\hatbeta_j}}\right|
       > t_{1-\alpha/2}\right) \\
-& \stackrel{\text{def $\Delta T$}}{=} & P(|T+\Delta T| > t_{1-\alpha/2}) \\
-&=& P(T+\Delta T > t_{1-\alpha/2}) + P(T+\Delta T <-t_{1-\alpha/2})\\
-&=& 1-P(T+\Delta T \le t_{1-\alpha/2})+P(T+\Delta T <-t_{1-\alpha/2})\\
+\visible<2->{
+& \stackrel{\text{def $\Delta T$}}{=} & P(|T+\Delta T| > t_{1-\alpha/2}) \\}
+\visible<3->{
+&=& P(T+\Delta T > t_{1-\alpha/2}) + P(T+\Delta T <-t_{1-\alpha/2})\\}
+\visible<4->{
+&=& 1-P(T+\Delta T \le t_{1-\alpha/2})+P(T+\Delta T <-t_{1-\alpha/2})\\}
+\visible<5->{
 & \stackrel{\text{def distr.}}{=} & 
- 1-F_T(t_{1-\alpha/2}-\Delta T) + F_T(-t_{1-\alpha/2}-\Delta T)\\
+ 1-F_T(t_{1-\alpha/2}-\Delta T) + F_T(-t_{1-\alpha/2}-\Delta T)\\}
+\visible<6->{
 & \stackrel{\text{symm.}}{=} & 
- \uu{2-F_T(t_{1-\alpha/2}-\Delta T) - F_T(t_{1-\alpha/2}+\Delta T)} 
+ \uu{2-F_T(t_{1-\alpha/2}-\Delta T) - F_T(t_{1-\alpha/2}+\Delta T)} }
 \edma
 
 
+\visible<7->{
 \bi
 \itemAsk \colAsk{\small{Test this expression by calculating
     $\pi^{\le}(0)$}}
@@ -1300,6 +1344,7 @@ df=2 degrees of freedom}
 \pi\sup{\,eq}(0) = 2-(1-\alpha/2)-(1-\alpha/2)=\alpha \ \OK
 \edm
 }}
+}
 
 \ei
 }
@@ -1336,12 +1381,12 @@ Problem Statement}
 \bi
 \item With every additional parameter, the fit quality in terms of a
   reduced SSE or $\hat{\sigma}^2=\text{SSE}/(n-J-1)$ becomes better
-\item However, the risk of overfitting increases. In the words of John
+\pause \item However, the risk of overfitting increases. In the words of John
   Neumann: \textit{With four parameters I can fit an elephant, and
     with five I can make him wiggle [its] trunk.}
-\item Overfitted models do not validate and can make neither
+\pause \item Overfitted models do not validate and can make neither
   statements nor predictions.
-\item \red{$\Rightarrow$ we need selection criteria taking care of
+\pause \item \red{$\Rightarrow$ we need selection criteria taking care of
   overfitting!}
 \ei
 }}
@@ -1365,19 +1410,22 @@ S =\text{SSE(calibr. full model)}, \quad S_0=\text{SSE(calibr. constant-only mod
 }
 \vspace{0.1em}
 
-\item \bfdef{(2) Akaike information criterion AIC:}
+\pause \item \bfdef{(2) Akaike information criterion AIC:}
 \begin{equation*}
   \text{AIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{2}{n}, 
 \end{equation*}
 
-\item \bfdef{(3) Bayes' Information criterion BIC:}
+\pause \item \bfdef{(3) Bayes' Information criterion BIC:}
 \begin{equation*}
    \text{BIC} = \ln \hat\sigma\sub{descr}^2 + J\, \frac{\ln n}{n} \,.
 \end{equation*}
 \ei
-Notice that the descriptive $\hat{\sigma}\sub{descr}^2=S/n$ instead of
+\visible<3->{Notice that the descriptive
+  $\hat{\sigma}\sub{descr}^2=S/n$ instead of 
   the unbiased 
 $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
+}
+
 }
 
 %###################################################
@@ -1388,11 +1436,11 @@ $\hat{\sigma}^2=S/(n-1-J)$ is taken in these criteria.
   is always included) and calculate
   $\bar{R}^2$, AIC, or BIC for all $2^J$ combinations of these
       factors (\emph{brute force}).
-\item The best model is that maximizing $\bar{R}^2$ or minimizing AIC
+\pause \item The best model is that maximizing $\bar{R}^2$ or minimizing AIC
   or BIC. 
-\item Since AIC and also $\bar{R}^2$ penalize complex models (with
+\pause \item Since AIC and also $\bar{R}^2$ penalize complex models (with
   many parameters) too little, the BIC is usually the best bet.
-\item Besides the \emph{brute-force} approach, there are two
+\pause \item Besides the \emph{brute-force} approach, there are two
   faster strategies that may not find the
   ``best'' model, however:  
 \bi
