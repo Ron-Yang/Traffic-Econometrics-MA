@@ -4,10 +4,10 @@
 % template in ~/tex/inputs/template_folien.tex
 % [TODO now specialized to Vkoem_Ma; make general]
 %#############################################
+ 
 
-
-\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout]{beamer}
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
@@ -305,7 +305,7 @@ region of a given measurement ($B=E\sub{data}$):
 
 \bdma
 \visible<4->{
-P(H_0) &=& \frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}\\}
+P(H_0|E\sub{data}) &=& \frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}\\}
 \visible<5->{
  & \stackrel{P(H_0)\to \int_{\beta\in H_0} h(\beta)\diff(\beta)}{=} &
    \frac{\int_{\beta\in H_0}P(E\sub{data}|\beta)h(\beta)\diff{\beta}}
@@ -547,7 +547,7 @@ $P(H_0)$)},\\[1em]
 \frame{\frametitle{5.6 Conclusion}
 %###################################################
 \bi
-\pause \item For discrete variables and measurements, we have the simple
+\item For discrete variables and measurements, we have the simple
   Bayes's calculations from elementary statistics 
 $\to$ \red{probability tree}\vspace{1ex}
 
