@@ -1,0 +1,183 @@
+
+
+
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}  %$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa}   %$
+
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+\section*{1a: Covid-19 Dynamics}
+
+%##############################################################
+%\frame{\frametitle{}
+\frame{ 
+%##############################################################
+
+
+\placebox{0.50}{0.42}
+ {\figSimple{1.10\textwidth}{figsCorona/coronaSimulationDe_1.png}}
+
+% make images pale (see demo_makePale.tex)
+%\makePale{opacity}{centerXrel}{centerYrel}{wrel}{hrel}
+% e.g., \makePale{0.8}{0.5}{0.5}{1}{0.3}
+
+\makePale{0.7}{0.48}{0.57}{1.2}{1.1}
+
+\placebox{0.50}{0.90}{\myheading{Traffic Econometrics Master's Course}}
+\placebox{0.50}{0.82}{\mysubheading{Lecture 01a: Covid-19 Dynamics}}
+\placebox{0.86}{0.05}{Martin Treiber} 
+
+\placebox{0.50}{0.38}
+ {\parbox{0.8\textwidth}{
+  \bi
+    \pause \item 1a.1 Simple Macroscopic Models (SI, SIR, SEIR, SIRM)
+    \pause \item 1a.2 Microscopic Models
+    \pause \item 1a.3 Down to Earth: Data-Related Issues
+    \pause \item 1a.4 Simulation \texttt{Corona-simulation.de}
+  \ei
+}}
+
+}
+
+
+
+
+
+%##############################################################
+\frame{\frametitle{Modified SEIR model}
+%##############################################################
+
+
+\bi
+\item Four ``compartiments'': Susceptibel, Exposed, Infected,
+  Recovered
+\item New xfig with development and data branches
+
+\item Adds to the SIR model a finite \emph{incubation time} $\tau_I
+  \sim \text{Exp}(\alpha)$ where people are infected but not yet
+  contagious (``exposed'', E)
+\pause \item Triple chain with $S+E+I+R=1$:
+\ei
+
+\vspace{-1em}
+\visible<2->{\fig{1.0\textwidth}{figsCorona/SEIR.png}}
+\vspace{-1em}
+
+
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{1a.3 Down to reality/econometrics: what can be observed?}
+%##############################################################
+
+\maintextbox{0.8\textwidth}{We want to know: \bfred{\#Infections} 
+$N_I(t)=N\, I(t)$,\\ 
+ideally its ``age
+structure'' $I_0, I_1, ..., I_t$}
+\vspace{-1em}
+
+\pause
+\maintextbox{0.8\textwidth}{We do know: \bfred{\#positive tests}
+ $N_T(t)$
+(``cases'') and \\ \bfred{\#Covid-19 deaths} $N_D(t)$ including the
+  history $t'\le t$ 
+}
+
+{\small
+Many uncertainties:
+\bi
+\pause \item The tests have an imperfect \bfdef{sensitivity}
+$P(\text{positive}|\text{infected}) \approx \unit[99]{\%}$
+\pause \item ... and an imperfect \bfdef{specifity}
+$P(\text{negative}|\text{not infected}) \approx \unit[99]{\%}$
+%and these figures even have large uncertainties in themselves
+\pause \item Different/inconsistent definitions of a ``Covid-19 death'' event
+\pause \item There is a high number of untested and potentially ill people
+  $\Rightarrow$ high number of unreported cases, probably $\gg N_T$
+\pause \item The fraction of reported cases depends on the number of tests
+  via a monotonously increasing but otherwise unknown function
+\ei
+}
+
+}
+
+
+
+
+
+%##############################################################
+\frame{\frametitle{Time Test of Czechia Projection as of Oct 30, 2020}
+%##############################################################
+\placebox{0.47}{0.44}{
+ \figSimple{1.1\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}
+\placebox{0.50}{0.80}{Czechia as of Oct 30, 2020}
+
+}
+
+%##############################################################
+\frame{\frametitle{Summary/take-home messages }
+%##############################################################
+\bi
+\item Only \bfred{data brings us ``down to Earth''} allowing for 
+\bi
+\item tests of the model quality
+\item doing useful things such as projection scenarios (do not forget
+  Mark Twains quote about predictions!)
+\ei
+
+\pause \item Always \bfred{check definitions of events}, e.g.,
+   ``Covid-19 infection'' (including all symptom free people?) or
+  ``Covid-19 death'' (including
+  fatal traffic accidents of a test-positive persons?)
+
+\pause \item \bfred{Do not confuse/mix proxies with the real
+  quantities}, e.g.,
+  positive tests \emph{vs.} infection events. Also check how well the
+  proxy \emph{represents} the interesting quantities 
+  (\#positive tests is a poor proxy for the \#infections, \#\emph{recorded}
+  Covid-19 death is a much better proxy for all the Covid-19 deaths)
+
+\pause \item \bfred{Check your sample.} Is it essentially the population or only a
+  small and unknown fraction thereof?
+
+\pause \item \bfred{Be careful with exponentially growing things}
+ since small changes
+  in the scenario setting can greatly influence the result
+
+\ei
+}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
