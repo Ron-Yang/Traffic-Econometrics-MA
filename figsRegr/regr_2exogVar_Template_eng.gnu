@@ -1153,6 +1153,8 @@ set isosamples 30,30
 
 
 
+
+
 #######################################
 print "plotting hotel_f2_hatbeta1_hatbeta2_eng.png"
 set out "hotel_f2_hatbeta1_hatbeta2_eng.png"
@@ -1256,6 +1258,107 @@ set isosamples 30,30
 
 
 #######################################
+print "plotting hotel_f2_hatbeta1_hatbeta2_uebung_eng.png"
+set out "hotel_f2_hatbeta1_hatbeta2_uebung_eng.png"
+#######################################
+
+beta10=30.
+beta20=-0.5  # Uebung=letztes Set!
+
+unset label
+set multiplot
+set param
+set contour surface
+
+set isosamples 30,30
+set palette defined ( 0 "white", 5 "yellow", 30 "orange",\
+  80 "#FF2222",  99 "#AA0088", 100 "black") 
+
+xmin=20
+xminGamH0=0.
+xmax=beta1+3*sigbeta1
+
+ymin=beta2-4*sigbeta2
+ymax=0
+
+set xlabel "{/Symbol b}_1 - Estimator"
+set xrange [xmin:xmax]
+
+set ylabel "{/Symbol b}_2 - Estimator" offset 0,0
+set yrange [ymin:ymax]
+
+
+# (1) Main density plot w/ contour lines uebung_eng
+
+set pm3d; set pm3d map
+set contour surface
+set cntrparam bspline
+unset clabel
+unset key
+splot[x=xmin:xmax][y=ymin:ymax]\
+  x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_12,n-3)\
+   t "f_2(hat({/Symbol b})_1, hat({/Symbol b})_2)" w l ls 98
+
+# (2) Ellipsoid-shaped confidence region uebung_eng
+# One contour at 2d density where max=1 normalized 2d student function
+# corresponds to alpha=5% KI/CI => approx 0.105
+
+densityAtAlpha5=0.105
+
+print "CI(beta_1)=[",beta1-dbeta1,",",beta1+dbeta1,"]"
+print "CI(beta_2)=[",beta2-dbeta2,",",beta2+dbeta2,"]"
+
+unset pm3d; unset surface # here unset surface necessary!
+set cntrparam levels discrete densityAtAlpha5  # one contour
+
+set key at screen 0.02,0.28
+
+# BUG doppelt; workaround left label left unvisible
+
+splot[x=xmin:xmax][y=ymin:ymax]\
+  x,y,student2d((x-beta1)/sigbeta1,(y-beta2)/sigbeta2,r_12,n-3)\
+   t "Confidence Region F-Test" w l ls 17
+
+#(3) one-parameter confidence limits uebung_eng
+
+set surface; # here set surface necessary!
+set key at screen 0.88,0.96
+
+#BUGS in TUD gnuplot but not at home (aber Ubuntu 12 LTS!)
+
+# BUG 3d necessary because of scaling bug otherwise!!!
+#     lines produce unreproducible/illogical bugs => points OK (strange)
+# BUG surface necessary but produces huge files for reasonable sampling=>png
+# set isosamples 100  # because of points ("w l" <-> "w l" etc)
+# BUG: cannot control parametric lines/workaround with points
+
+set isosamples 80
+splot[t=0:1]\
+ beta1-dbeta1, ymin+t*(ymax-ymin),10\
+      t "Confidence intervals for {/Symbol b_1, b_2}" w p ls 15,\
+ beta1+dbeta1, ymin+t*(ymax-ymin),0 t "" w p ls 15,\
+ xmin+t*(xmax-xmin), beta2-dbeta2,0 t "" w p ls 15,\
+ xmin+t*(xmax-xmin), beta2+dbeta2,0 t "" w p ls 15
+
+
+#(4) verbundene H0 (always w p, not w l !!) uebung_eng
+
+set key at screen 0.46,0.96
+
+splot[t=0:1]\
+  beta10,beta20,0 t\
+  "Compound H_0: ({/Symbol b}_1=30) AND ({/Symbol b}_2=-0.5)" w p ls 1
+
+set nomultiplot
+set notitle
+set isosamples 30,30
+
+
+
+
+
+
+#######################################
 print "plotting hotel_SSE_beta1_beta2_eng.png"
 set out "hotel_SSE_beta1_beta2_eng.png"
 #######################################
@@ -1338,8 +1441,8 @@ set out "hotel_studentCumSolved_eng.png"
 set key at screen 0.8,0.2
 plot[t=tmin:tmax]\
  t, studentCum(t,n-3) t "" w l ls 12,\
- t1, 0.8+0.2*(t-tmin)/(tmax-tmin) t "Realisierung symm. Test" w l ls 15,\
- t2asym, 0.8+0.2*(t-tmin)/(tmax-tmin) t "Realisierung asymm. Test" w l ls 17
+ t1, 0.8+0.2*(t-tmin)/(tmax-tmin) t "Realisation symm. test" w l ls 15,\
+ t2asym, 0.8+0.2*(t-tmin)/(tmax-tmin) t "Realisation asymm. Test" w l ls 17
 
 
 
@@ -1498,7 +1601,7 @@ unset contour
 set pm3d; set pm3d map  
 set contour surface
 
-set colorbox
+set colorbox 
 
 set isosample 50,50
 set auto

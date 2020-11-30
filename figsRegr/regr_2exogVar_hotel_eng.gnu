@@ -137,8 +137,8 @@ min(x,y)    = (x>y) ? y : x
 
 
 
-set term post eps enhanced color solid "Helvetica" 18
-set term pngcairo enhanced color notransparent crop font "Helvetica, 12"
+#set term post eps enhanced color solid "Helvetica" 18
+set term pngcairo enhanced color notransparent crop font "Helvetica, 14"
 
 
 ####################################################
@@ -762,8 +762,8 @@ print "plotting hotel_scatterplot_x1x2_eng.png"
 set out "hotel_scatterplot_x1x2_eng.png"
 #######################################
 
-set xlabel "Exogenous Variable x_1"
-set ylabel "Exogenous Variable x_2"
+set xlabel "Exogenous Variable x_1" 
+set ylabel "Exogenous Variable x_2" offset 1,0
 set nokey
 set xrange [x1datamin:x1datamax]
 set notitle
@@ -790,7 +790,7 @@ set out "hotel_scatterplot_x1y_eng.png"
 set xlabel "Exogenous Variable x_1"
 set ylabel "Endogenous Variable y" offset 1,0
 unset key
-set key at screen 0.42,0.86
+set key at screen 0.54,0.86
 
 
 
@@ -827,12 +827,30 @@ plot[x1=x1datamin:x1datamax]\
   x111,haty(x111,x211) t "" w p ls 7,\
   x112,haty(x112,x212) t "" w p ls 7
 
+
+#######################################
+print "plotting hotel_scatterplot_x1y_simple_eng.png"
+set out "hotel_scatterplot_x1y_simple_eng.png"
+#######################################
+plot[x1=x1datamin:x1datamax]\
+  x11,y1 t "Data" w p ls 1,\
+  x12,y2 t "" w p ls 1,\
+  x13,y3 t "" w p ls 1,\
+  x14,y4 t "" w p ls 1,\
+  x15,y5 t "" w p ls 1,\
+  x16,y6 t "" w p ls 1,\
+  x17,y7 t "" w p ls 1,\
+  x18,y8 t "" w p ls 1,\
+  x19,y9 t "" w p ls 1,\
+  x110,y10 t "" w p ls 1,\
+  x111,y11 t "" w p ls 1,\
+  x112,y12 t "" w p ls 1
+
+
 #######################################
 print "plotting hotel_scatterplot_x2y_eng.png"
 set out "hotel_scatterplot_x2y_eng.png"
 #######################################
-
-
 
 set xlabel "Exogenous Variable x_2"
 
@@ -867,6 +885,28 @@ plot[x2=x2datamin:x2datamax]\
   x210,haty(x110,x210) t "" w p ls 7,\
   x211,haty(x111,x211) t "" w p ls 7,\
   x212,haty(x112,x212) t "" w p ls 7
+
+
+#######################################
+print "plotting hotel_scatterplot_x2y_simple_eng.png"
+set out "hotel_scatterplot_x2y_simple_eng.png"
+#######################################
+plot[x2=x2datamin:x2datamax]\
+  x21,y1 t "Data" w p ls 1,\
+  x22,y2 t "" w p ls 1,\
+  x23,y3 t "" w p ls 1,\
+  x24,y4 t "" w p ls 1,\
+  x25,y5 t "" w p ls 1,\
+  x26,y6 t "" w p ls 1,\
+  x27,y7 t "" w p ls 1,\
+  x28,y8 t "" w p ls 1,\
+  x29,y9 t "" w p ls 1,\
+  x210,y10 t "" w p ls 1,\
+  x211,y11 t "" w p ls 1,\
+  x212,y12 t "" w p ls 1
+
+
+set term pngcairo enhanced color notransparent crop font "Helvetica, 12"
 
 #######################################
 print "plotting hotel_scatterplot_x2ycondx1_eng.png"
