@@ -9,8 +9,8 @@
 %#############################################
 
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
 \input{$HOME/tex/inputs/defsSkript}  %$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}   %$
@@ -22,7 +22,72 @@
 
 \begin{document}
 
-\section*{1a: Covid-19 Dynamics}
+\section*{Covid-19 Simulation}
+
+
+
+%##############################################################
+\frame{\frametitle{Below the Hood}
+%##############################################################
+
+\visible<1>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim02.png}}}
+
+\visible<2>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim03.png}}}
+
+\visible<3>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim04.png}}}
+
+\visible<4>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim05.png}}}
+
+\visible<5>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim06.png}}}
+
+\visible<6>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim07.png}}}
+
+\visible<7>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim08.png}}}
+
+\visible<8>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim09.png}}}
+
+\visible<9>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim10.png}}}
+
+\visible<10>{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim11.png}}}
+
+\visible<11->{
+ \placebox{0.5}{0.55}{\figSimple{1.08\textwidth}{figsCorona/SEIRsim12.png}}}
+
+\placebox{0.5}{0.15}{\parbox{0.9\textwidth}{
+\bi
+\visible<5->{
+\item Four ``compartiments'': Susceptibel, Exposed, Infected,
+  Controlled/Recovered/Dead}
+\visible<7->{\item Sensitivity $1-\alpha$=Prob\,(positive $|$ infected)}
+\visible<8->{\item Specificity $1-\beta$=Prob\,(negative $|$ not infected)}
+\ei
+}}
+
+
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Time Test of Czechia Projection as of Oct 30, 2020}
+%##############################################################
+\placebox{0.47}{0.44}{
+ \figSimple{1.1\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}
+\placebox{0.50}{0.80}{Czechia as of Oct 30, 2020}
+
+}
+
 
 %##############################################################
 %\frame{\frametitle{}
@@ -39,14 +104,13 @@
 
 \makePale{0.7}{0.48}{0.57}{1.2}{1.1}
 
-\placebox{0.50}{0.90}{\myheading{Traffic Econometrics Master's Course}}
-\placebox{0.50}{0.82}{\mysubheading{Lecture 01a: Covid-19 Dynamics}}
-\placebox{0.86}{0.05}{Martin Treiber} 
+\placebox{0.50}{0.90}{\myheading{Take-Home Messages }}
 
 \placebox{0.50}{0.38}
  {\parbox{0.8\textwidth}{
   \bi
-    \pause \item 1a.1 Simple Macroscopic Models (SI, SIR, SEIR, SIRM)
+    \pause \item Separation between infection dynamics, contained
+    stage/recoveries, and data dynamics 
     \pause \item 1a.2 Microscopic Models
     \pause \item 1a.3 Down to Earth: Data-Related Issues
     \pause \item 1a.4 Simulation \texttt{Corona-simulation.de}
@@ -58,83 +122,8 @@
 
 
 
-
 %##############################################################
-\frame{\frametitle{Modified SEIR model}
-%##############################################################
-
-
-\bi
-\item Four ``compartiments'': Susceptibel, Exposed, Infected,
-  Recovered
-\item New xfig with development and data branches
-
-\item Adds to the SIR model a finite \emph{incubation time} $\tau_I
-  \sim \text{Exp}(\alpha)$ where people are infected but not yet
-  contagious (``exposed'', E)
-\pause \item Triple chain with $S+E+I+R=1$:
-\ei
-
-\vspace{-1em}
-\visible<2->{\fig{1.0\textwidth}{figsCorona/SEIR.png}}
-\vspace{-1em}
-
-
-
-
-}
-
-
-%##############################################################
-\frame{\frametitle{1a.3 Down to reality/econometrics: what can be observed?}
-%##############################################################
-
-\maintextbox{0.8\textwidth}{We want to know: \bfred{\#Infections} 
-$N_I(t)=N\, I(t)$,\\ 
-ideally its ``age
-structure'' $I_0, I_1, ..., I_t$}
-\vspace{-1em}
-
-\pause
-\maintextbox{0.8\textwidth}{We do know: \bfred{\#positive tests}
- $N_T(t)$
-(``cases'') and \\ \bfred{\#Covid-19 deaths} $N_D(t)$ including the
-  history $t'\le t$ 
-}
-
-{\small
-Many uncertainties:
-\bi
-\pause \item The tests have an imperfect \bfdef{sensitivity}
-$P(\text{positive}|\text{infected}) \approx \unit[99]{\%}$
-\pause \item ... and an imperfect \bfdef{specifity}
-$P(\text{negative}|\text{not infected}) \approx \unit[99]{\%}$
-%and these figures even have large uncertainties in themselves
-\pause \item Different/inconsistent definitions of a ``Covid-19 death'' event
-\pause \item There is a high number of untested and potentially ill people
-  $\Rightarrow$ high number of unreported cases, probably $\gg N_T$
-\pause \item The fraction of reported cases depends on the number of tests
-  via a monotonously increasing but otherwise unknown function
-\ei
-}
-
-}
-
-
-
-
-
-%##############################################################
-\frame{\frametitle{Time Test of Czechia Projection as of Oct 30, 2020}
-%##############################################################
-\placebox{0.47}{0.44}{
- \figSimple{1.1\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}
-\placebox{0.50}{0.80}{Czechia as of Oct 30, 2020}
-
-}
-
-%##############################################################
-\frame{\frametitle{Summary/take-home messages }
+\frame{\frametitle{Summary/Take-Home Messages }
 %##############################################################
 \bi
 \item Only \bfred{data brings us ``down to Earth''} allowing for 
