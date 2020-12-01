@@ -79,15 +79,6 @@
 }
 
 
-%##############################################################
-\frame{\frametitle{Time Test of Czechia Projection as of Oct 30, 2020}
-%##############################################################
-\placebox{0.47}{0.44}{
- \figSimple{1.1\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}
-\placebox{0.50}{0.80}{Czechia as of Oct 30, 2020}
-
-}
-
 
 %##############################################################
 %\frame{\frametitle{}
@@ -95,65 +86,44 @@
 %##############################################################
 
 
-\placebox{0.50}{0.42}
- {\figSimple{1.10\textwidth}{figsCorona/coronaSimulationDe_1.png}}
+\visible<7->{\placebox{0.48}{0.62}
+ {\figSimple{1.05\textwidth}{figsCorona/Czechia_oct30_cases_prog_cropped.png}}}
 
 % make images pale (see demo_makePale.tex)
 %\makePale{opacity}{centerXrel}{centerYrel}{wrel}{hrel}
 % e.g., \makePale{0.8}{0.5}{0.5}{1}{0.3}
 
-\makePale{0.7}{0.48}{0.57}{1.2}{1.1}
+%\makePale{0.1}{0.48}{0.57}{1.2}{1.1}
 
 \placebox{0.50}{0.90}{\myheading{Take-Home Messages }}
 
-\placebox{0.50}{0.38}
- {\parbox{0.8\textwidth}{
+\placebox{0.50}{0.40}
+ {\parbox{0.95\textwidth}{
   \bi
-    \pause \item Separation between infection dynamics, contained
-    stage/recoveries, and data dynamics 
-    \pause \item 1a.2 Microscopic Models
-    \pause \item 1a.3 Down to Earth: Data-Related Issues
-    \pause \item 1a.4 Simulation \texttt{Corona-simulation.de}
+    \visible<1-6>{\item Separation between \bfdef{infection} and
+      \bfdef{data dynamics}} 
+    \visible<2-6>{\item Data used to \bfdef{calibrate} the base
+      reproduction numbers  and IFRs}
+    \visible<3-6>{\item \bfdef{Wave peak} if contamination $\approx
+      \unit[20]{\%}$: 
+    No herd immunity but sufficient for mild measures
+    to be effective}
+    \visible<4-6>{\item As flu, there is a strong \bfdef{season dependence}
+      (Peru, Australia)}
+    \visible<5->{\item hard lockdowns will hardly lead to fewer deaths;\\ 
+    \bfdef{$\approx$ \unit[35\,000]{Covid/flu deaths}} this winter season
+    in Germany anyway}
+    \visible<6->{\item Pandemic \bfdef{is over} in March/April 2021; in
+      Czechia already now}
+      %\item Disclaimer: conditional projections, not
+      %unconditional forecasts. 
+    \visible<7->{\item \bfred{Let's see if these projections stand the
+        test of time!}} 
   \ei
 }}
 
 }
 
-
-
-
-%##############################################################
-\frame{\frametitle{Summary/Take-Home Messages }
-%##############################################################
-\bi
-\item Only \bfred{data brings us ``down to Earth''} allowing for 
-\bi
-\item tests of the model quality
-\item doing useful things such as projection scenarios (do not forget
-  Mark Twains quote about predictions!)
-\ei
-
-\pause \item Always \bfred{check definitions of events}, e.g.,
-   ``Covid-19 infection'' (including all symptom free people?) or
-  ``Covid-19 death'' (including
-  fatal traffic accidents of a test-positive persons?)
-
-\pause \item \bfred{Do not confuse/mix proxies with the real
-  quantities}, e.g.,
-  positive tests \emph{vs.} infection events. Also check how well the
-  proxy \emph{represents} the interesting quantities 
-  (\#positive tests is a poor proxy for the \#infections, \#\emph{recorded}
-  Covid-19 death is a much better proxy for all the Covid-19 deaths)
-
-\pause \item \bfred{Check your sample.} Is it essentially the population or only a
-  small and unknown fraction thereof?
-
-\pause \item \bfred{Be careful with exponentially growing things}
- since small changes
-  in the scenario setting can greatly influence the result
-
-\ei
-}
 
 
 \end{document}

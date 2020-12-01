@@ -199,7 +199,7 @@ allowed, cases will drop in Austria/Swizzerland. In Czech republic,
 the pandemic is already over.
 
 
-(7) Final disclaimer. These are conditional projections, not
+(7) Final disclaimer. These are conditional projections, not 
 unconditional forecasts, although there is much simulation evidence
 that Czech and Swizzerland are done with the pandemic, in contrast to
 Germany.
