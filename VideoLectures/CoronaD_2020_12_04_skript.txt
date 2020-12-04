@@ -6,10 +6,10 @@ youtube Library-Playlists-backgroundSounds
 =====================
 
 
-Video:
+Video: (-loop 0 repeats forever)
  [mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2051.MOV]
  [mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2052.MOV]
- mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2099.MOV
+ mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2099.MOV -loop 0
  [mplayer ~/ich/bilder/2015_01_Vilgraten/MVI_4920.MOV]
 
 Sound: Skifoaehrn (richtige Startsequenz Sekunde 36)
@@ -81,13 +81,15 @@ Vorbereitung:
 (V3) pdf oeffnen und Groesse anhand Screenrecorder einstellen
      (selbe Breite, unterer Rand ggf abgeschnitten).
      Verifizieren, dass pdf am Anfang, falls vorherige Versuche!
-
-(V4) Youtube https://www.youtube.com/watch?v=F1AZ5U6IdEk
+(V4) mplayer freeCorona1.mp3, 15.4 s
+[(V4) Youtube https://www.youtube.com/watch?v=F1AZ5U6IdEk
      ganz an Anfang stellen (in || Stellung
-     zurueckschieben). Schauen, dass weder Screenrecorder noch
-     Youtube "im Weg" sind
+     zurueckschieben).
 
-(V5) Screenrecorder: Probeaufnahmen loeschen und startklar machen
+(V5) Schauen, dass weder Screenrecorder noch
+     Youtube "im Weg" sind]
+
+(V6) Screenrecorder: Probeaufnahmen loeschen und startklar machen
 
 Aktion:
 
@@ -95,8 +97,7 @@ Aktion:
 
 (A1) Screenrecorder start
 
-(A2) Youtube start (mit 0 oder Dreieck-Knopf), so schnell wie moeglich
-     Mausfokus auf pdf [Klick!]
+(A2) mplayer click fuer Start (freeCorona1.mp3, 15.4 s)
 
 (A3) Ab 5. Beat bei jedem Beat Taste "->" druecken (NICHT Maus!)
 
@@ -126,5 +127,186 @@ ffmpeg -ss 00:04:51 -t 00:00:30 -i CoronaD_02_orig.mkv  -vcodec copy -acodec cop
 merge.sh CoronaD.mkv CoronaD_01.mkv CoronaD_02.mkv
 
  
-3. Normaler Vortrag
+3. Sequenz makroskopische
+Coronamodellierung
 ===================
+
+
+Vorbereitung:
+
+Cheese und pdf - letztes
+Corona-Slide - in Deckung bringen
+in linker Symbolleiste
+nebeneinander bringen
+
+auf Screenrecorder 
+CoronaD_03.mkv
+
+
+Action:
+
+Dieses Weihnachten ist ja
+Skifoaern durch das Coronavirus
+und die Aktionen der Politiker
+diesseits und jenseits der
+Grenze gestorben
+
+Aber die Saison ist ja noch lang.
+
+[Cheese-Bild zeigen]
+
+Wie geht es weiter?
+
+Was geschieht nach den
+verstaerkten Begegnungen zu
+Weihnachten?
+
+Hilft vielleicht ein harter
+Wavebreaker Lockdown, wie es
+eine Modelliererin
+vorgeschlagen hat?
+
+Ist der ganze Zauber in
+unterschiedlichen Laendern
+- D, Oesterreich, Schweiz, aber
+auch Tschechien - vielleicht
+unterschiedlich
+schnell vorbei?
+
+Als Physiker, Oekonometriker,
+mathematischer Modellierer
+und bekannter Simulant fuer
+Strassenverkehrsfluss,
+traffic-simulation.de,
+habe ich ein makroskopisches
+Modell fuer die Virusausbreitung
+simuliert
+
+[pdf, eine Seite weiter]
+
+Ich starte mit nicht immunen,
+infizierbaren Personen.
+
+[->]
+
+Jede Person, die angesteckt wird,
+durchlaeuft vier Phasen. In der
+zweiten Phase sind die Leute
+schon infiziert, aber noch
+nicht ansteckend.
+
+[->]
+
+Nach einer im Simulator
+einstellbaren Zeit z.B. 2 Tage
+werden sie ansteckend. Ob sie
+dabei Symptome zeigen oder nicht
+ist egal. Die Inkubationszeit
+bezieht sich also auf ansteckend,
+nicht auf Symptome
+
+[->]
+
+Waehrend einer einstellbaren
+Infektionszeitdauer bleiben die
+Leute ansteckend und infizieren
+im Mittel R0 andere Leute, wenn
+es keinerlei Immunitaet gibt
+
+Mit mehr und mehr immunen Anteil
+sinkt der tatsaechliche R-Wert
+linear von R0 auf 0
+
+[->]
+
+In der Vierten Phase sind die
+Leute
+
+* entweder tatsaechlich nicht
+mehr ansteckend, gesund
+
+* in Quarantaene/Krankenhaus
+* oder gestorben
+
+
+[->]
+
+Die Infektionsdynamik ist
+damit vollstaendig beschrieben.
+Aber das Modell steckt im
+luftleeren Raum, abseits von
+Empirie. Deshalb muss ich
+auch den Messprozess modellieren!
+Bin schliesslich Oekonometriker!
+
+6-8 Tage nach der Ansteckung
+(einstellbar) werden 10-20% der
+Leute getestet, der Rest ist
+Dunkelziffer. Anteil steigt mit
+der Testzahl, aber weniger als
+linear
+
+Von den real infizierten wird ein
+Anteil 1-alpha (Sensitivitaet)
+positiv getestet. Nur das wird
+dokumentiert, der Status
+"infiziert" ist nicht
+beobachtbar!
+
+[->]
+
+Mit hoher WAhrscheinlichkeit
+werden aber gesunde getestet.
+Nur mit einer gewissen
+Spezifizitaet werden sie
+negativ getestet. die
+Komplementaerwahrscheinlichkeit
+ist der beruechtigte beta-Fehler,
+die False Positives.
+
+[->]
+
+Summarisch: rot eingefaerbt ist
+die Modellierung des
+Infektionsgeschehens 
+
+[->]
+
+blau alles, was danach geschieht
+Hier ist vor allem die
+Infection fatality rate (IFR)
+wichtig, also der Anteil der
+Infizierten (WOHLGEMERKT NICHT
+der positiv getesteten, der
+an/mit der Krankheit stirbt
+
+Ebenso wie die Reproduktionszahl
+R ist die IFR ein Modellparameter
+und wird anhand der Daten
+fuer jedes Land kalibriert, also
+angepasst
+
+[->]
+
+Violett schliesslich ist das
+Modell der Messungen/Tests.
+Wichtig: ein Oekonometriker
+muss immer beides betrachten:
+Die interessierende Dynamik und
+wie diese beobachtet/gemessen
+wird!
+
+
+Simulationen
+============
+
+
+
+
+
+
+
+
+
+
+
