@@ -3,6 +3,9 @@ Search terms: deep techno, dark techno, dark techno gloom
 youtube Library-Playlists-backgroundSounds
 
 1. Skifoaehrn-Sequenz
+=====================
+
+
 Video:
  [mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2051.MOV]
  [mplayer ~/ich/bilder/2013_02_Skitour_Vilgraten_movies/MVI_2052.MOV]
@@ -12,9 +15,106 @@ Video:
 Sound: Skifoaehrn (richtige Startsequenz Sekunde 36)
 https://youtu.be/4v1pZ_MAQ-c?list=PLhsJ0l0GYIUpCfBYKu4RL_9wdVOAt7VqC&t=36
 
+Produktion Vorbereitung:
+
+(V1) Skivideo starten, Groesse einstellen,
+Ton fast ausstellen (Tasten 9 und 0)
+mit <- und Leertaste auf Startzeit ganz am Anfang fixieren
+
+(V2) Skifoaehrn Youtube Sekunde 29, leise Lautstaerke einstellen
+
+(V3) Screenrecorder starten und Rechteck aufziehen (NICHT ganz
+     rechten/oberen Rand! Mache Rechteck ggf unten etwas tiefer, da
+     pdf kleineres b/h Verhaeltnis hat
+
+(V4) Schauen, dass weder Screenrecorder noch
+     Youtube "im Weg" sind
+
+Produktion Action:
+
+(A1) Recorder starten, Youtube starten, Maus auf Video
+
+(A2) Bei Sekunde 36 von "Skifoahrn" Klick aufs Video->startet
+     danach gleich Maus auf Youtube Regler
+
+(A3) Lautstaerke Youtube erst lauter, dann leiser/still
+
+(A4) Spreche "Ja Skifoaehrn ist wirklich das Leiwandste",
+     gleichzeitig Maus auf Movie
+
+(A5) KRITISCH: Wenn Skifahrer fast unten
+     (sollte gleich nach (A4) sein) Maus auf Movie,
+     Klick+Leertaste haelt Video an, gleichzeitig
+     Gekreisch Aaahhh!
+
+(A6) Nach weiteren 2 Sekunden Recorder stoppen (Ctrl-s)
+
+Produktion Nachbereitung:
+
+Screenshot des Stills fuer naechste Sequenz->CoronaD_2020_12_03.tex
 
 
 
-deep techno & progressive house mix
--> https://www.youtube.com/watch?v=F1AZ5U6IdEk
-Start bis Sekunde 18 32 Beats
+2. Duestere Techno-Sequenz
+==========================
+
+"deep techno & progressive house mix"
+
+Vorbereitung:
+
+(V1) Still von 1. Sequenz in CoronaD_2020_12_03.tex einpflegen
+     und zweimal pdflatex-en
+
+(V2) Screenrecorder mit unveraendertem Rechteck und neuem File
+     CoronaD_02.mkv starten
+
+(V3) pdf oeffnen und Groesse anhand Screenrecorder einstellen
+     (selbe Breite, unterer Rand ggf abgeschnitten).
+     Verifizieren, dass pdf am Anfang, falls vorherige Versuche!
+
+(V4) Youtube https://www.youtube.com/watch?v=F1AZ5U6IdEk
+     ganz an Anfang stellen (in || Stellung
+     zurueckschieben). Schauen, dass weder Screenrecorder noch
+     Youtube "im Weg" sind
+
+(V5) Screenrecorder: Probeaufnahmen loeschen und startklar machen
+
+Aktion:
+
+(Genau am 33. Beat kommt der Climax!)
+
+(A1) Screenrecorder start
+
+(A2) Youtube start (mit 0 oder Dreieck-Knopf), so schnell wie moeglich
+     Mausfokus auf pdf [Klick!]
+
+(A3) Ab 5. Beat bei jedem Beat Taste "->" druecken (NICHT Maus!)
+
+(A4) waehrend des "->" Drueckens sprechen "Aber werden wir diese
+     Saison ueberhaupt Skifoaehrn koennen?" 
+
+(A5) Tastendrueckfrequenzverdoppelung:
+     Nach dem sich Corona und Soeder vereinigt haben:
+     daab (Corona erscheint) - daab (Corona-verschwindet)
+     - dab-dab-dab-dab-dab!  (Soeder erscheint bis opaques Corona beim
+     33. Takt!)
+
+(A6) nach paar Sekunden sprechen "Ich befuerchte fast, nein!"
+
+
+Bug losslessCut: Liefert nur Zeitdiskretisierung von 5 Sekunden und
+einhergehende Verschiebungen Audio-Video
+
+ffmpeg (frueher avconv)
+auch buggy aber besser (nur Zeitdiskretisierung, unter 12.5 s geht
+nix!!!):
+
+ffmpeg -ss 00:00:06 -t 00:00:30 -i CoronaD_01_orig.mkv  -vcodec copy -acodec copy CoronaD_01.mkv
+
+ffmpeg -ss 00:04:51 -t 00:00:30 -i CoronaD_02_orig.mkv  -vcodec copy -acodec copy CoronaD_02.mkv
+
+merge.sh CoronaD.mkv CoronaD_01.mkv CoronaD_02.mkv
+
+ 
+3. Normaler Vortrag
+===================
