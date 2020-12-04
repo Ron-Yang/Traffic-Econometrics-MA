@@ -1,0 +1,582 @@
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+ 
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout,aspectratio=169]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}%$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
+%\input{../style/defs}
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+
+\section{5. Bayesian Inference}
+
+%###################################################
+\frame{  %title layout
+%###################################################
+\placebox{0.57}{0.32}{
+  \figSimple{1.20\textwidth}{figsRegr/mapMatchingTitle.png}}
+
+\makePale{0.50}{0.50}{0.55}{1.20}{1.50}
+
+\placebox{0.50}{0.90}{\parbox{1.0\textwidth}{\mysubheading{
+Is the $\bfmath{p}$ value dead? Frequentist \emph{vs.} Bayesian inference
+}}}
+
+\placebox{0.35}{0.49}{\parbox{0.6\textwidth}{
+\bi
+\item[5.1] Introduction: Frequentist vs. Bayesian inference
+\item[5.2] General Methodics
+\item[5.3] Discrete Quantities and Observations\\[-0.8ex]
+\bi
+\item[5.3.1] Example: Covid-19 Tests
+\ei
+\item[5.4] Binary-Valued Quantities and Continuous Observations\\[-0.8ex]
+\bi
+\item[5.4.1] Example: Map Matching
+\ei
+\item[5.5] Continuous Quantities and Observations\\[-0.8ex]
+\bi
+\item[5.5.1] Example: Gausian Priors and Observations
+\ei
+\item[5.6] Conclusion
+\ei
+}}
+
+}
+
+%###################################################
+
+
+\subsection{5.1 Introduction}
+
+%###################################################
+\frame{\frametitle{5.1 Introduction: Frequentist vs. Bayesian inference}
+%###################################################
+\bi
+\item The classic \bfdef{frequentist's} approach calculates the
+  probability that the test function $T$ is further away from $H_0$,
+  (in
+  the extreme range $E\sub{data}$)  than the data realisation
+  provided $H_0$ is marginally true: 
+\pause \bdm
+p=P(T\in E\sub{data}|H^*_0) \ge P(T\in E\sub{data}|H_0)
+\edm
+
+\pause \item The \bfdef{Bayesian inference} tries to caculate what is
+  actually interesting: The probability of $H_0$ given the data. 
+
+\pause \item If
+  the unconditional or \bfdef{a-priori probabilities} were known, this
+  is easy using 
+  \bfdef{Bayes' theorem} (abbreviating $T\in E\sub{data}$ as $E\sub{data}$)
+
+\maindm{
+P(H_0|E\sub{data})=\frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}
+\le p \, \frac{P(H_0)}{P(E\sub{data})}
+}
+
+\pause \item For real-valued parameters, this obviously makes only sense for
+  interval null hypotheses 
+  since, for a point null hypothesis, we have exactly
+  $P(H_0|E\sub{data})=P(H_0)=0$. 
+\ei
+}
+
+\subsection{5.2 General Methodology}
+
+%###################################################
+\frame{\frametitle{5.2 General Idea}
+%###################################################
+\bi
+\item Principle: Update the a-priori probability $P(H_0)$ of some
+  event $H_0$ (in particular, a null hypothesis) based on an
+  observation $B$, e.g.,  
+$B:  \hatbeta=b$ or 
+  $B: \hatbeta \in [b-\delta/2, b+\delta/2]$ with some small $\delta$
+\pause \item Example: $H_0$: ``tomorrow is nice weather'' 
+\bi
+\pause \item $P(H_0)$: a-priori probability before hearing the
+  weather forecast (or the general probability 
+  based on climate tables)
+\pause \item $B$: tomorrow's weather forecast 
+$B\in \text{will be nice}, \text{not nice}\}$
+\pause \item $P(H_0|B)$: a-posteriori probability 
+  after hearing the forecast
+\ei
+\pause \item Relation to classical frequentist's statistics: Known are some
+  observation $B$ and conditional probability $P(B|H_0)$ that can be
+  expressed in terms of $p$. Want $P(H_0|B)$
+\pause \item Four scaling possibilities
+\bi
+\pause \item[(i)] discrete $\beta$ and $\hatbeta$ (e.g., Covid-19 test)
+\pause \item[(ii)] discrete $\beta$ and continuous $\hatbeta$ (e.g., map-matching)
+\pause \item[(iii)] continuous $\beta$, discrete observation ($H_0$ rejected
+  or not) 
+\pause \item[(iv)] continuous sought-after quantity
+  $\beta$ (continuous $H_0$) and continuous observation $\hatbeta$
+  (e.g., regression models) 
+\ei
+\ei
+}
+
+\subsection{5.3 Discrete Quantities and Observations}
+
+%###################################################
+\frame{\frametitle{5.3 Bayesian Inference\\ for
+Discrete Quantities and Observations}
+%###################################################
+\vspace{1em}
+
+{\small
+The classical textbook case are binary variables (values
+  ``true'', ``false'', each set has one element; generalisations easy):
+\bdm
+H_0: \beta=\text{true}, \quad \bar{H_0}: \beta=\text{false}, \quad
+B: \hatbeta=\text{true}; \quad \bar{B}: \hatbeta=\text{false}
+\edm
+\maindm{
+P(H_0|B)=\frac{P(B|H_0)P(H_0)}{P(B)}
+}
+
+\pause
+\vspace{1ex}
+
+\mysubsubheading{Example: Covid-19 tests}
+\bi
+\pause \item $H_0$: person is infected; $B$: person is
+  tested positive
+\pause \item Known: 
+\bi
+\pause \item[$\bullet$] Sensitivity $P(B|H_0)=\unit[95]{\%}$
+\quad $P(\bar{B}|H_0)=\unit[5]{\%}$
+\pause \item[$\bullet$] Specificity $P(\bar{B}|\bar{H_0})=\unit[99]{\%}$,
+\quad $P(B|\bar{H_0})=\unit[1]{\%}$
+\pause \item[$\bullet$] Incidence $P(H_0)=\unit[5]{\%}$
+\ei
+\ei
+}
+\vspace{-1em}
+
+
+{\small
+\begin{align*}
+\visible<8->{
+\text{Bayes: pos. rate: \hspace{4ex} }P(B) \!&= P(B|H_0)P(H_0)+P(B|\bar{H_0})P(\bar{H_0})
+%=0.99 * 0.05 + 0.05*0.95
+=\unit[9.7]{\%},\\[-0.4ex]}
+\visible<9->{
+\text{$H_0$ after pos. test: }
+P(H_0|B)      \! &=P(B|H_0)P(H_0)\, /\, P(B)
+%=\frac{0.99 * 0.05}{0.097}
+=\unit[51.0]{\%}\\[-0.4ex]}
+\visible<10->{
+\text{$H_0$ after neg. test: } 
+P(H_0|\bar{B}) \! &=P(\bar{B}|H_0)P(H_0)\, /\, P(\bar{B})
+%=\frac{0.01 * 0.05}{1-0.097}
+=\unit[0.055]{\%} }
+\end{align*}
+}
+
+
+
+}
+
+
+\subsection{5.4 Discrete Quantities, Continuous Observations}
+
+%###################################################
+\frame{\frametitle{5.4 Bayesian Inference\\
+ for Discrete Quantities and Continuous Observations}
+%###################################################
+
+\bi
+\item Discrete quantity/parameter  $\beta$ with the
+prior distribution
+$
+P(\beta=\beta_j)=p_j, \quad \sum_jp_j=1
+$
+\pause \item Continuous measurement $\hatbeta$  with a given 
+  distribution of density 
+$g(\hatbeta \ | \ \beta=\beta_j)=f(\hatbeta-\beta_j)$
+\bi
+\pause \itemAsk \colAsk{What is the meaning of $f(.)$?}
+\pause \colAnswer{ \quad ! density of estimation error}
+\ei
+
+\pause \item Assume $H_0: \beta=\beta_{j_0}$ with $\beta_{j_0}\in \{\beta_j\}$
+and the observation $B$: $\hatbeta\in [b-\delta/2, b+\delta/2]$ with
+arbitraruly small $\delta$:
+
+\pause \item \text{Bayes: } 
+$P(H_0)=p_{j_0}$, $P(B|H_0)=\delta f(b-\beta_{j_0})$, and 
+$P(B)=\delta \sum_jp_jf(b-\beta_j)$
+\ei
+
+\pause
+\vspace{2.5em}
+
+\hspace{1em} $\Rightarrow$
+\vspace{-2.5em}
+\maindm{P(H_0|\hatbeta=b) =  \frac{P(H_0)P(B|H_0)}{P(B)}
+=\frac{p_{j_0}f(b-\beta_{j_0})} {\sum_jp_jf(b-\beta_j)}
+}
+
+}
+
+%###################################################
+\frame{\frametitle{Example:  Map matching}
+%###################################################
+
+\placebox{0.50}{0.48}{\figSimple{1.15\textwidth}{figsRegr/mapMatching.png}}
+
+\placebox{0.5}{0.062}{$p(H_0)=\frac{\text{density freeway}}
+{\text{density freeway}+\text{density road}}=0.8$ \quad
+$P(H_0|\hat{y}=b)=\frac{0.8 f(b)}{0.8f(b)+0.2f(b-d)}$
+}
+
+\placebox{0.925}{0.56}{\footnotesize{\red{$\hat{y}\sim N(y,\sigma^2)$}}}
+
+
+
+}
+
+
+%###################################################
+\frame{\frametitle{Map matching II}
+% for $P(H_0)=P(\text{freeway})=0.8$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorBinaryProb08_b.png}}
+
+%}\end{document}
+
+\placebox[center]{0.84}{0.45}
+{\parbox{0.35\textwidth}{\footnotesize
+True vehicle position:\\
+$y=\twoCases{0}{\text{freeway}}{d}{\text{parallel road}}$
+\\[1em]
+\pause Lateral GPS measurement:\\[0.5em]
+$\hat{y} \sim 
+\twoCases{N(0,\sigma^2)}{\text{freeway}}{N(d,\sigma^2)}{\text{road}}$
+\\[1em]
+\pause Measured:\\
+ $\hat{y}=\unit[30]{m}$, $\sigma=\unit[10]{m}$,\\ 
+ at a distance $d=\unit[50]{m}$
+\\[1em]
+\pause Read from graphics:\\
+$\frac{\sigma}{d}=0.2$, $\frac{\hat{y}}{d}=0.6$ \\
+$\Rightarrow P(H_0|\hat{y})=0.23$\\[0.5em]
+\red{$\Rightarrow$ 
+you are on the parallel road with a probability of \unit[77]{\%}}
+}}
+
+}
+
+
+
+\subsection{5.5 Continuous Quantities and Measurements }
+
+%###################################################
+\frame{\frametitle{5.5 Bayesian Inference\\ for Continuous Quantities and
+  Measurements }
+%###################################################
+
+\bi
+\item The quantity $\beta$ has the a-priori distribution
+  density $h(\beta)$\\[1ex]
+\pause \item Unlike discrete quantities/parameters, $H_0$ meeds to be an
+  interval instead of a point \colAsk{(why?)} $\Rightarrow P(H_0)$ and
+  $P(B|H_0)$ are integrals over the values of $H_0$\\[1ex]
+\pause \item Probability for $H_0$ based on measurements lying in the extreme
+region of a given measurement ($B=E\sub{data}$):
+\ei
+
+\bdma
+\visible<4->{
+P(H_0|E\sub{data}) &=& \frac{P(E\sub{data}|H_0)P(H_0)}{P(E\sub{data})}\\}
+\visible<5->{
+ & \stackrel{P(H_0)\to \int_{\beta\in H_0} h(\beta)\diff(\beta)}{=} &
+   \frac{\int_{\beta\in H_0}P(E\sub{data}|\beta)h(\beta)\diff{\beta}}
+        {\int_{\beta\in \IR}P(E\sub{data}|\beta)h(\beta)\diff{\beta}}\\}
+\visible<6->{
+ & \stackrel{\text{def power function $\pi$}}{=} &
+   \frac{\int_{\beta\in H_0}\pi(\beta)h(\beta)\diff{\beta}}
+        {\int_{\beta\in \IR}\pi(\beta)h(\beta)\diff{\beta}} }
+\edma
+}
+
+%###################################################
+\frame{\frametitle{Inference for a given measurement}
+%###################################################
+\vspace{0.5em}
+
+{\small
+Probability for $H_0$ based on a given realisation (measurement)
+$\hatbeta \in B=[b-\delta/2, b+\delta/2]$ with arbitrarily small
+  $\delta$:
+
+\bi
+\item $\beta$ has the a-priori distribution
+  density $h(\beta)$\\[1ex]
+\pause \item The estimation error $\hatbeta-\beta$ is independent from $\beta$ (as in the OLS estimator under
+Gau\3-Markow conditions), so $\hatbeta$ has the conditional density $g(b|\beta)=f(b-\beta)$
+\ei
+\vspace{-1.5em}
+
+\bdma
+\visible<3->{
+P(H_0|B) &=& \frac{P(B|H_0)P(H_0)}{P(B)}\\}
+\visible<4->{
+ & \stackrel{P(H_0)\to \int h(\beta)\diff(\beta)}{=} &
+  \frac{\int_{\beta\in H_0}\delta\ g(b|\beta)h(\beta)\diff{\beta}}
+       {\int_{\beta\in \IR}\delta\ g(b|\beta)h(\beta)\diff{\beta}} }
+\edma
+
+\visible<5->{
+
+\vspace{2.0em}
+
+\hspace{5em}$\Rightarrow$
+
+\vspace{-3em}
+\maindm{P(H_0|B)=
+  \frac{\int_{\beta\in H_0}f(b-\beta)h(\beta)\diff{\beta}}
+       {\int_{\beta\in \IR}f(b-\beta)h(\beta)\diff{\beta}}
+}
+Notice that the denominator is just the convolution $[f*g]$ at $\hatbeta=b$
+}
+
+}
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Example: Gaussian Prior Distribution and Observations} 
+%###################################################
+
+{\small
+\bi
+\item Prior $\beta \sim N(0,\sigma_\beta^2)$ (expectation=0 is
+  no restriction)
+
+\pause \item Unbiased estimator $ \hatbeta \sim N(\beta,\sigma_b^2)$
+\pause \item Null hypothesis $H_0$: $\beta \le \beta_0$\\
+$\Rightarrow
+f(b-\beta)= \phi\left(\frac{b-\beta}{\sigma_b}\right), \quad
+h(\beta)=\phi\left(\frac{\beta}{\sigma_{\beta}}\right), \quad
+\int_{H_0}\diff{\beta}=\int_{-\infty}^{\beta_0}\diff{\beta}
+$
+
+\pause \item Bayesian inference for $H_0$ under the observation
+  $\hatbeta=b$ (long calc.):
+
+\maindm{P(H_0|\hatbeta) = \Phi\left(\frac{\beta_0-\mu}{\sigma}\right),
+  \quad 
+ \mu=b \frac{\sigma_{\beta}^2}{\sigma_{\beta}^2+\sigma_b^2}, \quad
+\sigma=\frac{\sigma_{\beta}
+  \sigma_b}{\sqrt{\sigma_{\beta}^2+\sigma_b^2}}
+}
+
+\pause \item When expressing the observation in terms of the $p$ value,
+$b=\beta_0+\sigma_b\Phi^{-1}(1-p)$  and $\beta_0$
+in terms of $P(H_0)$,
+$\beta_0 = \sigma_{\beta}\Phi^{-1}(P(H_0))$ \colAsk{(derive!)}, this
+result is valid for 
+\emph{any} simple intervall null hypothesis for a
+  single parameter $\beta$, \emph{any} a-priori expectation $E(\beta)$, and
+  \emph{any} $H_0$ boundary value $\beta_0$ 
+
+\pause \item If $\sigma_b^2 \ll \sigma_{\beta}^2$ and $H_0$ is an
+  interval, we have $P(H_0|\hatbeta)\to p$ \\ 
+  \green{$\Rightarrow$ ``ressurrection'' of the $p$-value!}
+\ei
+}
+
+}
+
+%###################################################
+\frame{\frametitle{Questions} 
+%###################################################
+
+{\small
+\bi
+\pause \itemAsk \colAsk{Show that, if the variance of the prior distribution
+  is much larger than that of the measurement, we have $P(H_0|\hatbeta)\to p$
+  and, if it is much smaller, we have $P(H_0|\hatbeta)\to P(H_0)$}
+\ei
+}
+\vspace{0em}
+{\scriptsize
+\bi
+\pause \itemAnswer \colAnswer{Answer to the first question,
+  $\sigma_{\beta} \gg \sigma_b$:}
+\vspace{1em}
+
+we have
+\vspace{-2.5em}
+%
+\bdma
+\visible<3->{
+\mu &=& b \frac{\sigma_{\beta}^2}{\sigma_{\beta}^2+\sigma_b^2} }
+\visible<4->{
+= b \frac{1}{1+\frac{\sigma_b^2}{\sigma_{\beta}^2}} 
+ \to b, \\}
+\visible<5->{
+\sigma &=& \sigma_{\beta}\sigma_b/
+\sqrt{\sigma_{\beta}^2+\sigma_b^2} }
+\visible<6->{
+\ = \ \sigma_b \sqrt{1+\sigma_b^2/\sigma_{\beta}^2}
+  \to \sigma_b \, , \\}
+\visible<7->{
+P(H_0|\hatbeta) &\to & \Phi\left(\frac{\beta_0-b}{\sigma_b}\right) }
+\visible<8->{ \
+ \stackrel{\text{$\beta_0-b$ in terms of $p$}}{=} \
+ \Phi\left(\frac{-\sigma_b\Phi^{-1}(1-p)}{\sigma_b}\right)\\}
+\visible<9->{
+ &=&  \Phi\left(-\Phi^{-1}(1-p)\right) }
+\visible<10->{
+\ \stackrel{\text{symm}}{=} \  \Phi\left(+\Phi^{-1}(p)\right) }
+\visible<11->{
+ \stackrel{\text{def quantile}}{=}\uu{p} \OK }
+\edma
+\visible<12->{\colAnswer{! Limiting case $\sigma_{\beta} \ll \sigma_{b}$:
+ $\mu\to 0$, $\sigma\to \sigma_{\beta}$,
+  $P(H_0|\hatbeta)=\Phi(\beta/\sigma_{\beta})= P(H_0) \OK$}}
+
+
+\ei
+}
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 1: \\ $\bfmath{P(H_0)=0.5}$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq0.png}}
+
+\placebox[center]{0.83}{0.45}
+{\parbox{0.39\textwidth}{\footnotesize 
+Example: Bike modal split $\beta$
+\bi
+\pause \item Past investigation: $\beta=\unit[(20 \pm 3)]{\%}$
+\pause \item New investigation: $\hatbeta=\unit[(26 \pm 3)]{\%}$
+\ei
+\pause Has biking increased?
+\bi
+\pause \item Frequentist:\\
+$H_0: \beta<\unit[20]{\%}$,
+$p=\Phi(-2)=0.0227$ \OK
+\pause \item Bayesian:\\
+$\sigma_{\beta}=\sigma_b=\unit[3]{\%}$,\\
+ $p=0.0227$, $P(H_0)=0.5$\\
+read from graphics:\\
+$P(H_0|\hatbeta)=\unit[8]{\%}$ $\Rightarrow$ \red{no!}\\
+(a difference test would give the same)
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 2: \\ $\bfmath{P(H_0)=0.9987}$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eq3sigbeta.png}}
+
+\placebox[center]{0.83}{0.45}
+{\parbox{0.39\textwidth}{\small
+\bi
+\pause \item $\sigma_b \ll \sigma_{\beta}$\\
+$\Rightarrow P(H_0|\hatbeta) \approx p$\\
+$\Rightarrow$ \green{precise a-posteri information changes much.}
+\pause \item $\sigma_b \gg \sigma_{\beta}$
+$\Rightarrow P(H_0|\hatbeta) \approx P(H_0)$\\
+$\Rightarrow$ \red{fuzzy a-posteri data essentially give no information
+  $\Rightarrow$ a-priori
+  probability nearly unchanged.}
+\ei
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Bayesian inference for a Gaussian prior
+    distribution 3: \\ $\bfmath{P(H_0)=0.16}$}
+%###################################################
+\placebox[center]{0.35}{0.45}
+{\figSimple{0.7\textwidth}{figsRegr/PH0_PriorGauss_beta0eqm1sigbeta.png}}
+
+\placebox[center]{0.84}{0.45}
+{\parbox{0.31\textwidth}{\small
+Again, new data with 
+$\sigma_b \ll \sigma_{\beta}$ gives \green{much a-posteriori
+information (at least if $p$ is significantly different from
+$P(H_0)$)},\\[1em]
+\pause new data with $\sigma_b \gg \sigma_{\beta}$ are
+\red{tantamount to essentially no new information.}
+}}
+
+}
+
+
+
+
+\subsection{5.6 Conclusion}
+
+
+%###################################################
+\frame{\frametitle{5.6 Conclusion}
+%###################################################
+\bi
+\item For discrete variables and measurements, we have the simple
+  Bayes's calculations from elementary statistics 
+$\to$ \red{probability tree}\vspace{1ex}
+
+\pause \item Discrete variables and continuous measurements: 
+\bi
+\pause \item[$\bullet$] If the measuring
+  uncertainty is larger than the distance between possible discrete
+  true values, then the \red{a-priori probability} matters
+\pause \item[$\bullet$] If the uncertainty is much smaller, then the
+  \red{closest distance} to 
+  the measurement matters
+\pause \item[$\bullet$] The \red{$p$ value is completely mislading}, even
+  for bimodal 
+  continuous variables (vehicle not exactly in the middle of the right lane)
+\ei\vspace{1ex}
+
+\pause \item Continuous variables and measurements:
+\bi
+\pause \item[$\bullet$] The $p$ value only gives a good estimate for the posterior
+  probability $P(H_0|B)$ if (i) the prior distribution is \red{unimodal},
+  (ii) the measuring  uncertainty is \red{much smaller} than the prior
+  standard deviation, (iii) we have an \red{interval} null hypothesis
+\pause \item[$\bullet$] If the measuring  uncertainty is much larger than the prior
+  spread, the measurement \red{hardly changes $P(H_0)$}
+\ei
+\ei
+
+}
+
+\end{document}
+
+

@@ -1,0 +1,268 @@
+
+
+
+%#############################################
+% pdflatex beamer template
+%
+% only png, jpg (or svg?) images but positioning now ok
+% authoritative sources
+%~/tex/inputs/LectureTemplate_pdflatex.tex
+%~/tex/inputs/LectureTemplate_latex.tex
+%#############################################
+
+
+\documentclass[mathserif,aspectratio=169]{beamer}  % also aspectratio=1610
+%\documentclass[mathserif,handout,aspectratio=169]{beamer}
+%\usepackage{beamerthemeshadow}
+\input{$HOME/tex/inputs/defsSkript}  %$
+%\input{./defsSkript}  %$
+%\input{$HOME/tex/inputs/styleBeamerLatex}   %$
+\input{$HOME/tex/inputs/styleBeamerPdflatex}   %$
+
+\usepackage{graphicx}
+
+
+%##############################################################
+
+\begin{document}
+
+%\setbeamercovered{invisible} % following parts completely invisible
+\setbeamercovered{transparent} % following parts semi-transparent
+
+\section{10. Title of this lecture}
+
+
+%##############################################################
+\frame{\frametitle{\hypertarget{general}{} General and Bugs}
+%##############################################################
+
+\bi
+\item use with png,jpg images with styleBeamerPdflatex, pdflatex,
+  placebox works 
+\item use with eps images with styleBeamerLatex, tex2pdf
+\item Local link targets placed at first occurrence of page
+\item neither placebox nor makePale works for latex version
+\itemAnswer \myLocalLink{sec:IDM}{Link zu Target sec:IDM, 
+angelegt mit hypertarget}
+\ei
+
+}
+
+%##############################################################
+\frame{\frametitle{Placebox test}
+%##############################################################
+
+\placebox{0.50}{0.49}
+ {\figSimple{0.80\textwidth}{figsAllg/vierstufenmodell.png}}
+
+\makePale{0.80}{0.50}{0.49}{0.90}{0.75}
+
+\placebox{0.50}{0.82}{\parbox{0.95\textwidth}{
+ \myheading{10. Title\\of this lecture}} %also mysubheading
+} 
+
+\placebox{0.50}{0.45}
+ {\parbox{0.8\textwidth}{
+  \bi
+  \item 10.1 first Do not leave spaces! Otherwise ticz error!
+  \item 10.2 second
+  \ei
+}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Placebox with maintext}
+%##############################################################
+ \placebox{0.50}{0.35}{\maintextSimple{Due to a  \bfdef{Latex bug} no
+     begin/end center possible within placebox. Therefore, use
+     \texttt{maintextSimple} instead of \texttt{maintext}
+}}
+
+}
+
+%###############################################################
+\frame{\frametitle{pause with images}
+%###############################################################
+\bi
+\item Images per default not ``paused'' because of some bugs when
+  attempting making them transparent
+\pause \item maybe setbeamercovered\{invisible\} works (with side
+effect future elements not transparent)
+\pause \item the visible command seems to override this (making future imgs
+opaque as in setbeamercovered\{invisible\} but only there:
+\visible<3->{
+ \fig{0.4\textwidth}{$HOME/tex/inputs/TUlogo_weissAufBlau.png}%$
+% figSimple{0.4\textwidth}{TUlogo_weissAufBlau.png}%$
+}
+\pause item the strange argument 3- indicates image shown after 3rd pause
+\pause with placebox: \texttt{visible<3->\{ placebox\{ ...\} \}}
+\ei
+}
+
+%###############################################################
+\frame{\frametitle{pause with images on same location}
+%###############################################################
+\visible<1>{
+  \placebox{0.50}{0.50}{\figSimple{0.5\textwidth}{$HOME/tex/inputs/TUlogo_weissAufBlau.png}%$
+}}
+
+\visible<2>{
+  \placebox{0.50}{0.50}{\figSimple{0.5\textwidth}{$HOME/tex/inputs/3Dtraffic_logo.jpg}%$
+}}
+
+}
+
+%###############################################################
+\frame{\frametitle{pause within tabular}
+%###############################################################
+\begin{tabular}{|r|r|} \hline
+a & b\\ \hline
+\visible<2->{c & d}\\ \hline
+\visible<2->{e & f}\\ \hline
+\visible<3->{g & h}\\ \hline
+\end{tabular}
+
+\bi
+\item Example uncovering whole rows at a time (pause uncovers elements)
+\pause \item uncover several elements simultaneously $\Rightarrow$ same
+  number in \texttt{visible}
+\pause \item \texttt{visible<2->\{...\}} remains visible for rest of slide
+\pause \item \texttt{visible<2>\{...\}} remains visible only at second
+  click=second pause
+\item uncover a whole row
+\ei
+}
+
+\subsection{10.1 first} 
+
+%###############################################################
+\frame{\frametitle{10.1 first}
+%###############################################################
+
+The \emph{plausibility criteria} of the last lesson and model
+completeness are necessary but
+not sufficient for a realistic simulation. Additional requirements include
+\bi
+\item No accidents (CF models are expected to reflect \emph{regular} 
+behaviour \red{$\Rightarrow$ not satisfied by the OVM and FVDM})
+
+\item The accelerations $\dot{v}$ and braking decelerations have to be
+  physically possible, e.g. $-\unit[9]{m/s^2}\le \dot{v} \le
+  \unit[4]{m/s^2}$  \red{$\Rightarrow$ not satisfied by the OVM, Newell's
+    micromodel or the CA models}
+\item Furthermore, they have to be comfortable in normal situations,
+  e.g., $|\dot{v}|<\unit[2]{m/s^2}$ depending on the driving style
+  \red{$\Rightarrow$ distinguish between emergency and normal driving}
+\item For highly dynamic situations such as approaching to red traffic
+  lights/standing vehicles, elementary kinematics, e.g., the minimum
+  stopping deceleration $b\sub{kin}=v^2/(2s)$ has to be
+  contained \red{$\Rightarrow$ incorporate some driving strategy}
+\item The model parameters should reflect aspects of the driving style
+\ei
+}
+
+\subsection{10.2 second}
+
+
+%########################################################
+\frame{\frametitle{10.2 second}
+%########################################################
+\bi
+\itemAsk Calculate the homogeneous steady state
+\pause \itemAnswer \colAnswer{\small{
+$0=a\left[1-\left(\frac{v}{v_0}\right)^4
+-\left(\frac{s_0+vT}{s}\right)^2\right]$\\
+\pause can be solved for $s=s_e(v)$:\\
+$s_e(v)=\frac{s_0+vT}{\sqrt{1-(v/v_0)^4}}$}}
+\ei
+
+also maineq\{eq label\}\{formula\},
+maindm\{eq\}, maindmIntext\{eq\}, maintextbox\{width\}\{text\},
+maintextbox\{text\}, itemgray, colDef, colAsk, colAnswer, bfAsk,
+bfAnswer, itemAsk, itemAnswer, itemGray,
+ makePale\{opacity\}\{centerXrel\}\{centerYrel\}\{wrel\}\{hrel\} to
+ make images pale, circled\{char\}, bfsf, myheading, mysubheadingq,
+ mysubsubheading, fboxdm, fboxtext, myBox
+\vspace{2em}
+
+
+}
+
+
+
+%###############################################################
+\frame{\hypertarget{sec:IDM}{}\frametitle{IDM equations}
+%###############################################################
+
+
+%Time-continuous model:
+
+\maindm{\abl{v}{t} = a \left[ 1 -\left(\frac{v}{v_0} \right)^4 
+     -\left( \frac{s^*(v,v_l)}{s} \right)^2
+   \right] \qquad \text{IDM acceleration}}
+\vspace{-0.5em}
+
+\pause \centering{free acceleration: $a(1-(v/v_0)^4)$, repulsive force:
+$-a(s^*/s)^2$}
+\vspace{0.5em}
+
+\pause \maindm{s^*(v,v_l)
+ = s_0  + \max \left(0, v T
+ + \frac{v (v-v_l)}{2\sqrt{a b}}\right) \qquad \text{desired gap}}
+
+\vspace{0.5em}
+
+\pause
+\begin{center}
+{\footnotesize
+\begin{tabular}{|p{0.25\textwidth}|p{0.12\textwidth}|p{0.12\textwidth}
+|p{0.12\textwidth}|p{0.12\textwidth}|}
+\hline\noalign{\smallskip}
+\bfdefTUD{Parameter} & \bfdefTUD{Cars Highway} & \bfdefTUD{Cars City}
+                      & \bfdefTUD{Trucks Hwy} & \bfdefTUD{Bicycles} \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+Desired speed $v_0$ & $\pause \unit[120]{km/h}$ & $\pause \unit[50]{km/h}$ 
+                    & $\pause \unit[80]{km/h}$ & $\pause \unit[20]{km/h}$ \\
+Time gap $T$ & $\pause \unit[1.0]{s}$ & $\pause \unit[1.0]{s}$
+             & $\pause \unit[1.8]{s}$ & $\pause \unit[0.6]{s}$ \\
+Minimum gap $s_0$ & $\pause \unit[2]{m}$ & $\pause \unit[2]{m}$ 
+                  & $\pause \unit[3]{m}$ & $\pause \unit[0.4]{m}$ \\
+%Acceleration exponent $\delta$ & 4 & 4 & 4 \\
+Acceleration $a$ & $\pause \unit[1.5]{m/s^2}$ & $\pause \unit[2.0]{m/s^2}$
+                 & $\pause \unit[0.5]{m/s^2}$ & $\pause \unit[1.0]{m/s^2}$ \\
+Comf. deceleration $b$ 
+                 & $\pause \unit[1.5]{m/s^2}$ & $\pause \unit[2.0]{m/s^2}$
+                 & $\pause \unit[1.0]{m/s^2}$ & $\pause \unit[1.5]{m/s^2}$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+}
+\end{center}
+\vspace{-0.5em}
+\myLocalLink{general}{back to intro}
+
+}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

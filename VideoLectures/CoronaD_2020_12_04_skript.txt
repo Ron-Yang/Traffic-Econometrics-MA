@@ -17,18 +17,28 @@ https://youtu.be/4v1pZ_MAQ-c?list=PLhsJ0l0GYIUpCfBYKu4RL_9wdVOAt7VqC&t=36
 
 Produktion Vorbereitung:
 
-(V1) Skivideo starten, Groesse einstellen,
-Ton fast ausstellen (Tasten 9 und 0)
-mit <- und Leertaste auf Startzeit ganz am Anfang fixieren
+(V1) Skivideo starten, Groesse etwa 2/3 Screenbreite einstellen
+     => DEFINIERT SIZE des Videos!
+     Ton fast ausstellen (Tasten 9 und 0)
+     mit <- und Leertaste auf Startzeit ganz am Anfang fixieren
 
-(V2) Skifoaehrn Youtube Sekunde 29, leise Lautstaerke einstellen
+(V2) Test fuer spaetere Sequenzen:
+     ../CoronaD_2020_12_04.pdf: Bereich ohne Header/Footer genau
+     wie Skivideo skalieren/positionieren
 
-(V3) Screenrecorder starten und Rechteck aufziehen (NICHT ganz
-     rechten/oberen Rand! Mache Rechteck ggf unten etwas tiefer, da
-     pdf kleineres b/h Verhaeltnis hat
+(V3) Skifoaehrn Youtube Sekunde 29 nur zur Probe zum Selbstsingen (Lizenz!!)
 
-(V4) Schauen, dass weder Screenrecorder noch
-     Youtube "im Weg" sind
+(V4) Screenrecorder starten File CoronaD_01.mkv
+     und Rechteck aufziehen (NICHT ganz rechten/oberen Rand!)
+
+(V5) Schauen, dass weder Screenrecorder noch
+     Youtube "im Weg" sind und Testen des Screenrecorders mit Skivideo
+     und Pdf: Passt alles mit selben Screenrecorder-Rechteck?
+
+(V6) Testaufnahme loeschen und Screenrecorder bereit, Skivideo vor pdf
+     und zurueck an den Anfang 
+
+
 
 Produktion Action:
 
