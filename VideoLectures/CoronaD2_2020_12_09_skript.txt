@@ -1,0 +1,177 @@
+https://youtu.be/TrcQbB3grdo
+
+[cheese]
+
+Mit diesem Video möchte ich auf
+zwei Neuerungen in meinem
+Corona Simulator hinweisen:
+
+1. Neues Anzeigefenster
+   Wocheninzidenz
+
+2. Simulationen einiger Landkreise
+   in Sachsen
+
+Daneben wurdne auch einige Bugs
+beseitigt
+
+[Chromium geladene Webseite]
+
+Hier ist die Seite
+corona-simulation.de,
+nachdem sie geladen ist:
+
+* Ich habe die Glättung der
+  Positivzahlen vollkommen
+  weggelassen, da die
+  Wochen-Inzidenz automatisch das
+  7-Tages-Muster wegmittelt
+
+* Damit lassen sich die roten
+  Balken direkt mit dem
+  vergleichen, was Sie aus den
+  Nachrichten kennen.
+
+* Daten sind vom Worldometer.
+  Gerade in den letzten Tagen vor
+  der Gegenwart Abweichungen
+  zwischen RKI und anderen Daten-
+  quellen
+
+* Fuer die Landkreise gibt es nur
+  Daten vom RKI. Da ist aber
+  gerade bei den Todesfällen ein
+  Datenverzug festzustellen:
+  Unplausibel niedrig. Das stört
+  die Simulation aber nur wenig
+  
+[Laufen lassen mit Go, dann kumul.]
+
+Zunächst wie bisher die
+Projektion unter gleichbleibenden
+Maßnahmen: Hat sich gegenüber
+den letzten Videos kaum was
+verändert
+
+[Restart, auf Inzidenz schalten]
+
+Nun das erste neue Feature: Die
+Wochen-Inzidenz pro 100 000 Einw.
+
+* Simulation und Daten nahezu
+  perfekte Uebereinstimmung mit
+  den unten angegebenen
+  R0-Werten
+  
+* [malen] Frühjahrs-Peak bei
+  50/Woche/100 000 Einw.
+
+* Wohlgemerkt: Positive Testfälle
+  realen Infektionen weichen
+  weit davon ab
+
+* Todesfaelle 2 Wochen verzoegert
+
+* Herbstwelle: Ab etwa 7. November
+  Stagnation bei einer 160er- bis
+  170er-Inzidenz
+
+[Prognose: Go]
+
+* Projektion bei unveraenderten
+  Maßnahmen
+
+[Restart]
+
+Nun 1 Wochen Weihnachts-Entspannung R0=1.3 statt 1.13:
+
+[Umschalten tgl, 2 Wochen weiter]
+
+Schalte auf taeglich um, um die
+Wochen besser sehen zu koennen
+
+[1 Woche 1.3]
+
+[danach 1.1]
+
+[danach auf Wocheninzidenz]
+[dann auf kumul]
+[dann auf F\"alle vs. Infiz.]
+
+1 Woche kann man sich leisten,
+kaum Veraenderungen
+
+===============================
+
+[Regionenwahl Osterzgebirge]
+[taegl Faelle]
+
+Nun zum zweiten neuen Feature:
+Einige Sachsen-Regionen, ich
+picke die z Zt schlimmste heraus:
+Elbsandstein/Osterzgebirge
+
+* Wie schon erwähnt, sind die
+  Todeszahlen gegen Ende
+  unplausibel niedrig, meint
+  zumindest die Simulation
+
+[Wocheninzidenz]
+
+* Bei der Wocheninzidenz sehen
+  Sie sehr schoen den Peak bei
+  500 und die noch nicht vollst.
+  eingetragenen Todesfaelle
+
+* Es gibt ja Vermutungen, dass
+  diese Region aufgrund der hohen
+  Fallzahlen ebenso wie Tschechien
+  schon ueber den Berg ist
+
+* Mit 15% Durchseuchung statt 12%
+  fuer D sieht es aber eher nicht
+  so aus. Inzidenz sinkt nur
+  langsam und erreicht erst im
+  Maerz die 50er - wohlgemerkt
+  bei gleichbleibenden Lockdown
+  Maßnahmen
+
+[Tschechien, Inzidenz]
+
+Interessant ist Tschechien mit
+der neuen Darstellung: Wie hoch
+war dort die Wochen-Inzidenz im
+Peak? Über 800, und relativ lang
+=> 38% Durchseuchung statt 15%
+=> Seuche Im Januar nahezu
+vorüber
+
+
+[cheese]
+
+Ich hoffe, ich konnte wieder
+etwas Informationen über die
+Seuche speziell für Sachsen geben
+
+Wie immer der übliche Disclaimer:
+Zukunftsprojektionen sind keine
+Prognosen, allenfalls bedingte.
+Die Zeit ist der
+beste Richter, wir werden sehen.
+
+Zur Erinnerung: Die Simulation
+ist interaktiv im Internet unter
+corona-simulation.de, Sie können
+also Ihre eigenen Projektionen
+simulieren.
+
+Wenn Sie mit dem Video
+was anfangen konnten, freue ich
+mich über ein Like und eine
+Weiterempfehlung.
+
+Machen Sie's gut!
+
+
+
+
