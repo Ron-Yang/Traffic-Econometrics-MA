@@ -5,10 +5,12 @@
 % [TODO now specialized to Vkoem_Ma; make general]
 %#############################################
 
+%\documentclass[mathserif,aspectratio=1610]{beamer}
 
-%\documentclass[mathserif]{beamer}
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
+%\documentclass[mathserif,handout]{beamer}
 %\usepackage{beamerthemeshadow}
+
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
 %\input{../style/defs}
@@ -20,63 +22,116 @@
 
 \begin{document}
 
-\section{3. Obtaining the Data}
+\section{6. Obtaining the Data}
 
 %##############################################################
-\frame{\frametitle{Chapter 3: Obtaining the Data}
-%##############################################################
+%###################################################
+\frame{  %title layout
+%###################################################
+\placebox{0.50}{0.50}{
+  \figSimple{1.17\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}}
+
+\makePale{0.50}{0.50}{0.55}{1.20}{1.50}
+
+\placebox{0.50}{0.90}{\parbox{1.0\textwidth}{\mysubheading{
+6. Obtaining the Data
+}}}
+
+\placebox{0.35}{0.49}{\parbox{0.6\textwidth}{
 \bi
-\item 3.1. General procedure
-\item 3.2. Classification of surveys
-\item 3.3. Revealed-choice design
-\item 3.4. Stated choice and choice-based conjoint analysis
+\item 6.1 General Procedure
+\item 6.2 Survey Designs
+\item 6.3 Electronic Surveys
+\item 6.4 Degree of Subjectivity
+\bi
+\item 6.4.1 Objective Measurement
+\item 6.4.2 Revealed-Choice Design
+\item 6.4.3 Stated Choice and Choice-Based Conjoint Analysis
 \ei
+\ei
+}}
+
 }
 
 
 %##############################################################
-\frame{\frametitle{3.1. General procedure}
+\frame{\frametitle{6.1. General Procedure}
 %##############################################################
 
-\fig{0.8\textwidth}{figsErh/flussdiag-komplett_eng.png}
+\visible<1>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
+           {figsErh/flussdiag-komplett1_eng.png}}}
+\visible<2>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
+           {figsErh/flussdiag-komplett2_eng.png}}}
+\visible<3>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
+           {figsErh/flussdiag-komplett3_eng.png}}}
+\visible<4>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
+           {figsErh/flussdiag-komplett4_eng.png}}}
+\visible<5>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
+           {figsErh/flussdiag-komplett5_eng.png}}}
+
 }
+
 
 %##############################################################
 \frame{\frametitle{Flow diagram of the sampling procedure}
 %##############################################################
 
-\fig{0.9\textwidth}{figsErh/flussdiag-ablauf_eng.png}
+\visible<1>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf1_eng.png}}}
+\visible<2>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf2_eng.png}}}
+\visible<3>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf3_eng.png}}}
+\visible<4>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf4_eng.png}}}
+\visible<5>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf5_eng.png}}}
+\visible<6>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf6_eng.png}}}
+\visible<7>{\placebox{0.527}{0.44}{\figSimple{0.94\textwidth}
+           {figsErh/flussdiag-ablauf7_eng.png}}}
+\visible<8>{\placebox{0.50}{0.44}{\figSimple{1.0\textwidth}
+           {figsErh/flussdiag-ablauf8_eng.png}}}
+\visible<9>{\placebox{0.50}{0.44}{\figSimple{1.0\textwidth}
+           {figsErh/flussdiag-ablauf9_eng.png}}}
+
 }
 
+\subsection{6.2. Survey designs}
+
 %##############################################################
-\frame{\frametitle{3.2. Survey designs}
+\frame{\frametitle{6.2. Survey designs}
 %##############################################################
 
 \fig{0.8\textwidth}{figsErh/Zeitdimension_eng.png}
 }
 
 
+\subsection{6.3. Electronic Surveys}
 
 %##############################################################
-\frame{\frametitle{Electronic surveys I}
+\frame{\frametitle{6.3. Electronic Surveys}
 %##############################################################
 
-\placebox[center]{0.34}{0.33}
-{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung1.png}}
+\visible<1>{\placebox[center]{0.50}{0.10}
+{\figSimple{1.05\textwidth}{figsErh/UmfrageWohnortJung1.png}}}
 
-\placebox[center]{0.82}{0.50}
-{\parbox{0.35\textwidth}{
+\visible<2->{\placebox{0.34}{0.33}
+{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung1.png}}}
+
+\placebox{0.82}{0.50}
+{\parbox{0.35\textwidth}{{\small
   \bi
-  \item
+  \visible<2->{\item
     Surveys of cumulative properties ($m$ in $n$): use
-    squared checkboxes. \\
-  \item Don't forget the ``others'' category\\[1em]
-  \item Surveying ordinally scaled subjective variables (opinions
+    squared checkboxes.}\\[1ex]
+  \visible<3->{\item Don't forget the ``others'' category\\[1em]}
+  \visible<4->{\item Surveying ordinally scaled subjective variables (opinions
     etc): chose a symmetric
-    \emph{Likert scale} with a neutral central element.\\[1em]
-  \item Essential: feedback about the progress!
+    \emph{Likert scale} with a neutral central element.\\[1em]}
+  \visible<5>{\item Essential: feedback about the progress!}
   \ei
-}}
+}}}
 
 }
 
@@ -85,22 +140,26 @@
 \frame{\frametitle{Electronic surveys II}
 %##############################################################
 
-\placebox[center]{0.34}{0.33}
-{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung2.png}}
+\visible<1>{\placebox{0.50}{0.15}
+{\figSimple{1.00\textwidth}{figsErh/UmfrageWohnortJung2.png}}}
+
+\visible<2->{\placebox{0.34}{0.33}
+{\figSimple{0.75\textwidth}{figsErh/UmfrageWohnortJung2.png}}}
 
 
-\placebox[center]{0.82}{0.50}
-{\parbox{0.35\textwidth}{
+\placebox{0.82}{0.50}
+{\parbox{0.35\textwidth}{{\small
   \bi
-  \item
+  \visible<2->{\item
     Exclusive properties with many possible values (1 in $n$):
-    \emph{choice boxes} are best
-  \item Binary attributes\\(1 in 2): exclusive \emph{check
-    boxes} are best
-  \item Transform ordinal cumulative properties in exclusive (1 in $n$)
-    variables, e.g., \emph{highest} obtained education level
+    \emph{choice boxes} are best}
+  \visible<3->{\item Binary attributes\\(1 in 2): exclusive \emph{check
+    boxes} are best}
+  \visible<4->{\item Transform ordinal cumulative properties 
+  in exclusive (1 in $n$)
+    variables, e.g., \emph{highest} obtained education level}
   \ei
-}}
+}}}
 
 }
 %\end{document}
@@ -113,25 +172,36 @@ Tricky questions!
 \bi
 \item Asking for the birth year is more neutral and gives the
   same information as asking for the age
-\item Asking for age groups is less intrusive and often sufficient for
+\pause \item Asking for age groups is less intrusive and often sufficient for
   the objective of the investigation \\[1em]
 \pause \item Nobody wants to reveal his/her true income 
 \item Nor do most people
   know it exactly. It also is conditional to after/before taxes,
   social security etc.\\[1em]
-\pause \item Solution:
-\bi
-\item[(i)] Ask relative to a reference  (``the average income after
-  taxes is 1\,300 \euro{} per month'')
-\item[(ii)] Use categories (``much more, more, about the same, less,
-  much less'') in a Likert scale
+\pause \item \colAsk{Solution?}
+\pause \bi 
+\pause \item[(i)] \colAnswer{Ask relative to a reference  
+(``the average income after
+  taxes is 1\,300 \euro{} per month'')}
+\pause \item[(ii)] \colAnswer{Use categories 
+ (``much more, more, about the same, less,
+  much less'') in a Likert scale}
 \ei
 \ei
 }
 
+\subsection{6.4 Degree of Subjectivity}
 
 %##############################################################
-\frame{\frametitle{Automated aquisition (measuring) of time-series data}
+\frame{\frametitle{6.4 Degree of Subjectivity}
+%##############################################################
+Das Bild mit den 2 Strahlen
+}
+
+\subsubsection{6.4.1 Objective Measurement}
+
+%##############################################################
+\frame{\frametitle{6.4.1 Objective Measurement}
 %##############################################################
 
 %\begin{center}
@@ -148,9 +218,11 @@ flow [vehicles/h] and speed [km/h]
 
 
 
+\subsubsection{6.4.2 Revealed-Choice}
 
 %##############################################################
-\frame{\frametitle{Revealed Preferences/Choice: Survey in the audience}
+\frame{\frametitle{6.4.2 Revealed-Choice\\
+Survey in the audience}
 %##############################################################
 
 % from
@@ -183,7 +255,7 @@ Weather: perfect, cloudless, 15 degrees Celsius (Apr 11, 2018)
 \frame{\frametitle{Model specification and calibration}
 %###################################################
 
-\placebox[center]{0.36}{0.78}{\parbox{0.7\textwidth}{\normalsize
+\placebox{0.36}{0.78}{\parbox{0.7\textwidth}{\normalsize
   Deterministic utilities:\\[0.3em]
   %
   $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
@@ -191,7 +263,7 @@ Weather: perfect, cloudless, 15 degrees Celsius (Apr 11, 2018)
 }}
 
 \pause
-\placebox[center]{0.82}{0.75}{\parbox{0.4\textwidth}{\normalsize
+\placebox{0.82}{0.75}{\parbox{0.4\textwidth}{\normalsize
 or \quad
 $
 \begin{array}{l}
@@ -202,11 +274,11 @@ V_3=0
 $
 }}
 
-\placebox[center]{0.35}{0.37}{
+\placebox{0.35}{0.37}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProb.png}
 }
 \pause
-\placebox[center]{0.80}{0.30}{\parbox{0.20\textwidth}{
+\placebox{0.80}{0.30}{\parbox{0.20\textwidth}{
    $
    \begin{array}{l}
    \ln L\sub{init}=-39.55,\\
@@ -227,17 +299,17 @@ $
 %###################################################
 %\\[1em]
 
-\placebox[center]{0.50}{0.78}{\parbox{0.7\textwidth}{\normalsize
+\placebox{0.50}{0.78}{\parbox{0.7\textwidth}{\normalsize
 $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
 +r \left(\beta_3 \delta_{i1}+\beta_4 \delta_{i2}\right)$
 }}
 
-\placebox[center]{0.35}{0.37}{
+\placebox{0.35}{0.37}{
  \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProbKumDist.png}
 }
 
 
-\placebox[center]{0.80}{0.30}{
+\placebox{0.80}{0.30}{
   \parbox{0.20\textwidth}{
    $
    \begin{array}{l}
@@ -259,9 +331,9 @@ $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
 %###################################################
 \frame{\frametitle{Revealed Preference Mobility Study SrV (TU Dresden)}
 %###################################################
-\placebox[center]{0.20}{0.47}{
+\placebox{0.20}{0.47}{
   \figSimple{0.35\textwidth}{figsErh/SrV_logo.png}}
-\placebox[center]{0.65}{0.47}{\parbox{0.65\textwidth}{
+\placebox{0.65}{0.47}{\parbox{0.65\textwidth}{
   \bi
   \item Mobility study in trend design, scientific lead TU Dresden
   \item Mobility is, e.g., 
@@ -320,7 +392,7 @@ socioeconomic attributes}
 \frame{\frametitle{Purpose: Not all trips are valuable}
 %###################################################
 
-\fig{0.7\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}
+\fig{0.9\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}
 }
 
 %###################################################
@@ -345,14 +417,14 @@ socioeconomic attributes}
     age,\\ mode, and city}
 %###################################################
 
-\placebox[center]{0.50}{0.45}{
+\placebox{0.50}{0.45}{
 \figSimple{1.05\textwidth}{figsErh/SrV2008_3.png}}
 }
 
 %###################################################
 \frame{\frametitle{Results 2: modal split during the year}
 %###################################################
-\placebox[center]{0.50}{0.45}{
+\placebox{0.50}{0.45}{
  \figSimple{0.85\textwidth}{figsErh/SrV2008_4.png}}
 }
 
@@ -361,7 +433,7 @@ socioeconomic attributes}
     trip\\ to/from work and change over the years (trend design!)}
 %###################################################
 
-\placebox[center]{0.50}{0.45}{
+\placebox{0.50}{0.45}{
  \figSimple{1.10\textwidth}{figsErh/SrV2008_5.png}}
 }
 
@@ -370,17 +442,22 @@ socioeconomic attributes}
     of age and gender}
 %###################################################
 
-\placebox[center]{0.50}{0.45}{
+\placebox{0.50}{0.45}{
  \figSimple{1.03\textwidth}{figsErh/SrV2008_6.png}}
 
-\placebox[center]{0.70}{0.78}{\# trips}
+\placebox{0.70}{0.78}{\# trips}
 
 
 }
 
+
+\subsubsection{6.4.3 Stated Preference/Choice (SP)
+and Choice-Based Conjoint Analysis}
+
+
 %###################################################
-\frame{\frametitle{Stated preference/choice (SP): in-class survey
-    WS18/19 \red{(red: bad weather)}}
+\frame{\frametitle{6.4.3 Stated Preference/Choice (SP)':\\
+In-class survey WS18/19 \red{(red: bad weather)}}
 %###################################################
 \vspace{0.5em}
 
@@ -413,11 +490,11 @@ socioeconomic attributes}
 \frame{\frametitle{Model specification and calibration}
 %###################################################
 
-\placebox[center]{0.35}{0.40}{
+\placebox{0.35}{0.40}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
 }
 
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+\placebox{0.36}{0.82}{\parbox{0.7\textwidth}{\small
 %  Deterministic utilities:\\[0.3em]
 %
 \colorbox{orange}{
@@ -432,7 +509,7 @@ $
 
 \pause
 
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+\placebox{0.79}{0.84}{\parbox{0.5\textwidth}{\small
 or \quad
 \colorbox{orange}{$
 \begin{array}{l}
@@ -446,7 +523,7 @@ $
 
 \pause
 
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+\placebox{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
   \ln L\sub{init}=-176.9,\\
@@ -462,7 +539,7 @@ $
 
 \pause
 
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox{0.80}{0.18}{{\scriptsize
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
@@ -537,12 +614,12 @@ between the travel times of the two alternatives
 effective design}
 %###################################################
 
-\placebox[center]{0.29}{0.77}{
+\placebox{0.29}{0.77}{
   \parbox{0.35\textwidth}{Exhaustive enumeration\\ 
    $N=100$ choice sets}
 }
 
-\placebox[center]{0.29}{0.54}{
+\placebox{0.29}{0.54}{
   \begin{tabular}{|r|c|c|c|} \hline
   $i$ & $T_1$ & $T_2$ &  $K_2$
    \\ \hline
@@ -555,14 +632,14 @@ effective design}
   \end{tabular}
 }
 
-\placebox[center]{0.56}{0.54}{\LARGE $\Rightarrow$}
+\placebox{0.56}{0.54}{\LARGE $\Rightarrow$}
 
-\placebox[center]{0.85}{0.77}{\parbox{0.5\textwidth}{
+\placebox{0.85}{0.77}{\parbox{0.5\textwidth}{
   effizientes design\\
    for $n=10$ choice sets
 }}
 
-\placebox[center]{0.85}{0.54}{\parbox{0.5\textwidth}{
+\placebox{0.85}{0.54}{\parbox{0.5\textwidth}{
  \begin{tabular}{|r|c|c|c|} \hline
  $i$ & $T_1$ & $T_2$ &  $K_2$
     \\ \hline
@@ -576,7 +653,7 @@ effective design}
 }}
 
 
-\placebox[center]{0.50}{0.20}{\parbox{1.0\textwidth}{
+\placebox{0.50}{0.20}{\parbox{1.0\textwidth}{
 \bi
  \item Specify the number $n$ of desired choice sets (advantage!)
  \item \bfred{Select $n$ out of $N$ sets such that an error metric, e.g.,

@@ -1,6 +1,5 @@
 
 
-
 %#############################################
 % pdflatex beamer template
 %
@@ -10,10 +9,12 @@
 %~/tex/inputs/LectureTemplate_latex.tex
 %#############################################
 
+%aspectratio=1610 => 16:10, also 169 useful; default: 43 => 4:3
 
-\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif,aspectratio=1610]{beamer} 
+%\documentclass[mathserif,handout,aspectratio=1610]{beamer}
 %\usepackage{beamerthemeshadow}
+
 \input{$HOME/tex/inputs/defsSkript}  %$
 %\input{./defsSkript}  %$
 %\input{$HOME/tex/inputs/styleBeamerLatex}   %$
