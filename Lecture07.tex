@@ -6,7 +6,8 @@
 
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
-%\input{../style/defs}
+%\input{styleBeamerVkoekMa}%$
+
 \usepackage{graphicx}
 
 \newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
@@ -15,46 +16,540 @@
 
 \begin{document}
 
-\section{7. Title}
+\section{Chapter 7: Discrete-Choice Theory: the Basics}
 
-%##############################################################
 %###################################################
 \frame{  %title layout
 %###################################################
-\placebox{0.50}{0.50}{
-  \figSimple{1.20\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}}
-%makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
-\makePale{0.50}{0.50}{0.70}{1.40}{1.40}
+\makePale{1.00}{0.50}{0.70}{1.40}{1.40}
 
-\placebox{0.50}{0.90}{\parbox{0.6\textwidth}{\mysubheading{
-7. Title Discrete Quantities and Observations
+\placebox{0.50}{0.45}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr_eng.png}}
+%makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
+\makePale{0.70}{0.50}{0.70}{1.40}{1.40}
+
+\placebox{0.50}{0.90}{\parbox{0.8\textwidth}{\myheading{
+7. Discrete-Choice Theory: the Basics
 }}}
 
-\placebox{0.35}{0.49}{\parbox{0.6\textwidth}{
+\placebox{0.45}{0.40}{\parbox{0.8\textwidth}{
+{\large
 \bi
-\item 7.1. General procedure
+\item 7.1 The Nature of Discrete Decisions
+\item 7.2 Basic Concepts: Alternatives, Utilities, Homo Oeconomicus
+\item 7.3 Deterministic utilities and how to model them
+\item 7.4 Random Utilities and Choice Probabilities
 \ei
+}
 }}
 
 }
 
 
+
+
+\subsection{7.1 The Nature of Discrete Decisions}
+
 %##############################################################
-\frame{\frametitle{6.1. General procedure}
+\frame{\frametitle{7.1 The Nature of Discrete Decisions}
 %##############################################################
 
-\visible<1>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
-           {figsErh/flussdiag-komplett1_eng.png}}}
-\visible<2>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
-           {figsErh/flussdiag-komplett2_eng.png}}}
-\visible<3>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
-           {figsErh/flussdiag-komplett3_eng.png}}}
-\visible<4>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
-           {figsErh/flussdiag-komplett4_eng.png}}}
-\visible<5>{\placebox{0.50}{0.44}{\figSimple{0.85\textwidth}
-           {figsErh/flussdiag-komplett5_eng.png}}}
+\visible<1>{\placebox{0.50}{0.43}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr1_eng.png}}}
+\visible<2>{\placebox{0.50}{0.43}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr2_eng.png}}}
+\visible<3>{\placebox{0.50}{0.43}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr3_eng.png}}}
+\visible<4>{\placebox{0.50}{0.43}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr4_eng.png}}}
+\visible<5>{\placebox{0.50}{0.43}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr5_eng.png}}}
+
+\placebox{0.50}{0.84}{Example: the four-step model of transportation planning}
 
 }
+
+\subsection{7.2 Basic Concepts: Alternatives, Utilities, and Homo Oeconomicus}
+
+%##############################################################
+\frame{\frametitle{7.2 Basic Concepts: Alternatives}
+%##############################################################
+
+\bi
+\item Each person  $n$ has a certain set of discrete
+  alternatives: 
+  ${\cal A}_n=\{a_{ni}\}$ containing alternatives $i=1, ..., I_n$.\\
+\colAnswer{Example: Person~1 can chose the modes pedestrian or public
+  transport, Person~2 pedestrian, bike, and car}\\[1em]
+
+\pause \item The number $I_n$ of alternatives is finite and should not
+be too large. \\
+\colAnswer{Example: speeding or not speeding;}
+\red{counterexample: choosing the speed [km/h]}\\[1em]
+
+\pause \item The alternative set needs to be \bfdef{exclusive}
+  (non-cumulative), i.e., a 
+  person can chose at most one alternative. \\
+\colAnswer{Example: you
+    cannot live at two places simultaneously}\\[1em]
+
+\pause \item The set must be \bfdef{complete}, i.e., at least one
+  alternative must be chosen. Complete and exclusive $\Rightarrow$
+  exactly one alternative must be chosen. \\
+\red{Counterexample: Till
+    Eulenspiegel adopted several (fake) professions}\\[1em]
+
+\pause \item The alternatives need to be sufficiently different 
+from each other. \\
+\red{Counterexample: two routes differing by only a
+ small fraction of links}
+\ei
+
+}
+
+%##############################################################
+\frame{\frametitle{Questions on specifying alternatives}
+%##############################################################
+
+\bi
+\itemAsk \colAsk{What to do if a person has the option to
+not select anything or possibly select something that is not on the list?}
+
+\pause\itemAnswer \colAnswer{Just include a ``do-nothing'' and/or a
+  ``other'' alternative} \\[1.2ex]
+
+\pause\itemAsk \colAsk{What to do if multi-modal trips (e.g., bike+tram) are
+  possible?} 
+\pause\itemAnswer \colAnswer{Just add a ``multi-modal'' alternative}\\[1.2ex]
+
+\pause\itemAsk \colAsk{Assume that someone  has no
+car or bike available. How to model the four alternatives 
+ped, bike, car, PT for this person? Give two possible solutions}
+\pause\itemAnswer \colAnswer{1. Exclude these alternatives for this person
+  by reducing his/her choice set ${\cal A}_n$; 2. Give prohibitive
+  penalties for the ``forbidden'' alternatives }\\[1.2ex]
+
+\pause\itemAsk \colAsk{Explain ``sufficiently different alternatives'' by red and
+blue buses.}
+\pause\itemAnswer \colAnswer{Red and blue buses are much less different than
+both buses from trams, and even buses and trams have many ``public
+transport'' 
+commonalities (such as fixed schedules and stops), hence are very
+similar compared to, e.g., cars or bikes}\\[1.2ex]
+
+\pause\itemAsk \colAsk{What to do with continuous alternatives such as
+  desired speed?} 
+\pause\itemAnswer \colAnswer{Define ordinal scales (speed classes) or
+  nominal scales (speeding or not speeding)}
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{7.2 The essence of the Homo Oeconomicus: two alternatives}
+%##############################################################
+
+\visible<1> {\placebox{0.50}{0.54}
+ {\figSimple{0.65\textwidth}{figsDiscr/zweiAlternat-U3_eng.png}}}
+
+\visible<2> {\placebox{0.50}{0.54}
+ {\figSimple{0.65\textwidth}{figsDiscr/zweiAlternat-U4_eng.png}}}
+
+\visible<3->{\placebox{0.50}{0.54}
+ {\figSimple{0.65\textwidth}{figsDiscr/zweiAlternat-U5_eng.png}}}
+
+\visible<1> {\placebox{0.15}{0.12}{\textbf{Time $\bfmath{t_0}$}:}}
+\visible<1> {\placebox{0.60}{0.12}{\parbox{0.75\textwidth}{
+Chosen alternative $i\sub{selected}=\text{arg} \max_i U_i=1$ 
+ (public transport)
+}}}
+
+\visible<2> {\placebox{0.15}{0.12}{\textbf{Time $\bfmath{t_1}$}:}}
+\visible<2> {\placebox{0.60}{0.12}{\parbox{0.75\textwidth}{
+Chosen alternative $i\sub{selected}=\text{arg} \max_i U_i=1$ 
+ (public transport)
+}}}
+
+
+\visible<3> {\placebox{0.15}{0.12}{\textbf{Time $\bfmath{t_2}$}:}}
+\visible<3> {\placebox{0.60}{0.12}{\parbox{0.75\textwidth}{
+Chosen alternative $i\sub{selected}=\text{arg} \max_i U_i=2$ 
+ (car) \\
+\bfred{sudden change $\bfmath{\Rightarrow}$ intrinsically nonlinear response!}
+}}}
+
+
+}
+
+%##############################################################
+\frame{\frametitle{Decisions under uncertainty}
+%##############################################################
+
+\fig{0.95\textwidth}{figsDiscr/zweiAlternat-P_eng.png}
+
+\bdm
+\text{Alternative } i\sub{selected}=\text{arg} \max_i U_i
+= \text{arg} \max_i V_i+\epsilon_i
+\edm
+
+\bi
+\pause\item On an \emph{individual} level, the decision is ``yes''
+  (1) or ``no'' (0)
+\pause\item On an \emph{aggregated} level, we have a certain
+  probability between  0 and 1.
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Structure and classification of dicrete-choice models}
+%##############################################################
+\fig{1.0\textwidth}{figsDiscr/discrKomp_eng.png}
+}
+
+
+\subsection{7.3 Deterministic Utilities}
+
+
+%##############################################################
+\frame{\frametitle{7.3 Deterministic Utilities}
+%##############################################################
+\bi
+\item Basically, the deterministic utilities $V_{ni}$ of alternative
+  $i$ for person $n$ are like the endogenous
+variables of regression models: continuous and made up of linear
+factors:
+\bdm
+V_{ni}=\sum_m \beta_{m} X_{mni}
+\edm
+\vspace{-0.8em}
+
+\pause \item The person index (or choice-set index) $n$ plays the role of a
+  data-point index $i$ in regression models (the index naming is by
+  convention) and $X_{mni}$ corresponds to the system matrix.
+\\[1em]
+
+\pause \item The factors contain alternative-specific constants and
+exogeous variables of one of the following three categories: 
+\bi
+\item \bfdef{alternative-specific constants (ACs)}
+  play the role of constants in regression models,
+\item \bfdef{characteristics} are attributes of the alternatives,
+\item \bfdef{socioeconomic factors} are attributes of the decision makers,
+\item \bfdef{external factors} depend neither on the alternatives nor the
+  persons but influence the decisions.
+\ei
+
+
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Factors I: Alternative-specific constants (ACs)}
+%##############################################################
+\bi
+\item In most situations, there are systematic (``ad-hoc'')
+  preferences for certain 
+  alternatives not 
+  explained by the characteristics or socioeconomic variables.
+\pause \item Since the choice depend on utility
+  \emph{differences}, only, normal constants are of no use. We need
+  \bfdef{alternative-specific constants} or \bfdef{ACs} which are
+  essentially \emph{selector dummy variables}: 
+\bdm
+V_{ni}=\beta_{01}\delta_{1i}+...+\beta_{0,I-1}\delta_{I-1,i},\quad
+\delta_{ji}=\twoCases{1}{i=j}{0}{i\neq j}
+\edm
+\pause \item The parameter $\beta_{0i}$ denotes the \bfdef{ad-hoc
+  preference}  of Alternative
+  $i$ (in utility units) over 
+the reference alternative $I$ if all other factors $X_{mni}=0$.
+\ei
+\bi
+\itemAsk \colAsk{What would happen if using a normal constant, $V_{ni}=\beta_0$? }
+
+\itemAsk \colAsk{Give the ad-hoc preference of alternative $j$ over $i$, 
+$i \neq I$.}
+
+\itemAsk \colAsk{What changes when making Alternative 1 the
+reference? }
+\ei
+
+}
+
+
+
+%##############################################################
+\frame{\frametitle{Factors II: Characteristics}
+%##############################################################
+\bi
+\item The characteristic $C_{mni}$ is the $m\sup{th}$ attribute of
+  alternative $i$ for person (choice set) $n$.
+
+\pause \item Examples: 
+\bi
+\item Complex travel time $C_{1in}=T_{ni}$ for person $n$ when
+  travelling by transport mode $i$,
+\item Ad-hoc costs $C_{2in}=C_{ni}$ for person $n$ when using mode $i$
+\ei
+
+\pause \item Characteristics can be identified directly with factors,
+$X_{mni}=C_{mni}$. Modelling variants:
+\bi
+\item \bfdef{generic} ansatz
+  $V_{ni}=...+\beta_mC_{mni}$  (the same parameter $\beta_m$ for all alternatives $i$),
+\item \bfdef{alternative-specific} ansatz
+  $V_{ni}=...+\beta_{mi}C_{mni}$ with
+  alternative-specific parameters $\beta_{mi}$.
+\ei
+\ei
+
+\pause
+\bfAsk{?} Which way is to be preferred when modelling (i) travel times and
+(ii) costs? (justify!)
+
+\bfAsk{?} Give an example of a characteristic not depending
+ on the person. %\tiny{Reliability of a mode}
+ 
+}
+
+
+%##############################################################
+\frame{\frametitle{Factors III: Socio-economic variables}
+%##############################################################
+\bi
+\item The socioeconomic variable $S_{mn}$ denotes the $m\sup{th}$
+  attribute of person $n$, e.g., age, gender, income, or
+  the distance to the next PT station.
+\pause \item Since, by definition, socio-economic variables do \emph{not}
+  depend on the alternative and the choice depend on utility
+  \emph{differences}, only, they cannot identified directly by a
+  factor.
+\pause \item Instead, there are two ways to specify valid linear factors: 
+\benum
+\item Formulate in an alternative-specific way with ACs:
+\bdm
+V_{ni}=...+\beta_{m1}S_{mn}\delta_{1i}+...+\beta_{m,I-1}S_{mn}\delta_{I-1,i},\quad
+\delta_{ji}=\twoCases{1}{i=j}{0}{i\neq j}
+\edm
+\item Combine with a characteristic $m'$, e.g.,
+  $X_{mni}=S_{mn}C_{m'ni}$ and model it in an alternative-specific way
+  $V_{ni}= ... + \beta_{mi}S_{mn}C_{m'ni}$
+\eenum
+\ei
+
+\bi
+\itemAsk \colAsk{What would happen when setting
+$V_{ni}=...+\beta_mS_{mn}$ for all $i$?} 
+
+\itemAsk \colAsk{How to model that woman prefer PT over bikes more than men?}
+
+\itemAsk \colAsk{How to model an income-dependent time sensitivity?}
+
+\itemAsk \colAsk{Why it is not possible to use the age directly?}
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Factors IV: External variables}
+%##############################################################
+\bi
+\item External variables influence the decisions although they neither
+  depend on the alternatives nor the persons, e.g., the weather with
+  the dummy $W=0$
+  (no rain) or $W=1$ (rain).
+\pause \item The specification depends on the way they influence decisions:
+\bi
+\item Affecting the alternatives directly: $X_{mni}=W\delta_{mi}$,
+\item affecting the \emph{alternatives} indirectly via a characteristic
+  $m'$, e.g. travel time:  $X_{mni}=WC_{m'ni}$,
+\item affecting the \emph{decision maker} via a socioeconomic
+  attribute $m'$, e.g., the gender:
+   $X_{mni}=WS_{m'n}\delta_{mi}$,
+\item combinations thereof.
+\ei
+\ei
+
+\pause 
+
+{\small
+\bfAsk{?} Assume there are three modes bike, PT and car and define
+$W=0$ (not snowing) and $W=1$ (snowing). Model the effect of snow on
+the decision making in following situations:
+\vspace{-0.5ex}
+
+\bi
+\item[\bfAsk{?}] The car becomes less attractive because I need to shovel off the snow
+\pause \item[\bfAsk{?}] The bike is protected in a shed but driving becomes
+  less attractive because the road is slippery 
+  and it's cold
+\pause \item[\bfAsk{?}] Woman dislike biking even more than men when it's snowing
+\ei
+}
+}
+
+%##############################################################
+\frame{\frametitle{Wrap up: modelling a certain choice situation}
+%##############################################################
+
+{\small
+Given is a SP survey for mode choice with three
+alternatives 
+\bi
+\item $i=1$: pedestrian mode: door-to-door travel time $T_1$
+\vspace{-0.5em}
+
+\item $i=2$: bicycle: door-to-door travel time $T_2$
+\vspace{-0.5em}
+
+\item $i=3$: motorized: door-to-door travel time $T_3$, ad-hoc costs
+  $C_3$
+\ei
+
+Furthermore, we distinguish the gender of the deciding person ($g=0$:
+male; $g=1$: female) and the weather ($W=0$: good; $W=1$: bad).
+\bi
+\itemAsk Specify a model for generic time and
+  cost sensitivities making $i=3$ the reference. Give the meaning and
+  expected signs of
+  the parameters. 
+\pause \itemAsk Now, formulate the travel time dependence
+  alternative-specifically.
+\pause \itemAsk Include the weather dependence assuming that the
+  motorized mode is favoured in bad weather proportionally to the travel time.
+\pause \itemAsk Now assume that women give the motorized modes a
+  fixed ``bonus'' compared to men and that they also are more sensitive to
+  the weather.
+\pause \itemAsk Which parameters would change in which way (i) if $W=1$
+  stands for good instead of bad weather; (ii) if $g=1$ stands for
+  men instead of woman; (iii) if the reference alternative is $i=1$
+  instead of $i=3$?
+\ei
+}
+
+}
+
+
+\subsection{7.4 Random Utilities and Choice Probabilities}
+
+%##############################################################
+\frame{\frametitle{7.4 Random Utilities and Choice Probabilities\\
+where do randum utilities come from?}
+%##############################################################
+\bi
+\item Not all relevant characteristics $\vec{C}$ and socioeconomic
+  variables $\vec{S}$ are included:
+\bdm
+U_i=U(\underbrace{\vec{C}_i, \vec{S}}_{\textrm{known}}, 
+          \underbrace{\vec{C}'_i, \vec{S}'}_{\textrm{unknown}})
+  =V(\vec{C}_i, \vec{S})+ \epsilon^{(1)}_i.
+\edm
+\red{whatch out} for neglected systematic influences leading to a bias
+\ei}\end{document}
+
+\pause \item Measuring/observation errors
+\bdm
+U_i=U(\vec{C}_i \underbrace{+\vec{\epsilon}_i}_{\textrm{measuring\ error}}, 
+  \vec{S} \underbrace{+\vec{\epsilon}}_{\textrm{measuring\ error}})
+  =V(\vec{C}_i, \vec{S}) + \epsilon^{(2)}_i.
+\edm
+\pause \item Relevant variables are only indirectly observable via
+  \bfdef{instrument variables} such as the address $S'$ of one's home for
+  the income $S$:
+\bdm
+U_i=U(\vec{C}_i, \vec{S})
+  =V(\vec{C'}_i, \vec{S}')+ \epsilon^{(3)}_i.
+\edm
+
+
+\pause \item True irrationality $\epsilon^{(4)}_i$.
+\ei
+}
+
+
+
+%##############################################################
+\frame{\frametitle{Choice probabilities}
+%##############################################################
+
+\bi
+\item The three basic components of discrete-choice models are
+  \bfdef{determinstic (explained)
+utilities} $V_i$, \bfdef{random utilities (RUs)} $\epsilon_i$, and a decision
+rule based on the 
+\bfdef{Homo Oeconomicus}:
+
+\maindm{i\sub{selected}=\text{arg} \max_i U_i
+= \text{arg} \max_i (V_i+\epsilon_i)}
+\vspace{0.5em}
+
+\pause\item By virtue of the RUs, this microscopically fixed decision
+rule leads 
+to \bfdef{choice probabilities} $P_i$ when aggregating over many
+decisions. 
+\ei
+\vspace{0.5em}
+
+\pause
+$\begin{array}{rcl}
+\text{\emph{Binomial case: \quad }}P_1 &=& \text{Prob}(U_1 \ge U_2)\\
+    &=& \text{Prob}(V_1+\epsilon_1\ge V_2+\epsilon_2)\\
+    &=& \text{Prob}(\epsilon_2-\epsilon_1\le V_1-V_2)\\
+    &=& F_{\epsilon_2-\epsilon_1}(V_1-V_2).
+\end{array}$
+%$
+\vspace{1em}
+
+\itemAsk \colAsk{What does this result mean in words?}
+
+\itemAsk \colAsk{Derive explicit formulas for 
+$\epsilon_i \sim$ i.i.d $U(-1,1)$
+and $\epsilon_i \sim $ i.i.d $N(0,1)$}
+
+\itemAsk \colAsk{What would happen for \unit[100]{\%} crrelated RUs?}
+}
+
+
+%##############################################################
+\frame{\frametitle{Translation and scale invariance}
+%##############################################################
+
+The general choice formula $i\sub{selected}=\text{arg} \max_i
+(V_i+\epsilon_i)$ leads to two far-reaching consequences:
+\bi
+\item \bfdef{Translation invariance}: 
+\maindm{V_1+\epsilon_1>V_2+\epsilon_2 \Longleftrightarrow 
+V_1+\epsilon_1+c>V_2+\epsilon_2+c, \quad c \in I\!\!R}
+ 
+\bi
+\item Only differences matter. In particular, one can set one
+  deterministic utility $V_{i'}=0$  making $i'$ the reference alternative.
+\item Nonzero expectation values $E(\epsilon_i)$ (as in
+  Logit models) are irrelevant.
+\ei
+
+\pause \item \bfdef{Scale invariance}: 
+\maindm{V_1+\epsilon_1>V_2+\epsilon_2 \Longleftrightarrow 
+\lambda(V_1+\epsilon_1)>\lambda(V_2+\epsilon_2), \quad \lambda>0}
+
+\bi
+\item A \emph{simultaneous} scaling of all $V_i$ and $\epsilon$ leaves
+  the choice unchanged (one could even apply a strictly monotonously
+  increasing 
+  function defined in $I\!\!R$ such as $\exp(.)$ to all $V_i+\epsilon_i$)
+\item One can normalize $\epsilon_i$ without loss of generality.
+In any case, $V_i$ is given in multiples of the standard deviation of
+  $\epsilon_i$
+\ei
+\ei
+
+
+}
+
+ 
+
+
+
 
 %##############################################################
 \frame{\frametitle{Example: SP Survey in the audience}
