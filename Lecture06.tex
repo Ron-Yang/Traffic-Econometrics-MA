@@ -46,7 +46,8 @@
 \bi
 \item 6.4.1 Objective Measurement
 \item 6.4.2 Revealed-Choice Design
-\item 6.4.3 Stated Choice and Choice-Based Conjoint Analysis
+\item 6.4.3 Stated Choice 
+\item 6.4.4 Choice-Based Conjoint Analysis
 \ei
 \ei
 }}
@@ -104,6 +105,13 @@
 %##############################################################
 
 \fig{0.8\textwidth}{figsErh/Zeitdimension_eng.png}
+}
+
+%##############################################################
+\frame{\frametitle{Specification of population and samples}
+%##############################################################
+
+Space, time, attribute delimitation TODO
 }
 
 
@@ -195,7 +203,24 @@ Tricky questions!
 %##############################################################
 \frame{\frametitle{6.4 Degree of Subjectivity}
 %##############################################################
-Das Bild mit den 2 Strahlen
+\fig{0.9\textwidth}{figsErh/DegreeSubjectivity.png}
+\benum
+\pause \item Objective/physical measurement, e.g., automated traffic counts
+\pause \item \bfdef{Revealed choice} or \bfdef{revealed preference (SP)}: People are
+  asked about some realized activity or choice, i.e., the
+  chain/sequence of trips and 
+  their purposes they did at a given day
+\pause \item \bfdef{Stated choice} or \bfdef{stated preference (SP)}: People
+  are asked about an \emph{hypothetical} situation and how they would
+  act/decide if confronted with it
+\eenum
+\visible<4->{\footnotesize{(strictly speaking, 
+revealed/stated preference gives a  ranking of the 
+preferences of the available alternatives while revealed/stated choice
+only gives the favourite. However, this is often confused in the
+literature)}}
+ 
+
 }
 
 \subsubsection{6.4.1 Objective Measurement}
@@ -204,16 +229,26 @@ Das Bild mit den 2 Strahlen
 \frame{\frametitle{6.4.1 Objective Measurement}
 %##############################################################
 
-%\begin{center}
-\vspace{1em}
+\fig{0.8\textwidth}{figsErh/detektorA5_googleMaps.png}
+\visible<2>{\placebox{0.52}{0.22}
+  {\figSimple{0.90\textwidth}{figsErh/M21_2910_1_ganglinie_Q.png}}}
+\visible<2>{\placebox{0.60}{0.40}{Flow [veh/h]}}
+\visible<2->{\placebox{0.60}{0.145}{One-minute detector data}}
+\visible<3>{\placebox{0.52}{0.22}
+  {\figSimple{0.90\textwidth}{figsErh/M21_2910_1_ganglinie_v.png}}}
+\visible<3>{\placebox{0.60}{0.40}{Avg speed [km/h]}}
+}
 
-One-minute stationary detector data (SDD), 
 
-flow [vehicles/h] and speed [km/h]
-%\end{center}
-\vspace{-1em}
+%##############################################################
+\frame{\frametitle{Traffic waves}
+%##############################################################
 
-\fig{1.05\textwidth}{figsErh/ganglinien-A9munich.png}
+\placebox{0.52}{0.65}
+  {\figSimple{0.90\textwidth}{figsErh/M21_2910_1_ganglinie_v.png}}
+\placebox{0.50}{0.25}
+  {\includegraphics[width=0.95\textwidth,height=0.48\textheight]
+   {figsErh/M21_2910_1_ganglinieDetail_v.png}}
 }
 
 
@@ -222,7 +257,7 @@ flow [vehicles/h] and speed [km/h]
 
 %##############################################################
 \frame{\frametitle{6.4.2 Revealed-Choice\\
-Survey in the audience}
+Example I: Survey in the audience}
 %##############################################################
 
 % from
@@ -232,8 +267,9 @@ Distance classes for the trip home to university
 \vspace{0em}
 
 Weather: perfect, cloudless, 15 degrees Celsius (Apr 11, 2018)
-\vspace{1em}
+\vspace{2em}
 
+\hspace{0.08\textwidth}
 {\small\begin{tabular}{|r|r||c|c|c|}
 \hline 
 \myBox{4em}{Distance} & 
@@ -252,103 +288,28 @@ Weather: perfect, cloudless, 15 degrees Celsius (Apr 11, 2018)
 
 
 %###################################################
-\frame{\frametitle{Model specification and calibration}
-%###################################################
-
-\placebox{0.36}{0.78}{\parbox{0.7\textwidth}{\normalsize
-  Deterministic utilities:\\[0.3em]
-  %
-  $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
-  +r \left(\beta_3 \delta_{i1}+\beta_4 \delta_{i2}\right)$
-}}
-
-\pause
-\placebox{0.82}{0.75}{\parbox{0.4\textwidth}{\normalsize
-or \quad
-$
-\begin{array}{l}
-V_1=\beta_1 + \beta_3 r,\\ 
-V_2=\beta_2 + \beta_4 r,\\
-V_3=0
-\end{array}
-$
-}}
-
-\placebox{0.35}{0.37}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProb.png}
-}
-\pause
-\placebox{0.80}{0.30}{\parbox{0.20\textwidth}{
-   $
-   \begin{array}{l}
-   \ln L\sub{init}=-39.55,\\
-   \ln L=-20.9,\\
-   \hatbeta_1=4.1\pm 1.7, \\
-   \hatbeta_2=0.3\pm 1.1, \\
-   \hatbeta_3=-3.5\pm 1.3, \\
-   \hatbeta_4=-0.6\pm 0.5
-   \end{array}
-   $
-}}
-
-
-}
-
-%###################################################
-\frame{\frametitle{Prediction: modal split as a function of distance}
-%###################################################
-%\\[1em]
-
-\placebox{0.50}{0.78}{\parbox{0.7\textwidth}{\normalsize
-$V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
-+r \left(\beta_3 \delta_{i1}+\beta_4 \delta_{i2}\right)$
-}}
-
-\placebox{0.35}{0.37}{
- \figSimple{0.75\textwidth}{\pathDiscrChoice/RC_SS18_3alt_fProbKumDist.png}
-}
-
-
-\placebox{0.80}{0.30}{
-  \parbox{0.20\textwidth}{
-   $
-   \begin{array}{l}
-   \hatbeta_1=4.1\pm 1.7, \\
-   \hatbeta_2=0.3\pm 1.1, \\
-   \hatbeta_3=-3.5\pm 1.3, \\
-   \hatbeta_4=-0.6\pm 0.5
-   \end{array}
-   $
-  }
-}
-
-
-
-}
-
-
-
-%###################################################
-\frame{\frametitle{Revealed Preference Mobility Study SrV (TU Dresden)}
+\frame{\frametitle{Example II: RP Mobility Study SrV (TU Dresden)}
 %###################################################
 \placebox{0.20}{0.47}{
   \figSimple{0.35\textwidth}{figsErh/SrV_logo.png}}
 \placebox{0.65}{0.47}{\parbox{0.65\textwidth}{
-  \bi
-  \item Mobility study in trend design, scientific lead TU Dresden
-  \item Mobility is, e.g., 
 \bi
-\item how many trips per day, 
-\item modal split, 
-\item activity
+\item Mobility study in trend design, scientific lead TU Dresden
+\pause \item Mobility is, e.g., 
+  \bi
+  \item how many trips per day, 
+  \item modal split, 
+  \item activity
     and temporal pattern, 
-\item distribution and average of trip length,
+  \item distribution and average of trip length,
     traffic volume,...
-\ei
-  \item Population: Germany cities, 1972-open end 
-  \item Sample: Selected cities, survey period 1 year,
-    campaign every 4 or 5 years, 2018 was the last (11$\sup{th}$)
   \ei
+\pause \item Population: \red{space:} Germany cities, \red{time:} 
+1972-open end, \red{attribute delimitation:} none 
+\pause \item Sample: Selected cities, survey period 1 year,
+    campaign every 4 or 5 years (trend design), 2018 was the last
+    (11$\sup{th}$) 
+\ei
 }}
 
 }
@@ -360,28 +321,40 @@ $V_i(r)=\beta_1 \delta_{i1}+\beta_2 \delta_{i2}
 \fig{0.85\textwidth}{figsErh/SrV2008_2.png}
 \vspace{-1em}
 \bi
-\item Sample spacially (city size) and temporally (season) layered
-\item Sampling basis: personal register of the cities
-\item Sampling: random selection from the register
+\item Sample: layered according to city size and season
+\pause \item Sampling basis: personal register of the cities
+\pause \item Sampling: random selection from the register but clustered to
+  include all members of the household
 \ei
 }
 
 %###################################################
 \frame{\frametitle{SrV interviewing strategy}
 %###################################################
-\fig{0.60\textwidth}{figsErh/SrV2013_Befragungsdesign.png}
+\placebox{0.33}{0.45}{
+ \figSimple{0.60\textwidth}{figsErh/SrV2013_Befragungsdesign.png}}
+
+\placebox{0.8}{0.45}{\parbox{0.3\textwidth}{
+\bi
+\item Base telephone and surface mail sample
+\pause \item switching possible; online upon request
+\pause \item reminders to the non-responders
+\pause \item weighting of the answers \emph{including the non-responders}
+\ei
+}}
+
 }
 
 %###################################################
-\frame{\frametitle{Variables 1: houshold and general 
-socioeconomic attributes}
+\frame{\frametitle{General socioeconomic attributes of
+    housholds and persons}
 %###################################################
 \vspace{-0.2em}
 \fig{0.95\textwidth}{figsErh/SrV1998_Haushaltsfragebogen.png}
 }
 
 %###################################################
-\frame{\frametitle{2: mobility related socioeconomic variables}
+\frame{\frametitle{Mobility-related socioeconomic attributes}
 %###################################################
 \vspace{-0.5em}
 
@@ -389,14 +362,14 @@ socioeconomic attributes}
 }
 
 %###################################################
-\frame{\frametitle{Purpose: Not all trips are valuable}
+\frame{\frametitle{Purpose: Not all trips are valuable!}
 %###################################################
 
 \fig{0.9\textwidth}{figsErh/SrV_NotAllTripsHighValue.png}
 }
 
 %###################################################
-\frame{\frametitle{3: Activity-related variables: Purpose and time}
+\frame{\frametitle{Activity-related attributes: purpose and time}
 %###################################################
 
 \vspace{-0.1em}
@@ -404,8 +377,8 @@ socioeconomic attributes}
 }
 
 %###################################################
-\frame{\frametitle{Activitiy variables 2: Mode, target, distance travelling
-    time}
+\frame{\frametitle{Activitiy-related attributes:\\
+mode, target, distance, and travelling time}
 %###################################################
 
 \vspace{-0.1em}
@@ -413,12 +386,21 @@ socioeconomic attributes}
 }
 
 %###################################################
-\frame{\frametitle{Results 1: average daily distance as a function of
-    age,\\ mode, and city}
+\frame{\frametitle{Results 1: average daily distance\\ as a function of
+    age, mode, and city size}
 %###################################################
 
-\placebox{0.50}{0.45}{
+\placebox{0.50}{0.72}{\red{Motorized individual traffic}}
+\placebox{0.50}{0.66}{\blue{Public transport}}
+
+
+\placebox{0.50}{0.38}{
 \figSimple{1.05\textwidth}{figsErh/SrV2008_3.png}}
+
+\placebox{0.25}{0.12}{Berlin}
+\placebox{0.75}{0.12}{Middle-sized and smaller cities}
+
+
 }
 
 %###################################################
@@ -426,6 +408,11 @@ socioeconomic attributes}
 %###################################################
 \placebox{0.50}{0.45}{
  \figSimple{0.85\textwidth}{figsErh/SrV2008_4.png}}
+\placebox{0.33}{0.08}{\orange{\scriptsize{Bicycle}}}
+\placebox{0.47}{0.08}{\blue{\scriptsize{Public transport}}}
+\placebox{0.63}{0.08}{\green{\scriptsize{Pedestrian}}}
+\placebox{0.76}{0.08}{\red{\scriptsize{Car etc.}}}
+
 }
 
 %###################################################
@@ -435,6 +422,7 @@ socioeconomic attributes}
 
 \placebox{0.50}{0.45}{
  \figSimple{1.10\textwidth}{figsErh/SrV2008_5.png}}
+
 }
 
 %###################################################
@@ -454,10 +442,15 @@ socioeconomic attributes}
 \subsubsection{6.4.3 Stated Preference/Choice (SP)
 and Choice-Based Conjoint Analysis}
 
+%###################################################
+\frame{\frametitle{6.4.3 Stated Preference/Choice (SP)}
+%###################################################
+}
+
 
 %###################################################
-\frame{\frametitle{6.4.3 Stated Preference/Choice (SP)':\\
-In-class survey WS18/19 \red{(red: bad weather)}}
+\frame{\frametitle{Example: In-class survey WS18/19 
+\red{(red: bad weather)}}
 %###################################################
 \vspace{0.5em}
 
@@ -486,78 +479,10 @@ In-class survey WS18/19 \red{(red: bad weather)}}
 }
 }
 
-%###################################################
-\frame{\frametitle{Model specification and calibration}
-%###################################################
-
-\placebox{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
-}
-
-\placebox{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T\\
- & + \beta_4 W\delta_{i3}
-\end{array}
-$
-}}}
-
-\pause
-
-\placebox{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T + \beta_4 W
-\end{array}
-$
-}}}
-
-
-\pause
-
-\placebox{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
-  $
-  \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-128.5, \\
-  \beta_0=-0.65 \pm 0.37, \\
-  \beta_1=-0.42 \pm 0.25, \\
-  \beta_2=-0.10 \pm 0.20, \\
-  \beta_3=-0.09 \pm 0.02, \\
-  \beta_4= 4.2  \pm 1.1
-  \end{array}
- $
-}}}
-
-\pause
-
-\placebox{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
-   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
-   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
-   \end{array}
-   $
-}}
-
-}
-
 
 %###################################################
-\frame{\frametitle{Choice-based conjoint analysis 1:\\
-Exhaustive enumeration}
+\frame{\frametitle{6.4.4 Choice-based conjoint analysis\\
+1. Exhaustive enumeration}
 %###################################################
 
 \bi
@@ -582,8 +507,7 @@ $i$ & {\small Ped/bike travel time $T_1$}
 }
 
 %###################################################
-\frame{\frametitle{Choice-based conjoint analysis 2:
-orthogonal design}
+\frame{\frametitle{2. Orthogonal design}
 %###################################################
 \begin{tabular}{|r|c|c|c|} \hline
 $i$ & {\small Ped/bike travel time $T_1$}
@@ -610,8 +534,7 @@ between the travel times of the two alternatives
 }
 
 %###################################################
-\frame{\frametitle{Choice-based conjoint analysis 3:
-effective design}
+\frame{\frametitle{3. Effective design}
 %###################################################
 
 \placebox{0.29}{0.77}{
