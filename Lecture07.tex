@@ -1,8 +1,8 @@
 
-\documentclass[mathserif,aspectratio=1610]{beamer}
-%\documentclass[mathserif]{beamer}
-%\documentclass[mathserif,handout,aspectratio=169]{beamer}
+%\documentclass[mathserif,aspectratio=1610]{beamer}
+\documentclass[mathserif,handout,aspectratio=1610]{beamer}
 %\usepackage{beamerthemeshadow}
+%\documentclass[mathserif]{beamer}
 
 \input{$HOME/tex/inputs/defsSkript}%$
 \input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
@@ -116,7 +116,7 @@ from each other. \\
 \itemAsk \colAsk{What to do if a person has the option to
 not select anything or possibly select something that is not on the list?}
 
-\pause\itemAnswer \colAnswer{Just include a ``do-nothing'' and/or a
+\pause\itemAnswer \colAnswer{Just include a ``do-nothing'' and/or an
   ``other'' alternative} \\[1.2ex]
 
 \pause\itemAsk \colAsk{What to do if multi-modal trips (e.g., bike+tram) are
@@ -127,7 +127,7 @@ not select anything or possibly select something that is not on the list?}
 car or bike available. How to model the four alternatives 
 ped, bike, car, PT for this person? Give two possible solutions}
 \pause\itemAnswer \colAnswer{1. Exclude these alternatives for this person
-  by reducing his/her choice set ${\cal A}_n$; 2. Give prohibitive
+  by reducing his/her choice set ${\cal A}_n$;\\ 2. Give prohibitive
   penalties for the ``forbidden'' alternatives }\\[1.2ex]
 
 \pause\itemAsk \colAsk{Explain ``sufficiently different alternatives'' by red and
@@ -205,30 +205,27 @@ Chosen alternative $i\sub{selected}=\text{arg} \max_i U_i=2$
 %##############################################################
 
 \visible<1> {\placebox{0.50}{0.44}
- {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng1.png}}}
-
-\visible<2> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng2.png}}}
 
-\visible<3> {\placebox{0.50}{0.44}
+\visible<2> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng3.png}}}
 
-\visible<4> {\placebox{0.50}{0.44}
+\visible<3> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng4.png}}}
 
-\visible<5> {\placebox{0.50}{0.44}
+\visible<4> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng5.png}}}
 
-\visible<6> {\placebox{0.50}{0.44}
+\visible<5> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng6.png}}}
 
-\visible<7> {\placebox{0.50}{0.44}
+\visible<6> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng7.png}}}
 
-\visible<8> {\placebox{0.50}{0.44}
+\visible<7> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng8.png}}}
 
-\visible<9> {\placebox{0.50}{0.44}
+\visible<8> {\placebox{0.50}{0.44}
  {\figSimple{0.95\textwidth}{figsDiscr/discrKomp_eng9.png}}}
 
 
@@ -380,7 +377,7 @@ the values \emph{male} and \emph{female}. As
 in regression, the way to deal with this are \bfdef{dummy variables},
 e.g. 
 \bdm
-g_n=\twoCases{1}{\femalepng}{0}{\malepng}
+g_n=\twoCases{1}{\visible<2->{\femalepng}}{0}{\visible<2->{\malepng}}
 \edm
 
 \pause \item Since, by definition, socio-economic variables do \emph{not}
