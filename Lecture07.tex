@@ -660,24 +660,69 @@ decisions.
 \ei
 \vspace{0.5em}
 
-\pause
-$\begin{array}{rcl}
-\text{\emph{Binomial case: \quad }}P_1 &=& \text{Prob}(U_1 \ge U_2)\\
-    &=& \text{Prob}(V_1+\epsilon_1\ge V_2+\epsilon_2)\\
-    &=& \text{Prob}(\epsilon_2-\epsilon_1\le V_1-V_2)\\
-    &=& F_{\epsilon_2-\epsilon_1}(V_1-V_2).
-\end{array}$
-%$
-\vspace{1em}
+\begin{align*}
+ \visible<3->
+  {\text{\emph{Binomial case: \quad }}P_1 &= \text{Prob}(U_1 \ge U_2)\\}
+ \visible<4->{&= \text{Prob}(V_1+\epsilon_1\ge V_2+\epsilon_2)\\}
+ \visible<5->{&= \text{Prob}(\epsilon_2-\epsilon_1\le V_1-V_2)\\}
+ \visible<6->{&= F_{\epsilon_2-\epsilon_1}(V_1-V_2)}
+\end{align*}
+}
+
+
+%##############################################################
+\frame{\frametitle{Questions on choice probabilities}
+%##############################################################
 
 \bi
-\itemAsk \colAsk{What does this result mean in words?}
+\itemAsk \colAsk{What does this general result 
+$P_1=F_{\epsilon_2-\epsilon_1}(V_1-V_2)$  mean in words?}\\
+\pause \colAnswer{\scriptsize{The probability of chosing 
+   alternative~1 ist given
+    by the  distribution function of the RU
+    difference at the deterministic utility difference}}
 
-\itemAsk \colAsk{Derive explicit formulas for 
+\pause \itemAsk \colAsk{Is the result plausible? Check the change if
+  $V_1-V_2$ changes and the limits of $V_1-V_2\to \pm \infty$}\\
+\pause \bi
+\colAnswer{\scriptsize{
+\item The probability depends only on the deterministic utility
+  difference $V_1-V_2$ OK
+\item The sensitivity $\partial P_1/\partial \Delta
+  V=f_{\epsilon_2-\epsilon_1}(\Delta V)$ is given by the probability
+  density of the RU diference, i.e. nonnegative OK
+\item For $\Delta V\to -\infty$, we obtain $P_1\to 0$ because of the
+  s-shaped form of the distribution function OK \\[-0.5ex]
+\item For the same reason, $P_1\to 1$ for $\Delta V\to +\infty$ OK
+}}
+\ei
+
+
+\pause \itemAsk \colAsk{Derive explicit formulas for 
 $\epsilon_i \sim$ i.i.d $U(-1,1)$
-and $\epsilon_i \sim $ i.i.d $N(0,1)$}
+and $\epsilon_i \sim $ i.i.d $N(0,1)$}\\
+\pause \colAnswer{\scriptsize{
+The probability density of a sum of independent random variables is
+equal to the convolution of the individual densities. For symmetric
+densities this also applies for the difference.}}
+\bi
+\colAnswer{\scriptsize{
+\pause \item The convolution of two i.i.d. uniform densities is the triangular 
+density
+$f^{(1)}_{\Delta \epsilon}=1/2(1-1/2|\Delta \epsilon|)$ and
+$P_1$ is the integral of it at $V_1-V_2$
+\pause \item The convolution of two i.i.d $N(0,1)$ distributed RUs is $\sim
+  N(0,2)$, hence $P_1(V_1-V_2)=\Phi((V_1-V_2)/\sqrt{2})$ with
+  $\Phi(.)$ the standardnormal distribution
+}}
+\ei
 
-\itemAsk \colAsk{What would happen for \unit[100]{\%} crrelated RUs?}
+
+\pause \itemAsk \colAsk{What would happen for \unit[100]{\%} correlated RUs?}
+\pause \colAnswer{\scriptsize{The RU difference $\Delta \epsilon=0$. Hence, we
+    have a deterministic situation $P_1=1$ if $V_1-V_2\ge 0$ and
+    $P_1=0$, otherwise.}}
+
 \ei
 }
 
@@ -694,22 +739,23 @@ The general choice formula $i\sub{selected}=\text{arg} \max_i
 V_1+\epsilon_1+c>V_2+\epsilon_2+c, \quad c \in I\!\!R}
  
 \bi
-\item Only differences matter. In particular, one can set one
+\pause \item Only differences matter. In particular, one can set one
   deterministic utility $V_{i'}=0$  making $i'$ the reference alternative.
-\item Nonzero expectation values $E(\epsilon_i)$ (as in
+\pause \item Nonzero expectation values $E(\epsilon_i)$ (as in
   Logit models) are irrelevant.
 \ei
+\vspace{2em}
 
 \pause \item \bfdef{Scale invariance}: 
 \maindm{V_1+\epsilon_1>V_2+\epsilon_2 \Longleftrightarrow 
 \lambda(V_1+\epsilon_1)>\lambda(V_2+\epsilon_2), \quad \lambda>0}
 
 \bi
-\item A \emph{simultaneous} scaling of all $V_i$ and $\epsilon$ leaves
+\pause \item A \emph{simultaneous} scaling of all $V_i$ \emph{and} $\epsilon$ leaves
   the choice unchanged (one could even apply a strictly monotonously
   increasing 
   function defined in $I\!\!R$ such as $\exp(.)$ to all $V_i+\epsilon_i$)
-\item One can normalize $\epsilon_i$ without loss of generality.
+\pause \item One can normalize $\epsilon_i$ without loss of generality.
 In any case, $V_i$ is given in multiples of the standard deviation of
   $\epsilon_i$
 \ei
