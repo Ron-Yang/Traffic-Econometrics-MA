@@ -334,11 +334,11 @@ available. Give the new Logit choice probabilities.}\\
 \subsubsection{8.1.1 Example: SP Survey in the Audience WS18/19}
 
 %##############################################################
-\frame{\frametitle{8.1.1 Example: SP Survey in the Audience WS18/19 
+\frame{\frametitle{8.1.1 Example: SP Survey in the Audience WS18/19 \\
 \red{(red: bad weather, $\bfmath{W=1}$)}}
 %##############################################################
 
-\placebox{0.34}{0.45}{\parbox{0.7\textwidth}
+\placebox{0.50}{0.42}{\parbox{0.7\textwidth}
 {\small
 \begin{tabular}{|r||c|c|c||r|r|r|}
 \hline 
@@ -363,7 +363,19 @@ available. Give the new Logit choice probabilities.}\\
 \end{tabular}
 }}
 
-\placebox{0.84}{0.45}{\parbox{0.3\textwidth}{
+
+}
+
+
+%#############################################################
+\frame{\frametitle{Model 1: generic times and costs, no weather}
+%#############################################################
+
+\placebox[center]{0.35}{0.43}{
+ \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
+}
+
+\placebox{0.84}{0.68}{\parbox{0.3\textwidth}{
 {\small
 \begin{center}
 $
@@ -374,9 +386,10 @@ $
 & + & \beta_{33} T_3\delta_{i3}+\beta_4 W\delta_{i3}
 \end{array}
 $
-\\[2em]
+\visible<2->{
+\\[1ex]
 or
-\\[2em]
+\\[1ex]
 $
 \begin{array}{l}
 V_1 =  \beta_0 + \beta_2 K_1 + \beta_{31} K_1,\\
@@ -386,61 +399,28 @@ V_3 =  \beta_2 K_3 + \beta_{33} K_3+\beta_4 W
 $
 \end{center}
 }
+}
 }}
 
-}
 
 
-%###################################################
-\frame{\frametitle{Model specification and calibration}
-%###################################################
 
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
-}
-
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
- V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T
-$
-}}}
-
-\pause
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T
-\end{array}
-$
-}}}
-
-
-\pause
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+\visible<3->{
+\placebox[center]{0.82}{0.36}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-141.5, \\
+ % \ln L\sub{init}=-176.9,\\
+ % \ln L=-141.5, \\
   \beta_0=-0.95 \pm 0.37, \\
   \beta_1=-0.28 \pm 0.24, \\
   \beta_2=+0.17 \pm 0.19, \\
   \beta_3=-0.04 \pm 0.02
   \end{array}
  $
-}}}
+}}}}
 
-\pause
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\visible<4->{
+\placebox[center]{0.82}{0.13}{{\scriptsize
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
@@ -450,7 +430,7 @@ $
    \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
    \end{array}
    $
-}}
+}}}
 
 }
 
@@ -476,35 +456,23 @@ $
 
 
 %###################################################
-\frame{\frametitle{Model II: plus weather factor (\red{bad weather, $W=1$})}
+\frame{\frametitle{Model 2: generic times and costs\\
+plus weather factor (\red{bad weather, $W=1$})}
 %###################################################
 
 \placebox[center]{0.35}{0.40}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
 }
 
-\placebox[center]{0.36}{0.80}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T\\
- & + \beta_4 W\delta_{i3}
-\end{array}
-$
-}}}
 
-\pause
-
-\placebox[center]{0.79}{0.80}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T + \beta_4 W
+\placebox{0.84}{0.65}{\parbox{0.3\textwidth}{
+{\small
+$
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+& + & \beta_2 K_i\\
+& + & \beta_{31} T_1\delta_{i1}+ \beta_{32} T_2\delta_{i2}\\
+& + & \beta_{33} T_3\delta_{i3}+\beta_4 W\delta_{i3}
 \end{array}
 $
 }}}
