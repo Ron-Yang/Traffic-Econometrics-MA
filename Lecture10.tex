@@ -1,0 +1,609 @@
+%\documentclass[mathserif,aspectratio=1610]{beamer}
+\documentclass[mathserif,handout,aspectratio=1610]{beamer}
+%\usepackage{beamerthemeshadow}
+
+\input{$HOME/tex/inputs/defsSkript}%$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
+%\input{styleBeamerVkoekMa}%$
+
+\usepackage{graphicx}
+
+\newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
+
+%##############################################################
+
+\begin{document}
+
+\section{Chapter 8: Discrete-Choice Theory: the Basics}
+
+%###################################################
+\frame{  %title layout
+%###################################################
+\makePale{1.00}{0.50}{0.70}{1.40}{1.40}
+
+\placebox{0.50}{0.45}{
+  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr_eng.png}}
+%makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
+\makePale{0.70}{0.50}{0.70}{1.40}{1.40}
+
+\placebox{0.50}{0.90}{\parbox{0.8\textwidth}{\myheading{
+7. Discrete-Choice Theory: the Basics
+}}}
+
+\placebox{0.45}{0.40}{\parbox{0.8\textwidth}{
+{\large
+\bi
+\item 7.1 The Nature of Discrete Decisions
+\item 7.2 Basic Concepts: Alternatives, Utilities, Homo Oeconomicus
+\item 7.3 Deterministic utilities and how to model them
+\item 7.4 Random Utilities
+\item 7.5 Choice Probabilities
+\ei
+}
+}}
+
+}
+
+
+
+
+
+\subsection{4.12. Parameter Nonlinear Models}
+
+%##############################################################
+\frame{\frametitle{4.12.  \EinsteinPdflatex Parameter Nonlinear Models}
+%##############################################################
+
+Application: Determining subjective thresholds/indifference regions
+\vspace{1em}
+
+\begin{tabular}{|c||c|c|c|c|} \hline
+\myBox{3em}{Person\\class}
+ & \myBox{5em}{Time\\Alternative~1 \\ \text{[min]}}
+ & \myBox{5em}{Time\\Alternative~2\\ \text{[min]}}
+ & \myBox{2em}{Choice\\Alt.~1}
+ & \myBox{2em}{Choice\\Alt.~2} \\ \hline
+1 & 25 & 30 & 11 & 10 \\
+2 & 30 & 30 & 10 & 10 \\
+3 & 35 & 30 & 10 & 10 \\
+4 & 40 & 30 & 9 & 11 \\
+5 & 45 & 30 & 5 & 15 \\
+6 & 50 & 30 & 2 & 15 \\
+7 & 55 & 30 & 1 & 15 \\
+8 & 60 & 30 & 0 & 15 \\ \hline
+\end{tabular}
+
+}
+
+%##############################################################
+\frame{\frametitle{\EinsteinPdflatex Modelling the threshold}
+%##############################################################
+\vspace{-1em}
+
+% F... png software error; 
+% further F... error does not recongize .SkriptFig.jpg
+
+\fig{1.0\textwidth}{figsDiscr/nonlinUtility_4param_skriptFig_eng.png}
+\vspace{-1em}
+
+{\small
+\bdm
+V_{n1}-V_{n2}=\beta_1 +\beta_2\left[\Delta T_n+\beta_3 \,
+  \tanh\left(\frac{\Delta T_n}{\beta_4}\right)\right]
+\edm
+
+$
+\hatbeta_1= 0.043 \pm 0.236, \quad
+\hatbeta_2= -0.29 \pm 0.38, \quad
+\hatbeta_3= -15 \pm 18, \quad
+\hatbeta_4= 14 \pm 21.
+$
+
+\red{\textbf{!!}} Generally, $L(\vecbeta)$ has no longer a unique maximum,
+here, because of
+\bdm
+\beta_3 \,\tanh\left(\frac{\Delta T_n}{\beta_4}\right)
+=
+-\beta_3 \,\tanh\left(\frac{\Delta T_n}{-\beta_4}\right)
+\edm
+}
+
+
+}
+
+
+%##############################################################
+\frame{\frametitle{\EinsteinPdflatex The reverse: Increased
+    sensitivity at reference point}
+%##############################################################
+
+
+\begin{tabular}{|c||c|c|c|c|} \hline
+\myBox{3em}{Person\\class}
+ & \myBox{5em}{Time\\Alternative~1 \\ \text{[min]}}
+ & \myBox{5em}{Time\\Alternative~2\\ \text{[min]}}
+ & \myBox{2em}{Choice\\Alt.~1}
+ & \myBox{2em}{Choice\\Alt.~2} \\ \hline
+1 & 25 & 30 & 16 & 7 \\
+2 & 30 & 30 & 10 & 10 \\
+3 & 35 & 30 & 7 & 20 \\
+4 & 40 & 30 & 3 & 20 \\
+5 & 45 & 30 & 3 & 25 \\
+6 & 50 & 30 & 2 & 30 \\
+7 & 55 & 30 & 1 & 17 \\
+8 & 60 & 30 & 2 & 50 \\ \hline
+\end{tabular}
+\vspace{1em}
+
+Such increased sensitivity at the reference (here: equal trip times)
+is proposed 
+by the Prospect Theory of Kahneman/Twersky in certain situations
+}
+
+%##############################################################
+\frame{\frametitle{\EinsteinPdflatex Modelling the increased sensitivity}
+%##############################################################
+\vspace{0em}
+
+\hspace*{-0.05\textwidth}
+\includegraphics[width=1.1\textwidth]{figsDiscr/nonlinUtility_4param_Tversky_skriptFig_eng.jpg}
+\vspace{-0.5em}
+\bdm
+V_{n1}-V_{n2}=\beta_1 +\beta_2\left[\Delta T_n+\beta_3 \,
+  \tanh\left(\frac{\Delta T_n}{\beta_4}\right)\right]
+\edm
+
+{\small $
+\hatbeta_1= -0.08 \pm 0.25, \quad
+\hatbeta_2= -0.05 \pm 0.10, \quad
+\hatbeta_3= 27 \pm 101, \quad
+\hatbeta_4= 10 \pm 16.
+$}
+
+}
+
+%##############################################################
+\frame{\frametitle{\EinsteinPdflatex 
+Four further models applied to the threshold data}
+%##############################################################
+
+\fig{1.0\textwidth}{figsDiscr/nonlinUtility_3param2param.png}
+
+}
+
+\subsection{4.13. GEV and Nested Logit Models}
+
+%##############################################################
+\frame{\frametitle{4.13. GEV and Nested Logit Models}
+%##############################################################
+\textbf{Motivation}
+
+When taking decisions, the available options are often coupled in a
+way that i.i.d. random utilities are not applicable:
+\bi
+\item Destination and mode choice
+\pause \item Destination city and job offers when about to moving
+\pause \item Expansion of a company: Creating a new branch office and if so,
+  where?
+\ei
+\pause In these cases, a decision involves taking two or more sub-decisions
+with nearly fixed random utilities in the associated alternative sets,
+so the total random utility is correlated
+
+\vspace{1em}
+
+$\Rightarrow$ \textbf{\red{Red-Bus}-\blue{Blue-Bus} problem.}
+
+\pause \vspace{1em}
+
+$\Rightarrow$ How to model this while retaining explicit expressions
+for the choice probabilities?
+}
+
+
+%##############################################################
+\frame{\frametitle{The general GEV generating function}
+%##############################################################
+
+All the GEV models are defined via a \bfdef{Generating function
+  $G(\vec{y})=G(y_1, ..., y_I)$} satisfying following formal
+conditions:
+\bi
+\item Not negative: \quad $G(\vec{y}) \ge 0 \ \text{for all} \ \vec{y},$
+
+\pause \item Asymptotics:\quad
+     $ G \to \infty \ \text{if any} \ y_i \to \infty,$
+
+\pause \item Sign of derivatives: \parbox{0.5\textwidth}{
+\bdma
+  G_i & \equiv & \ablpart{G}{y_i} \ge 0, \\
+  G_{ij} & \equiv &  \ablpartmix{G}{y_i}{y_j} \le 0 \ \text{if $i\neq j$},\\
+  G_{ijk} & \ge & 0 \ \text{and so on},
+\edma
+}
+
+\pause \item Homogeneity of degree 1:
+     $ G(\alpha \vec{y})=\alpha G(\vec{y})$
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{The Nobel-Price winning result of McFadden et. al.}
+%##############################################################
+
+Any GEV function  $G(\vec{y})$ satisfying the above four conditions
+\vspace{1em}
+
+\bi
+\item generates a random vector  $\veceps$ satisfying a generalized
+  extreme-value distribution with the distribution function
+\maindm{F(\vec{e})=P(\epsilon_1\le e_1, ..., \epsilon_I \le e_I)
+  =e^{-G(\vec{y})} \ \text{with} \ y_i=e^{-e_i}} 
+ \vspace{1em}
+
+\pause \item has analytic choice probabilities when maximizing the total utilities $U_i=V_i+\epsilon_i$:
+\maindm{
+  P_i=\frac{y_iG_i(\vec{y})}{G(\vec{y})} \ \text{with} \ 
+  G_i=\ablpart{G}{y_i}, \ y_i=e^{+V_i}}
+\ei
+\vspace{2em}
+
+\pause
+\bfAsk{?} Check why the above conditions for $G(\vec{y})$ must be true
+
+}
+
+%##############################################################
+\frame{\frametitle{Special Case I: Multinomial-Logit}
+%##############################################################
+
+\bi
+\item Generating function: 
+\bdm
+G(\vec{y})\sup{MNL}=\sum_{j=1}^{I} y_j
+\edm
+
+\pause \item Distribution function of the random utilities (RUs):
+\bdma
+F(\vec{e}) &=& \exp\left[-G\left(e^{-e_1}, ...\right)\right]
+ = \exp\bigg(-\sum_j e^{-e_j}\bigg)\\
+ &=& \prod_j \exp \left(-e^{-e_j}\right)
+\ \Rightarrow \ \epsilon_i \sim \ \text{i.i.d. Gumbel}
+\edma
+
+\pause \item Choice probabilities:
+\bdma
+G_i &=& \ablpart{G}{y_i} =1, \\
+P_i &=& \frac{y_i}{\sum_{j=1}^{I} y_j}=\frac{\exp(V_i)}{\sum_{j=1}^{I} \exp(V_j)}
+\edma
+\ei
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Special Case II: Two-level Nested Logit model}
+%##############################################################
+{\small\bi
+\item Hierarchical decision: $i=(l,m)$, $l$: top-level alternatives,
+  $m$ second-level alternatives depending on $l$
+\vspace{0.5em}
+
+\pause \item Generating GEV function: 
+\bdm
+G\sup{NL}(\vec{y})=\sum_{l=1}^L 
+ \bigg(\sum_{m=1}^{M_l} y_{lm}^{1/\lambda_l}\bigg)^{\lambda_l}
+\edm
+
+where $\lambda_l \in [0,1]$ determine the correlations of the RUs in
+``nest'' $l$:% with $M_l$ dependent alternatives:
+\bi
+\item $\lambda_l \to 1$: Limit of MNL, zero correlation \red{$\Rightarrow$
+  check it!}
+\item  $\lambda_l \to 0$: no RUs inside the nests, correlation=1: \bfdef{sequential model}
+\ei
+\vspace{0.5em}
+
+\pause \item Distribution of the RUs:
+\ei
+\vspace{-2em}
+
+\pause 
+\bdma
+F(\vec{e}) &=&\exp\bigg[-\sum_l \left(
+  \sum_m e^{-e_{lm}/\lambda_l}\right)^{\lambda_l}\bigg]
+ = \prod_l \exp\bigg[-\left(
+  \sum_m e^{-e_{lm}/\lambda_l}\right)^{\lambda_l}\bigg]\\
+ &=& \prod_l F_l(\vec{e}_l) 
+\red{\Rightarrow \text{independent at top level}}
+\edma
+}
+
+}
+
+%##############################################################
+\frame{\frametitle{Nested Logit choice probabilities}
+%##############################################################
+
+Insert $G\sup{NL}(\vec{y})$ into the general expression $P_i=y_iG_i/G$:
+\bdm
+P_i=P_{lm}=P_l P_{m|l}
+ =\frac{e^{V_{lm}/\lambda_l}\left(\sum_{m'}e^{V_{lm'}/\lambda_l}\right)^{\lambda_l-1}}
+  {\sum_{l'} \left(\sum_{m'}
+    e^{V_{l'm'}/\lambda_{l'}}\right)^{\lambda_{l'}}}
+\edm
+
+\pause
+{\small
+\bi
+\itemAsk Show that, if all $\lambda_l=1$, the normal MNL choice
+probabilities are obtained, i.e.,  all combinations $lm$ are independent
+\pause \itemAsk Show that, in the limit of all  $\lambda_l \to 0$, the choice
+probabilities are
+\bdm
+P_{lm}=\frac{\exp(V_{lm^*_l})}{\sum_l' \exp(V_{l'm^*_{l'}})}
+\edm
+if, for a given nest $l$, the alternative $m=m^*_l$ has the maximum
+utility $V$ of this nest, and $P_{lm}=0$, otherwise.
+\pause \itemAsk Diskuss why, in the case $\lambda_l \to 0$, the inner choice
+is deterministic, and each nest is a given single alternative
+subjected to a normal MNL: \bfdef{sequential model}
+\ei
+}
+}
+
+%##############################################################
+\frame{\frametitle{A more intuitive form of the NL choice probabilities}
+%##############################################################
+
+\bi
+\item Set
+\maindmIntext{
+V_{lm}=W_l+\tilde{V}_{lm}
+}
+\bi
+\item $V_{lm}$: top-level contributions
+\item $W_l$: inner
+  contributions
+\ei
+
+\pause \item Then, the NL choice probabilities can be formulated as
+\maindm{
+P_{lm}=P_l P_{m|l}, \quad
+P_l=\frac{e^{W_l+\lambda_l I_l}} 
+ {\sum_{l'}e^{W_{l'}+\lambda_{l'} I_{l'}}}, \quad
+P_{m|l}= \frac{e^{\tilde{V}_{lm}/\lambda_l}}{\sum_{m'}e^{\tilde{V}_{lm'}/\lambda_l}}
+}
+with the \bfdef{inclusion values}
+\maindmIntext{
+  I_l=\ln\left(\sum_{m}e^{\tilde{V}_{lm}/\lambda_l}\right)
+}
+\ei
+
+{\small
+\bi
+\pause \itemAsk Argue that the outer nest decision is a normal MNL with the
+\emph{effective nest utilities} given by $\lambda_lI_l$.
+\pause \itemAsk Show that  $\lambda_lI_l$ is
+at least as high as the utility $\tilde{V}_{lm^*_l}$ 
+of the best alternative within the nest and
+that $\lambda_lI=\tilde{V}_{lm^*_l}$ for $\lambda_l\to 0$.
+\pause \itemAsk Argue that the (potential) selection within a nest is
+independent 
+from the outer decision and obeys a normal MNL.
+\ei
+}
+
+
+}
+
+
+
+\subsection{4.13a. Nested Logit Example}
+
+% from ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/
+% = \pathDiscrChoic
+
+%##############################################################
+\frame{\frametitle{4.13a. Example: Combined destination and mode choice}
+%##############################################################
+\fig{1.0\textwidth}{figsDiscr/NL-Beispiel_eng.png}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Combined destination and mode choice: the data}
+%##############################################################
+{\small
+%\begin{center}
+\hspace*{-2em}
+\begin{tabular}{|c||c|c|c|c|c||c|c|c|c|} \hline
+\myBox{2em}{Per-\\son\\group} 
+ & \myBox{0.07\textwidth}{T [min]\\Emma,\\ PT}
+ & \myBox{0.07\textwidth}{T [min]\\Emma,\\  car}
+ & \myBox{0.08\textwidth}{T [min]\\superm,\\ PT}
+ & \myBox{0.08\textwidth}{T [min]\\superm,\\  car}
+ & \myBox{0.07\textwidth}{Fridge\\fill\\level \\$F$}
+ & $y_{11}$ & $y_{12}$ & $y_{21}$ & $y_{22}$ \\ \hline
+1  & 25 &  15 & 25 &  20 &  0.9 &  1 &  2 &  0 &  0 \\
+2  & 25 &  30 & 40 &  30 &  0.8 &  3 &  0 &  0 &  1 \\
+3  & 20 &  20 & 30 &  30 &  0.7 &  2 &  1 &  1 &  1 \\
+4  & 25 &  10 & 25 &  10 &  0.6 &  0 &  3 &  0 &  2 \\
+5  & 15 &   5 & 30 &  20 &  0.5 &  1 &  2 &  0 &  2 \\
+6  & 15 &  15 & 25 &  20 &  0.4 &  1 &  1 &  0 &  1 \\
+7  & 15 &  20 & 45 &  45 &  0.3 &  3 &  1 &  0 &  1 \\
+8  & 15 &  15 & 15 &  15 &  0.2 &  1 &  0 &  2 &  3 \\
+9  & 25 &  15 & 40 &  30 &  0.1 &  1 &  1 &  0 &  1 \\
+10 & 25 &  10 & 25 &  20 &  0.0 &  0 &  1 &  1 &  3 \\ \hline
+\end{tabular}
+%\end{center}
+}
+}
+
+\providecommand{\tilV}{\tilde{V}}
+%##############################################################
+\frame{\frametitle{Conditional modal splits}
+%##############################################################
+
+\placebox[center]{0.25}{0.65}
+{\figSimple{0.53\textwidth}
+ {\pathDiscrChoice/NL_Skript_2x2alt_Nest1_fProb.png}}
+%}\end{document}
+
+\placebox[center]{0.75}{0.65}
+{\figSimple{0.53\textwidth}
+ {\pathDiscrChoice/NL_Skript_2x2alt_Nest2_fProb.png}}
+
+\placebox[center]{0.25}{0.21}
+{\parbox{0.5\textwidth}{Observed and modelled modal split when driving
+    to  ``Aunt Emma''\\[-1em]
+{\small \bdma
+P_{m|n1} &=& \frac{\exp(\tilV_{n1m}/\lambda_1)}
+           {\sum_{m'}\exp(\tilV_{n1m'}/\lambda_1)},\\
+\tilV_{n1m}/\lambda_1 &=& \beta_1 T_{n1m}+\beta_2 \delta_{m1},\\
+\hatbeta_1 &=&-0.18, \ \hatbeta_2=+0.88
+\edma}
+}}
+
+\placebox[center]{0.75}{0.21}
+{\parbox{0.5\textwidth}{Observed and modelled modal split when driving
+    to the supermarket\\[-1em]
+{\small \bdma
+P_{m|n2} &=& \frac{\exp(\tilV_{n2m}/\lambda_2)}
+           {\sum_{m'}\exp(\tilV_{n2m'}/\lambda_2)},\\
+\tilV_{n2m}/\lambda_2 &=& \beta_3 T_{n2m}+\beta_4 \delta_{m1},\\
+\hatbeta_3 &=&-0.29, \ \hatbeta_4=-0.42
+\edma}
+}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Top-level choice\\of the type\\of shop}
+%##############################################################
+
+\placebox[center]{0.66}{0.67}
+{\figSimple{0.70\textwidth}
+  {\pathDiscrChoice/NL_Skript_2x2alt_Toplevel_fProb.png}}
+
+\placebox[center]{0.18}{0.35}
+{\parbox{0.36\textwidth}{
+Choice of the type of shop: ``Aunt Emma'' vs supermarket:
+{\small \bdma
+P_{nl} &=& \frac{\exp(W_{nl}+\lambda_l I_{nl})} 
+{\sum_{l'}\exp(W_{nl'}+\lambda_l' I_{nl'})},\\[1em]
+W_{nl} &=& \beta_5 F_n \delta_{l1} + \beta_6 \delta_{l1}
+\edma }
+}}
+
+\placebox[center]{0.70}{0.24}
+{\parbox{0.6\textwidth}{
+{\footnotesize \bdma
+I_{n1} &=& \ln\bigg[
+  \sum_m \exp\left(\hatbeta_1 T_{n1m}+\hatbeta_2 \delta_{m1}\right)\bigg],\\
+I_{n2} &=& \ln\bigg[
+  \sum_m \exp\left(\hatbeta_3 T_{n2m}+\hatbeta_4 \delta_{m1}\right)\bigg].\\
+\edma}
+}}
+
+\placebox[center]{0.50}{0.08}
+{\parbox{0.8\textwidth}{
+{\small \bdm
+\hatbeta_5=2.9, \
+\hatbeta_6=-2.0, \
+\hat{\lambda}_1=0.17, \
+\hat{\lambda}_2=0.21.
+\edm}
+}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Final\\combined\\probabilities}
+%##############################################################
+
+\placebox[center]{0.64}{0.63}
+{\figSimple{0.80\textwidth}
+  {\pathDiscrChoice/NL_Skript_2x2alt_NL_fProb.png}}
+
+\pause
+\placebox[center]{0.15}{0.22}
+{\parbox{0.22\textwidth}{
+Combined\\nested choice of shop type and transport mode}}
+
+\placebox[center]{0.62}{0.20}
+{\parbox{0.8\textwidth}{
+\maindm{
+\begin{array}{ll}
+P_{ni} &=P_{nl} P_{m|nl}\\
+& \text{= Prob(destination)*Prob(mode$|$destination)}
+\end{array}
+}}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Counter\\check:\\normal\\MNL}
+%##############################################################
+
+\placebox[center]{0.64}{0.63}
+{\figSimple{0.80\textwidth}
+  {\pathDiscrChoice/NL_Skript_2x2alt_fProb.png}}
+
+
+\placebox[center]{0.16}{0.40}
+{\parbox{0.32\textwidth}{
+\bdm
+P_{ni} =\frac{\exp(V_{ni})}{\sum_{i'=1}^4 \exp(V_{ni'})}
+\edm
+}}
+
+\placebox[center]{0.45}{0.20}
+{\parbox{1.0\textwidth}{
+{\small $\begin{array}{rcll}
+V_1 &=& \beta_1T_1+\beta_2 +\beta_5F+\beta_6 & (l,m)=(1,1) \text{ Emma+PT}\\
+V_2 &=& \beta_1T_2+\beta_6 +\beta_5F & (l,m)=(1,2) \text{ Emma+car}\\
+V_3 &=& \beta_3T_3+\beta_4 & (l,m)=(2,1) \text{ supermarket+PT}\\
+V_4 &=& \beta_3T_4 & (l,m)=(2,2) \text{ supermarket+car}
+\end{array}$}
+}}
+
+\placebox[center]{0.47}{0.07}
+{\parbox{1.0\textwidth}{
+{\small $
+\hatbeta_1=-0.15, \
+\hatbeta_2=0.60, \
+\hatbeta_3=-0.09, \
+\hatbeta_4=-0.84, \
+\hatbeta_5=3.49, \
+\hatbeta_6=-1.76
+$}
+}}
+
+
+}
+
+\subsection{4.14. Mixed-Logit models}
+
+%##############################################################
+\frame{\frametitle{4.14. Mixed-Logit models}
+%##############################################################
+
+if time allows, see German script, Sec. 4.14
+
+}
+
+\subsection{4.15. Models for Reliability}
+
+%##############################################################
+\frame{\frametitle{4.15. Models for Reliability}
+%##############################################################
+
+[if time allows, see German script, Sec. 4.15]
+
+}
+
+\end{document}

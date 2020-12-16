@@ -1,0 +1,1086 @@
+
+%\documentclass[mathserif,aspectratio=1610]{beamer}
+\documentclass[mathserif,handout,aspectratio=1610]{beamer}
+%\usepackage{beamerthemeshadow}
+%\documentclass[mathserif]{beamer}
+
+\input{$HOME/tex/inputs/defsSkript}%$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
+%\input{styleBeamerVkoekMa}%$
+
+\usepackage{graphicx}
+
+\newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
+
+%##############################################################
+
+\begin{document}
+
+\section{Chapter 8: Logit and Probit Models}
+%###################################################
+\frame{  %title layout
+%###################################################
+\makePale{1.00}{0.50}{0.70}{1.50}{1.50}
+
+\placebox{0.40}{0.45}{\figSimple{1.40\textwidth}
+ {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}}
+
+%makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
+\makePale{0.75}{0.50}{0.70}{1.50}{1.50}
+
+\placebox{0.50}{0.80}{\myheading{Lecture 8: Logit and Probit Models}}
+
+\placebox{0.50}{0.40}{\parbox{0.6\textwidth}{
+{\large
+\bi
+\item 8.1 Logit Models
+\item 8.2 Probit Models
+\item 8.3 Example: SP Survey in the Audience
+\item 8.4 Elasticities
+\bi
+\item 8.4.1 Microscopic
+\item 8.4.2 Macroscopic
+\ei
+\ei
+}
+}}
+
+}
+
+
+\subsection{8.1 Logit Models}
+
+%##############################################################
+\frame{\frametitle{{\Large 8.1 Logit Models: Definition}}
+%##############################################################
+\vspace{1em}
+
+{\large
+All Logit models are defined by
+\bfdef{Gumbel-distributed} random utilities. 
+\vspace{0.5em}
+
+\bi
+\item 
+The standard \bfdef{Multinomial-Logit model (MNL)} has RUs
+  distributed according to
+\maindmIntext{
+\epsilon_i \sim \text{i.i.d Gumbel}(0,1)
+}
+\\[1.5em]
+\pause \item Distribution:
+\bdm
+F\sub{Gu}^{(\eta,\lambda)}(x)=\exp \left[-e^{-\lambda(x-\eta)}\right]
+\edm
+\\[1em]
+\pause \item Density:
+\bdm
+\label{fGumbel}
+f\sub{Gu}^{(\eta,\lambda)}(x)
+=\abl{F\sub{Gu}^{(\eta,\lambda)}(x)}{x}
+=\lambda e^{-\lambda(x-\eta)}
+\exp \left[-e^{-\lambda(x-\eta)}\right].
+\edm
+\\[1em]
+\pause \item Statistical properties:
+\bdm
+\epsilon\sub{mode}=\eta, \quad 
+E(\epsilon)=\eta+\gamma/\lambda \ \text{with} \ \gamma=0.5772, \quad 
+V(\epsilon)=\frac{\pi^2}{6\lambda^2}
+\edm
+\ei
+
+}
+}
+
+
+%##############################################################
+\frame{\frametitle{Density functions of some Gumbel distributions}
+%##############################################################
+\fig{0.7\textwidth}{figsDiscr/gumbel_f.png}
+\vspace{-2em}
+
+\begin{center}
+$\Rightarrow$ not symmetric and expectation $!=\eta$,
+  particularly $E(\epsilon)=\gamma=0.5772$ if $\epsilon \sim \text{Gu}(0,1)$
+\end{center}
+}
+
+%##############################################################
+\frame{\frametitle{Questions}
+%##############################################################
+
+\bi
+
+\itemAsk \colAsk{The numerical values of $V_i$ are 
+$\pi/\sqrt{6}\approx 1.28$ times as large as if $V(\epsilon)$ were
+  $=1$.
+Why?}
+\\
+\pause \colAnswer{Because of the \bfdef{scaling invariance}
+ of discrete-choice models:
+  The choice probability remains unchanged if \emph{both} the random
+  and deterministic utilities are multiplied by a factor $\lambda>0$}
+
+\pause \itemAsk \colAsk{The nonzero  $E(\epsilon_i)=0.5772$ is
+  irrelevant. Why?}
+\\
+\pause \colAnswer{This is due to the \bfdef{translation invariance}
+ of discrete-choice models: When adding a real-valued constant to the
+ utilities of all alternatives, nothing changes. Here, a common
+ $E(\epsilon_i)=0.5772$ (remember, $\epsilon \sim i.i.d.$!) is just
+ such a common constant.}
+
+\ei
+
+}
+
+
+
+
+%##############################################################
+\frame{\frametitle{Gumbel distribution as a limit distribution for max(.)}
+%##############################################################
+\placebox[center]{0.50}{0.71}
+{\parbox{0.95\textwidth}{{\small
+ The maximum of many i.i.d. random variables $X_i$ with exponential
+tails $\propto \exp(-\lambda x)$ approaches a Gumbel or Generalized Extreme Value Type-I
+distribution: \\[-1em]
+\bdm
+\max(X_1, ..., X_n) \stackrel{\text{asympt.}}{\sim} 
+\text{Gu}(\ln n, \lambda)
+\edm
+\\[-0.9em]
+\emph{Example 1}: Maximum of i.i.d. exponentially distributed RUs
+}}}
+
+
+\placebox[center]{0.25}{0.36}
+{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz_f.png}}
+
+\placebox[center]{0.28}{0.10}
+{\parbox{0.50\textwidth}{{\small
+Densities of the maximum of 1, 2, 20, and 100 i.i.d. random variables
+}}}
+
+
+\placebox[center]{0.75}{0.36}
+{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz_F.png}}
+
+\placebox[center]{0.78}{0.10}
+{\parbox{0.45\textwidth}{{\small
+Corresponding distribution\\ functions
+}}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{Gumbel distribution as a limit distribution for max(.)}
+%##############################################################
+
+\placebox[center]{0.50}{0.80}
+{\emph{Example 2}: Maximum of i.i.d. combined uniform-exponential RUs}
+
+\placebox[center]{0.25}{0.53}
+{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz2_f.png}}
+
+\placebox[center]{0.28}{0.25}
+{\parbox{0.50\textwidth}{\small
+Densities of the maximum of 1, 2, 20, and 100 i.i.d. random variables}
+}
+
+
+\placebox[center]{0.75}{0.53}
+{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz2_F.png}}
+
+\placebox[center]{0.78}{0.25}
+{\parbox{0.45\textwidth}{\small Corresponding distribution\\ functions}}
+
+\placebox[center]{0.50}{0.11}
+{\parbox{1.0\textwidth}{
+\bfAsk{?} Give reasons why the maximum of two independent Gumbel
+distributed random variables of the same scale parameter is Gumbel
+distributed as well}}
+
+}
+
+%##############################################################
+\frame{\frametitle{Properties of the Multinomial-Logit Model (MNL)}
+%##############################################################
+
+\bi
+\item Models of the Logit family (MNL, nested Logit, GEV models) 
+are the only ones with explicit
+  expressions for the choice probabilities for the multinomial case
+  $I>2$. For the MNL itself, we have
+
+\maindm{P_i\sup{MNL}=\frac{\exp(V_i)}{\sum_j \exp(V_j)}}
+ 
+\vspace{1em}
+
+\pause \item Besides the translational and scale invariance of all simple
+  discrete-choice models, the MNL has the \bfdef{Independence of
+    Irrelevant Alternatives (IIA)} property: 
+
+\maintextbox{0.75\textwidth}{IIA property: The relative preference
+ of Alternative $i$ over $j$ as defined by the choice probability ratio
+ $P_i/P_j$ does not depend on other alternatives $k \neq i,j$}
+\ei
+}
+
+
+%##############################################################
+\frame{\frametitle{Alternative definition for the MNL}
+%##############################################################
+
+\bi
+\item
+The IIA property is exclusively true for the MNL. In fact, the
+  MNL can be equivalently defined by the IIA property instead of
+  i.i.d. Gumbel RUs.
+\vspace{1em}
+
+{\small
+\pause \item[\bfAsk{?}] Show that the MNL choice probabilities satisfy
+  translational invariance.\\[1ex]
+\pause \item[\bfAsk{?}] For a comparison with another model, we want
+  $V(\epsilon_i)=1$ 
+  instead of $\pi^2/6$. In which way the model parameters must be
+  changed?\\[1ex] 
+\pause \item[\bfAsk{?}] Derive the IIA property from the choice probability
+  formula.\\[1ex] 
+
+\pause \item[\bfAsk{?}] The choice probabilities of three alternatives are given by
+$P_1=0.2$, $P_2=0.4$, and $P_3=0.4$. Now, Alternative~3 is no longer
+available. Give the new Logit choice probabilities.\\[1ex]
+
+\pause \item[\bfAsk{?}] The Gumbel distribution is the limit distribution
+  of the maximum of exponentially-tailed random variables. Is there really a 
+  justification for this sort of distribution if the
+  RUs are the result of many unknown/not considered effects?
+}
+\ei
+
+}
+
+
+
+\subsection{8.2 Probit Models}
+
+%##############################################################
+\frame{\frametitle{8.2 Probit Models}
+%##############################################################
+
+The \bfdef{Probit Model} class is defined by (generally correlated)
+Gaussian RUs.
+
+\bi
+\item The general multinomial Probit model (MNP) has random utilities
+\maindmIntext{\veceps \sim N(\vec{0}, \vec{\Sigma})} with the
+variance-covariance matrix $\vec{\Sigma}$ of the RUs
+\pause \item The special case of the i.i.d. MNP with $\vec{\Sigma}=\m{1}$
+  (unit matrix) or
+  $\epsilon_i \sim  \text{i.i.d. }N(0,1)$ has similar
+  properties as the MNL. However, for $I\ge 3$, the MNP needs a
+  onedimensional integral to calculate the choice probabilities.
+\pause \item Often, i.i.d Gaussian RUs can be motivited by the central-limit
+  theorem while Gumbel distributed ones cannot. However, since the MNL behaves similarly and has explicit
+  choice probabilities and a simpler calibration, it is often favoured
+  over the i.i.d. MNP.
+\pause \item[\bfAsk{?}] Why one can set the variance-covariance matrix to be
+  the unit matrix (i.e. setting all variances=1) in case of the i.i.d MNP?
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of the binary Probit model I}
+%##############################################################
+
+\bi
+\item Binary i.i.d. Probit: 
+\maindm{
+\epsilon_i \sim \text{i.i.d. }N(0,1)
+}
+\vspace{1em}
+
+\pause\item Choice probabilities: 
+\vspace{1em}
+\maindm{
+P_1=\Phi\left(\frac{V_1-V_2}{\sqrt{2}}\right), \quad P_2=1-P_1
+}
+\vspace{1em}
+
+{\small
+\pause\item [\bfAsk{?}] Derive the choice probabilities from the general
+  binary formula. \emph{Hints:} (i)
+  a linear combination of  Gaussians is
+  again a Gaussian, (ii) use the general rules ($a, b \in I\!\!R$ and
+  $X_1, X_2$ random variables) 
+\bdma
+E(aX_1+bX_2) &=& aE(X_1)+bE(X_2), \\
+V(aX_1+bX_2) &=& a^2V(X_1)+b^2V(X_2)+2ab\, \text{Cov}(X_1,X_2)
+\edma
+
+\pause\item [\bfAsk{?}] The Logit time and cost sensitivities are $\hatbeta_T=\unit[-0.1]{min^{-1}}$ and 
+$\hatbeta_C=\unit[-0.6]{\text{\euro}^{-1}}$. Give the implied value of
+time (VOT) and the approx. parameter values and VOT for the
+corresponding Probit model.
+}
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of the binary Probit model II}
+%##############################################################
+\placebox[center]{0.24}{0.62}
+{\figSimple{0.55\textwidth}{figsDiscr/fGauss.png}}
+
+\placebox[center]{0.27}{0.25}
+{\parbox{0.45\textwidth}{
+Densities of the \blue{standardnormal distributed
+      random utilities $\epsilon_1$ and $\epsilon_2$} and of the
+\red{utility difference $\epsilon_1-\epsilon_2$}
+}}
+
+
+\placebox[center]{0.74}{0.62}
+{\figSimple{0.55\textwidth}{figsDiscr/binProbit_P1.png}}
+
+
+\placebox[center]{0.77}{0.25}
+{\parbox{0.45\textwidth}{
+Distribution functions of the \blue{random utilities} and the
+\red{utility difference} as a function of the deterministic utility
+difference  $V_1-V_2$
+}}
+
+}
+
+
+
+
+
+
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of trinomial i.i.d. Probit
+    and Logit}
+%##############################################################
+
+\placebox[center]{0.25}{0.52}
+{\figSimple{0.60\textwidth}{figsDiscr/pProbitTrinom_V1V2.png}}
+
+\placebox[center]{0.72}{0.52}
+{\figSimple{0.60\textwidth}{figsDiscr/pLogitTrinom_V1V2.png}}
+
+\placebox[center]{0.20}{0.14}
+{Symmetrie considerations:}
+\placebox[center]{0.67}{0.14}
+{\parbox{0.6\textwidth}{\small
+\bdma
+P_2(V_2-V_3, V_1-V_3) &=& P_1(V_1-V_3,V_2-V_3),\\
+P_3(V_2-V_3, V_1-V_3) &=& 1-P_1-P_2
+\edma}}
+
+}
+
+
+%##############################################################
+\frame{\frametitle{8.3 Example: SP Survey in the Audience WS18/19 
+\red{(red: bad weather, $\bfmath{W=1}$)}}
+%##############################################################
+
+\placebox{0.34}{0.45}{\parbox{0.7\textwidth}
+{\small
+\begin{tabular}{|r||c|c|c||r|r|r|}
+\hline 
+\myBox{2.5em}{Choice\\Set} &
+  \myBox{3em}{Alt. 1:\\Ped} &
+  \myBox{3em}{Alt. 2:\\Bike} &
+  \myBox{3em}{Alt. 3:\\ PT/Car} &
+  Alt 1 & Alt 2 & Alt 3 \\ \hline\hline
+1  & 30\,min & 20\,min & 20\,min+0\euro{} & 1  & 3 & 7 \\[0.1em] \hline
+2  & 30\,min & 20\,min & 20\,min+2\euro{} & 2  & 9 & 2\\[0.1em] \hline
+3  & 30\,min & 20\,min & 20\,min+1\euro{} & 1  & 5 & 7\\[0.1em] \hline
+4  & 30\,min & 20\,min & 30\,min+0\euro{} & 2  & 9 & 3\\[0.1em] \hline
+5  & 50\,min & 20\,min & 30\,min+0\euro{} & 0  & 9 & 4\\[0.1em] \hline
+6  & 50\,min & 30\,min & 30\,min+0\euro{} & 0  & 3 & 9\\[0.1em] \hline
+7  & 50\,min & 40\,min & 30\,min+0\euro{} & 0  & 2 & 10\\[0.1em] \hline
+8  & 180\,min & 60\,min & 60\,min+2\euro{} & 0 & 4 & 11\\[0.1em] \hline
+9  & 180\,min & 40\,min & 60\,min+2\euro{} & 0 & 9 & 6\\[0.1em] \hline
+\red{10}  & \red{180\,min}  & \red{40\,min} & \red{60\,min+2\euro{}}
+  & \red{0}  & \red{1}  & \red{14}                   \\[0.1em] \hline
+11 & 12\,min & 8\,min & 10\,min+0\euro{} & 3  & 5 & 6\\[0.1em] \hline
+12 & 12\,min & 8\,min & 10\,min+1\euro{} & 5  & 7 & 2\\[0.1em] \hline
+\end{tabular}
+}}
+
+\placebox{0.84}{0.45}{\parbox{0.3\textwidth}{
+{\small
+\begin{center}
+$
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+& + & \beta_2 K_i\\
+& + & \beta_{31} T_1\delta_{i1}+ \beta_{32} T_2\delta_{i2}\\
+& + & \beta_{33} T_3\delta_{i3}+\beta_4 W\delta_{i3}
+\end{array}
+$
+\\[2em]
+or
+\\[2em]
+$
+\begin{array}{l}
+V_1 =  \beta_0 + \beta_2 K_1 + \beta_{31} K_1,\\
+V_2 =  \beta_1 + \beta_2 K_2 + \beta_{32} K_2,\\
+V_3 =  \beta_2 K_3 + \beta_{33} K_3+\beta_4 W  
+\end{array}
+$
+\end{center}
+}
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Model specification and calibration}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
+}
+
+\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+ V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T
+$
+}}}
+
+\pause
+
+\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
+V_3=\beta_2 K + \beta_3 T
+\end{array}
+$
+}}}
+
+
+\pause
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+  \ln L\sub{init}=-176.9,\\
+  \ln L=-141.5, \\
+  \beta_0=-0.95 \pm 0.37, \\
+  \beta_1=-0.28 \pm 0.24, \\
+  \beta_2=+0.17 \pm 0.19, \\
+  \beta_3=-0.04 \pm 0.02
+  \end{array}
+ $
+}}}
+
+\pause
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
+   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
+   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
+   \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
+   \end{array}
+   $
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Dependence of the modal split on the PT attributes}
+%###################################################
+\vspace{1em}
+
+\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T.png}
+
+}
+%###################################################
+\frame{\frametitle{Dependence on the distance}
+%###################################################
+{\small assuming plausible speeds 5, 15, and \unit[25]{km/h} for each
+  mode, respectively} 
+\vspace{-0.5em}
+
+\fig{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_Entf.png}
+}
+
+
+
+%###################################################
+\frame{\frametitle{Model II: plus weather factor (\red{bad weather, $W=1$})}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
+}
+
+\placebox[center]{0.36}{0.80}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+\begin{array}{ll}
+ V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T\\
+ & + \beta_4 W\delta_{i3}
+\end{array}
+$
+}}}
+
+\pause
+
+\placebox[center]{0.79}{0.80}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
+V_3=\beta_2 K + \beta_3 T + \beta_4 W
+\end{array}
+$
+}}}
+
+
+\pause
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+  \ln L\sub{init}=-176.9,\\
+  \ln L=-128.5, \\
+  \beta_0=-0.65 \pm 0.37, \\
+  \beta_1=-0.42 \pm 0.25, \\
+  \beta_2=-0.10 \pm 0.20, \\
+  \beta_3=-0.09 \pm 0.02, \\
+  \beta_4= 4.2  \pm 1.1
+  \end{array}
+ $
+}}}
+
+\pause
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
+   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
+   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
+   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
+   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
+   \end{array}
+   $
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Dependence of the modal split on the PT attributes}
+%###################################################
+\vspace{1em}
+
+\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T.png}
+
+}
+%###################################################
+\frame{\frametitle{Dependence on the distance}
+%###################################################
+{\small assuming plausible speeds 5, 15, and \unit[25]{km/h} for each
+  mode, respectively} 
+\vspace{-0.5em}
+
+\fig{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_Entf.png}
+}
+
+%###################################################
+\frame{\frametitle{Model III: alt-spec time sensitivities
+    plus weather factor}
+%###################################################
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
+}
+
+\placebox[center]{0.36}{0.81}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+\begin{array}{ll}
+ V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T_1\delta_{i1}\\
+ & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
+ + \beta_6 W\delta_{i3}
+\end{array}
+$
+}}}
+
+\pause
+
+\placebox[center]{0.79}{0.81}{\parbox{0.5\textwidth}{\footnotesize
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
+V_3=\beta_2 K + \beta_5 T + \beta_6 W\\[-1ex]
+\end{array}
+$
+}}}
+
+
+\pause
+
+\placebox[center]{0.78}{0.53}{\parbox{0.20\textwidth}{\small
+  \fbox{ $
+   \begin{array}{l}
+   \ln L\sub{init}=-176.9,\\
+   \ln L=-120.5, \\
+   \beta_0=+1.03 \pm 0.74, \\
+   \beta_1=+0.66 \pm 0.40, \\
+   \beta_2=-0.53 \pm 0.25, \\
+   \beta_3=-0.14 \pm 0.03, \\
+   \beta_4=-0.11 \pm 0.03, \\
+   \beta_5=-0.06 \pm 0.03, \\
+   \beta_6=+3.6  \pm 1.1
+   \end{array}
+   $
+}}}
+
+\pause
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
+   \frac{\beta_1}{-\beta_3}=+\unit[4.7]{min},\\
+   \frac{\beta_0}{-\beta_2}=+\unit[1.9]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=+\unit[4.7]{\text{\euro{}}},\\
+   \frac{60\beta_5}{\beta_2}=+\unit[6.7]{\text{\euro{}}/h},\\
+   \frac{\beta_4}{-\beta_2}=+\unit[6.7]{\text{\euro{}}}
+   \end{array}
+   $
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Dependence of the modal split on the PT attributes}
+%###################################################
+\vspace{1em}
+
+\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T.png}
+
+}
+%###################################################
+\frame{\frametitle{Dependence on the distance}
+%###################################################
+{\small assuming plausible speeds 5, 15, and \unit[25]{km/h} for each
+  mode, respectively} 
+\vspace{-0.5em}
+
+\fig{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_Entf.png}
+}
+
+
+%###################################################
+\frame{\label{sec:SPcomparison}\frametitle{Comparison: Model I}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
+}
+
+\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+ V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T
+$
+}}}
+
+\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
+V_3=\beta_2 K + \beta_3 T
+\end{array}
+$
+}}}
+
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+  \ln L\sub{init}=-176.9,\\
+  \ln L=-141.5, \\
+  \beta_0=-0.95 \pm 0.37, \\
+  \beta_1=-0.28 \pm 0.24, \\
+  \beta_2=+0.17 \pm 0.19, \\
+  \beta_3=-0.04 \pm 0.02
+  \end{array}
+ $
+}}}
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
+   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
+   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
+   \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
+   \end{array}
+   $
+}}
+
+\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+AIC=275,
+BIC=303,\\
+$\rho^2=0.200$,
+$\tilde{\rho}^2=0.177$
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Model II}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
+}
+
+\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+\begin{array}{ll}
+ V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T\\
+ & + \beta_4 W\delta_{i3}
+\end{array}
+$
+}}}
+
+
+\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
+V_3=\beta_2 K + \beta_3 T + \beta_4 W
+\end{array}
+$
+}}}
+
+
+
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+  \ln L\sub{init}=-176.9,\\
+  \ln L=-128.5, \\
+  \beta_0=-0.65 \pm 0.37, \\
+  \beta_1=-0.42 \pm 0.25, \\
+  \beta_2=-0.10 \pm 0.20, \\
+  \beta_3=-0.09 \pm 0.02, \\
+  \beta_4= 4.2  \pm 1.1
+  \end{array}
+ $
+}}}
+
+
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
+   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
+   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
+   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
+   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
+   \end{array}
+   $
+}}
+
+\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+AIC=247,
+BIC=282,\\
+$\rho^2=0.273$,
+$\tilde{\rho}^2=0.245$
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Model III}
+%###################################################
+
+\placebox[center]{0.35}{0.40}{
+  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
+}
+
+\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
+%  Deterministic utilities:\\[0.3em]
+%
+\colorbox{orange}{
+$
+\begin{array}{ll}
+ V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+ + \beta_3 T_1\delta_{i1}\\
+ & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
+ + \beta_6 W\delta_{i3}
+\end{array}
+$
+}}}
+
+
+
+\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
+or \quad
+\colorbox{orange}{$
+\begin{array}{l}
+V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
+V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
+V_3=\beta_2 K + \beta_5 T + \beta_6 W
+\end{array}
+$
+}}}
+
+
+
+
+\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small
+  \fbox{ $
+   \begin{array}{l}
+   \ln L\sub{init}=-176.9,\\
+   \ln L=-120.5, \\
+   \beta_0=+1.03 \pm 0.74, \\
+   \beta_1=+0.66 \pm 0.40, \\
+   \beta_2=-0.53 \pm 0.25, \\
+   \beta_3=-0.14 \pm 0.03, \\
+   \beta_4=-0.11 \pm 0.03, \\
+   \beta_5=-0.06 \pm 0.03, \\
+   \beta_6=+3.6  \pm 1.1
+   \end{array}
+   $
+}}}
+
+
+
+\placebox[center]{0.80}{0.18}{{\scriptsize
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
+   \frac{\beta_1}{-\beta_3}=+\unit[4.7]{min},\\
+   \frac{\beta_0}{-\beta_2}=+\unit[1.9]{\text{\euro{}}},\\
+   \frac{\beta_1}{-\beta_2}=+\unit[4.7]{\text{\euro{}}},\\
+   \frac{60\beta_5}{\beta_2}=+\unit[6.7]{\text{\euro{}}/h},\\
+   \frac{\beta_4}{-\beta_2}=+\unit[6.7]{\text{\euro{}}}
+   \end{array}
+   $
+}}
+
+\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+AIC=227,
+BIC=277,\\
+$\rho^2=0.319$,
+$\tilde{\rho}^2=0.279$
+}}
+
+
+}
+
+
+
+
+
+
+
+
+\subsection{8.4 Elasticities}
+
+%###################################################
+\frame{\frametitle{8.4 Elasticities}
+%###################################################
+
+{\small
+\bi
+\item
+\emph{General definition:}
+\maintextbox{0.8\textwidth}
+{Elasticities denote the percentaged change of endogenous
+  variables $y_i$ per small percentaged change of exogenous variables
+  $x_j$ for an average situation
+\vspace{-1em}
+\bdm
+\epsilon_{ij}=\frac{\bar{x}_j}{\bar{y}_i}
+\left.\ablpart{y_i}{x_j}\right|_{\vec{x}=\bar{\vec{x}},\vec{y}=\bar{\vec{y}}}
+\edm 
+\vspace{-1em}
+}
+
+
+\pause \item \emph{Regression:} 
+\vspace{-2em}
+\bdm
+y=\sum_j\beta_jx_j+\epsilon, \quad
+\epsilon_j=\frac{\bar{x}_j}{\bar{y}}\ablpart{y}{x_j}
+=\frac{\bar{x}_j}{\bar{y}} \, \hatbeta_j
+\edm
+
+\pause \item \emph{Discrete-choice models:} 
+
+Generally, with several endogenous variables,  one distinguishes between
+\bi
+\item \bfdef{Substitution} vs, \bfdef{full/ordinary} elastities,
+\item \bfdef{Microscopic} vs, \bfdef{macroscopic} elastities,
+\item \bfdef{proper elasticity} vs. \bfdef{cross-elasticity}
+\ei
+
+\pause \item[\bfAsk{?}] Why there are only substitution elastities in
+discrete-choice models? 
+
+\ei
+}
+}
+
+\subsubsection{8.4.1 Microscopic Elasticities}
+
+%###################################################
+\frame{\frametitle{8.4.1 Microscopic Logit elasticities}
+%###################################################
+Since elasticities describe macroscopic aspects, we take the
+choice probabilities $P_i$ rather than the discrete actual choices as
+endogenous 
+variables. For the general deterministic utilities
+\bdm
+V_{ni}=\sum_m\beta_{mi}{x_{mni}}
+\edm
+\vspace{-2em}
+
+we derive the
+{\small
+\bi
+\item \bfdef{Proper (substitution) elasticities:} The attribute
+  (characteristic) $m$ of an alternative $i$ feeds back on the demand
+  for this alternative:
+\maindm{\epsilon_{nii}\sup{(mic,m)}=
+\frac{x_{mni}}{P_{ni}}\ablpart{P_{ni}}{x_{mni}}
+=\beta_mx_{mni}(1-P_{ni})
+}
+\pause\item \bfdef{Cross elasticities:} The attribute
+  (characteristic) $m$ of an alternative $j$ feeds back on the demand
+  for another alternative $i\neq j$:
+\maindm{\epsilon_{nij}\sup{(mic,m)}=
+\frac{x_{nmj}}{P_{ni}}\ablpart{P_{ni}}{x_{nmj}}
+=-\beta_mx_{nmj}P_{nj}
+}
+\ei
+}
+
+}
+
+%###################################################
+\frame{\frametitle{Some questions on micro-elasticities}
+%###################################################
+
+\bi
+\item[\bfAsk{?}] Derive the formulas for the proper and cross
+  elasticities from the expression for $V_{ni}$ and the Logit
+  probabilities
+
+\pause \item[\bfAsk{?}] Derive and motivate the ``null sum'' condition
+  $\sum_i P_{ni}\epsilon_{nij}^m=0$ 
+
+\pause \item[\bfAsk{?}] The cross elasticities do not depend on
+  $i$, i.e., on the target alternative for the changing
+  demand. Motivate this by the IIA condition
+
+\pause \item[\bfAsk{?}] Given are three airports $i$ from
+  which person $n$ can book flights to a desired destination at cost
+  $C_{ni}$ (because of revenue management, $C$ depends on $n$), so
+  \bdm
+V_{ni}=\beta_{01}\delta_{01}+\beta_{02}\delta_{02}+\beta_1C_{ni}
+\edm
+ Show
+  that the proper elasticities are negative while the cross
+  elasticities are positive.
+\ei
+}
+\
+subsubsection{8.4.2 Macroscopic Elasticities}
+
+%###################################################
+\frame{\frametitle{8.4.2 Macroscopic elasticities}
+%###################################################
+
+For a company, the relative probability increase of single customers
+chosing their products is not relevant but the aggregate over all
+customers. Hence, the macroscopic elasticity
+
+\maindm{\epsilon_{ij}\sup{(mac,m)}=\frac{X_{mj}}{N_i}\ablpart{N_i}{X_{mj}},
+\quad X_{mj}=\sum_{n=1}^N x_{nmj}, \quad
+N_i=\sum_{n=1}^NP_{ni}
+}
+gives the percentage increase of people chosing alternative $i$ when the
+sum of attributes $m$ increases at alternative $j$ by one percent.
+\vspace{1ex}
+\bi
+\item[(i)] Same absolute changes for all persons,
+  $\diff{x_{nmj}}=\diff{X_{mj}}/N$:
+\bdm
+\epsilon_{ij}\sup{(mac,abs,m)}
+= \frac{X_{mj}}{N_i}\ 
+\frac{1}{N}\sum_n\frac{P_{ni}}{x_{nmj}}\epsilon_{nij}\sup{(mic,m)}
+\edm
+\vspace{-1ex}
+
+\pause \item[(ii)] Same relatives changes for all,
+$\diff{x_{nmj}}/x_{nmj}=\diff{X_{mj}}/X_{mj}$:
+\bdm
+\epsilon_{ij}\sup{(mac,rel,m)}
+=\sum_n w_{ni}\ \epsilon_{nij}\sup{(mic,m)}, \quad
+w_{ni}=\frac{P_{ni}}{N_i}=\frac{P_{ni}}{\sum_n P_{ni}}
+\edm
+\ei
+}
+
+
+
+
+
+
+\end{document}
