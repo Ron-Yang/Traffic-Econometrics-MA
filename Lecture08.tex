@@ -1,11 +1,11 @@
 
-%\documentclass[mathserif,aspectratio=1610]{beamer}
-\documentclass[mathserif,handout,aspectratio=1610]{beamer}
+\documentclass[mathserif,aspectratio=1610]{beamer}
+%\documentclass[mathserif,handout,aspectratio=1610]{beamer}
 %\usepackage{beamerthemeshadow}
 %\documentclass[mathserif]{beamer}
 
 \input{$HOME/tex/inputs/defsSkript}%$
-\input{$HOME/tex/inputs/styleBeamerVkoekMa}%$
+\input{$HOME/tex/inputs/styleBeamerVkoekMa1610}%$
 %\input{styleBeamerVkoekMa}%$
 
 \usepackage{graphicx}
@@ -34,12 +34,12 @@
 {\large
 \bi
 \item 8.1 Logit Models
+\item 8.1.1 Example: SP Survey in the Audience
 \item 8.2 Probit Models
-\item 8.3 Example: SP Survey in the Audience
-\item 8.4 Elasticities
+\item 8.3 Elasticities
 \bi
-\item 8.4.1 Microscopic
-\item 8.4.2 Macroscopic
+\item 8.3.1 Microscopic
+\item 8.3.2 Macroscopic
 \ei
 \ei
 }
@@ -141,7 +141,7 @@ Why?}
 %##############################################################
 \frame{\frametitle{Gumbel distribution as a limit distribution for max(.)}
 %##############################################################
-\placebox[center]{0.50}{0.71}
+\placebox[center]{0.50}{0.75}
 {\parbox{0.95\textwidth}{{\small
  The maximum of many i.i.d. random variables $X_i$ with exponential
 tails $\propto \exp(-\lambda x)$ approaches a Gumbel or Generalized Extreme Value Type-I
@@ -155,22 +155,31 @@ distribution: \\[-1em]
 }}}
 
 
-\placebox[center]{0.25}{0.36}
-{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz_f.png}}
+\visible<1>{\placebox[center]{0.25}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_f1.png}}}
 
-\placebox[center]{0.28}{0.10}
-{\parbox{0.50\textwidth}{{\small
-Densities of the maximum of 1, 2, 20, and 100 i.i.d. random variables
-}}}
+\visible<2>{\placebox[center]{0.25}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_f2.png}}}
+
+\visible<3>{\placebox[center]{0.25}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_f3.png}}}
+
+\visible<4->{\placebox[center]{0.25}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_f.png}}}
 
 
-\placebox[center]{0.75}{0.36}
-{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz_F.png}}
+\visible<1>{\placebox[center]{0.75}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_F1.png}}}
 
-\placebox[center]{0.78}{0.10}
-{\parbox{0.45\textwidth}{{\small
-Corresponding distribution\\ functions
-}}}
+\visible<2>{\placebox[center]{0.75}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_F2.png}}}
+
+\visible<3>{\placebox[center]{0.75}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_F3.png}}}
+
+\visible<4>{\placebox[center]{0.75}{0.305}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz_F.png}}}
+
 
 }
 
@@ -181,27 +190,37 @@ Corresponding distribution\\ functions
 
 \placebox[center]{0.50}{0.80}
 {\emph{Example 2}: Maximum of i.i.d. combined uniform-exponential RUs}
+\visible<1>{\placebox[center]{0.25}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_f1.png}}}
 
-\placebox[center]{0.25}{0.53}
-{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz2_f.png}}
+\visible<2>{\placebox[center]{0.25}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_f2.png}}}
 
-\placebox[center]{0.28}{0.25}
-{\parbox{0.50\textwidth}{\small
-Densities of the maximum of 1, 2, 20, and 100 i.i.d. random variables}
-}
+\visible<3>{\placebox[center]{0.25}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_f3.png}}}
+
+\visible<4->{\placebox[center]{0.25}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_f.png}}}
 
 
-\placebox[center]{0.75}{0.53}
-{\figSimple{0.55\textwidth}{figsDiscr/gumbelGrenz2_F.png}}
+\visible<1>{\placebox[center]{0.75}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F1.png}}}
 
-\placebox[center]{0.78}{0.25}
-{\parbox{0.45\textwidth}{\small Corresponding distribution\\ functions}}
+\visible<2>{\placebox[center]{0.75}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F2.png}}}
 
-\placebox[center]{0.50}{0.11}
+\visible<3>{\placebox[center]{0.75}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F3.png}}}
+
+\visible<4>{\placebox[center]{0.75}{0.44}
+{\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F.png}}}
+
+
+\visible<4>{\placebox[center]{0.50}{0.11}
 {\parbox{1.0\textwidth}{
 \bfAsk{?} Give reasons why the maximum of two independent Gumbel
 distributed random variables of the same scale parameter is Gumbel
-distributed as well}}
+distributed as well}}}
 
 }
 
@@ -209,6 +228,7 @@ distributed as well}}
 \frame{\frametitle{Properties of the Multinomial-Logit Model (MNL)}
 %##############################################################
 
+{\large
 \bi
 \item Models of the Logit family (MNL, nested Logit, GEV models) 
 are the only ones with explicit
@@ -226,168 +246,95 @@ are the only ones with explicit
 \maintextbox{0.75\textwidth}{IIA property: The relative preference
  of Alternative $i$ over $j$ as defined by the choice probability ratio
  $P_i/P_j$ does not depend on other alternatives $k \neq i,j$}
-\ei
-}
-
-
-%##############################################################
-\frame{\frametitle{Alternative definition for the MNL}
-%##############################################################
-
-\bi
 \item
 The IIA property is exclusively true for the MNL. In fact, the
   MNL can be equivalently defined by the IIA property instead of
   i.i.d. Gumbel RUs.
-\vspace{1em}
+\ei
+}
+}
 
-{\small
-\pause \item[\bfAsk{?}] Show that the MNL choice probabilities satisfy
-  translational invariance.\\[1ex]
-\pause \item[\bfAsk{?}] For a comparison with another model, we want
+
+%##############################################################
+\frame{\frametitle{Questions}
+%##############################################################
+
+\bi
+
+\itemAsk \colAsk{Show that the MNL choice probabilities satisfy
+  translational invariance.}\\
+\pause \colAnswer{Just devide the Logit Choice probability formula by,
+  e.g., $\exp(V_1)$:
+\bdm
+P_i\sup{MNL}=\frac{\exp(V_i-V_1)}{\sum_j \exp(V_j-V_1)} \visible<2->{\OK}
+\edm
+}
+\\[1ex]
+%
+\pause \itemAsk \colAsk{For a comparison with another model, we want
   $V(\epsilon_i)=1$ 
   instead of $\pi^2/6$. In which way the model parameters must be
-  changed?\\[1ex] 
-\pause \item[\bfAsk{?}] Derive the IIA property from the choice probability
-  formula.\\[1ex] 
+  changed?}\\
 
-\pause \item[\bfAsk{?}] The choice probabilities of three alternatives are given by
+ \pause \colAnswer{This means, the standard deviation of $\epsilon$ is
+   now given by 1 rather than by $\pi/\sqrt{6}\approx 1.28$, i.e.,
+   multiplied by $\lambda=\sqrt{6}/\pi$. The choice probabilities (no
+   longer given by the Logit formula!) will be unchanged if the
+   determinsitic utilities, i.e., the parameters, are multiplied by
+   $\;ambda$ as well}
+\\[1ex]
+%
+\pause \itemAsk \colAsk{Derive the IIA property from the choice probability
+  formula.}\\
+
+ \pause \colAnswer{The IIA says that the relative preference of an
+   alternative $i$ over $j$, i.e. $P_i/P_j$, does not depend on any
+   $V_k$, $k\neq i,j$. Just calculate this ratio:
+\bdm
+\frac{P_i}{P_j}=\frac{\exp(V_i)}{\sum_k \exp(V_k)} \ 
+ \frac{\sum_l \exp(V_l)}{\exp(V_k)}=\exp(V_i-V_j) \visible<6->{\OK}
+\edm
+}
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Questions (2)}
+%##############################################################
+\bi
+\itemAsk \colAsk{The choice probabilities of three alternatives are given by
 $P_1=0.2$, $P_2=0.4$, and $P_3=0.4$. Now, Alternative~3 is no longer
-available. Give the new Logit choice probabilities.\\[1ex]
+available. Give the new Logit choice probabilities.}\\
 
-\pause \item[\bfAsk{?}] The Gumbel distribution is the limit distribution
+\pause \colAnswer{No need to re-calculate using the Logit probability
+  formula. Just use the IIA property: 
+\bdm
+\frac{P_1}{P_2}=2=\text{const.} \ \Rightarrow \ P_1=1/3, \ P_2=2/3
+\edm
+}
+\\[1em]
+%
+\pause \itemAsk \colAsk{The Gumbel distribution is the limit distribution
   of the maximum of exponentially-tailed random variables. Is there really a 
   justification for this sort of distribution if the
-  RUs are the result of many unknown/not considered effects?
-}
+  RUs are the result of many unknown/not considered effects?}\\
+\pause \colAnswer{Not really. If there are many unknown/not considered
+  effects, the chance is high that they are not correlated and the
+  \bfdef{central limit theorem} can be applied (even if there are
+  correlations, this theorem is quite robust). Hence, there would be
+  justification for Gaussian rather than Gumbel RUs. (The fact that
+  the maximum of exponentially-tailed distributions is Gumbel
+  distributed has no real relevance here)}
+
 \ei
 
 }
 
 
-
-\subsection{8.2 Probit Models}
-
-%##############################################################
-\frame{\frametitle{8.2 Probit Models}
-%##############################################################
-
-The \bfdef{Probit Model} class is defined by (generally correlated)
-Gaussian RUs.
-
-\bi
-\item The general multinomial Probit model (MNP) has random utilities
-\maindmIntext{\veceps \sim N(\vec{0}, \vec{\Sigma})} with the
-variance-covariance matrix $\vec{\Sigma}$ of the RUs
-\pause \item The special case of the i.i.d. MNP with $\vec{\Sigma}=\m{1}$
-  (unit matrix) or
-  $\epsilon_i \sim  \text{i.i.d. }N(0,1)$ has similar
-  properties as the MNL. However, for $I\ge 3$, the MNP needs a
-  onedimensional integral to calculate the choice probabilities.
-\pause \item Often, i.i.d Gaussian RUs can be motivited by the central-limit
-  theorem while Gumbel distributed ones cannot. However, since the MNL behaves similarly and has explicit
-  choice probabilities and a simpler calibration, it is often favoured
-  over the i.i.d. MNP.
-\pause \item[\bfAsk{?}] Why one can set the variance-covariance matrix to be
-  the unit matrix (i.e. setting all variances=1) in case of the i.i.d MNP?
-\ei
-}
+\subsubsection{8.1.1 Example: SP Survey in the Audience WS18/19}
 
 %##############################################################
-\frame{\frametitle{Choice probabilities of the binary Probit model I}
-%##############################################################
-
-\bi
-\item Binary i.i.d. Probit: 
-\maindm{
-\epsilon_i \sim \text{i.i.d. }N(0,1)
-}
-\vspace{1em}
-
-\pause\item Choice probabilities: 
-\vspace{1em}
-\maindm{
-P_1=\Phi\left(\frac{V_1-V_2}{\sqrt{2}}\right), \quad P_2=1-P_1
-}
-\vspace{1em}
-
-{\small
-\pause\item [\bfAsk{?}] Derive the choice probabilities from the general
-  binary formula. \emph{Hints:} (i)
-  a linear combination of  Gaussians is
-  again a Gaussian, (ii) use the general rules ($a, b \in I\!\!R$ and
-  $X_1, X_2$ random variables) 
-\bdma
-E(aX_1+bX_2) &=& aE(X_1)+bE(X_2), \\
-V(aX_1+bX_2) &=& a^2V(X_1)+b^2V(X_2)+2ab\, \text{Cov}(X_1,X_2)
-\edma
-
-\pause\item [\bfAsk{?}] The Logit time and cost sensitivities are $\hatbeta_T=\unit[-0.1]{min^{-1}}$ and 
-$\hatbeta_C=\unit[-0.6]{\text{\euro}^{-1}}$. Give the implied value of
-time (VOT) and the approx. parameter values and VOT for the
-corresponding Probit model.
-}
-\ei
-}
-
-%##############################################################
-\frame{\frametitle{Choice probabilities of the binary Probit model II}
-%##############################################################
-\placebox[center]{0.24}{0.62}
-{\figSimple{0.55\textwidth}{figsDiscr/fGauss.png}}
-
-\placebox[center]{0.27}{0.25}
-{\parbox{0.45\textwidth}{
-Densities of the \blue{standardnormal distributed
-      random utilities $\epsilon_1$ and $\epsilon_2$} and of the
-\red{utility difference $\epsilon_1-\epsilon_2$}
-}}
-
-
-\placebox[center]{0.74}{0.62}
-{\figSimple{0.55\textwidth}{figsDiscr/binProbit_P1.png}}
-
-
-\placebox[center]{0.77}{0.25}
-{\parbox{0.45\textwidth}{
-Distribution functions of the \blue{random utilities} and the
-\red{utility difference} as a function of the deterministic utility
-difference  $V_1-V_2$
-}}
-
-}
-
-
-
-
-
-
-
-%##############################################################
-\frame{\frametitle{Choice probabilities of trinomial i.i.d. Probit
-    and Logit}
-%##############################################################
-
-\placebox[center]{0.25}{0.52}
-{\figSimple{0.60\textwidth}{figsDiscr/pProbitTrinom_V1V2.png}}
-
-\placebox[center]{0.72}{0.52}
-{\figSimple{0.60\textwidth}{figsDiscr/pLogitTrinom_V1V2.png}}
-
-\placebox[center]{0.20}{0.14}
-{Symmetrie considerations:}
-\placebox[center]{0.67}{0.14}
-{\parbox{0.6\textwidth}{\small
-\bdma
-P_2(V_2-V_3, V_1-V_3) &=& P_1(V_1-V_3,V_2-V_3),\\
-P_3(V_2-V_3, V_1-V_3) &=& 1-P_1-P_2
-\edma}}
-
-}
-
-
-%##############################################################
-\frame{\frametitle{8.3 Example: SP Survey in the Audience WS18/19 
+\frame{\frametitle{8.1.1 Example: SP Survey in the Audience WS18/19 
 \red{(red: bad weather, $\bfmath{W=1}$)}}
 %##############################################################
 
@@ -925,15 +872,150 @@ $\tilde{\rho}^2=0.279$
 
 
 
+\subsection{8.2 Probit Models}
+
+%##############################################################
+\frame{\frametitle{8.2 Probit Models}
+%##############################################################
+
+{\large
+The \bfdef{Probit Model} class is defined by (generally correlated)
+Gaussian RUs.
+
+\bi
+\item The general multinomial Probit model (MNP) has random utilities
+\maindmIntext{\veceps \sim N(\vec{0}, \vec{\Sigma})} with the
+variance-covariance matrix $\vec{\Sigma}$ of the RUs
+\pause \item The special case of the i.i.d. MNP with $\vec{\Sigma}=\m{1}$
+  (unit matrix), i.e.,
+  $\epsilon_i \sim  \text{i.i.d. }N(0,1)$ has similar
+  properties as the MNL (but not the IIA property!). 
+However, for $I\ge 3$, the MNP needs a
+  onedimensional integral to calculate the choice probabilities.
+\pause \item Often, i.i.d Gaussian RUs can be motivited by the central-limit
+  theorem while Gumbel distributed ones cannot. However, since the MNL behaves similarly and has explicit
+  choice probabilities and a simpler calibration, it is often favoured
+  over the i.i.d. MNP.
+{\normalsize
+\pause \itemAsk \colAsk{Why one can set the variance-covariance matrix to be
+  the unit matrix (i.e. setting all variances=1) in case of the i.i.d
+  MNP?}\\
+\pause \colAnswer{Because of the Scaling invariance of all
+  Discrete-choice models with additive random utilities. If we had 
+$\epsilon_i \sim \text{i.i.d.} N(0,1/\lambda^2)$, just multiply the
+  deterministic and random utilities by $\lambda$ to have an
+  equivalent Probit model with $\epsilon_i \sim \text{i.i.d.} N(0,1)$}
+}
+\ei
+}
+}
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of the binary Probit model I}
+%##############################################################
+
+\bi
+\pause\item Choice probabilities of the binary Probit model with $\epsilon_i \sim \text{i.i.d. }N(0,1)$: 
+\vspace{1em}
+\maindm{
+P_1=\Phi\left(\frac{V_1-V_2}{\sqrt{2}}\right), \quad P_2=1-P_1
+}
+\vspace{1em} % strange: Sometimes but not deterministically that
+             % stupid ``no line to end'' pops up
+
+{\small
+\pause\item [\bfAsk{?}] \colAsk{Derive the choice probabilities for
+  the correlated binary Probit model. \emph{Hint:} 
+  a linear combination of  Gaussians is
+  again a Gaussian}\\
+\colAnswer{Assume without loss of generality zero expectations and
+ use the general rules for the variance of two random variables $X_1, X_2$ ($a, b
+ \in I\!\!R$):
+\bdm
+V(aX_1+bX_2) = a^2V(X_1)+b^2V(X_2)+2ab\, \text{Cov}(X_1,X_2)
+\edm
+}
+\vspace{-1ex}
+
+\pause\itemAsk \colAsk{The Probit time and cost sensitivities are $\hatbeta_T=\unit[-0.1]{min^{-1}}$ and 
+$\hatbeta_C=\unit[-0.6]{\text{\euro}^{-1}}$. Give the implied value of
+time (VOT). Give also the approximate parameter values and the VOT for the
+corresponding Probit model}\\[1ex]
+\pause \colAnswer{The VOT in \euro{}/min is just the ratio of the time and
+  cost sensitivities, $\text{VOT}=\hatbeta_T/\hatbeta_C=
+\unit[1/6]{\text{\euro}/min}=\unit[10]{\text{\euro}/h}$. The Logit
+parameters are approximately the Probit parameters multiplied by the
+standard deviation $\lambda=\pi/\sqrt{6}$ of the Gumbel distributed
+Logit RUs. The VOT is essentially unchanged.}
+}
+\ei
+}
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of the binary Probit model II}
+%##############################################################
+\placebox[center]{0.24}{0.55}
+{\figSimple{0.51\textwidth}{figsDiscr/fGauss.png}}
+
+\placebox[center]{0.27}{0.16}
+{\parbox{0.45\textwidth}{
+Densities of the \blue{standardnormal distributed
+      random utilities $\epsilon_1$ and $\epsilon_2$} and of the
+\red{utility difference $\epsilon_1-\epsilon_2$}
+}}
+
+
+\placebox[center]{0.74}{0.55}
+{\figSimple{0.51\textwidth}{figsDiscr/binProbit_P1.png}}
+
+
+\placebox[center]{0.77}{0.16}
+{\parbox{0.45\textwidth}{
+Distribution functions of the \blue{random utilities} and the
+\red{utility difference} as a function of the deterministic utility
+difference  $V_1-V_2$
+}}
+
+}
 
 
 
 
 
-\subsection{8.4 Elasticities}
+
+
+%##############################################################
+\frame{\frametitle{Choice probabilities of trinomial i.i.d. Probit
+    and Logit}
+%##############################################################
+
+\placebox[center]{0.25}{0.52}
+{\figSimple{0.60\textwidth}{figsDiscr/pProbitTrinom_V1V2.png}}
+
+\placebox[center]{0.72}{0.52}
+{\figSimple{0.60\textwidth}{figsDiscr/pLogitTrinom_V1V2.png}}
+
+\placebox[center]{0.20}{0.14}
+{Symmetrie considerations:}
+\placebox[center]{0.67}{0.14}
+{\parbox{0.6\textwidth}{\small
+\bdma
+P_2(V_2-V_3, V_1-V_3) &=& P_1(V_1-V_3,V_2-V_3),\\
+P_3(V_2-V_3, V_1-V_3) &=& 1-P_1-P_2
+\edma}}
+
+}
+
+
+
+
+
+
+
+\subsection{8.3 Elasticities}
 
 %###################################################
-\frame{\frametitle{8.4 Elasticities}
+\frame{\frametitle{8.3 Elasticities}
 %###################################################
 
 {\small
@@ -970,17 +1052,17 @@ Generally, with several endogenous variables,  one distinguishes between
 \item \bfdef{proper elasticity} vs. \bfdef{cross-elasticity}
 \ei
 
-\pause \item[\bfAsk{?}] Why there are only substitution elastities in
+\pause \itemAsk Why there are only substitution elastities in
 discrete-choice models? 
 
 \ei
 }
 }
 
-\subsubsection{8.4.1 Microscopic Elasticities}
+\subsubsection{8.3.1 Microscopic Elasticities}
 
 %###################################################
-\frame{\frametitle{8.4.1 Microscopic Logit elasticities}
+\frame{\frametitle{8.3.1 Microscopic Logit elasticities}
 %###################################################
 Since elasticities describe macroscopic aspects, we take the
 choice probabilities $P_i$ rather than the discrete actual choices as
@@ -1018,18 +1100,18 @@ we derive the
 %###################################################
 
 \bi
-\item[\bfAsk{?}] Derive the formulas for the proper and cross
+\itemAsk Derive the formulas for the proper and cross
   elasticities from the expression for $V_{ni}$ and the Logit
   probabilities
 
-\pause \item[\bfAsk{?}] Derive and motivate the ``null sum'' condition
+\pause \itemAsk Derive and motivate the ``null sum'' condition
   $\sum_i P_{ni}\epsilon_{nij}^m=0$ 
 
-\pause \item[\bfAsk{?}] The cross elasticities do not depend on
+\pause \itemAsk The cross elasticities do not depend on
   $i$, i.e., on the target alternative for the changing
   demand. Motivate this by the IIA condition
 
-\pause \item[\bfAsk{?}] Given are three airports $i$ from
+\pause \itemAsk Given are three airports $i$ from
   which person $n$ can book flights to a desired destination at cost
   $C_{ni}$ (because of revenue management, $C$ depends on $n$), so
   \bdm
@@ -1040,11 +1122,11 @@ V_{ni}=\beta_{01}\delta_{01}+\beta_{02}\delta_{02}+\beta_1C_{ni}
   elasticities are positive.
 \ei
 }
-\
-subsubsection{8.4.2 Macroscopic Elasticities}
+
+\subsubsection{8.3.2 Macroscopic Elasticities}
 
 %###################################################
-\frame{\frametitle{8.4.2 Macroscopic elasticities}
+\frame{\frametitle{8.3.2 Macroscopic elasticities}
 %###################################################
 
 For a company, the relative probability increase of single customers

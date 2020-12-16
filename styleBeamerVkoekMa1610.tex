@@ -1,0 +1,77 @@
+\usetheme{Dresden}
+
+\usepackage[english]{babel}
+%\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade, german, hyperref,etex,pictex}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade, hyperref,etex,pictex}
+%\usepackage{dsfont, bm, amsmath,amssymb, epsfig, graphicx, marvosym,array,fancybox,}
+\usepackage{dsfont, bm, amsmath,amssymb, epsfig, graphicx,array,fancybox,}
+\usepackage[latin1]{inputenc}
+\usepackage[all]{xy}       % \xymatrix
+
+% color already defined in defsSkript, otherwise, define it here
+%\definecolor{blueTUD}{rgb}{0.1,0,0.5} 
+
+\setbeamertemplate{frametitle}[default][center]
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+%\setbeamercolor{frametitle}{blueTUD}
+\setbeamercolor{frametitle}{fg=blueTUD} % {fg=red,bg=yellow}
+
+\author{Martin Treiber}
+\title{Econometrics Master's Course: Methods}
+\institute{OSV}
+
+\selectlanguage{english}
+\renewcommand{\baselinestretch}{1}
+
+\beamertemplateshadingbackground{white!10}{white!10}
+\beamertemplatetransparentcovereddynamic
+\newfont{\tabfont}{cmr7 at 7pt}
+\renewcommand{\arraystretch}{1}
+\colorlet{alert}{blue!60!black} \colorlet{beameralert}{alert}
+
+\geometry{left=1cm, right=0.5cm}
+
+\def\colorize<#1>{%
+  \temporal<#1>{\color{structure}}{\color{black}}{\color{black}}}
+
+\graphicspath{{./figures/}}
+
+\input{cyracc.def}
+
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+
+\setframeofframes{of}
+\makeatletter
+
+\setbeamertemplate{headline}
+{
+    \begin{beamercolorbox}[ht=3ex,dp=1.125ex, leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+        \includegraphics[scale = 0.08]{TULogoWeiss.png}
+        \hspace{0.3cm}
+        {\usebeamerfont{title in head/foot}\insertshorttitle}%
+        \hfill%
+        {\usebeamerfont{section}\usebeamercolor[fg]{section}\insertsection}
+        \hfill%
+        {\usebeamerfont{subsection}\usebeamercolor[fg]{subsection}\insertsubsectionhead}
+    \end{beamercolorbox}
+}
+
+
+\setbeamertemplate{footline}{
+%    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%        {\usebeamerfont{author}\insertshortauthor}%
+%        \hfill%
+%        {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
+%    \end{beamercolorbox}
+}
+
+\newenvironment{beispiel}%
+{{\color{mygreen}\textbf{Beispiel:} }\color{mygreen}}%
+{}%
+
+\newenvironment{beispiele}%
+{{\color{mygreen}\textbf{Beispiele:} }\color{mygreen}}%
+{}%
+
+

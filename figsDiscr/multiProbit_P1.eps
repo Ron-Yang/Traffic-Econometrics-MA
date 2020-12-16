@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: multiProbit_P1.eps
 %%Creator: gnuplot 4.4 patchlevel 3
-%%CreationDate: Mon Dec  3 23:22:10 2012
+%%CreationDate: Wed Dec 16 21:40:12 2020
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -50,7 +50,7 @@ SDict begin [
   /Author (treiber)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Mon Dec  3 23:22:10 2012)
+  /CreationDate (Wed Dec 16 21:40:12 2020)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -433,49 +433,6 @@ Level1 {Level1PatternFill} {Level2PatternFill} ifelse
 /Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
 dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
 currentdict end definefont pop
-%
-% Encoding for ISO-8859-1 (also called Latin1)
-%
-/reencodeISO {
-dup dup findfont dup length dict begin
-{ 1 index /FID ne { def }{ pop pop } ifelse } forall
-currentdict /CharStrings known {
-	CharStrings /Idieresis known {
-		/Encoding ISOLatin1Encoding def } if
-} if
-currentdict end definefont
-} def
-/ISOLatin1Encoding [
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/space/exclam/quotedbl/numbersign/dollar/percent/ampersand/quoteright
-/parenleft/parenright/asterisk/plus/comma/minus/period/slash
-/zero/one/two/three/four/five/six/seven/eight/nine/colon/semicolon
-/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J/K/L/M/N
-/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright
-/asciicircum/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m
-/n/o/p/q/r/s/t/u/v/w/x/y/z/braceleft/bar/braceright/asciitilde
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
-/.notdef/dotlessi/grave/acute/circumflex/tilde/macron/breve
-/dotaccent/dieresis/.notdef/ring/cedilla/.notdef/hungarumlaut
-/ogonek/caron/space/exclamdown/cent/sterling/currency/yen/brokenbar
-/section/dieresis/copyright/ordfeminine/guillemotleft/logicalnot
-/hyphen/registered/macron/degree/plusminus/twosuperior/threesuperior
-/acute/mu/paragraph/periodcentered/cedilla/onesuperior/ordmasculine
-/guillemotright/onequarter/onehalf/threequarters/questiondown
-/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
-/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex
-/Idieresis/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis
-/multiply/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute
-/Thorn/germandbls/agrave/aacute/acircumflex/atilde/adieresis
-/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
-/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex
-/otilde/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis
-/yacute/thorn/ydieresis
-] def
 /MFshow {
    { dup 5 get 3 ge
      { 5 get 3 eq {gsave} {grestore} ifelse }
@@ -504,7 +461,6 @@ currentdict end definefont
   Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
 /XYsave    { [( ) 1 2 true false 3 ()] } bind def
 /XYrestore { [( ) 1 2 true false 4 ()] } bind def
-/Helvetica reencodeISO def
 end
 %%EndProlog
 gnudict begin
@@ -758,7 +714,7 @@ Z stroke
 LCb setrgbcolor
 192 2879 M
 currentpoint gsave translate -270 rotate 0 0 moveto
-[ [(Helvetica) 240.0 0.0 true true 0 (Auswahlwahrscheinlichkeit P)]
+[ [(Helvetica) 240.0 0.0 true true 0 (Choice probability P)]
 [(Helvetica) 192.0 -72.0 true true 0 (1)]
 ] -56.0 MCshow
 grestore
@@ -769,8 +725,7 @@ LCb setrgbcolor
 [(Helvetica) 192.0 -72.0 true true 0 (1)]
 [(Helvetica) 240.0 0.0 true true 0 (-V)]
 [(Helvetica) 192.0 -72.0 true true 0 (i)]
-[(Helvetica) 240.0 0.0 true true 0 ( \(Einheiten )]
-/Symbol reencodeISO def
+[(Helvetica) 240.0 0.0 true true 0 ( \(units )]
 [(Symbol) 240.0 0.0 true true 0 (s)]
 [(Helvetica) 240.0 0.0 true true 0 (\))]
 ] -56.0 MCshow
@@ -779,14 +734,14 @@ LTb
 1.000 UL
 LTb
 % Begin plot #1
-8.000 UL
+2.000 UL
 LT0
-LCb setrgbcolor
+0.80 0.00 0.13 C LCb setrgbcolor
 2097 4415 M
 [ [(Helvetica) 240.0 0.0 true true 0 (I=2)]
 ] -80.0 MRshow
 LT0
-2241 4415 M
+0.80 0.00 0.13 C 2241 4415 M
 639 0 V
 1032 1058 M
 58 7 V
@@ -891,14 +846,13 @@ LT0
 % End plot #1
 % Begin plot #2
 stroke
-4.000 UL
-LT7
-LCb setrgbcolor
+LT0
+1.00 0.20 0.00 C LCb setrgbcolor
 2097 4175 M
 [ [(Helvetica) 240.0 0.0 true true 0 (I=3)]
 ] -80.0 MRshow
-LT7
-2241 4175 M
+LT0
+1.00 0.20 0.00 C 2241 4175 M
 639 0 V
 1032 1015 M
 58 2 V
@@ -1003,13 +957,13 @@ LT7
 % End plot #2
 % Begin plot #3
 stroke
-LT1
-LCb setrgbcolor
+LT0
+0.00 0.80 0.00 C LCb setrgbcolor
 2097 3935 M
 [ [(Helvetica) 240.0 0.0 true true 0 (I=5)]
 ] -80.0 MRshow
-LT1
-2241 3935 M
+LT0
+0.00 0.80 0.00 C 2241 3935 M
 639 0 V
 1032 1009 M
 58 0 V
@@ -1114,13 +1068,13 @@ LT1
 % End plot #3
 % Begin plot #4
 stroke
-LT2
-LCb setrgbcolor
+LT0
+0.07 0.00 1.00 C LCb setrgbcolor
 2097 3695 M
 [ [(Helvetica) 240.0 0.0 true true 0 (I=10)]
 ] -80.0 MRshow
-LT2
-2241 3695 M
+LT0
+0.07 0.00 1.00 C 2241 3695 M
 639 0 V
 1032 1008 M
 58 0 V
@@ -1225,14 +1179,13 @@ LT2
 % End plot #4
 % Begin plot #5
 stroke
-6.000 UL
-LT6
-LCb setrgbcolor
+LT0
+0.00 0.00 0.00 C LCb setrgbcolor
 2097 3455 M
 [ [(Helvetica) 240.0 0.0 true true 0 (I=20)]
 ] -80.0 MRshow
-LT6
-2241 3455 M
+LT0
+0.00 0.00 0.00 C 2241 3455 M
 639 0 V
 1032 1008 M
 58 0 V
