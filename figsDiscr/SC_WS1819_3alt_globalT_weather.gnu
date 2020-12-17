@@ -159,19 +159,19 @@ plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,2,1) t  "2 Euro, bad weather" w l ls 18
 
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T1.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T1.png"
+set out        "SC_WS1819_3alt_globalT_weather_ProbPT_T1.png"
+print "plotting SC_WS1819_3alt_globalT_weather_ProbPT_T1.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T2.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T2.png"
+set out        "SC_WS1819_3alt_globalT_weather_ProbPT_T2.png"
+print "plotting SC_WS1819_3alt_globalT_weather_ProbPT_T2.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17,\
   T2, Prob(2,T0,T1,T2,1,0) t  "1 Euro {PT}-costs" w l ls 15
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T3.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T3.png"
+set out        "SC_WS1819_3alt_globalT_weather_ProbPT_T3.png"
+print "plotting SC_WS1819_3alt_globalT_weather_ProbPT_T3.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17,\
   T2, Prob(2,T0,T1,T2,1,0) t  "1 Euro {PT}-costs" w l ls 15,\

@@ -96,15 +96,15 @@ set style line 9 lt 7 lw 1 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gbad. Dre
 
 
 
-set style line 11 lt 1 lw 1 pt 7 ps 1.9  lc rgb "#000000" #schwarz,solid,bullet
-set style line 12 lt 1 lw 1 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
-set style line 13 lt 8 lw 1 pt 3 ps 1.2 #blassrot, offener Stern
-set style line 14 lt 6 lw 1 pt 4 ps 1.5  lc rgb "#FFAA00"  #gelb, offenes Quadrat
-set style line 15 lt 1 lw 1 pt 5 ps 1.5  lc rgb "#00DD22"  #gruen,solid,ClosedBox
-set style line 16 lt 5 lw 1 pt 7 ps 1.5  lc rgb "#00CCCC" #offener Kreis
-set style line 17 lt 1 lw 1 pt 7 ps 1.5  lc rgb "#1100AA"  #blau,solid,Bullet
+set style line 11 lt 1 lw 2 pt 7 ps 1.9  lc rgb "#000000" #schwarz,solid,bullet
+set style line 12 lt 1 lw 2 pt 2 ps 1.5  lc rgb "#CC0022" #rot, dash, Kreuz
+set style line 13 lt 8 lw 2 pt 3 ps 1.2 #blassrot, offener Stern
+set style line 14 lt 6 lw 2 pt 4 ps 1.5  lc rgb "#FFAA00"  #gelb, offenes Quadrat
+set style line 15 lt 1 lw 2 pt 5 ps 1.5  lc rgb "#00DD22"  #gruen,solid,ClosedBox
+set style line 16 lt 5 lw 2 pt 7 ps 1.5  lc rgb "#00CCCC" #offener Kreis
+set style line 17 lt 1 lw 2 pt 7 ps 1.5  lc rgb "#1100AA"  #blau,solid,Bullet
 set style line 18 lt 4 lw 2 pt 8 ps 1.5  lc rgb "#FF00FF"
-set style line 19 lt 7 lw 1 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gbad. Dreieck
+set style line 19 lt 7 lw 2 pt 9 ps 1.5  lc rgb "#999999"  #grau, aufr. gbad. Dreieck
 
 #Sinnvolle point typen (pt)
 # 1=Plus,2=Kreuz,4=openQuare,5=closedSquare, 6=openCirc,7=closedCirc,
@@ -168,19 +168,19 @@ plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,2,1) t  "2 Euro, bad weather" w l ls 18
 
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T1.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T1.png"
+set out        "SC_WS1819_3alt_altspecT_weather_ProbPT_T1.png"
+print "plotting SC_WS1819_3alt_altspecT_weather_ProbPT_T1.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T2.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T2.png"
+set out        "SC_WS1819_3alt_altspecT_weather_ProbPT_T2.png"
+print "plotting SC_WS1819_3alt_altspecT_weather_ProbPT_T2.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17,\
   T2, Prob(2,T0,T1,T2,1,0) t  "1 Euro {PT}-costs" w l ls 15
 
-set out        "SC_WS1819_3alt_globalT_ProbPT_T3.png"
-print "plotting SC_WS1819_3alt_globalT_ProbPT_T3.png"
+set out        "SC_WS1819_3alt_altspecT_weather_ProbPT_T3.png"
+print "plotting SC_WS1819_3alt_altspecT_weather_ProbPT_T3.png"
 plot[T2=T0+dTmin:T0+dTmax]\
   T2, Prob(2,T0,T1,T2,0,0) t  "0 Euro {PT}-costs" w l ls 17,\
   T2, Prob(2,T0,T1,T2,1,0) t  "1 Euro {PT}-costs" w l ls 15,\

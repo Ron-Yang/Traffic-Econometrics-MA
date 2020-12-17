@@ -476,14 +476,13 @@ plus weather factor (\red{bad weather, $W=1$})}
 }
 
 
-\placebox{0.84}{0.65}{\parbox{0.3\textwidth}{
+\placebox{0.84}{0.74}{\parbox{0.3\textwidth}{
 {\small
 $
 \begin{array}{lll}
  V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
-& + & \beta_2 K_i\\
-& + & \beta_{31} T_1\delta_{i1}+ \beta_{32} T_2\delta_{i2}\\
-& + & \beta_{33} T_3\delta_{i3}+\beta_4 W\delta_{i3}
+& + & \beta_2 K_i + \beta_{3} T_1\\
+& + & \beta_4 W\delta_{i3}
 \end{array}
 $
 }}}
@@ -491,11 +490,9 @@ $
 
 \pause
 
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+\placebox[center]{0.81}{0.52}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-128.5, \\
   \beta_0=-0.65 \pm 0.37, \\
   \beta_1=-0.42 \pm 0.25, \\
   \beta_2=-0.10 \pm 0.20, \\
@@ -507,7 +504,7 @@ $
 
 \pause
 
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox[center]{0.80}{0.18}{{\small
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
@@ -526,9 +523,20 @@ $
 %###################################################
 \frame{\frametitle{Dependence of the modal split on the PT attributes}
 %###################################################
-\vspace{1em}
+\visible<1>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T1.png}}}
 
-\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T.png}
+\visible<2>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T2.png}}}
+
+\visible<3>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T3.png}}}
+
+\visible<4->{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_ProbPT_T.png}}}
+
+\visible<2->{\placebox{0.5}{0.1}
+{Too low cost sensitivity!}}
 
 }
 %###################################################
@@ -542,48 +550,29 @@ $
 }
 
 %###################################################
-\frame{\frametitle{Model III: alt-spec time sensitivities
+\frame{\frametitle{Model 3: alt-spec time sensitivities
     plus weather factor}
 %###################################################
 \placebox[center]{0.35}{0.40}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
 }
 
-\placebox[center]{0.36}{0.81}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
+\placebox{0.80}{0.77}{\parbox{0.3\textwidth}{
+{\small
 $
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T_1\delta_{i1}\\
- & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
- + \beta_6 W\delta_{i3}
-\end{array}
-$
-}}}
-
-\pause
-
-\placebox[center]{0.79}{0.81}{\parbox{0.5\textwidth}{\footnotesize
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
-V_3=\beta_2 K + \beta_5 T + \beta_6 W\\[-1ex]
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+ &+& \beta_2 K + \beta_3 T_1\delta_{i1}\\
+ &+& \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}\\
+ &+& \beta_6 W\delta_{i3}
 \end{array}
 $
 }}}
 
 
-\pause
-
-\placebox[center]{0.78}{0.53}{\parbox{0.20\textwidth}{\small
+\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small
   \fbox{ $
    \begin{array}{l}
-   \ln L\sub{init}=-176.9,\\
-   \ln L=-120.5, \\
    \beta_0=+1.03 \pm 0.74, \\
    \beta_1=+0.66 \pm 0.40, \\
    \beta_2=-0.53 \pm 0.25, \\
@@ -597,7 +586,7 @@ $
 
 \pause
 
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox[center]{0.80}{0.16}{{\small
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
@@ -616,9 +605,22 @@ $
 %###################################################
 \frame{\frametitle{Dependence of the modal split on the PT attributes}
 %###################################################
+\visible<1>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T1.png}}}
+
+\visible<2>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T2.png}}}
+
+\visible<3>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T3.png}}}
+
+\visible<4->{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T.png}}}
+
+\visible<2->{\placebox{0.5}{0.1}
+{Everything plausible}}
 \vspace{1em}
 
-\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_ProbPT_T.png}
 
 }
 %###################################################
@@ -633,40 +635,29 @@ $
 
 
 %###################################################
-\frame{\label{sec:SPcomparison}\frametitle{Comparison: Model I}
+\frame{\label{sec:SPcomparison}\frametitle{Comparison: Model 1}
 %###################################################
 
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
+\placebox[center]{0.35}{0.43}{
+ \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
 }
 
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
+\placebox{0.82}{0.77}{\parbox{0.3\textwidth}{
+{\small
 $
- V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T
-$
-}}}
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+& + & \beta_2 K_i + \beta_{3} T_i
 \end{array}
 $
 }}}
 
 
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-141.5, \\
+ % \ln L\sub{init}=-176.9,\\
+ % \ln L=-141.5, \\
   \beta_0=-0.95 \pm 0.37, \\
   \beta_1=-0.28 \pm 0.24, \\
   \beta_2=+0.17 \pm 0.19, \\
@@ -675,19 +666,17 @@ $
  $
 }}}
 
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox[center]{0.82}{0.25}{{\small
    $
    \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
+   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\[1ex]
+   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\[1ex]
    \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
    \end{array}
    $
 }}
 
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+\placebox[center]{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
 AIC=275,
 BIC=303,\\
 $\rho^2=0.200$,
@@ -697,46 +686,29 @@ $\tilde{\rho}^2=0.177$
 }
 
 %###################################################
-\frame{\frametitle{Model II}
+\frame{\frametitle{Model 2}
 %###################################################
 
-\placebox[center]{0.35}{0.40}{
+\placebox[center]{0.35}{0.43}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
 }
 
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
+
+\placebox{0.82}{0.77}{\parbox{0.3\textwidth}{
+{\small
 $
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T\\
- & + \beta_4 W\delta_{i3}
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+& + & \beta_2 K_i + \beta_{3} T_i\\
+& + & \beta_4 W\delta_{i3}
 \end{array}
 $
 }}}
 
 
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T + \beta_4 W
-\end{array}
-$
-}}}
-
-
-
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
+\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-128.5, \\
   \beta_0=-0.65 \pm 0.37, \\
   \beta_1=-0.42 \pm 0.25, \\
   \beta_2=-0.10 \pm 0.20, \\
@@ -746,9 +718,7 @@ $
  $
 }}}
 
-
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox[center]{0.80}{0.18}{{\small
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
@@ -761,7 +731,7 @@ $
    $
 }}
 
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+\placebox[center]{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
 AIC=247,
 BIC=282,\\
 $\rho^2=0.273$,
@@ -771,48 +741,29 @@ $\tilde{\rho}^2=0.245$
 }
 
 %###################################################
-\frame{\frametitle{Model III}
+\frame{\frametitle{Model 3}
 %###################################################
 
-\placebox[center]{0.35}{0.40}{
+\placebox[center]{0.35}{0.43}{
   \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
 }
 
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
+\placebox{0.82}{0.77}{\parbox{0.3\textwidth}{
+{\small
 $
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T_1\delta_{i1}\\
- & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
- + \beta_6 W\delta_{i3}
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+ &+& \beta_2 K + \beta_3 T_1\delta_{i1}\\
+ &+& \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}\\
+ &+& \beta_6 W\delta_{i3}
 \end{array}
 $
 }}}
 
 
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
-V_3=\beta_2 K + \beta_5 T + \beta_6 W
-\end{array}
-$
-}}}
-
-
-
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small
+\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small
   \fbox{ $
    \begin{array}{l}
-   \ln L\sub{init}=-176.9,\\
-   \ln L=-120.5, \\
    \beta_0=+1.03 \pm 0.74, \\
    \beta_1=+0.66 \pm 0.40, \\
    \beta_2=-0.53 \pm 0.25, \\
@@ -824,9 +775,7 @@ $
    $
 }}}
 
-
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
+\placebox[center]{0.80}{0.16}{{\small
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
@@ -839,7 +788,8 @@ $
    $
 }}
 
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
+
+\placebox[center]{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
 AIC=227,
 BIC=277,\\
 $\rho^2=0.319$,
@@ -997,7 +947,8 @@ P_3(V_2-V_3, V_1-V_3) &=& 1-P_1-P_2
 \frame{\frametitle{8.3 Elasticities}
 %###################################################
 
-{\small
+\vspace{-2em}
+
 \bi
 \item
 \emph{General definition:}
@@ -1010,12 +961,12 @@ P_3(V_2-V_3, V_1-V_3) &=& 1-P_1-P_2
 \epsilon_{ij}=\frac{\bar{x}_j}{\bar{y}_i}
 \left.\ablpart{y_i}{x_j}\right|_{\vec{x}=\bar{\vec{x}},\vec{y}=\bar{\vec{y}}}
 \edm 
-\vspace{-1em}
+\vspace{-1ex}
 }
 
 
 \pause \item \emph{Regression:} 
-\vspace{-2em}
+\vspace{-0em}
 \bdm
 y=\sum_j\beta_jx_j+\epsilon, \quad
 \epsilon_j=\frac{\bar{x}_j}{\bar{y}}\ablpart{y}{x_j}
@@ -1032,18 +983,20 @@ Generally, with several endogenous variables,  one distinguishes between
 \ei
 
 \pause \itemAsk Why there are only substitution elastities in
-discrete-choice models? 
+discrete-choice models? \\
+\pause \itemAnswer \colAnswer{Because of the exclusivity
+  condition on the alternatives}
 
 \ei
 }
-}
+
 
 \subsubsection{8.3.1 Microscopic Elasticities}
 
 %###################################################
 \frame{\frametitle{8.3.1 Microscopic Logit elasticities}
 %###################################################
-Since elasticities describe macroscopic aspects, we take the
+Since elasticities describe average aspects, we take the
 choice probabilities $P_i$ rather than the discrete actual choices as
 endogenous 
 variables. For the general deterministic utilities
@@ -1079,18 +1032,79 @@ we derive the
 %###################################################
 
 \bi
-\itemAsk Derive the formulas for the proper and cross
-  elasticities from the expression for $V_{ni}$ and the Logit
-  probabilities
+\itemAsk \colAsk{Derive the formulas for the proper and cross
+  elasticities}
+\pause \itemAnswer {\small \colAnswer{
+We start with the normal  MNL choice probability 
+$P_{ni}=e^{V_{ni}}/\sum_k e^{V_{nk}}$ and first calculate the
+sensitivities in terms of the derivatives of $V_{ni}$ with respect to
+$x_{nmj}$: 
+\bdma
+\ablpart{P_{ni}}{x_{nmj}}
+ &=& \frac{e^{V_{ni}}}{\sum_k e^{V_{nk}}}\ablpart{V_{ni}}{x_{nmj}}
+  - \frac{e^{V_{ni}}}{\left(\sum_k e^{V_{nk}}\right)^2}
+    \ablpart{}{x_{nmj}}\left(\sum_l e^{V_{nl}}\right) \\
+\visible<3->{ &=& P_{ni}\ablpart{V_{ni}}{x_{nmj}}
+  - \sum_l \frac{e^{V_{ni}}e^{V_{nl}} }{\left(\sum_k e^{V_{nk}}\right)^2}
+    \ablpart{V_{nl}}{x_{nmj}} \\}
+\visible<4->{ &=& P_{ni}\ablpart{V_{ni}}{x_{nmj}}
+  - \sum_l P_{ni} P_{nl} \ablpart{V_{nl}}{x_{nmj}}}
+\edma
+\visible<5->{where
+\bdm
+\ablpart{V_{ni}}{x_{nmj}}=\beta_m\delta_{ij}, \quad
+\ablpart{V_{nl}}{x_{nmj}}=\beta_m\delta_{lj}}
+\edm
+\visible<6->{Hence
+\bdm
+\ablpart{P_{ni}}{x_{nmj}}=\beta_mP_{ni}\left(\delta_{ij}-P_{nj}\right),\quad
+\epsilon_{nij}\sup{(mic,m)}=\frac{x_{nmj}}{P_{ni}}\ablpart{P_{ni}}{x_{nmj}}
+=\beta_mx_{nmj}\left(\delta_{ij}-P_{nj}\right)
+\edm
+}
+\visible<7->{$j=i$: 
+$\epsilon_{nii}=\beta_mx_{nmi}\left(1-P_{ni}\right)$, \quad $j\neq i$:
+$\epsilon_{nij}=-\beta_mx_{nmj}P_{nj}$}
+}}
+\ei
+}
 
-\pause \itemAsk Derive and motivate the ``null sum'' condition
-  $\sum_i P_{ni}\epsilon_{nij}^m=0$ 
+%###################################################
+\frame{\frametitle{Questions (2)}
+%###################################################
+\bi
 
-\pause \itemAsk The cross elasticities do not depend on
+\itemAsk \colAsk{Derive and motivate the ``null sum'' condition
+  $\sum_i P_{ni}\epsilon\sup{(m)}_{nij}=0$}\\
+\colAnswer{
+\begin{align*}
+\visible<2->{\sum_i P_{ni}\epsilon\sup{(m)}_{nij}
+ &=\sum_{i\neq j} P_{ni}\epsilon\sup{(m)}_{nij}+ P_{ni}\epsilon\sup{(m)}_{nii}\\}
+\visible<3->{ &=-\sum_{i\neq j} P_{ni}\beta_mx_{nmj}P_{nj}
+ + P_{ni}\beta_mx_{nmi}\left(1-P_{ni}\right)\\}
+\visible<4->{ &=\beta_m \left(-\sum_i P_{ni} P_{nj} x_{nmj}+P_{ni}x_{nmi}\right)=0}
+\end{align*}
+\visible<4->{(Notice $\sum_i P_{ni}=1$ in the last step!)}
+}
+
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Questions (3)}
+%###################################################
+\bi
+\itemAsk \colAsk{The cross elasticities do not depend on
   $i$, i.e., on the target alternative for the changing
-  demand. Motivate this by the IIA condition
+  demand. Motivate this by the IIA condition}\\
+\pause \colAnswer{According 
+to the IIA, if the utility of an alternative $j$
+  changes, the changes of the relative preferences with respect to all
+  other alternatives are the same. Moreover, the relative preferences
+  are the
+  probability ratios and their changes are the cross elasticities}\\[1em]
 
-\pause \itemAsk Given are three airports $i$ from
+\pause \itemAsk \colAsk{Given are three airports $i$ from
   which person $n$ can book flights to a desired destination at cost
   $C_{ni}$ (because of revenue management, $C$ depends on $n$), so
   \bdm
@@ -1098,9 +1112,16 @@ V_{ni}=\beta_{01}\delta_{01}+\beta_{02}\delta_{02}+\beta_1C_{ni}
 \edm
  Show
   that the proper elasticities are negative while the cross
-  elasticities are positive.
+  elasticities are positive.} \\
+\pause \colAnswer{Proper elasticity
+  $\epsilon_{nii}^{(C)}=\beta_1C_{ni}(1-P_{ni})<0$ since $P_{ni}<1$
+  $C_{ni}>0$, and the price sensitivity $\beta_1<0$. The cross elasticities 
+$\epsilon_{nii}^{(C)}=-\beta_1C_{nj}P_{nj}$ are therefore positive.}
 \ei
 }
+
+
+
 
 \subsubsection{8.3.2 Macroscopic Elasticities}
 
