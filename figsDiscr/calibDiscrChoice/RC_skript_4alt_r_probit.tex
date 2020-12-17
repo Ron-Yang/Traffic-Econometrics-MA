@@ -1,0 +1,158 @@
+
+%#############################################
+% Template in 
+% ~/vorlesungen/Verkehrsoekonometrie/Skript/folienTemplate.tex
+%#############################################
+
+\documentclass[a4paper]{foils}
+
+%\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}  korrumpiert pdf-Ausgabe!
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{ulem}
+\usepackage{lscape} % provides landscape environment; OK for figs+text(mai05)
+                    % with \begin{landscape} ... \end{landscape}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\newlength{\laenge}
+\newcommand{\strich}[2][.5ex]
+  {\settowidth{\laenge}{#2}%
+  \makebox[0pt][l]{#2}%
+  \rule[#1]{\laenge}{0.15mm}}
+\newcommand{\dif}{\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\m}[1]{\left< #1 \right>}
+\newcommand{\Int}{\int\limits}
+\newcommand{\Sum}{\sum\limits}
+
+%######## Definitionen von Martin Treiber
+
+
+\textheight240mm
+\textwidth180mm
+\oddsidemargin-10mm
+
+\input{defsSkript}
+%\providecommand{\tilL}{\tilde{L}}
+\pagestyle{empty}
+
+
+%########################################
+\begin{document}
+\begin{landscape}
+\begin{center}
+
+
+%###################################################
+\bfsf{Log-Likelihoodfunktion: Schnitte durch den Parameterraum}
+%###################################################
+\fig{1.25\textwidth}{RC_skript_4alt_r_probit.corrMatrix.eps}
+{\small
+$V_i=\sum_{m=1}^3\beta_m\delta_{mi}+\beta_4(T_i-T_0)
++\beta_5K_i+\beta_6 W(\delta_{i3}+\delta_{i4})$
+}
+
+\newpage
+%###################################################
+\bfsf{Likelihood- und Log-Likelihoodfunktion bez\"uglich $\beta_1$ und
+  $\beta_2$}
+%###################################################
+\begin{tabular}{cc}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{RC_skript_4alt_r_probit_L_beta0_beta1.eps}
+
+  Likelihoodfunktion $L(\beta_1,\beta_2,\hatbeta_3, ...)$
+}
+\parbox{0.7\textwidth}{
+  \fig{0.68\textwidth}{RC_skript_4alt_r_probit_lnL_beta0_beta1.eps}
+  Log-Likelihoodfunktion $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
+}
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Stated Choice WS 2012/13: Fitg\"ute }\vspace{0em}  
+%###################################################
+
+{\small
+$
+\begin{array}{l}
+V_1=0,\\ 
+V_2=\beta_1+\beta_4(T_2-T_1),\\
+V_3=\beta_2+\beta_4(T_3-T_1)+\beta_5 K_3+\beta_6W, \\
+V_4=\beta_3+\beta_4(T_4-T_1)+\beta_5 K_4+\beta_6W
+\end{array}
+$
+}
+
+\begin{tabular}{ll}
+\parbox{1.00\textwidth}{
+\includegraphics[width=1.0\textwidth]{RC_skript_4alt_r_probit_fProb.eps}
+}
+\parbox{0.30\textwidth}{
+ {\small
+ $
+ \begin{array}{l}
+ \beta_1=1.2\pm 0.5, \\
+ \beta_2=2.3\pm0.5, \\
+ \beta_3=1.6\pm 0.5, \\
+ \beta_4=-0.2\pm 0.04, \\
+ \beta_5=-2.5\pm 0.8, \\
+ \beta_6=-2.2\pm 0.6
+ \end{array}
+ $
+}}
+\end{tabular}
+
+\newpage
+%###################################################
+\bfsf{Abh\"angigkeit \"OV von den \"OV-Attributen}
+%###################################################
+\\[2em]
+\fig{1.1\textwidth}{RC_skript_4alt_r_probit_ProbOEV_T.eps}
+
+\newpage
+%###################################################
+\bfsf{Abh\"angigkeit alle Modi von den \"OV-Attributen}
+%###################################################
+\\[2em]
+\fig{1.1\textwidth}{RC_skript_4alt_r_probit_Prob4Modi_TOEV.eps}
+
+\newpage
+%###################################################
+\bfsf{Theoretische Abh\"angigkeit von der Entfernung: Wetter schlecht}
+%###################################################
+\\[2em]
+\fig{1.1\textwidth}{RC_skript_4alt_r_probit_Prob4Modi_Entf_wetterSchlecht.eps}
+
+
+Fall~1: Wetter am Befragungstag: Graues Novemberwetter
+
+\newpage
+%###################################################
+\bfsf{Theoretische Abh\"angigkeit von der Entfernung: Wetter sch\"on}
+%###################################################
+\fig{1.1\textwidth}{RC_skript_4alt_r_probit_Prob4Modi_Entf_wetterSchoen.eps}
+
+Fall~2: Sch\"ones Sommerwetter: Fu\3 und Rad haben einen Bonus von
+$-\beta_6=2.2$ entspricht $\beta_6/\beta_4=\unit[11]{Minuten}$ bzw.
+ $\beta_6/\beta_5=\unit[0.90]{Euro}$
+
+\newpage
+%###################################################
+\bfsf{\"Aqui-Utility-Linien}
+%###################################################
+\fig{1.1\textwidth}{RC_skript_4alt_r_probit_AequiRatio_Rad_OEV.eps}
+
+$P_2/P_3=P\sub{Rad}/P\sub{OEV}=e^{V_2-V_3}=\text{const.}$ Alle anderen
+Modi au\3er Rad haben eine Reisezeit von \unit[30]{Minuten} und null Kosten
+
+
+\end{center}
+\end{landscape}
+\end{document}
+
