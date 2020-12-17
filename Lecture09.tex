@@ -1,6 +1,6 @@
 
-%\documentclass[mathserif,aspectratio=1610]{beamer}
-\documentclass[mathserif,handout,aspectratio=1610]{beamer}
+\documentclass[mathserif,aspectratio=1610]{beamer}
+%\documentclass[mathserif,handout,aspectratio=1610]{beamer}
 %\usepackage{beamerthemeshadow}
 
 \input{$HOME/tex/inputs/defsSkript}%$
@@ -16,7 +16,7 @@
 
 \begin{document}
 
-\section{Chapter 8: Discrete-Choice Theory: the Basics}
+\section{Chapter 9: Inferential Statistics of Discrete-Choice Models}
 
 %###################################################
 \frame{  %title layout
@@ -24,21 +24,25 @@
 \makePale{1.00}{0.50}{0.70}{1.40}{1.40}
 
 \placebox{0.50}{0.45}{
-  \figSimple{1.10\textwidth}{figsDiscr/vierstufenmodellDiscr_eng.png}}
+  \figSimple{1.40\textwidth}{figsDiscr/RC_skript_4alt_r_eng_corrMatrix.png}}
 %makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
-\makePale{0.70}{0.50}{0.70}{1.40}{1.40}
+\makePale{0.80}{0.50}{0.70}{1.40}{1.40}
 
-\placebox{0.50}{0.90}{\parbox{0.8\textwidth}{\myheading{
-7. Discrete-Choice Theory: the Basics
+\placebox{0.50}{0.82}{\parbox{0.6\textwidth}{\myheading{
+Chapter 9: Inferential Statistics of Discrete-Choice Models
 }}}
 
-\placebox{0.45}{0.40}{\parbox{0.8\textwidth}{
+\placebox{0.50}{0.44}{\parbox{0.6\textwidth}{
 {\large
 \bi
-\item 7.1 The Nature of Discrete Decisions
-\item 7.2 Basic Concepts: Alternatives, Utilities, Homo Oeconomicus
-\item 7.3 Deterministic utilities and how to model them
-\item 7.4 Random Utilities
+\item 9.1. Maximum-Likelihood Estimation
+\item 9.2 Estimation Errors: Variance-Covariance Matrix
+\bi
+\item 9.2.1 Example 1: SP Survey in the Audience
+\item 9.2.2 Example 2: RP Survey in the Audience
+\ei
+\item 9.3 Significance Tests
+\item 9.4 Goodness-of-Fit Measures
 \item 7.5 Choice Probabilities
 \ei
 }
@@ -49,10 +53,10 @@
 
 
 
-\subsection{4.8. Maximum-likelihood estimation}
+\subsection{9.1. Maximum-Likelihood Estimation}
 
 %###################################################
-\frame{\frametitle{4.8. Maximum-likelihood estimation: 
+\frame{\frametitle{9.1. Maximum-likelihood estimation: 
 the likelihood function}
 %###################################################
 \bi
@@ -64,8 +68,8 @@ $\vecbeta$.
   $L(\vecbeta)$, i.e., the probability that the model predicts
   \emph{all} data points $(\vec{y}_n, \vec{x}_n)$, $n=1, ..., N$:
 \maindm{
-L(\vecbeta)=P\left(\hat{\vec{y}}_1(\vecbeta)=\vec{y}_1, ..., 
-\hat{\vec{y}}_N(\vecbeta)=\vec{y}_N\right)
+L(\vecbeta)=P\big(\ \hat{\vec{y}}_1(\vecbeta)=\vec{y}_1, \quad ..., \quad
+\hat{\vec{y}}_N(\vecbeta)=\vec{y}_N\ \big)
 }
 where $\hat{\vec{y}}_n=\hat{\vec{y}}(\vec{x}_n)$ 
 gives the model estimate for $\vec{x}_n$
@@ -77,9 +81,14 @@ L(\vecbeta)=f_{\hat{\vec{y}}_1(\vecbeta), ..., \hat{\vec{y}}_N(\vecbeta)}
 (\vec{y}_1, ..., \vec{y}_N)
 \edm
 
-\pause \item[\bfAsk{?}] Verify that the density formulation is equivalent to
+\pause \itemAsk \colAsk{Verify that the density formulation is equivalent to
   the probability definition by requiring the model estimations to
-  be in small intervals around the data instead of hitting the data exactly. 
+  be in small intervals around the data instead of hitting the data exactly.} 
+\pause \itemAnswer \colAnswer{The multi-dimensional probability density $f(.)$
+  is defined such that 
+$\diff{P}=f_{\hat{\vec{y}}_1, ..., \hat{\vec{y}}_N}(\vec{y}) 
+\text{d}^N \vec{y}$. Keeping $\text{d}^N \vec{y}$ small and constant,
+$\diff{P}$ and thus $P$ is maximized if and only if $f(.)$ is maximized.}
 \ei
 }
 
@@ -98,8 +107,17 @@ The ML method just maximizes the likelihood function:
 \tilL(\vecbeta)=\ln L(\vecbeta)}
 \vspace{2em}
 
-\pause \item[\bfAsk{?}] Why it does not matter whether to maximize the
-  likelihood or the log-likelihood?
+\pause \itemAsk \colAsk{Why it does not matter whether to maximize the
+  likelihood or the log-likelihood?}
+\pause \itemAnswer \colAnswer{Since, as a probability or probability
+  density, $L>0$ and the log function is defined and strictly monontonously
+  increasing in this range. Since
+\bdm
+x<y \Leftrightarrow f(x) < f(y)
+\edm
+if $f(.)$ is strictly monontonously
+  increasing and the maximum function is based on the inequality
+  relation, the \emph{argument} of the maximum remains unchanged.}
 \ei
 }
 
@@ -116,64 +134,67 @@ The ML can also be used to estimate regression models and gives
 L(\vecbeta) &=& \prod_{n=1}^N f_n(y_n)
  = \prod_{n=1}^N\frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\left[-\frac{(y_n-\vec{\beta}\vec{x}_n)^2}{2\sigma^2}\right],\\
-\tilL(\vecbeta) &=& \sum_{n=1}^N \ln f_n(y_n)
+\visible<2->{\tilL(\vecbeta) &=& \sum_{n=1}^N \ln f_n(y_n)
  = \sum_{n=1}^N\left\{
  -\frac{1}{2}(\ln 2\pi+\ln \sigma^2)
  -\left[\frac{(y_n-\vec{\beta}\vec{x}_n)^2}{2\sigma^2}\right]\right\}
- \nonumber\\
- &=& -\frac{N}{2}(\ln 2\pi+\ln \sigma^2)
- -\frac{1}{2\sigma^2}(\vec{y}-\m{X}\vec{\beta})\tr(\vec{y}-\m{X}\vec{\beta}).
+ \nonumber\\}
+ \visible<3->{&=& -\frac{N}{2}(\ln 2\pi+\ln \sigma^2)
+ -\frac{1}{2\sigma^2}(\vec{y}-\m{X}\vec{\beta})\tr(\vec{y}-\m{X}\vec{\beta})}
 \edma
-This has the same functional form as the sum of squared errors of the
-OLS method and leads to
-the same estimator.
+\visible<4->{This has the same functional form as the sum of squared
+  errors of the 
+OLS method and leads to the same estimator!}
+
 \vspace{1em}
 
-\pause \bfAsk{?} Why it is possible 
-to express $L(\vecbeta)$ as a product, here?
+\bi
+\visible<5->{\itemAsk \colAsk{Why it is possible 
+to express $L(\vecbeta)$ as a product, here?}}
+\visible<6->{\itemAnswer \colAnswer{Since the random terms $\epsilon_n
+    \sim i.i.d 
+  N(0,\sigma^2)$, particularly, they are \emph{independent} from each
+  other}}
+\ei
 }
 
 %###################################################
 \frame{\frametitle{Application 2: Discrete-choice models}
 %###################################################
 \bi
-{\small
 \item Probability to predict the chosen alternative $i_n$ for decision $n$:
 \bdma
-P(\hatvec{Y}_{n}=\vec{y}_n)
-&=& P(\hat{Y}_{n1}=y_{n1}, ..., \hat{Y}_{nI}=y_{nI})\\
-&=& \prod_{i=1}^I
+P\left(\hatvec{Y}_{n}=\vec{y}_n\right)
+&=& P\left(\hat{Y}_{n1}=y_{n1}, \ ..., \ \hat{Y}_{nI}=y_{nI}\right)\\
+\visible<2->{&=& \prod_{i=1}^I
 \left[P_{ni}(\vecbeta)\right]^{y_{ni}}=P_{ni_n}(\vecbeta)
 \edma
-\vspace{-1em}
-
-(The rightmost expression relies on the exclusivity/completeness
-requirements of ${\cal A}_n$)
+(this relies on the exclusivity/completeness
+of ${\cal A}_n$ and of independent RUs)
 % but the product expression is
 %more suitable for the further development)
-\vspace{1em}
-
-\pause \item Probability to predict all the data assuming independent
-  decisions:
+}
+\\[1em]
+\visible<3->{\pause \item Probability to predict all the data assuming
+  independent  decisions:
 \bdma
-L(\vecbeta) &=&
+\visible<3->{L(\vecbeta) &=&
 P \left(\vec{Y}\!_{1}(\vecbeta)=\vec{y}_1,
-...,\vec{Y}\!_{N}(\vecbeta)=\vec{y}_N \right)\\
- &=&  \prod_{n=1}^N \prod_{i=1}^I
-\left[P_{ni}(\vecbeta)\right]^{y_{ni}}
+...,\vec{Y}\!_{N}(\vecbeta)=\vec{y}_N \right)\\}
+\visible<4->{ &=&  \prod_{n=1}^N \prod_{i=1}^I
+\left[P_{ni}(\vecbeta)\right]^{y_{ni}}}
 \edma
 }
-\vspace{-1em}
-
-\pause \item ML estimation:
 \ei
-\vspace{-0ex}
+\vspace{-2em}
+
+\visible<5->{ML estimation:
 \maindm{\hatvecbeta=\text{arg} \max_{\vec{\beta}}\tilL(\vecbeta), \quad
  \tilL(\vecbeta)
 =\sum\limits_{n=1}^N  
 \sum\limits_{i=1}^I y_{ni} \ln P_{ni}(\vec{\beta})
 =\sum\limits_{n=1}^N \ln P_{ni_n}(\vec{\beta})
-}
+}}
 
 }
 
@@ -185,7 +206,8 @@ If there are no exogenous variables, we are left with just the ACs
 reflecting that people prefer certain alternatives over others for
 unknown reasons:
 \bdm
-V_{ni}=\sum_{m=1}^{I-1}\beta_m\delta_{mi}
+V_{ni}=\sum_{m=1}^{I-1}\beta_m\delta_{mi} \quad \text{or} \quad
+V_{ni}=\beta_i \ \text{if} \ i\neq I, \ V_{nI}=0
 \edm
 This \bfdef{AC-only model} 
 will be the ``reference case'' when estimating the
@@ -193,16 +215,28 @@ model quality, e.g., by the \bfdef{likelihood-ratio index}.
 
 {\small
 \bi
-\pause \item[\bfAsk{?}] Show that, in deriving the main ML result
+\pause \itemAsk \colAsk{ Show that, in deriving the main ML result
 $\tilL=\sum_n\sum_iy_{ni}\ln P_{ni}$, the random utilities need not to
-be uncorrelated between alternatives, only between choices (however,
-in the general case, not all probabilities can always be expressed in terms
-of parameters)
-\pause \item[\bfAsk{?}] Show that the estimated models gives probabilities
+be uncorrelated between alternatives, only between choices}
+
+\pause \itemAnswer \colAnswer{Because of the exclusivity/completeness
+  requirement for the alternatives, exactly one alternative can be
+  chosen per decision so it is enough to maximize the corresponding
+  probability (last expression in the loglikelihood-formula)}
+
+\pause \itemAsk \colAsk{ Show that the estimated models gives probabilities
   $P_{ni}=P_i$ that are equal to the observed choice fractions $N_i/N$.
-  (\emph{Hint:} Lagrange multiplicators to satisfy $\sum_iP_i=1$)
-\pause \item[\bfAsk{?}] Based on this result $P_i=N_i/N$, give the parameters for the
- AC-only MNL and for the binary i.i.d. Probit model
+  (\emph{Hint:} Lagrange multiplicators to satisfy $\sum_iP_i=1$)}
+
+\pause \itemAnswer \colAnswer{we have 
+$\tilL(\vec{P})=\sum_n \ln P_{i_n}=\sum_iN_i\ln P_i$; \ maximize under
+  the constraint $\sum_iP_i=1$}
+
+\pause \itemAsk \colAsk{ Based on this result $P_i=N_i/N$, give the
+  parameters for the 
+ AC-only MNL and for the binary i.i.d. Probit model}
+\pause \colAnswer{Logit: $P_i/P_I=N_i/N_I=\exp(\beta_i)$ (notice that
+  $I$ is the reference w/o AC)}
 \ei
 }
 
@@ -214,17 +248,17 @@ of parameters)
 \frame{\frametitle{I. Direct graphical solution}
 %###################################################
 
-\placebox[center]{0.70}{0.90}{$V_{ni}=\beta_1\delta_{i1}+\beta_2T_{ni}$}
+\placebox[center]{0.50}{0.84}{$V_{ni}=\beta_1\delta_{i1}+\beta_2T_{ni}$}
 
 
 
-\placebox[center]{0.25}{0.30}
- {\figSimple{0.60\textwidth}{figsDiscr/kalLogitBinom_beta1beta2.png}}
+\placebox[center]{0.25}{0.25}
+ {\figSimple{0.51\textwidth}{figsDiscr/kalLogitBinom_beta1beta2.png}}
 
-\placebox[center]{0.75}{0.30}
- {\figSimple{0.60\textwidth}{figsDiscr/kalProbitBinom_beta1beta2.png}}
+\placebox[center]{0.75}{0.25}
+ {\figSimple{0.51\textwidth}{figsDiscr/kalProbitBinom_beta1beta2.png}}
 
-\placebox[center]{0.50}{0.70}{\parbox{\textwidth}{
+\placebox[center]{0.50}{0.65}{\parbox{\textwidth}{
 {\footnotesize
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|} \hline
@@ -332,670 +366,10 @@ N_1\sup{data} = \sum_{n} y_{n1}
 
 }
 
-
-
-
-\subsection{4.8a. Detailled example 1}
-%~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/SC_WS1819_3alt_globalT_fProb
+\subsection{9.2 Estimation errors}
 
 %###################################################
-\frame{\label{sec:SP}\frametitle{4.8a. Detailled example: 
-SP survey WS18/19: global time sensitivities, no
-weather factor}
-%###################################################
-
-\vspace{0.5em}
-{\small
-\begin{tabular}{|r||c|c|c||r|r|r|}
-\hline 
-\myBox{2.5em}{Choice\\Set} &
-  \myBox{3em}{Alt. 1:\\Ped} &
-  \myBox{3em}{Alt. 2:\\Bike} &
-  \myBox{3em}{Alt. 3:\\ PT/Car} &
-  Alt 1 & Alt 2 & Alt 3 \\ \hline\hline
-1  & 30\,min & 20\,min & 20\,min+0\euro{} & 1  & 3 & 7 \\[0.1em] \hline
-2  & 30\,min & 20\,min & 20\,min+2\euro{} & 2  & 9 & 2\\[0.1em] \hline
-3  & 30\,min & 20\,min & 20\,min+1\euro{} & 1  & 5 & 7\\[0.1em] \hline
-4  & 30\,min & 20\,min & 30\,min+0\euro{} & 2  & 9 & 3\\[0.1em] \hline
-5  & 50\,min & 20\,min & 30\,min+0\euro{} & 0  & 9 & 4\\[0.1em] \hline
-6  & 50\,min & 30\,min & 30\,min+0\euro{} & 0  & 3 & 9\\[0.1em] \hline
-7  & 50\,min & 40\,min & 30\,min+0\euro{} & 0  & 2 & 10\\[0.1em] \hline
-8  & 180\,min & 60\,min & 60\,min+2\euro{} & 0 & 4 & 11\\[0.1em] \hline
-9  & 180\,min & 40\,min & 60\,min+2\euro{} & 0 & 9 & 6\\[0.1em] \hline
-\red{10}  & \red{180\,min}  & \red{40\,min} & \red{60\,min+2\euro{}}
-  & \red{0}  & \red{1}  & \red{14}                   \\[0.1em] \hline
-11 & 12\,min & 8\,min & 10\,min+0\euro{} & 3  & 5 & 6\\[0.1em] \hline
-12 & 12\,min & 8\,min & 10\,min+1\euro{} & 5  & 7 & 2\\[0.1em] \hline
-\end{tabular}
-}
-}
-
-%###################################################
-\frame{\frametitle{Model specification and calibration}
-%###################################################
-
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
-}
-
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
- V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T
-$
-}}}
-
-\pause
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T
-\end{array}
-$
-}}}
-
-
-\pause
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
-  $
-  \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-141.5, \\
-  \beta_0=-0.95 \pm 0.37, \\
-  \beta_1=-0.28 \pm 0.24, \\
-  \beta_2=+0.17 \pm 0.19, \\
-  \beta_3=-0.04 \pm 0.02
-  \end{array}
- $
-}}}
-
-\pause
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
-   \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
-   \end{array}
-   $
-}}
-
-}
-
-
-
-
-%###################################################
-\frame{\frametitle{Likelihood and log-likelihood function for varying
-    cost ($\beta_2$) and time ($\beta_3$) sensitivities}
-%###################################################
-
-\placebox[center]{0.50}{0.76}{\parbox{1.0\textwidth}{\small
-  $ 
-  V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
-   + \beta_3 T
-  $
-}}
-
-\placebox[center]{0.25}{0.42}{\parbox{0.55\textwidth}{
-  \begin{center}
-    \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_L_beta2_beta3.png}\\
-    Likelihood function\\
-    $L(\beta_2,\beta_3|\hatbeta_0, \hatbeta_0)$
-  \end{center}
-}}
-
-
-\placebox[center]{0.75}{0.42}{\parbox{0.55\textwidth}{
-  \begin{center}
-    \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_lnL_beta2_beta3.png}\\
-    Log-likelihood function\\
-    $\tilde{L}(\beta_2,\beta_3|\hatbeta_0, \hatbeta_1)$
-  \end{center}
-}}
-
-}
-%###################################################
-\frame{\frametitle{Log-likelihood function in parameter space}
-%###################################################
-
-\placebox[center]{0.50}{0.42}{
- \figSimple{0.90\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_corrMatrix.png}
-}
-
-\placebox[center]{0.50}{0.81}{\parbox{0.9\textwidth}{\small
-  $V_i=\beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
-   + \beta_3 T + \beta_4 W\delta_{i3}
-  $
-}}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Model II: plus weather factor (\red{bad weather, $W=1$})}
-%###################################################
-
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
-}
-
-\placebox[center]{0.36}{0.80}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T\\
- & + \beta_4 W\delta_{i3}
-\end{array}
-$
-}}}
-
-\pause
-
-\placebox[center]{0.79}{0.80}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T + \beta_4 W
-\end{array}
-$
-}}}
-
-
-\pause
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
-  $
-  \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-128.5, \\
-  \beta_0=-0.65 \pm 0.37, \\
-  \beta_1=-0.42 \pm 0.25, \\
-  \beta_2=-0.10 \pm 0.20, \\
-  \beta_3=-0.09 \pm 0.02, \\
-  \beta_4= 4.2  \pm 1.1
-  \end{array}
- $
-}}}
-
-\pause
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
-   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
-   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
-   \end{array}
-   $
-}}
-
-}
-
-
-
-
-%###################################################
-\frame{\frametitle{Model III: alt-spec time sensitivities
-    plus weather factor}
-%###################################################
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
-}
-
-\placebox[center]{0.36}{0.81}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T_1\delta_{i1}\\
- & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
- + \beta_6 W\delta_{i3}
-\end{array}
-$
-}}}
-
-\pause
-
-\placebox[center]{0.79}{0.81}{\parbox{0.5\textwidth}{\footnotesize
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
-V_3=\beta_2 K + \beta_5 T + \beta_6 W\\[-1ex]
-\end{array}
-$
-}}}
-
-
-\pause
-
-\placebox[center]{0.78}{0.53}{\parbox{0.20\textwidth}{\small
-  \fbox{ $
-   \begin{array}{l}
-   \ln L\sub{init}=-176.9,\\
-   \ln L=-120.5, \\
-   \beta_0=+1.03 \pm 0.74, \\
-   \beta_1=+0.66 \pm 0.40, \\
-   \beta_2=-0.53 \pm 0.25, \\
-   \beta_3=-0.14 \pm 0.03, \\
-   \beta_4=-0.11 \pm 0.03, \\
-   \beta_5=-0.06 \pm 0.03, \\
-   \beta_6=+3.6  \pm 1.1
-   \end{array}
-   $
-}}}
-
-\pause
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
-   \frac{\beta_1}{-\beta_3}=+\unit[4.7]{min},\\
-   \frac{\beta_0}{-\beta_2}=+\unit[1.9]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=+\unit[4.7]{\text{\euro{}}},\\
-   \frac{60\beta_5}{\beta_2}=+\unit[6.7]{\text{\euro{}}/h},\\
-   \frac{\beta_4}{-\beta_2}=+\unit[6.7]{\text{\euro{}}}
-   \end{array}
-   $
-}}
-
-}
-
-
-
-
-%###################################################
-\frame{\label{sec:SPcomparison}\frametitle{Comparison: Model I}
-%###################################################
-
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
-}
-
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
- V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T
-$
-}}}
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T
-\end{array}
-$
-}}}
-
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
-  $
-  \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-141.5, \\
-  \beta_0=-0.95 \pm 0.37, \\
-  \beta_1=-0.28 \pm 0.24, \\
-  \beta_2=+0.17 \pm 0.19, \\
-  \beta_3=-0.04 \pm 0.02
-  \end{array}
- $
-}}}
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
-   \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
-   \end{array}
-   $
-}}
-
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
-AIC=275,
-BIC=303,\\
-$\rho^2=0.200$,
-$\tilde{\rho}^2=0.177$
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Model II}
-%###################################################
-
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_weather_fProb.png}
-}
-
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T\\
- & + \beta_4 W\delta_{i3}
-\end{array}
-$
-}}}
-
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_3 T,\\ 
-V_3=\beta_2 K + \beta_3 T + \beta_4 W
-\end{array}
-$
-}}}
-
-
-
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small\fbox{ 
-  $
-  \begin{array}{l}
-  \ln L\sub{init}=-176.9,\\
-  \ln L=-128.5, \\
-  \beta_0=-0.65 \pm 0.37, \\
-  \beta_1=-0.42 \pm 0.25, \\
-  \beta_2=-0.10 \pm 0.20, \\
-  \beta_3=-0.09 \pm 0.02, \\
-  \beta_4= 4.2  \pm 1.1
-  \end{array}
- $
-}}}
-
-
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-7.1]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-4.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[-6.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[-4.3]{\text{\euro{}}},\\
-   \frac{60\beta_3}{\beta_2}=\unit[+57]{\text{\euro{}}/h},\\
-   \frac{\beta_4}{-\beta_2}=\unit[+44]{\text{\euro{}}}
-   \end{array}
-   $
-}}
-
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
-AIC=247,
-BIC=282,\\
-$\rho^2=0.273$,
-$\tilde{\rho}^2=0.245$
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Model III}
-%###################################################
-
-\placebox[center]{0.35}{0.40}{
-  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}
-}
-
-\placebox[center]{0.36}{0.82}{\parbox{0.7\textwidth}{\small
-%  Deterministic utilities:\\[0.3em]
-%
-\colorbox{orange}{
-$
-\begin{array}{ll}
- V_i= & \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
- + \beta_3 T_1\delta_{i1}\\
- & + \beta_4 T_2\delta_{i2} + \beta_5 T_3\delta_{i3}
- + \beta_6 W\delta_{i3}
-\end{array}
-$
-}}}
-
-
-
-\placebox[center]{0.79}{0.84}{\parbox{0.5\textwidth}{\small
-or \quad
-\colorbox{orange}{$
-\begin{array}{l}
-V_1=\beta_0 + \beta_2 K + \beta_3 T,\\ 
-V_2=\beta_1 + \beta_2 K + \beta_4 T,\\ 
-V_3=\beta_2 K + \beta_5 T + \beta_6 W
-\end{array}
-$
-}}}
-
-
-
-
-\placebox[center]{0.78}{0.54}{\parbox{0.20\textwidth}{\small
-  \fbox{ $
-   \begin{array}{l}
-   \ln L\sub{init}=-176.9,\\
-   \ln L=-120.5, \\
-   \beta_0=+1.03 \pm 0.74, \\
-   \beta_1=+0.66 \pm 0.40, \\
-   \beta_2=-0.53 \pm 0.25, \\
-   \beta_3=-0.14 \pm 0.03, \\
-   \beta_4=-0.11 \pm 0.03, \\
-   \beta_5=-0.06 \pm 0.03, \\
-   \beta_6=+3.6  \pm 1.1
-   \end{array}
-   $
-}}}
-
-
-
-\placebox[center]{0.80}{0.18}{{\scriptsize
-   $
-   \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=+\unit[7.5]{min},\\
-   \frac{\beta_1}{-\beta_3}=+\unit[4.7]{min},\\
-   \frac{\beta_0}{-\beta_2}=+\unit[1.9]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=+\unit[4.7]{\text{\euro{}}},\\
-   \frac{60\beta_5}{\beta_2}=+\unit[6.7]{\text{\euro{}}/h},\\
-   \frac{\beta_4}{-\beta_2}=+\unit[6.7]{\text{\euro{}}}
-   \end{array}
-   $
-}}
-
-\placebox[center]{0.16}{0.08}{\parbox{0.3\textwidth}{\scriptsize
-AIC=227,
-BIC=277,\\
-$\rho^2=0.319$,
-$\tilde{\rho}^2=0.279$
-}}
-
-
-}
-
-
-\subsection{4.8b. Detailled example 2}
-% ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/RC_skript_4alt_r_eng
-
-%##############################################################
-\frame{\frametitle{4.8b Revealed preferences/choice: the data}
-%##############################################################
-
-Distance classes for the trip home to university (cumulated till 2018)
-\vspace{0.5em}
-
-Weather: good
-\vspace{1em}
-
-{\small\begin{tabular}{|r|r||c|c|c|c|}
-\hline 
-\myBox{4em}{Distance} & 
-  \myBox{4em}{Class-\\center} &
-  \myBox{3em}{Choice\\Alt. 1:\\ped} &
-  \myBox{3em}{Choice\\Alt. 2:\\bike} &
-  \myBox{3em}{Choice\\Alt. 2:\\PT} &
-  \myBox{3em}{Choice\\Alt. 3:\\ car} \\ \hline\hline
-\unit[0-1]{km} & \unit[0.5]{km}    &  17 & 16 & 10 & 0\\[0.2em] \hline
-\unit[1-2]{km} & \unit[1.5]{km}    &  9  & 23 & 20 & 2\\[0.2em] \hline
-\unit[2-5]{km} & \unit[3.5]{km}    &  2  & 27 & 55 & 4\\[0.2em] \hline
-\unit[5-10]{km} & \unit[7.5]{km}   &  0  & 7  & 42 & 7\\[0.2em] \hline
-\unit[10-20]{km} & \unit[12.5]{km} &  0  & 0  & 18 & 7\\[0.2em] \hline
-\end{tabular}}
-
-}
-
-
-
-%###################################################
-\frame{\frametitle{Revealed Choice: fit quality}
-%###################################################
-
-\placebox[center]{0.40}{0.78}{\parbox{0.5\textwidth}{\small
-$
-\begin{array}{l}
-V_1=\beta_1+\beta_4 r,\\ 
-V_2=\beta_2+\beta_5 r,\\
-V_3=\beta_3+\beta_6 r, \\
-V_4=0
-\end{array}
-$
-}}
-
-\placebox[center]{0.37}{0.37}{
-  \figSimple{0.73\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProb.png}
-}
-
-\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
- $
- \begin{array}{l}
- \beta_1= 4.1\pm 0.6, \\
- \beta_2= 3.6\pm 0.5, \\
- \beta_3= 3.0\pm 0.5, \\
- \beta_4=-1.43\pm 0.26, \\
- \beta_5=-0.48\pm 0.08, \\
- \beta_6=-0.14\pm 0.05
- \end{array}
- $
-}}
-
-}
-
-%###################################################
-\frame{\frametitle{Revealed Choice: Modal split as a function of distance}
-%###################################################
-
-\placebox[center]{0.40}{0.78}{\parbox{0.5\textwidth}{\small
-$
-\begin{array}{l}
-V_1=\beta_1+\beta_4 r,\\ 
-V_2=\beta_2+\beta_5 r,\\
-V_3=\beta_3+\beta_6 r, \\
-V_4=0
-\end{array}
-$
-}}
-
-\placebox[center]{0.37}{0.37}{
-  \figSimple{0.73\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProbKumDist.png}
-}
-
-\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
- $
- \begin{array}{l}
-  \beta_1= 4.1\pm 0.6, \\
- \beta_2= 3.6\pm 0.5, \\
- \beta_3= 3.0\pm 0.5, \\
- \beta_4=-1.43\pm 0.26, \\
- \beta_5=-0.48\pm 0.08, \\
- \beta_6=-0.14\pm 0.05
- \end{array}
- $
-}}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Log-Likelihood: Sections through parameter space}
-%###################################################
-\figSimple{0.90\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_corrMatrix.png}
-
-{\small
-$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
-+\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
-}
-
-}
-
-
-%###################################################
-\frame{\frametitle{Likelihood and Log-Likelihood as $f(\beta_1,\beta_2)$}
-
-\placebox[center]{0.50}{0.77}{\parbox{0.9\textwidth}{
-$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
-+\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
-}}
-
-\placebox[center]{0.25}{0.50}{
- \figSimple{0.55\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_L_beta0_beta1.png}
-}
-
-\placebox[center]{0.75}{0.50}{
- \figSimple{0.55\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_lnL_beta0_beta1.png}
-}
-
-\placebox[center]{0.30}{0.20}{\parbox{0.5\textwidth}{
-  Likelihoodfunktion\\
-  $L(\beta_1,\beta_2,\hatbeta_3, ...)$
-}}
-
-\placebox[center]{0.80}{0.20}{\parbox{0.5\textwidth}{
-  Log-Likelihoodfunktion\\
-   $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
-}}
-
-}
-
-
-
-
-
-\subsection{4.9. Estimation errors}
-
-%###################################################
-\frame{\frametitle{4.9. Variance-covariance matrix of the estimation errors}
+\frame{\frametitle{9.2 Estimation Errors: Variance-Covariance Matrix}
 %###################################################
 
 {\small
@@ -1071,11 +445,298 @@ The negative Hesse matrix of $\tilL(\vecbeta)$
 }
 
 
-\subsection{4.10. Significance tests}
+
+
+\subsection{9.2.1 Example 1: SP Survey in the Audience}
+%~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/SC_WS1819_3alt_globalT_fProb
+
+%###################################################
+\frame{\label{sec:SP}\frametitle{9.2.1 Example 1 from past lecture:\\ 
+SP Survey in the Audience WS18/19 \red{(red: bad weather, $\bfmath{W=1}$)}}
+%###################################################
+
+\vspace{0.5em}
+{\small
+\hspace{5em}
+\begin{tabular}{|r||c|c|c||r|r|r|}
+\hline 
+\myBox{2.5em}{Choice\\Set} &
+  \myBox{3em}{Alt. 1:\\Ped} &
+  \myBox{3em}{Alt. 2:\\Bike} &
+  \myBox{3em}{Alt. 3:\\ PT/Car} &
+  Alt 1 & Alt 2 & Alt 3 \\ \hline\hline
+1  & 30\,min & 20\,min & 20\,min+0\euro{} & 1  & 3 & 7 \\[0.1em] \hline
+2  & 30\,min & 20\,min & 20\,min+2\euro{} & 2  & 9 & 2\\[0.1em] \hline
+3  & 30\,min & 20\,min & 20\,min+1\euro{} & 1  & 5 & 7\\[0.1em] \hline
+4  & 30\,min & 20\,min & 30\,min+0\euro{} & 2  & 9 & 3\\[0.1em] \hline
+5  & 50\,min & 20\,min & 30\,min+0\euro{} & 0  & 9 & 4\\[0.1em] \hline
+6  & 50\,min & 30\,min & 30\,min+0\euro{} & 0  & 3 & 9\\[0.1em] \hline
+7  & 50\,min & 40\,min & 30\,min+0\euro{} & 0  & 2 & 10\\[0.1em] \hline
+8  & 180\,min & 60\,min & 60\,min+2\euro{} & 0 & 4 & 11\\[0.1em] \hline
+9  & 180\,min & 40\,min & 60\,min+2\euro{} & 0 & 9 & 6\\[0.1em] \hline
+\red{10}  & \red{180\,min}  & \red{40\,min} & \red{60\,min+2\euro{}}
+  & \red{0}  & \red{1}  & \red{14}                   \\[0.1em] \hline
+11 & 12\,min & 8\,min & 10\,min+0\euro{} & 3  & 5 & 6\\[0.1em] \hline
+12 & 12\,min & 8\,min & 10\,min+1\euro{} & 5  & 7 & 2\\[0.1em] \hline
+\end{tabular}
+}
+}
+
+%###################################################
+\frame{\frametitle{Model specification for Model 1 of the past lecture}
+%###################################################
+
+\placebox[center]{0.35}{0.43}{
+ \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
+}
+
+\placebox{0.82}{0.77}{\parbox{0.3\textwidth}{
+{\small
+$
+\begin{array}{lll}
+ V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
+& + & \beta_2 K_i + \beta_{3} T_i
+\end{array}
+$
+}}}
+
+
+\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small\fbox{ 
+  $
+  \begin{array}{l}
+ % \ln L\sub{init}=-176.9,\\
+ % \ln L=-141.5, \\
+  \beta_0=-0.95 \pm 0.37, \\
+  \beta_1=-0.28 \pm 0.24, \\
+  \beta_2=+0.17 \pm 0.19, \\
+  \beta_3=-0.04 \pm 0.02
+  \end{array}
+ $
+}}}
+
+\placebox[center]{0.82}{0.25}{{\small
+   $
+   \begin{array}{l}
+   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\[1ex]
+   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\[1ex]
+   \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
+   \end{array}
+   $
+}}
+
+\placebox[center]{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
+AIC=275,
+BIC=303,\\
+$\rho^2=0.200$,
+$\tilde{\rho}^2=0.177$
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Likelihood and log-likelihood function for varying
+    cost ($\beta_2$) and time ($\beta_3$) sensitivities}
+%###################################################
+
+\placebox[center]{0.50}{0.76}{\parbox{1.0\textwidth}{\small
+  $ 
+  V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+   + \beta_3 T
+  $
+}}
+
+\placebox[center]{0.25}{0.42}{\parbox{0.55\textwidth}{
+  \begin{center}
+    \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_L_beta2_beta3.png}\\
+    Likelihood function\\
+    $L(\beta_2,\beta_3|\hatbeta_0, \hatbeta_0)$
+  \end{center}
+}}
+
+
+\placebox[center]{0.75}{0.42}{\parbox{0.55\textwidth}{
+  \begin{center}
+    \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_lnL_beta2_beta3.png}\\
+    Log-likelihood function\\
+    $\tilde{L}(\beta_2,\beta_3|\hatbeta_0, \hatbeta_1)$
+  \end{center}
+}}
+
+}
+%###################################################
+\frame{\frametitle{Log-likelihood function in parameter space}
+%###################################################
+
+\placebox{0.50}{0.425}{
+ \figSimple{0.88\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_corrMatrix.png}
+}
+
+\placebox{0.65}{0.72}{\small
+  $V_i=\beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
+   + \beta_3 T + \beta_4 W\delta_{i3}
+  $
+}
+
+}
+
+
+
+\subsection{9.2.2 Example 2: RP Survey in the Audience}
+% ~/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar/RC_skript_4alt_r_eng
+
+%##############################################################
+\frame{\frametitle{9.2.2 Example 2: RP Survey in the Audience}
+%##############################################################
+
+Distance classes for the trip home to university (cumulated till 2018)
+\vspace{0.5em}
+
+Weather: good
+\vspace{2em}
+
+{\small
+\hspace{3em}
+\begin{tabular}{|r|r||c|c|c|c|}
+\hline 
+\myBox{4em}{Distance} & 
+  \myBox{4em}{Class-\\center} &
+  \myBox{3em}{Choice\\Alt. 1:\\ped} &
+  \myBox{3em}{Choice\\Alt. 2:\\bike} &
+  \myBox{3em}{Choice\\Alt. 2:\\PT} &
+  \myBox{3em}{Choice\\Alt. 3:\\ car} \\ \hline\hline
+\unit[0-1]{km} & \unit[0.5]{km}    &  17 & 16 & 10 & 0\\[0.2em] \hline
+\unit[1-2]{km} & \unit[1.5]{km}    &  9  & 23 & 20 & 2\\[0.2em] \hline
+\unit[2-5]{km} & \unit[3.5]{km}    &  2  & 27 & 55 & 4\\[0.2em] \hline
+\unit[5-10]{km} & \unit[7.5]{km}   &  0  & 7  & 42 & 7\\[0.2em] \hline
+\unit[10-20]{km} & \unit[12.5]{km} &  0  & 0  & 18 & 7\\[0.2em] \hline
+\end{tabular}}
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Revealed Choice: fit quality}
+%###################################################
+
+\placebox[center]{0.37}{0.44}{
+  \figSimple{0.70\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProb.png}
+}
+
+\placebox[center]{0.85}{0.72}{\parbox{0.3\textwidth}{\small
+$
+\begin{array}{l}
+V_1=\beta_1+\beta_4 r,\\ 
+V_2=\beta_2+\beta_5 r,\\
+V_3=\beta_3+\beta_6 r, \\
+V_4=0
+\end{array}
+$
+}}
+
+\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+ $
+ \begin{array}{l}
+ \beta_1= 4.1\pm 0.6, \\
+ \beta_2= 3.6\pm 0.5, \\
+ \beta_3= 3.0\pm 0.5, \\
+ \beta_4=-1.43\pm 0.26, \\
+ \beta_5=-0.48\pm 0.08, \\
+ \beta_6=-0.14\pm 0.05
+ \end{array}
+ $
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Revealed Choice: Modal split as a function of distance}
+%###################################################
+
+\placebox[center]{0.37}{0.44}{
+  \figSimple{0.70\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProbKumDist.png}
+}
+
+\placebox[center]{0.85}{0.72}{\parbox{0.3\textwidth}{\small
+$
+\begin{array}{l}
+V_1=\beta_1+\beta_4 r,\\ 
+V_2=\beta_2+\beta_5 r,\\
+V_3=\beta_3+\beta_6 r, \\
+V_4=0
+\end{array}
+$
+}}
+
+\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+ $
+ \begin{array}{l}
+ \beta_1= 4.1\pm 0.6, \\
+ \beta_2= 3.6\pm 0.5, \\
+ \beta_3= 3.0\pm 0.5, \\
+ \beta_4=-1.43\pm 0.26, \\
+ \beta_5=-0.48\pm 0.08, \\
+ \beta_6=-0.14\pm 0.05
+ \end{array}
+ $
+}}
+
+
+}
+
+
+%###################################################
+\frame{\frametitle{Log-Likelihood: Sections through parameter space}
+%###################################################
+\figSimple{0.89\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_corrMatrix.png}
+
+{\small
+$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
++\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
+}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Likelihood and Log-Likelihood as $f(\beta_1,\beta_2)$}
+
+\placebox[center]{0.50}{0.76}{
+$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
++\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
+}
+
+\placebox[center]{0.25}{0.45}{
+ \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_L_beta0_beta1.png}
+}
+
+\placebox[center]{0.75}{0.45}{
+ \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_lnL_beta0_beta1.png}
+}
+
+\placebox[center]{0.30}{0.15}{\parbox{0.4\textwidth}{
+  Likelihoodfunktion\\
+  $L(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+\placebox[center]{0.80}{0.15}{\parbox{0.4\textwidth}{
+  Log-Likelihoodfunktion\\
+   $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+}
+
+
+
+
+
+
+\subsection{9.3 Significance Tests}
 
 
 %##############################################################
-\frame{\frametitle{4.10. Significance tests I: parametric tests}
+\frame{\frametitle{9.3 Significance Tests: Parametric Tests}
 %##############################################################
 \bi
 \item The parameter test procedures are exactly the same as that of
@@ -1124,7 +785,6 @@ corresponds to a \bfdef{restraint model}
   model with $M$ parameters
 
 \pause \item Test statistics: 
-\vspace{-1em}
 
 {\small
 \maindm{
@@ -1192,9 +852,10 @@ V_{n2}(\beta_1,\beta_2) &=& 0
 %##############################################################
 \frame{\frametitle{LR test for the corresponding Logit models}
 %##############################################################
+\vspace{1ex}
 
-\fig{0.65\textwidth}{figsDiscr/BNL_Entfernung_smallSample_logL_eng.png}
-\vspace{-1.5em}
+\fig{0.56\textwidth}{figsDiscr/BNL_Entfernung_smallSample_logL_eng.png}
+\vspace{-1em}
 
 {\small
 \bi
@@ -1216,25 +877,29 @@ $\lambda\sup{LR}\sub{data}=2(-26.5+36.5)=20$
 \frame{\frametitle{Fit quality of the full model}
 %##############################################################
 
-\fig{0.60\textwidth}{figsDiscr/BNL_Entfernung_smallSample_relHaeuf_eng.png}
-\vspace{-1.0em}
-{\small
+\placebox{0.30}{0.45}{\figSimple{0.62\textwidth}
+ {figsDiscr/BNL_Entfernung_smallSample_relHaeuf_eng.png}}
+
+\placebox{0.77}{0.45}{\parbox{0.40\textwidth}{\small
 \bi
-\item[\bfAsk{?}] What would be the modelled ped/bike modal split for
-  the null model $V_{ni}=0$?
-\pause \item[\bfAsk{?}] Read off from the $\tilL$ contour plot the parameter of
+\itemAsk \colAsk{ What would be the modelled ped/bike modal split for
+  the null model $V_{ni}=0$?}
+\pause \itemAsk \colAsk{ Read off from the $\tilL$ contour plot the parameter of
   the AC-only model $V_{ni}=\beta_2\delta_{i1}$ and give the modelled
-  modal split
-\pause \item[\bfAsk{?}] Motivate the negative correlation between the parameter errors
+  modal split} \pause \colAnswer{$\hatbeta_2=\ln(P_1/P_2)=-0.5$, OK
+  with $P_1/P_2=N_1/N_2=20/32$}
+\pause \itemAsk \colAsk{ Motivate the negative correlation between the
+  parameter errors} \pause \colAnswer{Make sure that the same fraction choses
+  alternative~2}
 \ei
-}
+}}
 
 }
 
-\subsection{4.11. Goodness-of-fit measures}
+\subsection{9.4 Goodness-of-Fit Measures}
 
 %##############################################################
-\frame{\frametitle{4.11. Goodness-of-fit measures}
+\frame{\frametitle{9.4 Goodness-of-Fit Measures}
 %##############################################################
 
 \bi
@@ -1242,7 +907,8 @@ $\lambda\sup{LR}\sub{data}=2(-26.5+36.5)=20$
   \bfdef{significance}: Is the more complicated of two nested models
   significantly better in describing the data?
 \item This can be used to find the best model using the
-  \bfdef{top-down ansatz}: \EinsteinPdflatex \emph{Make is as simple
+  \bfdef{top-down ansatz}: \\
+  \EinsteinPdflatex \emph{Make is as simple
     as possible but not simpler!}
 \pause \item Problem: For very big samples, nearly any new parameter gives
   significance and the top-down ansatz fails
@@ -1320,7 +986,7 @@ estimated AC-only or trivial model)}
 \pause \item In contrast to regression models, even the best-fitting model
   has $\rho^2$ and $\bar{\rho}^2$ values far from 1. Values as low as
   0.3 may characterize a good model, \emph{see
-    \hyperlink{sec:SPcomparison}{\beamerbutton{the Example 4.8a}}},
+    \hyperlink{sec:SP}{\beamerbutton{the Example 9.2.1}}},
   while $R^2=0.3$ means a really bad fit for a regression model.
 \pause \item An overfitted model with $M$ parameters fitting
   $N=M$ decisions reaches the ``ideal'' LR-index value $\rho^2=1$ 
