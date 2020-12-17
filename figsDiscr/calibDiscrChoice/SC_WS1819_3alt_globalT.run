@@ -1,0 +1,18 @@
+#!/bin/bash
+
+startdir=$PWD
+srcDir=$HOME/trafficSim/sources/levmar-2.5
+cp SC_WS1819_3alt_globalT.Vfunc.cpp $srcDir/Vfunc.cpp
+cd $srcDir
+rm calibDiscrChoice.o
+if make calibDiscrChoice;   # compiles with included Vfunc.cpp
+  then echo "compiled successfully"
+  else echo "compilation failed"; exit -1
+fi
+cd $startdir
+#calibDiscrChoice SC_WS1819_3alt_globalT 0
+
+
+calibDiscrChoice SC_WS1819_3alt_globalT 1
+SC_WS1819_3alt_globalT.plot
+echo "hint: Update in SC_WS1819_3alt_globalT.gnu lnLmax and beta from SC_WS1819_3alt_globalT.outData"

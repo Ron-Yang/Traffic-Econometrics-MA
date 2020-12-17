@@ -1,0 +1,18 @@
+#!/bin/bash
+
+startdir=$PWD
+srcDir=$HOME/trafficSim/sources/levmar-2.5
+cp SC_WS1819_3alt_globalT_weather.Vfunc.cpp $srcDir/Vfunc.cpp
+cd $srcDir
+rm calibDiscrChoice.o
+if make calibDiscrChoice;   # compiles with included Vfunc.cpp
+  then echo "compiled successfully"
+  else echo "compilation failed"; exit -1
+fi
+cd $startdir
+#calibDiscrChoice SC_WS1819_3alt_globalT_weather 0
+
+
+calibDiscrChoice SC_WS1819_3alt_globalT_weather 1
+SC_WS1819_3alt_globalT_weather.plot
+echo "hint: Update in SC_WS1819_3alt_globalT_weather.gnu lnLmax and beta from SC_WS1819_3alt_globalT_weather.outData"

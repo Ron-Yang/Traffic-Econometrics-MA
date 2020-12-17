@@ -10,7 +10,8 @@
 
 \usepackage{graphicx}
 
-\newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
+%\newcommand{\pathDiscrChoice}{$HOME/vorlesungen/Verkehrsoekonometrie_Ma/discrChoice_cc_Levmar} %$
+\newcommand{\pathDiscrChoice}{figsDiscr} 
 
 %##############################################################
 
@@ -375,15 +376,13 @@ available. Give the new Logit choice probabilities.}\\
  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
 }
 
-\placebox{0.84}{0.68}{\parbox{0.3\textwidth}{
+\placebox{0.84}{0.63}{\parbox{0.3\textwidth}{
 {\small
 \begin{center}
 $
 \begin{array}{lll}
  V_i &= & \beta_0\delta_{i1} + \beta_1\delta_{i2}\\
-& + & \beta_2 K_i\\
-& + & \beta_{31} T_1\delta_{i1}+ \beta_{32} T_2\delta_{i2}\\
-& + & \beta_{33} T_3\delta_{i3}+\beta_4 W\delta_{i3}
+& + & \beta_2 K_i + \beta_3 T_i
 \end{array}
 $
 \visible<2->{
@@ -392,9 +391,9 @@ or
 \\[1ex]
 $
 \begin{array}{l}
-V_1 =  \beta_0 + \beta_2 K_1 + \beta_{31} K_1,\\
-V_2 =  \beta_1 + \beta_2 K_2 + \beta_{32} K_2,\\
-V_3 =  \beta_2 K_3 + \beta_{33} K_3+\beta_4 W  
+V_1 =  \beta_0 + \beta_2 K_1 + \beta_{3} T_1,\\
+V_2 =  \beta_1 + \beta_2 K_2 + \beta_{3} T_2,\\
+V_3 =            \beta_2 K_3 + \beta_{3} T_3
 \end{array}
 $
 \end{center}
@@ -420,13 +419,11 @@ $
 }}}}
 
 \visible<4->{
-\placebox[center]{0.82}{0.13}{{\scriptsize
+\placebox[center]{0.82}{0.13}{{\small
    $
    \begin{array}{l}
-   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\
-   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\
-   \frac{\beta_0}{-\beta_2}=\unit[+5.7]{\text{\euro{}}},\\
-   \frac{\beta_1}{-\beta_2}=\unit[+1.7]{\text{\euro{}}},\\
+   \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\[1ex]
+   \frac{\beta_1}{-\beta_3}=\unit[-6.6]{min},\\[1ex]
    \frac{60\beta_3}{\beta_2}=\unit[-15]{\text{\euro{}}/h}
    \end{array}
    $
@@ -438,11 +435,25 @@ $
 %###################################################
 \frame{\frametitle{Dependence of the modal split on the PT attributes}
 %###################################################
-\vspace{1em}
 
-\fig{0.8\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T.png}
+\visible<1>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T1.png}}}
+
+\visible<2>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T2.png}}}
+
+\visible<3>{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T3.png}}}
+
+\visible<4->{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
+  {\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T.png}}}
+
+\visible<2->{\placebox{0.5}{0.1}
+{Wrong sign for cost sensitivity, too low time sensitivity!}}
 
 }
+
+
 %###################################################
 \frame{\frametitle{Dependence on the distance}
 %###################################################
