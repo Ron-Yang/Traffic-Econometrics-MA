@@ -1,0 +1,15 @@
+#!/bin/bash
+
+startdir=$PWD
+srcDir=$HOME/trafficSim/sources/levmar-2.5
+cp RC_skript_4alt_r_probit.Vfunc.cpp $srcDir/Vfunc.cpp
+cd $srcDir
+rm calibDiscrChoice.o
+if make calibDiscrChoice;   # compiles with included Vfunc.cpp
+  then echo "compiled successfully"
+  else echo "compilation failed"; exit -1
+fi
+cd $startdir
+calibDiscrChoice RC_skript_4alt_r_probit 1 1
+RC_skript_4alt_r_probit.plot
+echo "hint: Update in RC_skript_4alt_r_probit.gnu lnLmax and beta from RC_skript_4alt_r_probit.outData"

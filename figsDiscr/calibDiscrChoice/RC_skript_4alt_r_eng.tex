@@ -1,0 +1,163 @@
+
+%#############################################
+% New pdflatex format,
+% only png, jpg (or svg?) images but positioning now ok
+% template in ~/tex/inputs/templates/template_folien.tex
+% [TODO now specialized to Vkoem_Ma; make general]
+%#############################################
+
+%\documentclass[mathserif]{beamer}
+\documentclass[mathserif,handout]{beamer}
+%\usepackage{beamerthemeshadow}
+
+\input{$HOME/tex/inputs/defsSkript} %$
+\input{$HOME/tex/inputs/styleBeamerVorl} %$
+%##############################################################
+%##############################################################
+
+
+\begin{document}
+
+%##############################################################
+\frame{\frametitle{Revealed preferences/choice: the data}
+%##############################################################
+
+Distance classes for the trip home to university (cumulated till 2018)
+\vspace{0.5em}
+
+Weather: good
+\vspace{1em}
+
+{\small\begin{tabular}{|r|r||c|c|c|c|}
+\hline 
+\myBox{4em}{Distance} & 
+  \myBox{4em}{Class-\\center} &
+  \myBox{3em}{Choice\\Alt. 1:\\ped} &
+  \myBox{3em}{Choice\\Alt. 2:\\bike} &
+  \myBox{3em}{Choice\\Alt. 2:\\PT} &
+  \myBox{3em}{Choice\\Alt. 3:\\ car} \\ \hline\hline
+\unit[0-1]{km} & \unit[0.5]{km}    &  17 & 16 & 10 & 0\\[0.2em] \hline
+\unit[1-2]{km} & \unit[1.5]{km}    &  9  & 23 & 20 & 2\\[0.2em] \hline
+\unit[2-5]{km} & \unit[3.5]{km}    &  2  & 27 & 55 & 4\\[0.2em] \hline
+\unit[5-10]{km} & \unit[7.5]{km}   &  0  & 7  & 42 & 7\\[0.2em] \hline
+\unit[10-20]{km} & \unit[12.5]{km} &  0  & 0  & 18 & 7\\[0.2em] \hline
+\end{tabular}}
+
+}
+
+
+
+%###################################################
+\frame{\frametitle{Revealed Choice: fit quality}
+%###################################################
+
+\placebox[center]{0.40}{0.78}{\parbox{0.5\textwidth}{\small
+$
+\begin{array}{l}
+V_1=\beta_1+\beta_4 r,\\ 
+V_2=\beta_2+\beta_5 r,\\
+V_3=\beta_3+\beta_6 r, \\
+V_4=0
+\end{array}
+$
+}}
+
+\placebox[center]{0.37}{0.37}{
+  \figSimple{0.73\textwidth}{RC_skript_4alt_r_eng_fProb.png}
+}
+
+\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+ $
+ \begin{array}{l}
+ \beta_1= 4.1\pm 0.6, \\
+ \beta_2= 3.6\pm 0.5, \\
+ \beta_3= 3.0\pm 0.5, \\
+ \beta_4=-1.43\pm 0.26, \\
+ \beta_5=-0.48\pm 0.08, \\
+ \beta_6=-0.14\pm 0.05
+ \end{array}
+ $
+}}
+
+}
+
+%###################################################
+\frame{\frametitle{Revealed Choice: Modal split as a function of distance}
+%###################################################
+
+\placebox[center]{0.40}{0.78}{\parbox{0.5\textwidth}{\small
+$
+\begin{array}{l}
+V_1=\beta_1+\beta_4 r,\\ 
+V_2=\beta_2+\beta_5 r,\\
+V_3=\beta_3+\beta_6 r, \\
+V_4=0
+\end{array}
+$
+}}
+
+\placebox[center]{0.37}{0.37}{
+  \figSimple{0.73\textwidth}{RC_skript_4alt_r_eng_fProbKumDist.png}
+}
+
+\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+ $
+ \begin{array}{l}
+  \beta_1= 4.1\pm 0.6, \\
+ \beta_2= 3.6\pm 0.5, \\
+ \beta_3= 3.0\pm 0.5, \\
+ \beta_4=-1.43\pm 0.26, \\
+ \beta_5=-0.48\pm 0.08, \\
+ \beta_6=-0.14\pm 0.05
+ \end{array}
+ $
+}}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Log-Likelihood: Sections through parameter space}
+%###################################################
+\figSimple{0.90\textwidth}{RC_skript_4alt_r_eng_corrMatrix.png}
+
+{\small
+$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
++\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
+}
+
+}
+
+
+%###################################################
+\frame{\frametitle{Likelihood and Log-Likelihood as $f(\beta_1,\beta_2)$}
+
+\placebox[center]{0.50}{0.77}{\parbox{0.9\textwidth}{
+$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
++\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
+}}
+
+\placebox[center]{0.25}{0.50}{
+ \figSimple{0.55\textwidth}{RC_skript_4alt_r_eng_L_beta0_beta1.png}
+}
+
+\placebox[center]{0.75}{0.50}{
+ \figSimple{0.55\textwidth}{RC_skript_4alt_r_eng_lnL_beta0_beta1.png}
+}
+
+\placebox[center]{0.30}{0.20}{\parbox{0.5\textwidth}{
+  Likelihoodfunktion\\
+  $L(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+\placebox[center]{0.80}{0.20}{\parbox{0.5\textwidth}{
+  Log-Likelihoodfunktion\\
+   $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+}
+
+
+
+\end{document}
+

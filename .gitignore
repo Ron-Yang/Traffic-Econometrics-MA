@@ -4,10 +4,16 @@
 
 *.mkv
 
-## c++ generated files
+## program generated files
+
 
 *.o
+*_beta[0-9]_beta[0-9]
 figsCorona/sim/*.dat
+figsDiscr/calibDiscrChoice/*.png
+figsDiscr/calibDiscrChoice/*.eps
+figsDiscr/calibDiscrChoice/*.outData
+
 
 ## Core latex/pdflatex auxiliary files:
 
