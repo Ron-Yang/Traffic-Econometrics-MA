@@ -23,19 +23,21 @@
 %###################################################
 \makePale{1.00}{0.50}{0.70}{1.50}{1.50}
 
-\placebox{0.40}{0.45}{\figSimple{1.40\textwidth}
+\placebox{0.40}{0.60}{\figSimple{1.40\textwidth}
  {\pathDiscrChoice/SC_WS1819_3alt_altspecT_weather_fProb.png}}
 
 %makePale{opacity}{centerXrel}{centerYrel}{wrel}\{hrel} 
 \makePale{0.75}{0.50}{0.70}{1.50}{1.50}
 
-\placebox{0.50}{0.80}{\myheading{Lecture 8: Logit and Probit Models}}
+\placebox{0.50}{0.80}{\myheading{\LARGE{Lecture 8: Logit and Probit Models}}}
 
 \placebox{0.50}{0.40}{\parbox{0.6\textwidth}{
 {\large
 \bi
 \item 8.1 Logit Models
+\bi
 \item 8.1.1 Example: SP Survey in the Audience
+\ei
 \item 8.2 Probit Models
 \item 8.3 Elasticities
 \bi
@@ -102,7 +104,7 @@ V(\epsilon)=\frac{\pi^2}{6\lambda^2}
 \vspace{-2em}
 
 \begin{center}
-$\Rightarrow$ not symmetric and expectation $!=\eta$,
+$\Rightarrow$ not symmetric;  expectation $!=\eta$,
   particularly $E(\epsilon)=\gamma=0.5772$ if $\epsilon \sim \text{Gu}(0,1)$
 \end{center}
 }
@@ -113,9 +115,10 @@ $\Rightarrow$ not symmetric and expectation $!=\eta$,
 
 \bi
 
-\itemAsk \colAsk{The numerical values of $V_i$ are 
-$\pi/\sqrt{6}\approx 1.28$ times as large as if $V(\epsilon)$ were
-  $=1$.
+\itemAsk \colAsk{The numerical values of the deterministic utilities 
+$V_i$ are 
+$\pi/\sqrt{6}\approx 1.28$ times as large as if the RU variance
+  $V(\epsilon)$ were $=1$.
 Why?}
 \\
 \pause \colAnswer{Because of the \bfdef{scaling invariance}
@@ -143,7 +146,7 @@ Why?}
 \frame{\frametitle{Gumbel distribution as a limit distribution for max(.)}
 %##############################################################
 \placebox[center]{0.50}{0.75}
-{\parbox{0.95\textwidth}{{\small
+{\parbox{0.95\textwidth}{
  The maximum of many i.i.d. random variables $X_i$ with exponential
 tails $\propto \exp(-\lambda x)$ approaches a Gumbel or Generalized Extreme Value Type-I
 distribution: \\[-1em]
@@ -153,7 +156,7 @@ distribution: \\[-1em]
 \edm
 \\[-0.9em]
 \emph{Example 1}: Maximum of i.i.d. exponentially distributed RUs
-}}}
+}}
 
 
 \visible<1>{\placebox[center]{0.25}{0.305}
@@ -213,15 +216,19 @@ distribution: \\[-1em]
 \visible<3>{\placebox[center]{0.75}{0.44}
 {\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F3.png}}}
 
-\visible<4>{\placebox[center]{0.75}{0.44}
+\visible<4->{\placebox[center]{0.75}{0.44}
 {\figSimple{0.51\textwidth}{figsDiscr/gumbelGrenz2_F.png}}}
 
 
-\visible<4>{\placebox[center]{0.50}{0.11}
+\placebox[center]{0.50}{0.11}
 {\parbox{1.0\textwidth}{
-\bfAsk{?} Give reasons why the maximum of two independent Gumbel
+\visible<4->{\bfAsk{?} \colAsk{Give reasons why the maximum of two
+    independent Gumbel 
 distributed random variables of the same scale parameter is Gumbel
-distributed as well}}}
+distributed as well}}\\
+ \visible<5->{
+\colAnswer{Since $\max(\max(x_1,x_2), \max(x_3,x_4))=\max(x_1,x_2,x_3,x_4)$}}
+}}
 
 }
 
@@ -247,7 +254,7 @@ are the only ones with explicit
 \maintextbox{0.75\textwidth}{IIA property: The relative preference
  of Alternative $i$ over $j$ as defined by the choice probability ratio
  $P_i/P_j$ does not depend on other alternatives $k \neq i,j$}
-\item
+\pause \item
 The IIA property is exclusively true for the MNL. In fact, the
   MNL can be equivalently defined by the IIA property instead of
   i.i.d. Gumbel RUs.
@@ -264,7 +271,7 @@ The IIA property is exclusively true for the MNL. In fact, the
 
 \itemAsk \colAsk{Show that the MNL choice probabilities satisfy
   translational invariance.}\\
-\pause \colAnswer{Just devide the Logit Choice probability formula by,
+\pause \colAnswer{Just devide the Logit choice probability formula by,
   e.g., $\exp(V_1)$:
 \bdm
 P_i\sup{MNL}=\frac{\exp(V_i-V_1)}{\sum_j \exp(V_j-V_1)} \visible<2->{\OK}
@@ -282,7 +289,7 @@ P_i\sup{MNL}=\frac{\exp(V_i-V_1)}{\sum_j \exp(V_j-V_1)} \visible<2->{\OK}
    multiplied by $\lambda=\sqrt{6}/\pi$. The choice probabilities (no
    longer given by the Logit formula!) will be unchanged if the
    determinsitic utilities, i.e., the parameters, are multiplied by
-   $\;ambda$ as well}
+   $\lambda$ as well}
 \\[1ex]
 %
 \pause \itemAsk \colAsk{Derive the IIA property from the choice probability
@@ -293,7 +300,7 @@ P_i\sup{MNL}=\frac{\exp(V_i-V_1)}{\sum_j \exp(V_j-V_1)} \visible<2->{\OK}
    $V_k$, $k\neq i,j$. Just calculate this ratio:
 \bdm
 \frac{P_i}{P_j}=\frac{\exp(V_i)}{\sum_k \exp(V_k)} \ 
- \frac{\sum_l \exp(V_l)}{\exp(V_k)}=\exp(V_i-V_j) \visible<6->{\OK}
+ \frac{\sum_l \exp(V_l)}{\exp(V_j)}=\exp(V_i-V_j) \visible<6->{\OK}
 \edm
 }
 \ei
@@ -322,10 +329,10 @@ available. Give the new Logit choice probabilities.}\\
 \pause \colAnswer{Not really. If there are many unknown/not considered
   effects, the chance is high that they are not correlated and the
   \bfdef{central limit theorem} can be applied (even if there are
-  correlations, this theorem is quite robust). Hence, there would be
-  justification for Gaussian rather than Gumbel RUs. (The fact that
+  correlations, this theorem is quite robust). Hence, there would be a
+  justification for Gaussian rather than Gumbel RUs. The fact that
   the maximum of exponentially-tailed distributions is Gumbel
-  distributed has no real relevance here)}
+  distributed has no real relevance here.}
 
 \ei
 
@@ -447,7 +454,7 @@ $
 
 \visible<4->{\placebox{0.5}{0.51}{\figSimple{0.7\textwidth}
   {\pathDiscrChoice/SC_WS1819_3alt_globalT_ProbPT_T.png}}}
-
+%                    SC_WS1819_3alt_globalT_ProbPT_T.png
 \visible<2->{\placebox{0.5}{0.1}
 {Wrong sign for cost sensitivity, too low time sensitivity!}}
 
@@ -819,8 +826,9 @@ variance-covariance matrix $\vec{\Sigma}$ of the RUs
   (unit matrix), i.e.,
   $\epsilon_i \sim  \text{i.i.d. }N(0,1)$ has similar
   properties as the MNL (but not the IIA property!). 
-However, for $I\ge 3$, the MNP needs a
-  onedimensional integral to calculate the choice probabilities.
+However, for $I\ge 3$, the MNP needs 
+  integrals (1d, if there are no correlations) to calculate the choice
+  probabilities. 
 \pause \item Often, i.i.d Gaussian RUs can be motivited by the central-limit
   theorem while Gumbel distributed ones cannot. However, since the MNL behaves similarly and has explicit
   choice probabilities and a simpler calibration, it is often favoured
