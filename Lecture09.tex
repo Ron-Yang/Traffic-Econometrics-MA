@@ -43,7 +43,6 @@ Chapter 9: Inferential Statistics of Discrete-Choice Models
 \ei
 \item 9.3 Significance Tests
 \item 9.4 Goodness-of-Fit Measures
-\item 7.5 Choice Probabilities
 \ei
 }
 }}
@@ -56,16 +55,16 @@ Chapter 9: Inferential Statistics of Discrete-Choice Models
 \subsection{9.1. Maximum-Likelihood Estimation}
 
 %###################################################
-\frame{\frametitle{9.1. Maximum-likelihood estimation: 
+\frame{\frametitle{9.1. Maximum-Likelihood Estimation: 
 the likelihood function}
 %###################################################
 \bi
-\item The \bfdef{Maximum-likelihood (ML)} estimation is applicable for
-general stochastic models where the probabilities only depend on a
+\item The \bfdef{maximum-likelihood (ML)} estimation is applicable for
+general stochastic models where the probabilities depend on a
  parameter vector
-$\vecbeta$.
-\pause \item The goal is to maximize the \bfdef{likelihhod function}
-  $L(\vecbeta)$, i.e., the probability that the model predicts
+$\vecbeta$
+\pause \item The goal is to maximize the \bfdef{likelihood function
+  $L(\vecbeta)$}, i.e., the probability that the model predicts
   \emph{all} data points $(\vec{y}_n, \vec{x}_n)$, $n=1, ..., N$:
 \maindm{
 L(\vecbeta)=P\big(\ \hat{\vec{y}}_1(\vecbeta)=\vec{y}_1, \quad ..., \quad
@@ -95,12 +94,13 @@ $\diff{P}$ and thus $P$ is maximized if and only if $f(.)$ is maximized.}
 %###################################################
 \frame{\frametitle{Maximum-likelihood estimation}
 %###################################################
-The ML method just maximizes the likelihood function:
+\bi
+\item The ML method maximizes the likelihood function:
 \maindm{
 \hatvecbeta=\text{arg} \max_{\vecbeta} L(\vecbeta)
 }
-\bi
-\item Equivalently, and often better, one maximizes the
+
+\pause \item Equivalently, and often better, one maximizes the
   \bfdef{log-likelihood}:
 \maindm{
 \hatvecbeta=\text{arg} \max_{\vecbeta} \tilL(\vecbeta), \quad
@@ -110,13 +110,12 @@ The ML method just maximizes the likelihood function:
 \pause \itemAsk \colAsk{Why it does not matter whether to maximize the
   likelihood or the log-likelihood?}
 \pause \itemAnswer \colAnswer{Since, as a probability or probability
-  density, $L>0$ and the log function is defined and strictly monontonously
-  increasing in this range. Since
+  density, $L>0$ and the log function is defined and strictly monotonously
+  increasing in this range. Since (i) in this case
 \bdm
-x<y \Leftrightarrow f(x) < f(y)
+x>y \Leftrightarrow f(x) > f(y)
 \edm
-if $f(.)$ is strictly monontonously
-  increasing and the maximum function is based on the inequality
+(ii) the maximum function is based on this inequality
   relation, the \emph{argument} of the maximum remains unchanged.}
 \ei
 }
@@ -127,31 +126,33 @@ if $f(.)$ is strictly monontonously
 \frame{\frametitle{Application 1: Regression models}
 %###################################################
 
-The ML can also be used to estimate regression models and gives
-  the same result as the OLS method if the statistical Gau\3-Markow
-  conditions are  satisfied:
+Besides OLS, the ML can also be used to estimate regression
+models. Does it give the same result, at least if the statistical Gau\3-Markow
+  conditions are  satisfied? 
 \bdma
-L(\vecbeta) &=& \prod_{n=1}^N f_n(y_n)
- = \prod_{n=1}^N\frac{1}{\sqrt{2\pi\sigma^2}}
-\exp\left[-\frac{(y_n-\vec{\beta}\vec{x}_n)^2}{2\sigma^2}\right],\\
-\visible<2->{\tilL(\vecbeta) &=& \sum_{n=1}^N \ln f_n(y_n)
+\visible<2->{L(\vecbeta) &\stackrel{\text{$\epsilon_n$ independent}}{=}& 
+ \prod_{n=1}^N f_n(y_n)}
+\visible<3->{ \stackrel{\epsilon_n\sim i.d. N(0,\sigma^2)}{=} 
+ \prod_{n=1}^N\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left[-\frac{(y_n-\vec{\beta}\vec{x}_n)^2}{2\sigma^2}\right],\\}
+\visible<4->{\tilL(\vecbeta) &=& \sum_{n=1}^N \ln f_n(y_n)
  = \sum_{n=1}^N\left\{
  -\frac{1}{2}(\ln 2\pi+\ln \sigma^2)
  -\left[\frac{(y_n-\vec{\beta}\vec{x}_n)^2}{2\sigma^2}\right]\right\}
  \nonumber\\}
- \visible<3->{&=& -\frac{N}{2}(\ln 2\pi+\ln \sigma^2)
+ \visible<5->{&=& -\frac{N}{2}(\ln 2\pi+\ln \sigma^2)
  -\frac{1}{2\sigma^2}(\vec{y}-\m{X}\vec{\beta})\tr(\vec{y}-\m{X}\vec{\beta})}
 \edma
-\visible<4->{This has the same functional form as the sum of squared
-  errors of the 
-OLS method and leads to the same estimator!}
+\visible<6->{Except for the irrelevant additive and multiplicative
+  constants, this is the SSE function  of the 
+OLS method and therefore leads to the same estimator!}
 
 \vspace{1em}
 
 \bi
-\visible<5->{\itemAsk \colAsk{Why it is possible 
-to express $L(\vecbeta)$ as a product, here?}}
-\visible<6->{\itemAnswer \colAnswer{Since the random terms $\epsilon_n
+\visible<7->{\itemAsk \colAsk{Why it is possible 
+to express $L(\vecbeta)$ as a product?}}
+\visible<8->{\itemAnswer \colAnswer{Since the random terms $\epsilon_n
     \sim i.i.d 
   N(0,\sigma^2)$, particularly, they are \emph{independent} from each
   other}}
@@ -162,7 +163,8 @@ to express $L(\vecbeta)$ as a product, here?}}
 \frame{\frametitle{Application 2: Discrete-choice models}
 %###################################################
 \bi
-\item Probability to predict the chosen alternative $i_n$ for decision $n$:
+\item Probability to predict the chosen alternative $i_n$ for a
+  \emph{single} decision $n$:
 \bdma
 P\left(\hatvec{Y}_{n}=\vec{y}_n\right)
 &=& P\left(\hat{Y}_{n1}=y_{n1}, \ ..., \ \hat{Y}_{nI}=y_{nI}\right)\\
@@ -175,7 +177,8 @@ of ${\cal A}_n$ and of independent RUs)
 %more suitable for the further development)
 }
 \\[1em]
-\visible<3->{\pause \item Probability to predict all the data assuming
+\visible<3->{\pause \item Probability to predict \emph{all} the
+  decisions correctly assuming
   independent  decisions:
 \bdma
 \visible<3->{L(\vecbeta) &=&
@@ -199,7 +202,28 @@ P \left(\vec{Y}\!_{1}(\vecbeta)=\vec{y}_1,
 }
 
 %###################################################
-\frame{\frametitle{Exercise: estimating models with only ACs}
+\frame{\frametitle{Question}
+%###################################################
+\bi
+\itemAsk \parbox[t]{0.65\textwidth}{\vspace{-0.9em}
+
+\colAsk { Show that, in deriving the main ML result
+$\tilL=\sum_n\sum_iy_{ni}\ln P_{ni}$, the random utilities need not to
+be uncorrelated between alternatives, only between choices}}
+\vspace{2em}
+
+\pause \itemAnswer \parbox[t]{0.65\textwidth}{\vspace{-0.9em}
+
+\colAnswer{Because of the exclusivity/completeness
+  requirement for the alternatives, exactly one alternative can be
+  chosen per decision so it is enough to maximize the corresponding
+  probability (which, of course, depends on possible correlations)}}
+
+\ei
+}
+
+%###################################################
+\frame{\frametitle{Estimating models with only ACs}
 %###################################################
 
 If there are no exogenous variables, we are left with just the ACs
@@ -215,22 +239,18 @@ model quality, e.g., by the \bfdef{likelihood-ratio index}.
 
 {\small
 \bi
-\pause \itemAsk \colAsk{ Show that, in deriving the main ML result
-$\tilL=\sum_n\sum_iy_{ni}\ln P_{ni}$, the random utilities need not to
-be uncorrelated between alternatives, only between choices}
-
-\pause \itemAnswer \colAnswer{Because of the exclusivity/completeness
-  requirement for the alternatives, exactly one alternative can be
-  chosen per decision so it is enough to maximize the corresponding
-  probability (last expression in the loglikelihood-formula)}
-
 \pause \itemAsk \colAsk{ Show that the estimated models gives probabilities
   $P_{ni}=P_i$ that are equal to the observed choice fractions $N_i/N$.
   (\emph{Hint:} Lagrange multiplicators to satisfy $\sum_iP_i=1$)}
 
 \pause \itemAnswer \colAnswer{we have 
 $\tilL(\vec{P})=\sum_n \ln P_{i_n}=\sum_iN_i\ln P_i$; \ maximize under
-  the constraint $\sum_iP_i=1$}
+  the constraint $\sum_iP_i=1$:
+\bdm
+\abl{}{P_i}\left(\tilL(\vec{P})-\lambda(\sum_iP_i-1)\right)\stackrel{!}{=}0 
+\ \Rightarrow \ \frac{N_i}{P_i}=\lambda \Rightarrow \ P_i \propto N_i 
+\edm
+}
 
 \pause \itemAsk \colAsk{ Based on this result $P_i=N_i/N$, give the
   parameters for the 
@@ -245,20 +265,24 @@ $\tilL(\vec{P})=\sum_n \ln P_{i_n}=\sum_iN_i\ln P_i$; \ maximize under
 
 
 %###################################################
-\frame{\frametitle{I. Direct graphical solution}
+\frame{\frametitle{Exercise: simple binomial model with an AC and
+    travel time}
 %###################################################
 
-\placebox[center]{0.50}{0.84}{$V_{ni}=\beta_1\delta_{i1}+\beta_2T_{ni}$}
+\placebox{0.50}{0.84}{$V_{ni}=\beta_1\delta_{i1}+\beta_2T_{ni}$}
 
 
-
-\placebox[center]{0.25}{0.25}
+\visible<2->{
+\placebox{0.25}{0.25}
  {\figSimple{0.51\textwidth}{figsDiscr/kalLogitBinom_beta1beta2.png}}
 
-\placebox[center]{0.75}{0.25}
+\placebox{0.75}{0.25}
  {\figSimple{0.51\textwidth}{figsDiscr/kalProbitBinom_beta1beta2.png}}
+}
 
-\placebox[center]{0.50}{0.65}{\parbox{\textwidth}{
+
+\visible<1->{
+\placebox{0.50}{0.65}{\parbox{\textwidth}{
 {\footnotesize
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|} \hline
@@ -275,6 +299,40 @@ Choice set
 6 & 60 & 30 & 0 & 5 \\ \hline
 \end{tabular}
 \end{center}
+}}}}
+
+}
+
+%###################################################
+\frame{\frametitle{I: Graphical solution}
+%###################################################
+
+\visible<1>{\placebox{0.26}{0.54}
+ {\figSimple{0.54\textwidth}{figsDiscr/kalLogitBinom_beta1beta2.png}}}
+
+\visible<2->{\placebox{0.26}{0.54}
+ {\figSimple{0.54\textwidth}{figsDiscr/kalLogitBinom_beta1beta2_graph.png}}}
+
+\visible<3>{\placebox{0.74}{0.54}
+ {\figSimple{0.54\textwidth}{figsDiscr/kalProbitBinom_beta1beta2.png}}}
+
+\visible<4->{\placebox{0.74}{0.54}
+ {\figSimple{0.54\textwidth}{figsDiscr/kalProbitBinom_beta1beta2_graph.png}}}
+
+\visible<1->{\placebox{0.50}{0.84}{$V_{ni}=\beta_1\delta_{i1}+\beta_2T_{ni}$}}
+
+\visible<2->{\placebox{0.30}{0.14}{\parbox{0.4\textwidth}{
+\textbf{Logit}:\\[1ex]
+$\tilL=-12$\\
+$\hatbeta_1=-1.3, \ \hatbeta_2=-0.14,$\\
+$\text{AC in minutes: } -\, \frac{\hatbeta_1}{\hatbeta_2}=\unit[-9]{min}$
+}}}
+
+\visible<4->{\placebox{0.80}{0.14}{\parbox{0.4\textwidth}{
+\textbf{Probit}:\\[1ex]
+$\tilL=-12$\\
+$\hatbeta_1=-1.1, \ \hatbeta_2=-0.12,$\\
+$\text{AC in minutes: } -\, \frac{\hatbeta_1}{\hatbeta_2}=\unit[-9]{min}$
 }}}
 
 }
@@ -289,7 +347,7 @@ Choice set
 \item
 Generally, we have a nonlinear optimization problem. 
 \item For
-parameterlinear utilities, we know for the MNL that a maximum exists
+parameter-linear utilities, we know for the MNL that a maximum exists
 and is unique.
 \pause \item Standard methods of nonlinear optimization are possible:
 \bi
@@ -311,7 +369,7 @@ methods. Such methods are used in many software packages
 The special structure of the MNL with parameter-linear utilities,
 $V_{ni}=\sum_m \beta_mX_{mni}$ allows for an intuitive formulation of
 the estimation problem: 
-\maintextbox{0.8\textwidth}{The observed and modelled 
+\maintextbox{0.8\textwidth}{The observed and modeled 
  \bfdef{property sums} sums of the
   factors $X$ for a given parameter $m$ should be the same
 \bdma
@@ -348,13 +406,13 @@ C\sup{MNL} = \sum_{n,i} P_{ni}(\vecbeta)C_{ni}, \quad
 C\sup{data} = \sum_{n,i} y_{ni} C_{ni}=\sum_nC_{ni_n}
 \edm
 
-\pause \item $X_3=N_{1,\femalepng}$: number of woman chosing alternative 1:
+\pause \item $X_3=N_{1,\femalepng}$: number of woman choosing alternative 1:
 \bdm
 N_{1,\femalepng}\sup{MNL} = \sum_{n}  P_{n1}(\vecbeta)g_n, \quad
 N_{1,\femalepng}\sup{data} = \sum_{n} y_{n1} g_n 
 \edm
 
-\pause \item $X_4=N_1$: total number of persons chosing alternative 1:
+\pause \item $X_4=N_1$: total number of persons choosing alternative 1:
 \bdm
 N_1\sup{MNL} = \sum_{n}  P_{n1}(\vecbeta), \quad
 N_1\sup{data} = \sum_{n} y_{n1}
@@ -373,7 +431,7 @@ N_1\sup{data} = \sum_{n} y_{n1}
 %###################################################
 
 {\small
-Since the log-lilkelihhod is maximized at $\hatvecbeta$, we have
+Since the log-likelihood is maximized at $\hatvecbeta$, we have
 \bdm
 \ablpart{\tilL}{\vecbeta}=0 \ \Rightarrow \ 
 \tilL(\vec{\beta}) \approx \tilL\sub{max} + \frac{1}{2}
@@ -381,7 +439,8 @@ Since the log-lilkelihhod is maximized at $\hatvecbeta$, we have
 \Delta \vec{\beta}=\vecbeta-\hatvecbeta
 \edm
 with the (negative definite) 
-Hessian $H_{lm}=\ablpartmix{\tilL(\hatvecbeta)}{\beta_l}{\beta_m}$.
+Hessian $H_{lm}=\left.\ablpartmix{\tilL(\vecbeta)}{\beta_l}{\beta_m}
+\right|_{\vecbeta=\hatvecbeta}$
 
 \pause
 Compare $L(\vec{\beta})$ near
@@ -397,7 +456,8 @@ f(\vec{x}) &=& \left((2\pi)^{M} \text{Det}\vec{\Sigma}\right)^{-1/2} \
 \edma
 \vspace{-1ex}
 
-\pause Identify $\Delta \vecbeta$ with $\vec{x}$, $\m{V}$ with $\vec{\Sigma}$,
+\pause Identify $\Delta \vecbeta$ with $\vec{x}$, the sought-after
+variance-covariance matrix $\m{V}$ with $\vec{\Sigma}$,
   and assume the 
 asymptotic limit (higher than quadratic terms in $\tilL(\hatvecbeta)$
 negligible): \ $\Rightarrow$
@@ -417,7 +477,7 @@ negligible): \ $\Rightarrow$
 The variance-covariance matrix is related to 
 \bfdef{Fisher's information matrix $\vec{\cal I}$}:
 \bdm
-\vec{\cal I}=-\m{H}, \quad
+\vec{\cal I}=\m{V}^{-1}=-\m{H}, \quad
 I_{lm}=-\ablpartmix{\tilL(\hatvecbeta)}{\beta_l}{\beta_m}
 \edm
 \bi
@@ -434,9 +494,9 @@ $\Rightarrow$ The ML estimator is \bfdef{asymptotically efficient}
 \vspace{1ex}
 
 \pause \item Comparison with the OLS estimator 
-$\m{V}\sub{OLS}=2\sigma^2 \m{H}_S^{-1}$ of regression models:
+$\m{V}\sub{OLS}=2\sigma^2 \m{H}\sub{SSE}^{-1}$ of regression models:
 \bdm
- \vec{\cal I}=-\m{H}=\m{H}_S/(2\sigma^2)=\m{X}\tr\m{X}/\sigma^2
+ \vec{\cal I}=-\m{H}=\m{H}\sub{SSE}/(2\sigma^2)=\m{X}\tr\m{X}/\sigma^2
 \edm
 The negative Hesse matrix of $\tilL(\vecbeta)$ 
  is proportional to the Hesse matrix of the regression SSE $S(\vecbeta)$.
@@ -486,7 +546,7 @@ SP Survey in the Audience WS18/19 \red{(red: bad weather, $\bfmath{W=1}$)}}
 \frame{\frametitle{Model specification for Model 1 of the past lecture}
 %###################################################
 
-\placebox[center]{0.35}{0.43}{
+\placebox{0.35}{0.43}{
  \figSimple{0.75\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_fProb.png}
 }
 
@@ -501,7 +561,7 @@ $
 }}}
 
 
-\placebox[center]{0.80}{0.50}{\parbox{0.20\textwidth}{\small\fbox{ 
+\placebox{0.80}{0.50}{\parbox{0.20\textwidth}{\small\fbox{ 
   $
   \begin{array}{l}
  % \ln L\sub{init}=-176.9,\\
@@ -514,7 +574,7 @@ $
  $
 }}}
 
-\placebox[center]{0.82}{0.25}{{\small
+\placebox{0.82}{0.25}{{\small
    $
    \begin{array}{l}
    \frac{\beta_0}{-\beta_3}=\unit[-22.4]{min},\\[1ex]
@@ -524,7 +584,7 @@ $
    $
 }}
 
-\placebox[center]{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
+\placebox{0.16}{0.048}{\parbox{0.3\textwidth}{\scriptsize
 AIC=275,
 BIC=303,\\
 $\rho^2=0.200$,
@@ -539,14 +599,14 @@ $\tilde{\rho}^2=0.177$
     cost ($\beta_2$) and time ($\beta_3$) sensitivities}
 %###################################################
 
-\placebox[center]{0.50}{0.76}{\parbox{1.0\textwidth}{\small
+\placebox{0.50}{0.76}{\parbox{1.0\textwidth}{\small
   $ 
   V_i= \beta_0\delta_{i1} + \beta_1\delta_{i2} + \beta_2 K
    + \beta_3 T
   $
 }}
 
-\placebox[center]{0.25}{0.42}{\parbox{0.55\textwidth}{
+\placebox{0.25}{0.42}{\parbox{0.55\textwidth}{
   \begin{center}
     \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_L_beta2_beta3.png}\\
     Likelihood function\\
@@ -555,7 +615,7 @@ $\tilde{\rho}^2=0.177$
 }}
 
 
-\placebox[center]{0.75}{0.42}{\parbox{0.55\textwidth}{
+\placebox{0.75}{0.42}{\parbox{0.55\textwidth}{
   \begin{center}
     \figSimple{0.55\textwidth}{\pathDiscrChoice/SC_WS1819_3alt_globalT_lnL_beta2_beta3.png}\\
     Log-likelihood function\\
@@ -620,11 +680,11 @@ Weather: good
 \frame{\frametitle{Revealed Choice: fit quality}
 %###################################################
 
-\placebox[center]{0.37}{0.44}{
+\placebox{0.37}{0.44}{
   \figSimple{0.70\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProb.png}
 }
 
-\placebox[center]{0.85}{0.72}{\parbox{0.3\textwidth}{\small
+\placebox{0.85}{0.72}{\parbox{0.3\textwidth}{\small
 $
 \begin{array}{l}
 V_1=\beta_1+\beta_4 r,\\ 
@@ -635,7 +695,7 @@ V_4=0
 $
 }}
 
-\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+\placebox{0.85}{0.40}{\parbox{0.30\textwidth}{\small
  $
  \begin{array}{l}
  \beta_1= 4.1\pm 0.6, \\
@@ -654,11 +714,11 @@ $
 \frame{\frametitle{Revealed Choice: Modal split as a function of distance}
 %###################################################
 
-\placebox[center]{0.37}{0.44}{
+\placebox{0.37}{0.44}{
   \figSimple{0.70\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_fProbKumDist.png}
 }
 
-\placebox[center]{0.85}{0.72}{\parbox{0.3\textwidth}{\small
+\placebox{0.85}{0.72}{\parbox{0.3\textwidth}{\small
 $
 \begin{array}{l}
 V_1=\beta_1+\beta_4 r,\\ 
@@ -669,7 +729,7 @@ V_4=0
 $
 }}
 
-\placebox[center]{0.85}{0.40}{\parbox{0.30\textwidth}{\small
+\placebox{0.85}{0.40}{\parbox{0.30\textwidth}{\small
  $
  \begin{array}{l}
  \beta_1= 4.1\pm 0.6, \\
@@ -686,6 +746,37 @@ $
 }
 
 
+
+%###################################################
+\frame{\frametitle{Likelihood and Log-Likelihood as $f(\beta_1,\beta_2)$}
+
+\placebox{0.50}{0.76}{
+$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
++\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
+}
+
+\placebox{0.25}{0.45}{
+ \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_L_beta0_beta1.png}
+}
+
+\placebox{0.75}{0.45}{
+ \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_lnL_beta0_beta1.png}
+}
+
+\placebox{0.30}{0.15}{\parbox{0.4\textwidth}{
+  Likelihoodfunktion\\
+  $L(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+\placebox{0.80}{0.15}{\parbox{0.4\textwidth}{
+  Log-Likelihoodfunktion\\
+   $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
+}}
+
+}
+
+
+
 %###################################################
 \frame{\frametitle{Log-Likelihood: Sections through parameter space}
 %###################################################
@@ -697,37 +788,6 @@ $V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
 }
 
 }
-
-
-%###################################################
-\frame{\frametitle{Likelihood and Log-Likelihood as $f(\beta_1,\beta_2)$}
-
-\placebox[center]{0.50}{0.76}{
-$V_i=\sum_{m=1}^3\beta_m\delta_{m,i}
-+\sum_{m=1}^3\beta_{m+3}\ r\delta_{m,i}$
-}
-
-\placebox[center]{0.25}{0.45}{
- \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_L_beta0_beta1.png}
-}
-
-\placebox[center]{0.75}{0.45}{
- \figSimple{0.50\textwidth}{\pathDiscrChoice/RC_skript_4alt_r_eng_lnL_beta0_beta1.png}
-}
-
-\placebox[center]{0.30}{0.15}{\parbox{0.4\textwidth}{
-  Likelihoodfunktion\\
-  $L(\beta_1,\beta_2,\hatbeta_3, ...)$
-}}
-
-\placebox[center]{0.80}{0.15}{\parbox{0.4\textwidth}{
-  Log-Likelihoodfunktion\\
-   $\tilL(\beta_1,\beta_2,\hatbeta_3, ...)$
-}}
-
-}
-
-
 
 
 
@@ -762,9 +822,9 @@ $H_0: \beta_j=\beta_{j0}$, \ $\ge
   \beta_{j0}$, \ or $\le \beta_{j0}$, respectively:
 {\small
 \bdm
-p_{=}=2\big(1-\Phi(|\hatbeta_j-\beta_{j0}|)\big), \quad
-p_{\le}=1-\Phi(\hatbeta_j-\beta_{j0}), \quad
-p_{\ge}=\Phi(\hatbeta_j-\beta_{j0})
+p_{=}=2\big(1-\Phi(|t\sub{data}|)\big), \quad
+p_{\le}=1-\Phi(t\sub{data}), \quad
+p_{\ge}=\Phi(t\sub{data})
 \edm
 }
 \pause \item As in regression, a factor 4 of more data halves the error
@@ -775,9 +835,9 @@ p_{\ge}=\Phi(\hatbeta_j-\beta_{j0})
 %##############################################################
 \frame{\frametitle{Significance tests II: Likelihood-ratio (LR) test}
 %##############################################################
-Like in regression (F-test), one sometimes wants to test $H_0$s
+Like in regression (F-test), one sometimes wants to test null hypotheses
 fixing
-several parameters simultaneously to given values, i.e., $H_0$
+several parameters \emph{simultaneously} to given values, i.e., $H_0$
 corresponds to a \bfdef{restraint model}
 \bi
 \pause \item $H_0$: The restraint model with some fixed parameters and
@@ -799,11 +859,11 @@ corresponds to a \bfdef{restraint model}
 }
 \vspace{1ex}
 
-\pause \item Data realisation:
-Calibrate both $M$ and $M_r$ and evaluate $\lambda\sup{LR}\sub{data}$
+\pause \item Data realization:
+calibrate both $M$ and $M_r$ and evaluate $\lambda\sup{LR}\sub{data}$
 
 \pause \item Result:
-Reject $H_0$ at $\alpha$ based on the
+reject $H_0$ at $\alpha$ based on the
 $1-\alpha$ quantile:
 \bdm
 \lambda\sup{LR}\sub{data}>\chi^2_{1-\alpha, M-M_r}
@@ -839,7 +899,7 @@ V_{n2}(\beta_1,\beta_2) &=& 0
 
 \bi
 \item $\beta_1$: Difference in distance sensitivity (utility/km)
-  for chosing ped/bike over PT/car (expected $<0$)
+  for choosing ped/bike over PT/car (expected $<0$)
 \item $\beta_2$: Utility difference ped/bike over PT/car at zero
   distance ($>0$)
 \ei
@@ -864,8 +924,8 @@ V_{n2}(\beta_1,\beta_2) &=& 0
   $V_{n1}(\beta_1,\beta_2)=(\beta_1r_n+\beta_2)\delta_{i1}$
 \pause \item Test statistics: \  $\lambda\sup{LR}=2\left[
   \tilL(\hatbeta_1,\hatbeta_2)-\tilL(0,0)\right] \sim \chi^2(2)|H_0$
-\pause \item Data realisation (1 $\tilL$-unit per contour): \  
-$\lambda\sup{LR}\sub{data}=2(-26.5+36.5)=20$
+\pause \item Data realization (1 $\tilL$-unit per contour): \  
+$\lambda\sup{LR}\sub{data}=2(-26.5+35.5)=18$
 \pause \item Decision: \ Rejection range $\lambda\sup{LR}>\chi^2_{2,0.95}=5.99
   \ \Rightarrow$ \red{$H_0$ rejected.}
 \ei
@@ -877,20 +937,22 @@ $\lambda\sup{LR}\sub{data}=2(-26.5+36.5)=20$
 \frame{\frametitle{Fit quality of the full model}
 %##############################################################
 
-\placebox{0.30}{0.45}{\figSimple{0.62\textwidth}
+\placebox{0.31}{0.45}{\figSimple{0.64\textwidth}
  {figsDiscr/BNL_Entfernung_smallSample_relHaeuf_eng.png}}
 
 \placebox{0.77}{0.45}{\parbox{0.40\textwidth}{\small
 \bi
-\itemAsk \colAsk{ What would be the modelled ped/bike modal split for
-  the null model $V_{ni}=0$?}
+\itemAsk \colAsk{ What would be the modeled ped/bike modal split for
+  the null model $V_{ni}=0$?} \pause \colAnswer{50:50}
 \pause \itemAsk \colAsk{ Read off from the $\tilL$ contour plot the parameter of
-  the AC-only model $V_{ni}=\beta_2\delta_{i1}$ and give the modelled
+  the AC-only model $V_{ni}=\beta_2\delta_{i1}$ and give the modeled
   modal split} \pause \colAnswer{$\hatbeta_2=\ln(P_1/P_2)=-0.5$, OK
-  with $P_1/P_2=N_1/N_2=20/32$}
+  with $P_1/P_2=e^{\hatbeta_2} \approx N_1/N_2=20/32$}
 \pause \itemAsk \colAsk{ Motivate the negative correlation between the
-  parameter errors} \pause \colAnswer{Make sure that the same fraction choses
-  alternative~2}
+  parameter errors} \pause \colAnswer{This makes at least sure that,
+  in case of correlated errors,
+about the same fraction chooses
+  alternative~2 as for the calibrated model}
 \ei
 }}
 
@@ -916,7 +978,7 @@ $\lambda\sup{LR}\sub{data}=2(-26.5+36.5)=20$
 evidence for missing 
   but relevant factors 
 \pause \item A further problem: We cannot compare non-nested models
-\pause \item Finally, in reality, one is interested in \bfdef{effect
+\pause \item Finally, in reality, one often is interested in \bfdef{effect
   strength} (difference in the fit and validation quality), not
   significance
 \ei
@@ -946,10 +1008,10 @@ $N$: number of decisions; $M$: number of parameters
 \bi
 \pause \item Both criteria give the needed additional information (in
 bit) to obtain the actual micro-data from the
-  model's prediction, including an overfitting penalty: the lower, the better.
+  model's prediction, including an over-fitting penalty: the lower, the better.
 \pause \item Both the AIC and BIC are equivalent to the corresponding
 GoF measures of regression.
-\pause \item the BIC focusses more on parsimonious models (low $M$).
+\pause \item the BIC focuses more on parsimonious models (low $M$).
 \pause \item For nested models satisfying the null hypothesis of the LR test
   and $N\gg M$,
   the expected AIC is the same (\bfAsk{verify!}). However, since the
@@ -962,17 +1024,17 @@ GoF measures of regression.
 
 %##############################################################
 \frame{\frametitle{GoF measures corresponding to the coefficient of
-    determination $R^2$ of linear models 
-($\tilL\sup{0}$: log-likelihood\\of the
+    determination $\bfmath{R^2}$ of linear models 
+($\tilL\sup{0}$: log-likelihood of the
 estimated AC-only or trivial model)}
 %##############################################################
 
 {\small
 \bi
-\item \bfdef{LR-Index} resp. \bfdef{McFaddens $R^2$}:  \vspace{-2ex}
+\item \bfdef{LR-Index} resp. \bfdef{McFadden's $R^2$}:  \vspace{-2ex}
    \bdm \rho^2=1-\frac{\tilL}{\tilL\sup{0}} \edm
  
-\item \bfdef{Adjusted LR-Index/McFaddens $R^2$:}  \vspace{-1ex}
+\item \bfdef{Adjusted LR-Index/McFadden's $R^2$:}  \vspace{-1ex}
   \bdm \bar{\rho}^2=1-\frac{\tilL-M}{\tilL\sup{0}}\edm
 \ei
 }
@@ -988,7 +1050,7 @@ estimated AC-only or trivial model)}
   0.3 may characterize a good model, \emph{see
     \hyperlink{sec:SP}{\beamerbutton{the Example 9.2.1}}},
   while $R^2=0.3$ means a really bad fit for a regression model.
-\pause \item An overfitted model with $M$ parameters fitting
+\pause \item An over-fitted model with $M$ parameters fitting
   $N=M$ decisions reaches the ``ideal'' LR-index value $\rho^2=1$ 
  while $\bar{\rho}^2$ is near
   zero.
@@ -1003,24 +1065,32 @@ estimated AC-only or trivial model)}
 %##############################################################
 
 \bi
-\itemAsk Discuss the model to be tested, the AC-only model, and the
-trivial model in the context of weather forecasts.\\[1em]
-\pause \itemAsk Give the log-likelihood of the AC-only and trivial models
+\itemAsk \colAsk{Discuss the model to be tested, the AC-only model, and the
+trivial model in the context of weather forecasts}\\
+\pause \colAnswer{Full forecast info, info from climate table, 50:50}
+\\[1em]
+\pause \itemAsk \colAsk{Give the log-likelihood of the AC-only and trivial models
 if there are $I$ alternatives and $N_i$ decisions for alternative $i$ 
-(total number of decisions $N=\sum_{i=1}^IN_i$).\\[1em]
-\pause \itemAsk Consider a binary choice situation where the $N/2$ persons with
+(total number of decisions $N=\sum_{i=1}^IN_i$)}\\
+\pause \colAnswer{Trivial model: 
+$P_{ni}=1/I$, $\tilL=\sum_n \ln P_{i_n}=\sum_i N_i \ln P_i=-N\ln I$;\\
+  AC-only model: $P_{ni}=N_i/N$, 
+$\tilL=\sum_i N_i \ln P_i=N\ln N-\sum_iN_i\ln N_i$}
+\\[1em]
+\pause \itemAsk \colAsk{Consider a binary choice situation where the $N/2$ persons with
 short trips chose the pedestrian/bike
 option with a probability of 3/4,  and the PT/car option with 1/4. The
 other $N/2$ persons with long trips had the reverse modal split with
 a ped/bike usage of \unit[25]{\%}, only.
 
-What would be the LRindex for the ``perfect'' model exactly reproducing the
+What would be the LR-index for the ``perfect'' model exactly reproducing the
 observed 3:1 and 1:3 modal splits for the short and long trips,
-respectively? {\tiny (less than 0.18)} 
+respectively?} \\
+\colAnswer{(less than 0.18)} 
 \ei
 
-
 }
+
 
 
 \end{document}
