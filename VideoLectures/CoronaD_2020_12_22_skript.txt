@@ -1,0 +1,341 @@
+0. Vorbereitung
+=============
+
+0.1. Browser
+==========
+
+Chromium-Browser (wg Schreiben) ohne Bookmarks Leiste starten
+corona-simulation.de laden
+
+
+0.2. Webcam
+=========
+Besser: vlc mit Crop-Moeglichkeiten
+
+[EXTRA Terminal:]
+vlc v4l2:///dev/video0
+
+vlc input "--video-filter=croppadd{cropright=200,cropleft=200}" v4l2:///dev/video0
+ACHTUNG: v4l2 mit lowercase 'l', not '1' !
+
+Manipulieren Helligkeit/Kontrast: 
+guvcview
+(hat auf alle Webcam Viewer (vlc, cheese) Einfluss!!)
+
+ACHTUNG: Nicht vlc mit 'x' schliessen, sondern immer mit 'q' im
+Terminal, braucht extra Terminal
+
+
+0.3. Screenrecorder, Verhueterli
+==============================
+
+1. Standard-Situation
+=====================
+
+[Bild]
+
+Hallo, liebe Simulanten und
+Freunde der gepflegten
+Corona-Simulation.
+In diesem neuen Video meines
+Corona-Simulators zeige ich zwei
+neue
+Features und gebe damit
+aktualisierte Projektionen fuer
+diesen Coronawinter. Es sind:
+
+1. Neue Ansichten: Wochen-Inzidenz
+
+2. Neue Aktionen, die in der neuen
+   Massnahmen-Ansicht getaetigt
+   werden koennen:
+   (i) diverse Lockdowns
+   (ii) Auswirkung von Impfungen
+
+Die weiteren Neuerungen
+im Simulator:
+
+3. neuen Regionen:
+einige Landkreise in Sachsen und
+
+4. die Simulation der
+Auswirkungen von von 
+anderen Regionen eingeschleppten
+Erregern
+
+zeige ich in meinem
+anderen heutigen Video, siehe Link
+
+
+[Chromium, Standardsituation, rerun]
+
+Das ist der Simulator
+corona-simulation.de
+[auf URL deuten], wie sie beim
+Start erscheint. Neue
+Standardansicht ist nun die Wochen-
+Inzidenz, also *gemessene* Positive
+pro Woche und 100 000 Personen
+
+Er stoppt bei der Gegenwart
+
+[Regler]
+Die mittleren drei Regler geben
+langsam veraenderliche Attribute
+der Seuchendynamik an wie Ansteckungs
+zeitraum oder wann getestet wird.
+
+Der oberste und unterste Regler bewegt sich im
+Standardfall von selbst: R0-Wert
+und Dunkelziffer werden an die
+Infektionszahlen und Zahl der Tests
+angepasst. Dreht man selbst daran
+oder simuliert in die Zukunft, 
+werden sie nicht mehr automatisch
+geaendert und man kann Szenarien
+simulieren. 
+
+[Zahlen]
+22.12.2020
+Durchseuchung 16%
+Aktuelles R 1.07, bei R0=1.27.
+Unterschied 
+Liegt an bereits 16% Durchseuchung
+Akt IFR
+sim Gestorbene 27700
+
+[R0-Werte]
+So um 1.5 im Oktober, 1.15 im
+November [zeichne senkr Strich Teil-Lockdown]
+und um 1.25 im Dezember.
+[zeichne senkr Strich]
+
+Warum geht es da ploetzlich hoch?
+Bereits neue Virusvariante?
+
+Warum keine Auswirkungen des harten Lockdown ab 15. Dezember?
+[senkr Strich] Dies zumindest kann
+ich klaeren!
+
+
+2. Weitere Fenster zeigen
+=========================
+
+* Tagesansicht: Simulation
+beruecksichtigt auch
+Test-Schwankungen. Gezeigt sind die
+simulierten pos Tests, NICHT
+die Infektionen (diese haben keinen
+/kaum Wochengang)
+
+* Faelle vs Ind=fizierte zeigt dies!
+* Kum Ansicht: Auch kum Test- und Todeszahlen stimmen
+
+* 
+
+
+3. Standard-Projektion
+=====================
+
+[Zurueck Wocheninzidenz]
+[Mit Go weiterlaufen lassen]
+=>
+Seuche im April zu Ende WENN
+ALLES SO BLEIBT WIE VOR 2 WOCHEN
+VOR HARTEM LOCKDOWN.
+Aufgrund der unerklaerlichen
+Erhoehung der  
+R0-Zahl im Dezember sind die
+projektierten Toteszahlen nun
+hoeher als in meiner letzten
+Projektion anfang Dezember,
+so um 95 000,
+darunter 85 000 diese Wintersaison
+
+
+4. Harter Lockdown wirkt nicht?
+=========================
+
+Noch zu frueh, denn Verzoegerung!
+[rerun]
+[Gegenwart R0=1.27 -> R0=1.1]
+[4 Wo simulieren]
+Zuerst tut sich nix! Ist die Verzoegerung
+
+5. Projektion "harter Lockdown
+bis Maerz"
+===============================
+
+Annahme, dass harter Lockdown vor
+1 Woche (16.12.) R0-Werte um
+0.1 bis 0.2 senkt!
+
+[Inzidenz-View]
+[calibrate]
+[Stop um 15. Dez]
+[R0=1.27 auf 1.1]
+[Go]
+Sie sehen: Passt nach wie vor
+perfekt mit den Daten!
+1. Ansteckungsfenster (slider!)
+nicht am Anfang
+2. Testverzoegerung
+3. Wochen-Inzidenz=1 Wo gleitendes Mittel => weitere 3.5 Tage
+Verzoegerung 
+
+[Go]
+* Die naechsten Tage muessten
+  sich Ergebnisse zeigen!
+* Todesrate steigt aber bis
+  Januar auf im Mittel
+  800 Faelle pro Tag,
+* 65000 - 10000=55 000 Todesopfer
+  an oder mit Corona diese
+  Wintersaison statt 85 000 mit
+  Teil-Lockdown
+* Extreme Folgeschaeden eines so
+  langen harten Lockdowns
+  ueberwiegen die gesparten
+  30000 Todesopfer!
+
+
+6. Projektion "Temporaerer
+harter Lockdown"
+===============================
+
+Praeparation dieser Projektion
+wie bisher:
+[Inzidenz-Ansicht]
+[calibriere neu]
+[Stop um 15.12]
+[Senke R0 von 1.27 auf 1.1]
+[simuliere bis Mitte Januar]
+[erhoehe R0 auf 1.27=Teil-Lockdown]
+
+* Die in jedem Fall erhoehte
+  Teilimmunitaet laesst auch dann
+  Faelle nicht mehr steigen!
+
+* 75000-10000 Corona-Tote diese
+  Saison Zwar 10000 mehr als mit
+  hartem  Lockdown aber deutlich
+  weniger Schaden: 1/3
+  Lockdown-Laenge rettet bereits
+  2/3 der Toten durch einen langen
+  Lockdown!
+
+7. Impfungen
+============
+
+[rekalibrierung]
+[Laufenlassen bis 15. Dezember]
+[Switchen auf Massnahmen-Ansicht]
+[R0 auf 1.1 bis Anf Januar]
+[Impfrate 3% bis 20. Jan]
+[R0 auf 1.27+Impfrate 6% bis Mitte feb]
+[Impfrate 10% bis April]
+
+=> etwa genauso viele Todesopfer wie langer harter Lockdown!
+
+Bonus: Kann auch Teil-Lockdown im maerz liften, Pandemie over!
+
+
+
+Extra-Movie Erzgebirge
+#######################
+
+
+In diesem Video ueber meinen
+Online Simulator
+Corona-Simulator.de will ich
+simulieren,
+was die Ursache der hohen Sachsen-
+Coronazahlen sein koennten und wie
+es hier weitergeht. 
+Hierbei nutze ich zwei neue Features des Simulators:
+
+1. Neue Regionen:
+   Einige Landkreise in Sachsen
+
+2. Neue Aktionen, die in der neuen
+   Massnahmen-Ansicht getaetigt
+   werden koennen:
+   (i) Auswirkungen diverser
+       Lockdowns
+   (ii) Auswirkungen von von
+   anderen Regionen
+   eingeschleppten Erregern
+   (iii) wie im anderen Video
+   Auswirkung von Impfungen
+
+
+1. Worum geht es?
+===================================
+
+[Standard Deutschland]
+
+In Deutschland insgesamt gibt es
+* steilen Anstieg bis etwa
+   7. November, [Strich]
+   
+* dann leicht fallendes Plateau,
+  wohl aufgrund des Teil-Lockdowns
+  ab 1. November. [Strich]
+
+* Ab Anfang Dez gibt es einen
+  weiteren Anstieg, der nicht
+  erklaert werden kann
+  (bereits die neue Mutation?)
+  
+* Ab 15. Dez den harten Lockdown,
+  der sich aber noch nicht in den 
+  Daten auswirkt, wie in meinem
+  anderen Video heute gezeigt.
+  [Strich] 
+
+[Osterzgebirge]
+
+* Bis 7. November nahezu gleicher
+  Anstieg und gleiche Inzidenz
+  [Strich] 
+
+* dann aber KEIN Plateau,
+  sondern weiterer Anstieg bis
+  ueber 600/Woche/100000,
+  als ob es keine Ma\3nahmen
+  g\"abe!
+
+[Tschechien]
+
+Nicht nur Osterzgebirge, auch Westerzgebirge, Zittau, Bayr Wald haben
+diese hohen Zahlen: Ist es etwa Einschleppung aus Tschechien?
+
+* Lockdown ab 22. Oktober
+  [Strich], der ab
+  1. November seine Wirkung zeigt
+
+* Ab Anfang Dez derselbe
+  unerklaerliche Anstieg wie in D
+
+* Aber Tschechen durften in D
+  einkaufen und arbeiten,
+  auch bei der 800er Inzidenz! 
+
+[Nochmal Osterzgebirge]
+
+* Strich bei 22. Oktober
+
+* Sachsen wie D: Passe R-Zahlen an!
+  R0=1.4, Import=0  01.10-20.10
+  R0=1.4, Import=0  20.10-01.11
+  R0=1.1, Import=0  01.11-01.12
+  R0=1.3, Import=0  01.12-
+ 
+[Rekalibrierung]
+  R0=1.4, Import=5  01.10-20.10
+  R0=1.4, Import=10  20.10-01.11
+  R0=1.1, Import=15  01.11-01.12
+  R0=1.3, Import=15  01.12-
+
+
+

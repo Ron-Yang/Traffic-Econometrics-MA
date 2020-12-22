@@ -1,0 +1,22 @@
+
+Corona-Playlist
+https://www.youtube.com/playlist?list=PLhsJ0l0GYIUqwSf4esXIdjw-4hGlwqJtD
+
+Corona-simulation.de: Wie verläuft die Pandemie diesen Winter?
+
+In diesem Video zeige ich die neuen Features meines Simulators: die
+Ansicht "Wochen-Inzidenz" und ein neues "Maßnahmen"-Fenster, in dem
+man Lockdowns und deren Aufhebung sowie die Auswirkungen von Impfungen
+und eingeschleppten Infektionen simulieren kann. Ich simuliere für
+Deutschland die Szenarien "kein harter Lockdown", "harter Lockdown bis
+Maerz" und "harter Lockdown bis Mitte Januar". Die letzte Variante
+erweist sich volkswirtschaftlich als die beste, wenn Impfungen noch
+keine Rolle spielen. Aber selbst 5-10% an geimpften Personen bis März
+machen bereits einen wesentlichen Unterschied aus und lassen die
+Pandemie im Frühjahr verschwinden.
+
+
+
+Corona-simulation.de: Warum sind die Fallzahlen in Sachsen so hoch?
+
+
